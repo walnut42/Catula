@@ -1,0 +1,65 @@
+//
+// Created by Lorenzo Nuti and Paolo Valcepina on 17/03/17.
+//
+
+#include "Background.h"
+
+Background *Background::instance = nullptr;
+
+Background::Background() : spriteSize(280, 100) {
+    if (!texture.loadFromFile("../Resources/background.png"))
+        return;
+
+    texture.setSmooth(true);
+}
+
+void Background::update(const sf::Time &elapsed) {
+    // update level time
+    float levelTime = levelClock.getElapsedTime().asSeconds();
+    if (levelTime > levelDuration) {
+        if (levelTime > levelDuration + levelUpTime) {
+            levelClock.restart();
+        } else
+            v += levelUpAcc * elapsed.asSeconds();
+    }
+
+    // update position
+    shift = v * elapsed.asSeconds();
+    pos += shift;
+
+    // If first sprite is out on the left side, the loop removes it.
+    while (!sprites.empty() && getSpritePos(0).x + spriteSize.x < 0) {
+        sprites.erase(sprites.begin());
+        pos += spriteSize.x;
+    }
+
+    // If last sprite is in on the right, the loop adds a new one.
+    while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x < Window::getInstance()->getWidth()) {
+        sprites.push_back(sf::Sprite(texture));
+    }
+}
+
+void Background::draw(Window &window) {
+    for (auto it = sprites.begin(), end = sprites.end(); it != end; ++it) {
+        window.drawSprite(*it, spriteSize, getSpritePos(it), sf::Vector2f(v, 0));
+    }
+}
+
+sf::Vector2f Background::getSpritePos(std::list<sf::Sprite>::iterator &it) {
+    return getSpritePos(std::distance(sprites.begin(), it));
+}
+
+sf::Vector2f Background::getSpritePos(long i) {
+    return sf::Vector2f(pos + spriteSize.x * i, 0);
+}
+
+float Background::getShift() const {
+    return shift;
+}
+
+Background *Background::getInstance() {
+    if (instance == nullptr) {
+        instance = new Background;
+    }
+    return instance;
+}
