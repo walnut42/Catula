@@ -9,6 +9,8 @@
 #include "Background.h"
 #include "MainCharacter.h"
 
+//Nuova versione
+
 int main() {
     srand((unsigned int) (time(NULL)));
 
