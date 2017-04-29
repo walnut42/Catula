@@ -16,7 +16,7 @@ Entity::Entity(float width, float height, float x, float y) : Entity() {
 }
 
 void Entity::draw() {
-    window->drawEntity(*this);
+    Window::getInstance()->drawEntity(*this);
 }
 
 bool Entity::collide(const Entity *obj1, const Entity *obj2) {

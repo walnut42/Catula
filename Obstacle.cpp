@@ -12,7 +12,7 @@ Obstacle::Obstacle(float x, float y) : Collidable(10, 10, x, y) {
 }
 
 void Obstacle::update() {
-    relativePos.y += relativeVel.y * window->getElapsedTime().asSeconds();
+    relativePos.y += relativeVel.y * Window::getInstance()->getElapsedTime().asSeconds();
 
     if (relativePos.y > 10 || relativePos.y < -10)
         relativeVel.y *= -1;

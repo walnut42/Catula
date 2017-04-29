@@ -20,11 +20,11 @@ void Background::update() {
         if (levelTime > levelDuration + levelUpTime) {
             levelClock.restart();
         } else
-            v += levelUpAcc * window->getElapsedTime().asSeconds();
+            v += levelUpAcc * Window::getInstance()->getElapsedTime().asSeconds();
     }
 
     // update position
-    shift = v * window->getElapsedTime().asSeconds();
+    shift = v * Window::getInstance()->getElapsedTime().asSeconds();
     pos += shift;
 
     // If first sprite is out on the left side, the loop removes it.
@@ -41,7 +41,7 @@ void Background::update() {
 
 void Background::draw() {
     for (auto it = sprites.begin(), end = sprites.end(); it != end; ++it) {
-        window->drawSprite(*it, spriteSize, getSpritePos(it), sf::Vector2f(v, 0));
+        Window::getInstance()->drawSprite(*it, spriteSize, getSpritePos(it), sf::Vector2f(v, 0));
     }
 }
 

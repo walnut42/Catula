@@ -17,9 +17,6 @@ int main() {
     Background *background = Background::getInstance();
     MainCharacter *character = MainCharacter::getInstance();
 
-    window->add(background);
-    window->add(character);
-
     window->gameLoop();
     return 0;
 }

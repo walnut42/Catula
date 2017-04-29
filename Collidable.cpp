@@ -20,7 +20,7 @@ void Collidable::update() {
     float shift = Background::getInstance()->getShift();
     originPos.x += shift;
     pos = originPos + relativePos;
-    vel.x = shift / window->getElapsedTime().asSeconds() + relativeVel.x;
+    vel.x = shift / Window::getInstance()->getElapsedTime().asSeconds() + relativeVel.x;
     vel.y = relativeVel.x;
 
     if (pos.x + size.x < 0)

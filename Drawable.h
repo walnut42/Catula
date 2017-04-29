@@ -11,13 +11,12 @@ class Window;
 
 class Drawable {
 public:
+    Drawable();
+
+    virtual ~Drawable();
     virtual void update()=0;
 
     virtual void draw()=0;
-
-    virtual ~Drawable() {};
-protected:
-    Window *window;
 };
 
 #endif //CATULA_DRAWABLE_H
