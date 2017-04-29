@@ -11,7 +11,7 @@ class Obstacle : public Collidable {
 public:
     Obstacle(float x, float y);
 
-    virtual void update(const sf::Time &elapsed) override;
+    virtual void update() override;
 
     void collided() override;
 

@@ -9,7 +9,7 @@
 
 Window *Window::instance = nullptr;
 
-Window::Window() : drawEvent(&Drawable::draw), updateEvent(&Drawable::update) {
+Window::Window() {
     setup("Catula");
 }
 
@@ -32,7 +32,7 @@ void Window::destroy() {
 }
 
 void Window::update() {
-    updateEvent.notify(ms_per_update);
+    notifyUpdate();
 }
 
 void Window::toggleFullscreen() {
@@ -47,7 +47,7 @@ bool Window::IsFullscreen() {
 
 void Window::draw() {
     window.clear(sf::Color::Black);
-    drawEvent.notify(*this);
+    notifyDraw();
     Debug::getInstance()->DrawText(window);
     window.display();
 }

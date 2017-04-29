@@ -7,13 +7,15 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Event.h"
 #include "Drawable.h"
+#include "Event.h"
 #include "Entity.h"
 
 class Entity;
 
-class Window {
+class DrawableSubject;
+
+class Window : public DrawableSubject {
 public:
     static Window *getInstance();
 
@@ -25,9 +27,9 @@ public:
 
     float getWidth() const;
 
-    Event<Drawable *, void (Drawable::*)(Window &), Window &> drawEvent;
-
-    Event<Drawable *, void (Drawable::*)(const sf::Time &), const sf::Time &> updateEvent;
+    const sf::Time &getElapsedTime() const {
+        return ms_per_update;
+    }
 
 private:
     Window();

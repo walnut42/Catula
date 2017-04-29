@@ -6,101 +6,28 @@
 #define CATULA_EVENT_H
 
 #include <list>
+#include "Drawable.h"
 
-template<typename T, typename M, typename A=void, typename B=void>
-class Event {
+class Drawable;
+
+class DrawableSubject {
 public:
-    Event(M method) : method(method) {}
+    virtual void add(Drawable *object);
 
-    void add(T object) {
-        list.push_back(object);
-    }
+    virtual void remove(Drawable *object);
 
-    void remove(T object) {
-        list.remove(object);
-    }
+    virtual void notifyUpdate() const;
 
-    void notify(A param1, B param2) const {
-        for (auto it = list.begin(), end = list.end(); it != end; it++) {
-            ((*it)->*(method))(param1, param2);
-        }
-    }
+    virtual void notifyDraw() const;
 
-    void operator+=(T object) {
-        add(object);
-    }
+    virtual void operator+=(Drawable *object);
 
-    void operator-=(T object) {
-        remove(object);
-    }
+    virtual void operator-=(Drawable *object);
 
+protected:
+    virtual ~DrawableSubject() {};
 private:
-    std::list<T> list;
-    M method;
-};
-
-template<typename T, typename M, typename A>
-class Event<T, M, A, void> {
-public:
-    Event(M method) : method(method) {}
-
-    void add(T object) {
-        list.push_back(object);
-    }
-
-    void remove(T object) {
-        list.remove(object);
-    }
-
-    void notify(A param) const {
-        for (auto it = list.begin(), end = list.end(); it != end; it++) {
-            ((*it)->*(method))(param);
-        }
-    }
-
-    void operator+=(T object) {
-        add(object);
-    }
-
-    void operator-=(T object) {
-        remove(object);
-    }
-
-private:
-    std::list<T> list;
-    M method;
-};
-
-template<typename T, typename M>
-class Event<T, M, void, void> {
-public:
-    Event(M method) : method(method) {}
-
-    void add(T object) {
-        list.push_back(object);
-    }
-
-    void remove(T object) {
-        list.remove(object);
-    }
-
-    void notify() const {
-        for (auto it = list.begin(), end = list.end(); it != end; it++) {
-            ((*it)->*(method))();
-        }
-    }
-
-    void operator+=(T object) {
-        add(object);
-    }
-
-    void operator-=(T object) {
-        remove(object);
-    }
-
-private:
-    std::list<T> list;
-    M method;
+    std::list<Drawable *> observers;
 };
 
 

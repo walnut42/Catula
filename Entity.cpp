@@ -15,8 +15,8 @@ Entity::Entity(float width, float height, float x, float y) : Entity() {
     pos = sf::Vector2f(x, y);
 }
 
-void Entity::draw(Window &window) {
-    window.drawEntity(*this);
+void Entity::draw() {
+    window->drawEntity(*this);
 }
 
 bool Entity::collide(const Entity *obj1, const Entity *obj2) {

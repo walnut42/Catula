@@ -9,7 +9,6 @@
 #include "Background.h"
 #include "MainCharacter.h"
 
-//Nuova versione
 
 int main() {
     srand((unsigned int) (time(NULL)));
@@ -18,10 +17,8 @@ int main() {
     Background *background = Background::getInstance();
     MainCharacter *character = MainCharacter::getInstance();
 
-    window->updateEvent += background;
-    window->updateEvent += character;
-    window->drawEvent += background;
-    window->drawEvent += character;
+    window->add(background);
+    window->add(character);
 
     window->gameLoop();
     return 0;

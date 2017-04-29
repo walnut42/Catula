@@ -15,9 +15,9 @@ class Background : public Drawable {
 public:
     static Background *getInstance();
 
-    virtual void update(const sf::Time &elapsed) override;
+    virtual void update() override;
 
-    virtual void draw(Window &window) override;
+    virtual void draw() override;
 
     float getShift() const;
 

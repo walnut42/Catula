@@ -11,11 +11,13 @@ class Window;
 
 class Drawable {
 public:
-    virtual void update(const sf::Time &elapsed)=0;
+    virtual void update()=0;
 
-    virtual void draw(Window &window)=0;
+    virtual void draw()=0;
 
     virtual ~Drawable() {};
+protected:
+    Window *window;
 };
 
 #endif //CATULA_DRAWABLE_H

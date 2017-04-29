@@ -11,12 +11,12 @@ Obstacle::Obstacle(float x, float y) : Collidable(10, 10, x, y) {
     relativeVel.y = 6;
 }
 
-void Obstacle::update(const sf::Time &elapsed) {
-    relativePos.y += relativeVel.y * elapsed.asSeconds();
+void Obstacle::update() {
+    relativePos.y += relativeVel.y * window->getElapsedTime().asSeconds();
 
     if (relativePos.y > 10 || relativePos.y < -10)
         relativeVel.y *= -1;
-    Collidable::update(elapsed);
+    Collidable::update();
 }
 
 void Obstacle::collided() {

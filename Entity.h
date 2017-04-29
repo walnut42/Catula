@@ -11,6 +11,7 @@
 #include "Drawable.h"
 #include "Window.h"
 
+
 class Entity : public Drawable {
 public:
     Entity();
@@ -21,7 +22,7 @@ public:
 
     static bool collide(const Entity *obj1, const Entity *obj2);
 
-    virtual void draw(Window &window) override;
+    virtual void draw() override;
 
     const sf::Vector2f &getSize() const {
         return size;

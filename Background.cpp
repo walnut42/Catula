@@ -13,18 +13,18 @@ Background::Background() : spriteSize(280, 100) {
     texture.setSmooth(true);
 }
 
-void Background::update(const sf::Time &elapsed) {
+void Background::update() {
     // update level time
     float levelTime = levelClock.getElapsedTime().asSeconds();
     if (levelTime > levelDuration) {
         if (levelTime > levelDuration + levelUpTime) {
             levelClock.restart();
         } else
-            v += levelUpAcc * elapsed.asSeconds();
+            v += levelUpAcc * window->getElapsedTime().asSeconds();
     }
 
     // update position
-    shift = v * elapsed.asSeconds();
+    shift = v * window->getElapsedTime().asSeconds();
     pos += shift;
 
     // If first sprite is out on the left side, the loop removes it.
@@ -39,9 +39,9 @@ void Background::update(const sf::Time &elapsed) {
     }
 }
 
-void Background::draw(Window &window) {
+void Background::draw() {
     for (auto it = sprites.begin(), end = sprites.end(); it != end; ++it) {
-        window.drawSprite(*it, spriteSize, getSpritePos(it), sf::Vector2f(v, 0));
+        window->drawSprite(*it, spriteSize, getSpritePos(it), sf::Vector2f(v, 0));
     }
 }
 

@@ -13,7 +13,7 @@ public:
 
     virtual ~Collidable();
 
-    virtual void update(const sf::Time &elapsed) override;
+    virtual void update() override;
 
     virtual void collided()=0;
 

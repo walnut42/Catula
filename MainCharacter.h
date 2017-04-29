@@ -16,7 +16,7 @@ public:
 
     void handleInput();
 
-    virtual void update(const sf::Time &elapsed) override;
+    virtual void update() override;
 
     bool collide(Entity *obj);
 
