@@ -20,11 +20,11 @@ void Background::update() {
         if (levelTime > levelDuration + levelUpTime) {
             levelClock.restart();
         } else
-            v += levelUpAcc * Window::getInstance()->getElapsedTime().asSeconds();
+            v += levelUpAcc * Window::getInstance()->getElapsed();
     }
 
     // update position
-    shift = v * Window::getInstance()->getElapsedTime().asSeconds();
+    shift = v * Window::getInstance()->getElapsed();
     pos += shift;
 
     // If first sprite is out on the left side, the loop removes it.

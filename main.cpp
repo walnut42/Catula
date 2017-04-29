@@ -4,7 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Event.h"
+#include "DrawableSubject.h"
 #include "Window.h"
 #include "Background.h"
 #include "MainCharacter.h"
@@ -13,10 +13,8 @@
 int main() {
     srand((unsigned int) (time(NULL)));
 
-    Window *window = Window::getInstance();
-    Background *background = Background::getInstance();
-    MainCharacter *character = MainCharacter::getInstance();
-
-    window->gameLoop();
+    Background::getInstance();
+    MainCharacter::getInstance();
+    Window::getInstance()->gameLoop();
     return 0;
 }

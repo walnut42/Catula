@@ -11,7 +11,7 @@ class Collidable : public Entity {
 public:
     Collidable(float width, float height, float x, float y);
 
-    virtual ~Collidable();
+    virtual ~Collidable() {};
 
     virtual void update() override;
 

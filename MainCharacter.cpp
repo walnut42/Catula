@@ -16,11 +16,11 @@ MainCharacter::MainCharacter() : Entity(15, 15) {
 
 void MainCharacter::update() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        vel.y -= upg * Window::getInstance()->getElapsedTime().asSeconds();
+        vel.y -= upg * Window::getInstance()->getElapsed();
     else
-        vel.y += g * Window::getInstance()->getElapsedTime().asSeconds();
+        vel.y += g * Window::getInstance()->getElapsed();
 
-    pos.y += vel.y * Window::getInstance()->getElapsedTime().asSeconds();
+    pos.y += vel.y * Window::getInstance()->getElapsed();
 
     //Borders collision
     if (pos.y + size.y >= 100 - bottom) {

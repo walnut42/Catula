@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Drawable.h"
-#include "Event.h"
+#include "DrawableSubject.h"
 #include "Entity.h"
 
 class Entity;
@@ -27,8 +27,8 @@ public:
 
     float getWidth() const;
 
-    const sf::Time &getElapsedTime() const {
-        return ms_per_update;
+    float getElapsed() const {
+        return ms_per_update.asSeconds();
     }
 
 private:

@@ -1,7 +1,7 @@
 //
 // Created by lorenzo on 29/04/17.
 //
-#include "Event.h"
+#include "DrawableSubject.h"
 
 void DrawableSubject::add(Drawable *object) {
     observers.push_back(object);

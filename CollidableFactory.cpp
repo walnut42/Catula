@@ -11,13 +11,13 @@ std::list<Collidable *> CollidableFactory::collidables;
 void CollidableFactory::update() {
     removeCollidables();
 
-    if (collidables.empty() || collidables.back()->getPos().x < 200 * 2 / 3)
+    if (collidables.empty() || collidables.back()->getPos().x < Window::getInstance()->getWidth() * 2 / 3)
         createCollidable();
 }
 
 Collidable *CollidableFactory::createCollidable() {
     // random generation
-    collidables.push_back(new Obstacle(200, rand() % (100 - 30) + 10));
+    collidables.push_back(new Obstacle(Window::getInstance()->getWidth(), rand() % (100 - 30) + 10));
     return collidables.back();
 }
 
