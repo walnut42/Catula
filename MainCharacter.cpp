@@ -15,11 +15,7 @@ MainCharacter::MainCharacter() : Entity(15, 15) {
 }
 
 void MainCharacter::update() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        vel.y -= upg * Window::getInstance()->getElapsed();
-    else
-        vel.y += g * Window::getInstance()->getElapsed();
-
+    MainCharacter::handleInput();
     pos.y += vel.y * Window::getInstance()->getElapsed();
 
     //Borders collision
@@ -33,7 +29,10 @@ void MainCharacter::update() {
 }
 
 void MainCharacter::handleInput() {
-    // TODO put Input in handleInput
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        vel.y -= upg * Window::getInstance()->getElapsed();
+    else
+        vel.y += g * Window::getInstance()->getElapsed();
 };
 
 bool MainCharacter::collide(Entity *obj) {
