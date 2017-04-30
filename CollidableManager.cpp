@@ -11,7 +11,9 @@ void CollidableManager::update() {
 
     if (collidables.empty() || collidables.back()->getPos().x < Window::getInstance()->getWidth() * 2 / 3) {
         CollidableFactory *cFactory;
+        cFactory = new CollidableFactory;
         collidables.push_back(cFactory->getInstance());
+        delete (cFactory);
     }
 }
 
