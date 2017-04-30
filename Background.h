@@ -35,7 +35,7 @@ private:
     const float levelUpTime = 5;
 
     sf::Vector2f spriteSize;
-    float v = -5;
+    float v = -30;
     float pos = 0;
     float shift = 0;
     sf::Clock levelClock;

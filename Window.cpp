@@ -5,7 +5,7 @@
 #include "Window.h"
 
 #include "Debug.h"
-#include "CollidableFactory.h"
+#include "CollidableManager.h"
 
 Window *Window::instance = nullptr;
 
@@ -60,7 +60,7 @@ void Window::gameLoop() {
         int loops = 0;
         while (elapsed >= ms_per_update && loops < max_loops) {
             update();
-            CollidableFactory::update();
+            CollidableManager::update();
             elapsed -= ms_per_update;
             loops++;
         }

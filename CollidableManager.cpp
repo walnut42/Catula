@@ -4,21 +4,15 @@
 
 #include "CollidableManager.h"
 
-#include "Obstacle.h"
-
 std::list<Collidable *> CollidableManager::collidables;
 
 void CollidableManager::update() {
     removeCollidables();
 
-    if (collidables.empty() || collidables.back()->getPos().x < Window::getInstance()->getWidth() * 2 / 3)
-        createCollidable();
-}
-
-Collidable *CollidableManager::createCollidable() {
-    // random generation
-    collidables.push_back(new Obstacle(Window::getInstance()->getWidth(), rand() % (100 - 30) + 10));
-    return collidables.back();
+    if (collidables.empty() || collidables.back()->getPos().x < Window::getInstance()->getWidth() * 2 / 3) {
+        CollidableFactory *cFactory;
+        collidables.push_back(cFactory->getInstance());
+    }
 }
 
 void CollidableManager::removeCollidables() {

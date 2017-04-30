@@ -10,13 +10,12 @@
 #include "Background.h"
 #include "MainCharacter.h"
 #include "Collidable.h"
+#include "CollidableFactory.h"
 
 
 class CollidableManager {
 public:
     static void update();
-
-    static Collidable *createCollidable();
 
     static void removeCollidables();
 
