@@ -1,8 +1,9 @@
 //
-// Created by paolo on 30/04/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 30/04/17.
 //
 
 #include "CollidableFactory.h"
+
 #include "Obstacle.h"
 
 Collidable *CollidableFactory::createCollidable() {

@@ -1,6 +1,7 @@
 //
-// Created by lorenzo on 29/04/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 29/04/17.
 //
+
 #include "DrawableSubject.h"
 
 void DrawableSubject::add(Drawable *object) {

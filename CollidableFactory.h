@@ -1,5 +1,5 @@
 //
-// Created by paolo on 30/04/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 30/04/17.
 //
 
 #ifndef CATULA_COLLIDABLEFACTORY_H
@@ -8,8 +8,8 @@
 
 #include "Collidable.h"
 
-class CollidableFactory {
 
+class CollidableFactory {
 public:
     static Collidable *createCollidable();
 };
