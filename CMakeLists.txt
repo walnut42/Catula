@@ -8,7 +8,7 @@ add_subdirectory(test)
 
 set(SOURCE_FILES Background.cpp Background.h Entity.cpp Entity.h
         MainCharacter.cpp MainCharacter.h Obstacle.cpp Obstacle.h Vehicle.cpp Vehicle.h
-        CollidableFactory.cpp CollidableFactory.h Collidable.cpp Collidable.h Debug.h Window.cpp Window.h DrawableSubject.h Drawable.h Debug.cpp DrawableSubject.cpp Drawable.cpp)
+        CollidableManager.cpp CollidableManager.h Collidable.cpp Collidable.h Debug.h Window.cpp Window.h DrawableSubject.h Drawable.h Debug.cpp DrawableSubject.cpp Drawable.cpp)
 add_executable(Catula main.cpp)
 
 ### Add Google Test library

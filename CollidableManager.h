@@ -12,7 +12,7 @@
 #include "Collidable.h"
 
 
-class CollidableFactory {
+class CollidableManager {
 public:
     static void update();
 
@@ -21,7 +21,7 @@ public:
     static void removeCollidables();
 
 private:
-    CollidableFactory() {};
+    CollidableManager() {};
     static std::list<Collidable *> collidables;
 };
 
