@@ -11,7 +11,7 @@
 class CollidableFactory {
 
 public:
-    static Collidable *getInstance();
+    static Collidable *createCollidable();
 };
 
 

@@ -5,7 +5,7 @@
 #include "CollidableFactory.h"
 #include "Obstacle.h"
 
-Collidable *CollidableFactory::getInstance() {
+Collidable *CollidableFactory::createCollidable() {
     // TODO others collidable objects
     // if (cond1)
     //    new Obstacle
