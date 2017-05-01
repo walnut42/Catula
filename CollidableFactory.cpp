@@ -5,6 +5,7 @@
 #include "CollidableFactory.h"
 
 #include "Obstacle.h"
+#include "Window.h"
 
 Collidable *CollidableFactory::createCollidable() {
     // TODO others collidable objects

@@ -11,9 +11,6 @@
 #include "DrawableSubject.h"
 #include "Entity.h"
 
-class Entity;
-
-class DrawableSubject;
 
 class Window : public DrawableSubject {
 public:
@@ -37,8 +34,6 @@ private:
     static Window *instance;
 
     sf::Vector2f resizeVector(const sf::Vector2f v) const;
-
-    bool IsFullscreen();
 
     void toggleFullscreen();
 

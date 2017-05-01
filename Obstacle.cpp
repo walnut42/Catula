@@ -3,6 +3,7 @@
 //
 
 #include "Obstacle.h"
+#include "Window.h"
 
 Obstacle::Obstacle(float x, float y) : Collidable(10, 10, x, y) {
     // Shape initialization

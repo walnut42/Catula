@@ -9,7 +9,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Drawable.h"
-#include "Window.h"
 
 
 class Entity : public Drawable {

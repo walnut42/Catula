@@ -12,6 +12,9 @@
 class CollidableFactory {
 public:
     static Collidable *createCollidable();
+
+private:
+    CollidableFactory() {};
 };
 
 

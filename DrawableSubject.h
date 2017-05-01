@@ -8,8 +8,6 @@
 #include <list>
 #include "Drawable.h"
 
-class Drawable;
-
 class DrawableSubject {
 public:
     virtual void add(Drawable *object);

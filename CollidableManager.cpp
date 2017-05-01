@@ -10,8 +10,7 @@ void CollidableManager::update() {
     removeCollidables();
 
     if (collidables.empty() || collidables.back()->getPos().x < Window::getInstance()->getWidth() * 2 / 3) {
-        CollidableFactory cFactory;
-        collidables.push_back(cFactory.createCollidable());
+        collidables.push_back(CollidableFactory::createCollidable());
     }
 }
 

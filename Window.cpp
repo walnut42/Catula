@@ -41,10 +41,6 @@ void Window::toggleFullscreen() {
     create();
 }
 
-bool Window::IsFullscreen() {
-    return isFullscreen;
-}
-
 void Window::draw() {
     window.clear(sf::Color::Black);
     notifyDraw();
@@ -57,12 +53,10 @@ void Window::gameLoop() {
         processInput(window);
         elapsed += clock.restart();
 
-        int loops = 0;
-        while (elapsed >= ms_per_update && loops < max_loops) {
+        for (int loops = 0; elapsed >= ms_per_update && loops < max_loops; loops++) {
             update();
             CollidableManager::update();
             elapsed -= ms_per_update;
-            loops++;
         }
 
         draw();

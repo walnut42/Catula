@@ -3,6 +3,7 @@
 //
 
 #include "Entity.h"
+#include "Window.h"
 
 using namespace std;
 
