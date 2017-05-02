@@ -63,3 +63,11 @@ int Entity::ccw(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2) {
     if ((dx1 * dx1 + dy1 * dy1) < (dx2 * dx2 + dy2 * dy2)) return +1;
     return 0;
 }
+
+void Entity::updatePos() {
+    float seconds = Window::getInstance()->getElapsed();
+    vel.x += acc.x * seconds;
+    vel.y += acc.y * seconds;
+    pos.x += vel.x * seconds;
+    pos.y += vel.y * seconds;
+}

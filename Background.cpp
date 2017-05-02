@@ -57,6 +57,10 @@ float Background::getShift() const {
     return shift;
 }
 
+float Background::getVel() const {
+    return v;
+}
+
 Background *Background::getInstance() {
     if (instance == nullptr) {
         instance = new Background;

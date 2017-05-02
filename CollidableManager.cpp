@@ -9,7 +9,7 @@ std::list<Collidable *> CollidableManager::collidables;
 void CollidableManager::update() {
     removeCollidables();
 
-    if (collidables.empty() || collidables.back()->getPos().x < Window::getInstance()->getWidth() * 2 / 3) {
+    if (collidables.empty() || collidables.back()->getPos().x < Window::getInstance()->getWidth() - 100) {
         collidables.push_back(CollidableFactory::createCollidable());
     }
 }

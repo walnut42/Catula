@@ -40,12 +40,7 @@ public:
     }
 
 protected:
-    void updatePos(const sf::Time &elapsed) {
-        vel.x += acc.x * elapsed.asSeconds();
-        vel.y += acc.y * elapsed.asSeconds();
-        pos.x += vel.x * elapsed.asSeconds();
-        pos.y += vel.y * elapsed.asSeconds();
-    }
+    void updatePos();
 
     sf::Vector2f size;
     sf::Vector2f pos;

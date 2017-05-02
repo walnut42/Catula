@@ -21,6 +21,8 @@ public:
 
     float getShift() const;
 
+    float getVel() const;
+
 private:
     Background();
 

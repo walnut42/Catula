@@ -16,8 +16,8 @@ void Collidable::update() {
     float shift = Background::getInstance()->getShift();
     originPos.x += shift;
     pos = originPos + relativePos;
-    vel.x = shift / Window::getInstance()->getElapsed() + relativeVel.x;
-    vel.y = relativeVel.x;
+    vel.x = Background::getInstance()->getVel() + relativeVel.x;
+    vel.y = relativeVel.y;
 
     if (pos.x + size.x < 0)
         removeFlag = true;
