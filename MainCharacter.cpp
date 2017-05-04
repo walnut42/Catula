@@ -3,16 +3,16 @@
 //
 
 #include "MainCharacter.h"
-#include "Window.h"
 
 MainCharacter *MainCharacter::instance = nullptr;
 
-MainCharacter::MainCharacter() : Entity(15, 15) {
+MainCharacter::MainCharacter() : Entity(15, 15), score(0) {
     texture.loadFromFile("../Resources/Mushroom.png");
     texture.setSmooth(true);
     sprite.setTexture(texture);
     pos.x = 10;
     pos.y = 10;
+    log = Textbox::getInstance();
 }
 
 void MainCharacter::update() {
@@ -45,4 +45,9 @@ MainCharacter *MainCharacter::getInstance() {
         instance = new MainCharacter;
     }
     return instance;
+}
+
+void MainCharacter::increaseScore() {
+    score += 1;
+    log->add("You got a star. Score: " + std::to_string(score));
 }

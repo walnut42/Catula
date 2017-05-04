@@ -14,5 +14,5 @@ Collidable *CollidableFactory::createCollidable() {
     // elseif (cond2)
     //    new ChickenWing
 
-    return new Obstacle(Window::getInstance()->getWidth(), rand() % (100 - 30) + 10);
+    return new Obstacle(Window::getInstance()->getProportions(), rand() % (100 - 30) + 10);
 }

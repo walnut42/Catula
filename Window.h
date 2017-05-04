@@ -10,6 +10,7 @@
 #include "Drawable.h"
 #include "DrawableSubject.h"
 #include "Entity.h"
+#include "Textbox.h"
 
 
 class Window : public DrawableSubject {
@@ -22,18 +23,20 @@ public:
 
     void drawEntity(Entity &entity);
 
-    float getWidth() const;
+    void drawDrawable(sf::Drawable &drawable);
+
+    float getProportions() const;
 
     float getElapsed() const {
         return ms_per_update.asSeconds();
     }
 
+    sf::Vector2f resizeVector(const sf::Vector2f v) const;
+
 private:
     Window();
 
     static Window *instance;
-
-    sf::Vector2f resizeVector(const sf::Vector2f v) const;
 
     void toggleFullscreen();
 

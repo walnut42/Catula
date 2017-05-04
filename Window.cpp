@@ -93,6 +93,10 @@ void Window::drawEntity(Entity &entity) {
     drawSprite(entity.getSprite(), entity.getSize(), entity.getPos(), entity.getVel());
 }
 
+void Window::drawDrawable(sf::Drawable &drawable) {
+    window.draw(drawable);
+}
+
 sf::Vector2f Window::resizeVector(const sf::Vector2f v) const {
     sf::Vector2f r;
     r.y = v.y * window.getSize().y / 100;
@@ -100,7 +104,7 @@ sf::Vector2f Window::resizeVector(const sf::Vector2f v) const {
     return r;
 }
 
-float Window::getWidth() const {
+float Window::getProportions() const {
     return static_cast<float>(window.getSize().x) / window.getSize().y * 100;
 }
 

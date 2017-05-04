@@ -6868,7 +6868,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFboLMJvySMycg="
 							},
-							"name": "getWidth",
+							"name": "getProportions",
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,

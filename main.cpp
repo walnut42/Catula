@@ -4,7 +4,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "DrawableSubject.h"
 #include "Window.h"
 #include "Background.h"
 #include "MainCharacter.h"
@@ -15,6 +14,7 @@ int main() {
 
     Background::getInstance();
     MainCharacter::getInstance();
+    Textbox::getInstance();
     Window::getInstance()->gameLoop();
     return 0;
 }

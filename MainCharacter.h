@@ -9,6 +9,7 @@
 
 #include "Entity.h"
 #include "Vehicle.h"
+#include "Textbox.h"
 
 class MainCharacter : public Entity {
 public:
@@ -19,6 +20,8 @@ public:
     virtual void update() override;
 
     bool collide(Entity *obj);
+
+    void increaseScore();
 
 private:
     MainCharacter();
@@ -31,6 +34,9 @@ private:
     const float upg = 100;
     const float top = 0;
     const float bottom = 0;
+
+    int score;
+    Textbox *log;
 };
 
 
