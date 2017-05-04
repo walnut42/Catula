@@ -15,13 +15,21 @@ Collidable::Collidable(float width, float height, float x, float y) : Entity(wid
 void Collidable::update() {
     float shift = Background::getInstance()->getShift();
     originPos.x += shift;
-    pos = originPos + relativePos;
-    vel.x = Background::getInstance()->getVel() + relativeVel.x;
-    vel.y = relativeVel.y;
+    pos = originPos + relPos;
+    vel.x = Background::getInstance()->getVel() + relVel.x;
+    vel.y = relVel.y;
 
     if (pos.x + size.x < 0)
         removeFlag = true;
 
     if (MainCharacter::getInstance()->collide(this))
         collided();
+}
+
+void Collidable::updateRelPos() {
+    float seconds = Window::getInstance()->getElapsed();
+    relVel.x += acc.x * seconds;
+    relVel.y += acc.y * seconds;
+    relPos.x += relVel.x * seconds;
+    relPos.y += relVel.y * seconds;
 }

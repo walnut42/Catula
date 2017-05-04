@@ -9,14 +9,14 @@ Obstacle::Obstacle(float x, float y) : Collidable(10, 10, x, y) {
     // Shape initialization
     texture.loadFromFile("../Resources/star.png");
     sprite.setTexture(texture);
-    relativeVel.y = 6;
+    relVel.y = 6;
 }
 
 void Obstacle::update() {
-    relativePos.y += relativeVel.y * Window::getInstance()->getElapsed();
+    relPos.y += relVel.y * Window::getInstance()->getElapsed();
 
-    if (relativePos.y > 10 || relativePos.y < -10)
-        relativeVel.y *= -1;
+    if (relPos.y > 10 || relPos.y < -10)
+        relVel.y *= -1;
     Collidable::update();
 }
 

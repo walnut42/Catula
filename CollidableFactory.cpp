@@ -6,13 +6,14 @@
 
 #include "Obstacle.h"
 #include "Window.h"
+#include "Laser.h"
 
 Collidable *CollidableFactory::createCollidable() {
     // TODO others collidable objects
-    // if (cond1)
-    //    new Obstacle
-    // elseif (cond2)
-    //    new ChickenWing
+    int p = rand() % 100;
+    if (p < 10)
+        return new Obstacle(Window::getInstance()->getWidth(), rand() % (100 - 30) + 10);
+    else
+        return new Laser(Window::getInstance()->getWidth(), rand() % (100 - 30) + 10);
 
-    return new Obstacle(Window::getInstance()->getWidth(), rand() % (100 - 30) + 10);
 }

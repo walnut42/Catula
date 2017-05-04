@@ -17,6 +17,7 @@ Entity::Entity(float width, float height, float x, float y) : Entity() {
 }
 
 void Entity::draw() {
+    sprite.setRotation(angle);
     Window::getInstance()->drawEntity(*this);
 }
 

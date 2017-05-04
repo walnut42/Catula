@@ -22,10 +22,12 @@ public:
     }
 
 protected:
+    virtual void updateRelPos();
+
     bool removeFlag = false;
     sf::Vector2f originPos;
-    sf::Vector2f relativePos;
-    sf::Vector2f relativeVel;
+    sf::Vector2f relPos;
+    sf::Vector2f relVel;
 };
 
 
