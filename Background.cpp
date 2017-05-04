@@ -34,7 +34,8 @@ void Background::update() {
     }
 
     // If last sprite is in on the right, the loop adds a new one.
-    while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x < Window::getInstance()->getWidth()) {
+    while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x <
+                              Window::getInstance()->getProportions()) {
         sprites.push_back(sf::Sprite(texture));
     }
 }

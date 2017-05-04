@@ -4,6 +4,7 @@
 
 #include "Obstacle.h"
 #include "Window.h"
+#include "MainCharacter.h"
 
 Obstacle::Obstacle(float x, float y) : Collidable(10, 10, x, y) {
     // Shape initialization
@@ -22,4 +23,5 @@ void Obstacle::update() {
 
 void Obstacle::collided() {
     removeFlag = true;
+    MainCharacter::getInstance()->increaseScore();
 }
