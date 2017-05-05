@@ -24,7 +24,7 @@ void Textbox::update() {
 }
 
 void Textbox::draw() {
-    backdrop.setSize(Window::getInstance()->resizeVector(sf::Vector2f(Window::getInstance()->getProportions(), 10)));
+    backdrop.setSize(sf::Vector2f(Window::getWidth(), 100));
     Window::getInstance()->drawDrawable(backdrop);
     Window::getInstance()->drawDrawable(content);
 }
@@ -40,8 +40,10 @@ Textbox::Textbox() {
     font.loadFromFile("../Resources/FreeSerif.ttf");
     content.setFont(font);
     content.setCharacterSize(20);
+    float s = Window::getInstance()->getScale();
+    content.setScale(s, s);
     content.setColor(sf::Color::Red);
-    backdrop.setSize(sf::Vector2f(Window::getInstance()->getProportions(), 200));
+    backdrop.setSize(sf::Vector2f(Window::getWidth(), 100));
     backdrop.setFillColor(sf::Color(100, 100, 100, 100));
     backdrop.setPosition(0, 0);
 }

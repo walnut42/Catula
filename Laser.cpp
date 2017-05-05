@@ -5,13 +5,9 @@
 #include "Laser.h"
 #include "Window.h"
 
-Laser::Laser(float x, float y) : Collidable(30, 5, x, y) {
-    // Shape initialization
-    texture.loadFromFile("../Resources/laser.png");
-    sprite.setTexture(texture);
-    //relVel.y = 6;
+Laser::Laser(float x, float y) : Collidable("../Resources/laser.png", x, y) {
     angVel = 0.5;
-    sprite.setOrigin(200, 0);
+    sprite.setOrigin(size.x / 2, size.y / 2);
 }
 
 void Laser::update() {

@@ -7,7 +7,8 @@
 #include "Background.h"
 #include "MainCharacter.h"
 
-Collidable::Collidable(float width, float height, float x, float y) : Entity(width, height, x, y) {
+Collidable::Collidable(const std::string &filename, float x, float y, sf::IntRect textureRect) :
+        Entity(filename, x, y, textureRect) {
     originPos = sf::Vector2f(x, y);
 }
 

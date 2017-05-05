@@ -25,6 +25,8 @@ void Window::setup(const std::string &title) {
 void Window::create() {
     auto style = (isFullscreen ? sf::Style::Fullscreen : sf::Style::Default);
     window.create(sf::VideoMode::getDesktopMode(), windowTitle, style);
+    //Can't call getWidth here, use getProportions instead.
+    window.setView(sf::View(sf::FloatRect(0, 0, getProportions(), getHeight())));
 }
 
 void Window::destroy() {
@@ -50,7 +52,7 @@ void Window::draw() {
 
 void Window::gameLoop() {
     while (!isDone) {
-        processInput(window);
+        processInput();
         elapsed += clock.restart();
 
         for (int loops = 0; elapsed >= ms_per_update && loops < max_loops; loops++) {
@@ -64,7 +66,7 @@ void Window::gameLoop() {
 }
 
 
-void Window::processInput(sf::RenderWindow &window) {
+void Window::processInput() {
     sf::Event event;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
@@ -73,39 +75,25 @@ void Window::processInput(sf::RenderWindow &window) {
         } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F11) {
             toggleFullscreen();
         } else if (event.type == sf::Event::Resized) {
-            window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+            window.setView(sf::View(sf::FloatRect(0, 0, getProportions(), getHeight())));
         }
     }
 }
 
 
-void Window::drawSprite(sf::Sprite &sprite, sf::Vector2f size, sf::Vector2f pos, sf::Vector2f vel) {
-    size = resizeVector(size);
-    sf::Vector2u oldSize = sprite.getTexture()->getSize();
-    sprite.setScale(size.x / oldSize.x, size.y / oldSize.y);
+void Window::drawSprite(sf::Sprite &sprite, sf::Vector2f pos, sf::Vector2f vel) {
     pos.x = pos.x + vel.x * elapsed.asSeconds();
     pos.y = pos.y + vel.y * elapsed.asSeconds();
-    sprite.setPosition(resizeVector(pos));
+    sprite.setPosition(pos);
     window.draw(sprite);
 }
 
 void Window::drawEntity(Entity &entity) {
-    drawSprite(entity.getSprite(), entity.getSize(), entity.getPos(), entity.getVel());
+    drawSprite(entity.getSprite(), entity.getPos(), entity.getVel());
 }
 
 void Window::drawDrawable(sf::Drawable &drawable) {
     window.draw(drawable);
-}
-
-sf::Vector2f Window::resizeVector(const sf::Vector2f v) const {
-    sf::Vector2f r;
-    r.y = v.y * window.getSize().y / 100;
-    r.x = v.x * window.getSize().y / 100;
-    return r;
-}
-
-float Window::getProportions() const {
-    return static_cast<float>(window.getSize().x) / window.getSize().y * 100;
 }
 
 Window *Window::getInstance() {

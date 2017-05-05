@@ -6,10 +6,9 @@
 
 Background *Background::instance = nullptr;
 
-Background::Background() : spriteSize(280, 100) {
+Background::Background() : spriteSize(2802, 1000) {
     if (!texture.loadFromFile("../Resources/background.png"))
         return;
-
     texture.setSmooth(true);
 }
 
@@ -34,15 +33,17 @@ void Background::update() {
     }
 
     // If last sprite is in on the right, the loop adds a new one.
-    while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x <
-                              Window::getInstance()->getProportions()) {
-        sprites.push_back(sf::Sprite(texture));
+    while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x < Window::getWidth()) {
+        sf::Sprite sprite(texture);
+        //sf::Vector2u oldSize = sprite.getTexture()->getSize();
+        //sprite.setScale(spriteSize.x / oldSize.x, spriteSize.y / oldSize.y);
+        sprites.push_back(sprite);
     }
 }
 
 void Background::draw() {
     for (auto it = sprites.begin(), end = sprites.end(); it != end; ++it) {
-        Window::getInstance()->drawSprite(*it, spriteSize, getSpritePos(it), sf::Vector2f(v, 0));
+        Window::getInstance()->drawSprite(*it, getSpritePos(it), sf::Vector2f(v, 0));
     }
 }
 

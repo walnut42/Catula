@@ -33,11 +33,11 @@ private:
     static Background *instance;
 
     const float levelDuration = 10;
-    const float levelUpAcc = -1;
+    const float levelUpAcc = -10;
     const float levelUpTime = 5;
 
     sf::Vector2f spriteSize;
-    float v = -30;
+    float v = -300;
     float pos = 0;
     float shift = 0;
     sf::Clock levelClock;

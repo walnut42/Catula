@@ -13,9 +13,7 @@
 
 class Entity : public Drawable {
 public:
-    Entity();
-
-    Entity(float width, float height, float x = 0, float y = 0);
+    Entity(const std::string &filename, float x = 0, float y = 0, sf::IntRect textureRect = sf::IntRect());
 
     virtual ~Entity() {};
 
@@ -23,12 +21,8 @@ public:
 
     virtual void draw() override;
 
-    const sf::Vector2f &getSize() const {
-        return size;
-    }
-
     const sf::Vector2f &getPos() const {
-        return pos;
+        return pos;//+sprite.getOrigin();
     }
 
     const sf::Vector2f &getVel() const {
@@ -42,16 +36,19 @@ public:
 protected:
     void updatePos();
 
+    sf::Texture texture;
+    sf::Sprite sprite;
     sf::Vector2f size;
     sf::Vector2f pos;
     sf::Vector2f vel;
     sf::Vector2f acc;
-    sf::Sprite sprite;
     float angle;
     float angVel;
     float angAcc;
 
 private:
+    void setTexture(const std::string &filename, sf::IntRect textureRect = sf::IntRect());
+
     static bool intersect(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f p3);
 
     static int ccw(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2);

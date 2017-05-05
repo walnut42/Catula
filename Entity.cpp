@@ -7,13 +7,9 @@
 
 using namespace std;
 
-Entity::Entity() : angle(0), angVel(0), angAcc(0) {
-
-}
-
-Entity::Entity(float width, float height, float x, float y) : Entity() {
-    size = sf::Vector2f(width, height);
-    pos = sf::Vector2f(x, y);
+Entity::Entity(const std::string &filename, float x, float y, sf::IntRect textureRect) :
+        angle(0), angVel(0), angAcc(0), pos(x, y) {
+    setTexture(filename, textureRect);
 }
 
 void Entity::draw() {
@@ -71,4 +67,17 @@ void Entity::updatePos() {
     vel.y += acc.y * seconds;
     pos.x += vel.x * seconds;
     pos.y += vel.y * seconds;
+}
+
+void Entity::setTexture(const std::string &filename, sf::IntRect textureRect) {
+    texture.loadFromFile(filename);
+    texture.setSmooth(true);
+    sprite.setTexture(texture);
+    if (textureRect != sf::IntRect()) {
+        sprite.setTextureRect(textureRect);
+        size = sf::Vector2f(textureRect.width, textureRect.height);
+    } else {
+        sf::Vector2u textureSize = sprite.getTexture()->getSize();
+        size = sf::Vector2f(textureSize.x, textureSize.y);
+    }
 }

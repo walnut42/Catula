@@ -27,16 +27,14 @@ private:
     MainCharacter();
 
     static MainCharacter *instance;
-    sf::Texture texture;
     Vehicle *vehicle = nullptr;
 
-    const float g = 98;
-    const float upg = 100;
+    const float g = 980;
+    const float upg = 1000;
     const float top = 0;
     const float bottom = 0;
 
     int score;
-    Textbox *log;
 };
 
 

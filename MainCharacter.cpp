@@ -6,13 +6,7 @@
 
 MainCharacter *MainCharacter::instance = nullptr;
 
-MainCharacter::MainCharacter() : Entity(15, 15), score(0) {
-    texture.loadFromFile("../Resources/Mushroom.png");
-    texture.setSmooth(true);
-    sprite.setTexture(texture);
-    pos.x = 10;
-    pos.y = 10;
-    log = Textbox::getInstance();
+MainCharacter::MainCharacter() : Entity("../Resources/Mushroom.png", 100, 100), score(0) {
 }
 
 void MainCharacter::update() {
@@ -20,9 +14,9 @@ void MainCharacter::update() {
     pos.y += vel.y * Window::getInstance()->getElapsed();
 
     //Borders collision
-    if (pos.y + size.y >= 100 - bottom) {
+    if (pos.y + size.y >= Window::getHeight() - bottom) {
         vel.y = 0;
-        pos.y = 100 - bottom - size.y;
+        pos.y = Window::getHeight() - bottom - size.y;
     } else if (pos.y <= top) {
         vel.y = 0;
         pos.y = top;
@@ -49,5 +43,5 @@ MainCharacter *MainCharacter::getInstance() {
 
 void MainCharacter::increaseScore() {
     score += 1;
-    log->add("You got a star. Score: " + std::to_string(score));
+    Textbox::getInstance()->add("You got a star. Score: " + std::to_string(score));
 }

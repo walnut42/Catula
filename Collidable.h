@@ -9,7 +9,7 @@
 
 class Collidable : public Entity {
 public:
-    Collidable(float width, float height, float x, float y);
+    Collidable(const std::string &filename, float x, float y, sf::IntRect textureRect = sf::IntRect());
 
     virtual ~Collidable() {};
 

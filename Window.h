@@ -19,24 +19,41 @@ public:
 
     void gameLoop();
 
-    void drawSprite(sf::Sprite &sprite, sf::Vector2f size, sf::Vector2f pos, sf::Vector2f vel);
+    void drawSprite(sf::Sprite &sprite, sf::Vector2f pos, sf::Vector2f vel);
 
     void drawEntity(Entity &entity);
 
     void drawDrawable(sf::Drawable &drawable);
 
-    float getProportions() const;
-
     float getElapsed() const {
         return ms_per_update.asSeconds();
     }
 
-    sf::Vector2f resizeVector(const sf::Vector2f v) const;
+    float getScale() const {
+        return getHeight() / window.getSize().y;
+    }
+
+    static float getWidth() {
+        if (instance != nullptr) {
+            sf::Vector2u size = instance->window.getSize();
+            return getHeight() * size.x / size.y;
+        }
+        return 0;
+    }
+
+    static float getHeight() {
+        return 1000;
+    }
 
 private:
     Window();
 
     static Window *instance;
+
+    float getProportions() {
+        sf::Vector2u size = window.getSize();
+        return getHeight() * size.x / size.y;
+    }
 
     void toggleFullscreen();
 
@@ -44,7 +61,7 @@ private:
 
     void draw();
 
-    void processInput(sf::RenderWindow &window);
+    void processInput();
 
     void setup(const std::string &title);
 

@@ -6,10 +6,7 @@
 #include "Window.h"
 #include "MainCharacter.h"
 
-Obstacle::Obstacle(float x, float y) : Collidable(10, 10, x, y) {
-    // Shape initialization
-    texture.loadFromFile("../Resources/star.png");
-    sprite.setTexture(texture);
+Obstacle::Obstacle(float x, float y) : Collidable("../Resources/star.png", x, y) {
     relVel.y = 6;
 }
 

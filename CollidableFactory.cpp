@@ -11,9 +11,9 @@
 Collidable *CollidableFactory::createCollidable() {
     // TODO others collidable objects
     int p = rand() % 100;
-    if (p < 10)
-        return new Obstacle(Window::getInstance()->getWidth(), rand() % (100 - 30) + 10);
+    if (p < 0)
+        return new Obstacle(Window::getWidth(), rand() % ((int) Window::getHeight() - 300) + 100);
     else
-        return new Laser(Window::getInstance()->getWidth(), rand() % (100 - 30) + 10);
+        return new Laser(Window::getWidth(), rand() % ((int) Window::getHeight() - 300) + 100);
 
 }
