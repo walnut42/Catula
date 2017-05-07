@@ -14,27 +14,31 @@ Entity::Entity(const std::string &filename, float x, float y, sf::IntRect textur
 
 void Entity::draw() {
     sprite.setRotation(angle);
+
+    //Debug code
+    vector<sf::Vector2f> pObj;
+    getCollisionRect(pObj);
+    sf::VertexArray lines(sf::LinesStrip, pObj.size() + 1);
+    for (int i = 0; i <= pObj.size(); i++) {
+        lines[i].position = pObj[i % pObj.size()];
+        lines[i].color = sf::Color::Red;
+    }
+    Window::getInstance()->drawDrawable(lines);
+    //End debug code
+
     Window::getInstance()->drawEntity(*this);
 }
 
 bool Entity::collide(const Entity *obj1, const Entity *obj2) {
-    // Points of a rectangle with a 0° angle
-    // TODO Collision with angle
-    vector<sf::Vector2f> pObj;
-    pObj.push_back(obj1->pos);
-    pObj.push_back(sf::Vector2f(obj1->pos.x + obj1->size.x, obj1->pos.y));
-    pObj.push_back(sf::Vector2f(obj1->pos.x + obj1->size.x, obj1->pos.y + obj1->size.y));
-    pObj.push_back(sf::Vector2f(obj1->pos.x, obj1->pos.y + obj1->size.y));
+    vector<sf::Vector2f> pObj1;
+    obj1->getCollisionRect(pObj1);
 
-    vector<sf::Vector2f> pThis;
-    pThis.push_back(obj2->pos);
-    pThis.push_back(sf::Vector2f(obj2->pos.x + obj2->size.x, obj2->pos.y));
-    pThis.push_back(sf::Vector2f(obj2->pos.x + obj2->size.x, obj2->pos.y + obj2->size.y));
-    pThis.push_back(sf::Vector2f(obj2->pos.x, obj2->pos.y + obj2->size.y));
+    vector<sf::Vector2f> pObj2;
+    obj2->getCollisionRect(pObj2);
 
-    for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-            if (intersect(pThis[i], pThis[(i + 1) % 4], pObj[j], pObj[(j + 1) % 4]))
+    for (int i = 0; i < pObj2.size(); ++i) {
+        for (int j = 0; j < pObj1.size(); ++j) {
+            if (intersect(pObj2[i], pObj2[(i + 1) % pObj2.size()], pObj1[j], pObj1[(j + 1) % pObj1.size()]))
                 return true;
         }
     }
@@ -79,5 +83,22 @@ void Entity::setTexture(const std::string &filename, sf::IntRect textureRect) {
     } else {
         sf::Vector2u textureSize = sprite.getTexture()->getSize();
         size = sf::Vector2f(textureSize.x, textureSize.y);
+    }
+}
+
+void Entity::getCollisionRect(std::vector<sf::Vector2f> &points) const {
+    // Points of a rectangle with a 0° angle
+    points.clear();
+    points.push_back(pos);
+    points.push_back(sf::Vector2f(pos.x + size.x, pos.y));
+    points.push_back(sf::Vector2f(pos.x + size.x, pos.y + size.y));
+    points.push_back(sf::Vector2f(pos.x, pos.y + size.y));
+
+    //Angle-based point transformation
+    sf::Transform transform;
+    transform.rotate(angle);
+    sf::Vector2f absolutePos = getPos();
+    for (sf::Vector2f &point:points) {
+        point = transform.transformPoint(point - absolutePos) + absolutePos;
     }
 }

@@ -21,8 +21,8 @@ public:
 
     virtual void draw() override;
 
-    const sf::Vector2f &getPos() const {
-        return pos;//+sprite.getOrigin();
+    const sf::Vector2f getPos() const {
+        return pos + sprite.getOrigin();
     }
 
     const sf::Vector2f &getVel() const {
@@ -34,6 +34,8 @@ public:
     }
 
 protected:
+    virtual void getCollisionRect(std::vector<sf::Vector2f> &points) const;
+
     void updatePos();
 
     sf::Texture texture;
@@ -45,7 +47,6 @@ protected:
     float angle;
     float angVel;
     float angAcc;
-
 private:
     void setTexture(const std::string &filename, sf::IntRect textureRect = sf::IntRect());
 
