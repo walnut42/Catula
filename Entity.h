@@ -34,7 +34,7 @@ public:
     }
 
 protected:
-    virtual void getCollisionRect(std::vector<sf::Vector2f> &points) const;
+    virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const;
 
     void updatePos();
 
@@ -48,6 +48,8 @@ protected:
     float angVel;
     float angAcc;
 private:
+    void getAbsolutePoints(std::vector<sf::Vector2f> &points) const;
+
     void setTexture(const std::string &filename, sf::IntRect textureRect = sf::IntRect());
 
     static bool intersect(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f p3);

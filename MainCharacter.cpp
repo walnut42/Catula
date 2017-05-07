@@ -45,3 +45,15 @@ void MainCharacter::increaseScore() {
     score += 1;
     Textbox::getInstance()->add("You got a star. Score: " + std::to_string(score));
 }
+
+void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {
+    points.clear();
+    points.push_back(sf::Vector2f(60, 0));
+    points.push_back(sf::Vector2f(140, 0));
+    points.push_back(sf::Vector2f(size.x, 60));
+    points.push_back(sf::Vector2f(size.x, 140));
+    points.push_back(sf::Vector2f(140, size.y));
+    points.push_back(sf::Vector2f(60, size.y));
+    points.push_back(sf::Vector2f(0, 140));
+    points.push_back(sf::Vector2f(0, 60));
+}

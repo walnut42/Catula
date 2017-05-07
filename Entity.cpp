@@ -17,7 +17,7 @@ void Entity::draw() {
 
     //Debug code
     vector<sf::Vector2f> pObj;
-    getCollisionRect(pObj);
+    getAbsolutePoints(pObj);
     sf::VertexArray lines(sf::LinesStrip, pObj.size() + 1);
     for (int i = 0; i <= pObj.size(); i++) {
         lines[i].position = pObj[i % pObj.size()];
@@ -31,10 +31,10 @@ void Entity::draw() {
 
 bool Entity::collide(const Entity *obj1, const Entity *obj2) {
     vector<sf::Vector2f> pObj1;
-    obj1->getCollisionRect(pObj1);
+    obj1->getAbsolutePoints(pObj1);
 
     vector<sf::Vector2f> pObj2;
-    obj2->getCollisionRect(pObj2);
+    obj2->getAbsolutePoints(pObj2);
 
     for (int i = 0; i < pObj2.size(); ++i) {
         for (int j = 0; j < pObj1.size(); ++j) {
@@ -86,19 +86,23 @@ void Entity::setTexture(const std::string &filename, sf::IntRect textureRect) {
     }
 }
 
-void Entity::getCollisionRect(std::vector<sf::Vector2f> &points) const {
-    // Points of a rectangle with a 0° angle
-    points.clear();
-    points.push_back(pos);
-    points.push_back(sf::Vector2f(pos.x + size.x, pos.y));
-    points.push_back(sf::Vector2f(pos.x + size.x, pos.y + size.y));
-    points.push_back(sf::Vector2f(pos.x, pos.y + size.y));
+void Entity::getAbsolutePoints(std::vector<sf::Vector2f> &points) const {
+    getRelativePoints(points);
 
-    //Angle-based point transformation
+    //Angle-based point transformation and conversion to absolute points
     sf::Transform transform;
     transform.rotate(angle);
-    sf::Vector2f absolutePos = getPos();
+    sf::Vector2f originPos = sprite.getOrigin();
     for (sf::Vector2f &point:points) {
-        point = transform.transformPoint(point - absolutePos) + absolutePos;
+        point = transform.transformPoint(point - originPos) + pos + originPos;
     }
+}
+
+void Entity::getRelativePoints(std::vector<sf::Vector2f> &points) const {
+    // Points of a rectangle with a 0° angle
+    points.clear();
+    points.push_back(sf::Vector2f(0, 0));
+    points.push_back(sf::Vector2f(size.x, 0));
+    points.push_back(sf::Vector2f(size.x, size.y));
+    points.push_back(sf::Vector2f(0, size.y));
 }

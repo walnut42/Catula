@@ -23,6 +23,8 @@ public:
 
     void increaseScore();
 
+protected:
+    virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const override;
 private:
     MainCharacter();
 
