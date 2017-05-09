@@ -15,9 +15,6 @@ public:
     virtual void update() override;
 
     void collided() override;
-
-private:
-    sf::Texture texture;
 };
 
 
