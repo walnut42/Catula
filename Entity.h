@@ -29,6 +29,14 @@ public:
         return vel;
     }
 
+    float getAngle() const {
+        return angle;
+    }
+
+    float getAngleVel() const {
+        return angleVel;
+    }
+
     sf::Sprite &getSprite() {
         return sprite;
     }
@@ -45,8 +53,8 @@ protected:
     sf::Vector2f vel;
     sf::Vector2f acc;
     float angle;
-    float angVel;
-    float angAcc;
+    float angleVel;
+    float angleAcc;
 private:
     void getAbsolutePoints(std::vector<sf::Vector2f> &points) const;
 

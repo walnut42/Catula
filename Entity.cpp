@@ -8,13 +8,11 @@
 using namespace std;
 
 Entity::Entity(const std::string &filename, float x, float y, sf::IntRect textureRect) :
-        angle(0), angVel(0), angAcc(0), pos(x, y) {
+        angle(0), angleVel(0), angleAcc(0), pos(x, y) {
     setTexture(filename, textureRect);
 }
 
 void Entity::draw() {
-    sprite.setRotation(angle);
-
     //Debug code
     vector<sf::Vector2f> pObj;
     getAbsolutePoints(pObj);

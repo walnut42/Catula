@@ -81,15 +81,15 @@ void Window::processInput() {
 }
 
 
-void Window::drawSprite(sf::Sprite &sprite, sf::Vector2f pos, sf::Vector2f vel) {
-    pos.x = pos.x + vel.x * elapsed.asSeconds();
-    pos.y = pos.y + vel.y * elapsed.asSeconds();
-    sprite.setPosition(pos);
+void
+Window::drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos, const sf::Vector2f &vel, float angle, float angleVel) {
+    sprite.setPosition(pos + vel * elapsed.asSeconds());
+    sprite.setRotation(angle + angleVel * elapsed.asSeconds());
     window.draw(sprite);
 }
 
 void Window::drawEntity(Entity &entity) {
-    drawSprite(entity.getSprite(), entity.getPos(), entity.getVel());
+    drawSprite(entity.getSprite(), entity.getPos(), entity.getVel(), entity.getAngle(), entity.getAngleVel());
 }
 
 void Window::drawDrawable(sf::Drawable &drawable) {
