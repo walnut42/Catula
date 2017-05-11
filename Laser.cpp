@@ -1,9 +1,10 @@
 //
-// Created by lorenzo on 04/05/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 04/05/17.
 //
 
 #include "Laser.h"
 #include "Window.h"
+#include "MainCharacter.h"
 
 Laser::Laser(float x, float y) : Collidable("../Resources/laser.png", x, y) {
     angleVel = 0.5;
@@ -19,4 +20,5 @@ void Laser::update() {
 
 void Laser::collided() {
     removeFlag = true;
+    MainCharacter::getInstance()->increaseScore(-1);
 }

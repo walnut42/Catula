@@ -21,10 +21,11 @@ public:
 
     bool collide(Entity *obj);
 
-    void increaseScore();
+    void increaseScore(int s);
 
 protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const override;
+
 private:
     MainCharacter();
 

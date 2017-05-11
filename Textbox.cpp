@@ -14,13 +14,7 @@ Textbox *Textbox::getInstance() {
 }
 
 void Textbox::update() {
-    std::string string;
-    for (auto &itr : messages) {
-        string.append(itr + "\n");
-    }
-    if (string != "") {
-        content.setString(string);
-    }
+    content.setString(score);
 }
 
 void Textbox::draw() {
@@ -29,11 +23,8 @@ void Textbox::draw() {
     Window::getInstance()->drawDrawable(content);
 }
 
-void Textbox::add(std::string message) {
-    messages.push_back(message);
-    if (messages.size() > 5) {
-        messages.erase(messages.begin());
-    }
+void Textbox::add(std::string score) {
+    this->score = score;
 }
 
 Textbox::Textbox() {
@@ -43,6 +34,7 @@ Textbox::Textbox() {
     float s = Window::getInstance()->getScale();
     content.setScale(s, s);
     content.setColor(sf::Color::Red);
+    content.setPosition(100, 0);
     backdrop.setSize(sf::Vector2f(Window::getWidth(), 100));
     backdrop.setFillColor(sf::Color(100, 100, 100, 100));
     backdrop.setPosition(0, 0);

@@ -20,5 +20,5 @@ void Obstacle::update() {
 
 void Obstacle::collided() {
     removeFlag = true;
-    MainCharacter::getInstance()->increaseScore();
+    MainCharacter::getInstance()->increaseScore(1);
 }

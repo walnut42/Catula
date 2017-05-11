@@ -28,6 +28,8 @@ private:
 
     MessageContainer messages;
 
+    std::string score;
+
     sf::RectangleShape backdrop;
     sf::Font font;
     sf::Text content;

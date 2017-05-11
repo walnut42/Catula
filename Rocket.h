@@ -1,5 +1,5 @@
 //
-// Created by lorenzo on 09/05/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 09/05/17.
 //
 
 #ifndef CATULA_ROCKET_H

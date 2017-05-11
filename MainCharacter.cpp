@@ -41,9 +41,9 @@ MainCharacter *MainCharacter::getInstance() {
     return instance;
 }
 
-void MainCharacter::increaseScore() {
-    score += 1;
-    Textbox::getInstance()->add("You got a star. Score: " + std::to_string(score));
+void MainCharacter::increaseScore(int s) {
+    score += s;
+    Textbox::getInstance()->add("Score: " + std::to_string(score));
 }
 
 void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {

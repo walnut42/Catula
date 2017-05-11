@@ -1,9 +1,10 @@
 //
-// Created by lorenzo on 09/05/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 09/05/17.
 //
 
 #include "Rocket.h"
 #include "Window.h"
+#include "MainCharacter.h"
 
 Rocket::Rocket(float x, float y) : Collidable("../Resources/rocket.png", x, y) {
     relVel.x = -600;
@@ -23,4 +24,5 @@ void Rocket::update() {
 
 void Rocket::collided() {
     removeFlag = true;
+    MainCharacter::getInstance()->increaseScore(5);
 }
