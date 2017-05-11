@@ -3,6 +3,7 @@
 //
 
 #include "Textbox.h"
+#include "MainCharacter.h"
 // costruttore
 
 Textbox *Textbox::instance = nullptr;
@@ -14,7 +15,8 @@ Textbox *Textbox::getInstance() {
 }
 
 void Textbox::update() {
-    content.setString(score);
+    content.setString("Score " + std::to_string(MainCharacter::getInstance()->getScore()) +
+                      "\nLife " + std::to_string(MainCharacter::getInstance()->getLife()));
 }
 
 void Textbox::draw() {
@@ -23,9 +25,9 @@ void Textbox::draw() {
     Window::getInstance()->drawDrawable(content);
 }
 
-void Textbox::add(std::string score) {
-    this->score = score;
-}
+//void Textbox::add(std::string message) {
+//    this->score = message;
+//}
 
 Textbox::Textbox() {
     font.loadFromFile("../Resources/FreeSerif.ttf");

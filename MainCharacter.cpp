@@ -6,8 +6,7 @@
 
 MainCharacter *MainCharacter::instance = nullptr;
 
-MainCharacter::MainCharacter() : Entity("../Resources/Mushroom.png", 100, 100), score(0) {
-}
+MainCharacter::MainCharacter() : Entity("../Resources/Mushroom.png", 100, 100), score{0}, life{3} {}
 
 void MainCharacter::update() {
     MainCharacter::handleInput();
@@ -43,7 +42,11 @@ MainCharacter *MainCharacter::getInstance() {
 
 void MainCharacter::increaseScore(int s) {
     score += s;
-    Textbox::getInstance()->add("Score: " + std::to_string(score));
+//    Textbox::getInstance()->add("Score: " + std::to_string(score));
+}
+
+void MainCharacter::increaseLife(int l) {
+    life += l;
 }
 
 void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {
@@ -56,4 +59,12 @@ void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {
     points.push_back(sf::Vector2f(60, size.y));
     points.push_back(sf::Vector2f(0, 140));
     points.push_back(sf::Vector2f(0, 60));
+}
+
+int MainCharacter::getScore() const {
+    return score;
+}
+
+int MainCharacter::getLife() const {
+    return life;
 }

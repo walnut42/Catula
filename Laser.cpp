@@ -20,5 +20,5 @@ void Laser::update() {
 
 void Laser::collided() {
     removeFlag = true;
-    MainCharacter::getInstance()->increaseScore(-1);
+    MainCharacter::getInstance()->increaseLife(-1);
 }

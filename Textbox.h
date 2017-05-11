@@ -11,8 +11,6 @@
 #include "Drawable.h"
 #include "Window.h"
 
-using MessageContainer = std::vector<std::string>;
-
 class Textbox : public Drawable {
 public:
     static Textbox *getInstance();
@@ -21,12 +19,10 @@ public:
 
     void update() override;
 
-    void add(std::string message);
+//    void add(std::string message);
 
 private:
     Textbox();
-
-    MessageContainer messages;
 
     std::string score;
 

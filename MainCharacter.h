@@ -23,6 +23,12 @@ public:
 
     void increaseScore(int s);
 
+    void increaseLife(int l);
+
+    int getScore() const;
+
+    int getLife() const;
+
 protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const override;
 
@@ -38,6 +44,7 @@ private:
     const float bottom = 0;
 
     int score;
+    int life;
 };
 
 
