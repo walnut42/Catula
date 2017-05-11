@@ -18,8 +18,9 @@ void Entity::draw() {
     getAbsolutePoints(pObj);
     sf::VertexArray lines(sf::LinesStrip, pObj.size() + 1);
     for (int i = 0; i <= pObj.size(); i++) {
-        lines[i].position = pObj[i % pObj.size()];
-        lines[i].color = sf::Color::Red;
+// Uncomment to see the red lines around the objects.
+//        lines[i].position = pObj[i % pObj.size()];
+//        lines[i].color = sf::Color::Red;
     }
     Window::getInstance()->drawDrawable(lines);
     //End debug code

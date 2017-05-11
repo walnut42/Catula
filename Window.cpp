@@ -25,7 +25,7 @@ void Window::setup(const std::string &title) {
 void Window::create() {
     auto style = (isFullscreen ? sf::Style::Fullscreen : sf::Style::Default);
     window.create(sf::VideoMode::getDesktopMode(), windowTitle, style);
-    //Can't call getWidth here, use getProportions instead.
+    // Can't call getWidth here, use getProportions instead.
     window.setView(sf::View(sf::FloatRect(0, 0, getProportions(), getHeight())));
 }
 
