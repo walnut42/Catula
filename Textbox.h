@@ -19,12 +19,8 @@ public:
 
     void update() override;
 
-//    void add(std::string message);
-
 private:
     Textbox();
-
-    std::string score;
 
     sf::RectangleShape backdrop;
     sf::Font font;

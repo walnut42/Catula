@@ -4,7 +4,6 @@
 
 #include "Textbox.h"
 #include "MainCharacter.h"
-// costruttore
 
 Textbox *Textbox::instance = nullptr;
 
@@ -14,20 +13,20 @@ Textbox *Textbox::getInstance() {
     return instance;
 }
 
-void Textbox::update() {
-    content.setString("Score " + std::to_string(MainCharacter::getInstance()->getScore()) +
-                      "\nLife " + std::to_string(MainCharacter::getInstance()->getLife()));
-}
-
 void Textbox::draw() {
     backdrop.setSize(sf::Vector2f(Window::getWidth(), 100));
     Window::getInstance()->drawDrawable(backdrop);
     Window::getInstance()->drawDrawable(content);
 }
 
-//void Textbox::add(std::string message) {
-//    this->score = message;
-//}
+void Textbox::update() {
+    if (MainCharacter::getInstance()->hasLost())
+        content.setString("GAME OVER!"
+                                  "\nYour score is: " + std::to_string(MainCharacter::getInstance()->getScore()));
+    else
+        content.setString("Score " + std::to_string(MainCharacter::getInstance()->getScore()) +
+                          "\nLives " + std::to_string(MainCharacter::getInstance()->getLives()));
+}
 
 Textbox::Textbox() {
     font.loadFromFile("../Resources/FreeSerif.ttf");
