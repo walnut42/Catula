@@ -3,7 +3,7 @@
 //
 
 #include "Textbox.h"
-// costruttore
+#include "MainCharacter.h"
 
 Textbox *Textbox::instance = nullptr;
 
@@ -13,27 +13,19 @@ Textbox *Textbox::getInstance() {
     return instance;
 }
 
-void Textbox::update() {
-    std::string string;
-    for (auto &itr : messages) {
-        string.append(itr + "\n");
-    }
-    if (string != "") {
-        content.setString(string);
-    }
-}
-
 void Textbox::draw() {
     backdrop.setSize(sf::Vector2f(Window::getWidth(), 100));
     Window::getInstance()->drawDrawable(backdrop);
     Window::getInstance()->drawDrawable(content);
 }
 
-void Textbox::add(std::string message) {
-    messages.push_back(message);
-    if (messages.size() > 5) {
-        messages.erase(messages.begin());
-    }
+void Textbox::update() {
+    if (MainCharacter::getInstance()->hasLost())
+        content.setString("GAME OVER!"
+                                  "\nYour score is: " + std::to_string(MainCharacter::getInstance()->getScore()));
+    else
+        content.setString("Score " + std::to_string(MainCharacter::getInstance()->getScore()) +
+                          "\nLives " + std::to_string(MainCharacter::getInstance()->getLives()));
 }
 
 Textbox::Textbox() {
@@ -43,6 +35,7 @@ Textbox::Textbox() {
     float s = Window::getInstance()->getScale();
     content.setScale(s, s);
     content.setColor(sf::Color::Red);
+    content.setPosition(100, 0);
     backdrop.setSize(sf::Vector2f(Window::getWidth(), 100));
     backdrop.setFillColor(sf::Color(100, 100, 100, 100));
     backdrop.setPosition(0, 0);

@@ -10,7 +10,6 @@
 #include "Rocket.h"
 
 Collidable *CollidableFactory::createCollidable() {
-    // TODO others collidable objects
     int p = rand() % 100;
     if (p < 20)
         return new Rocket(Window::getWidth(), rand() % ((int) Window::getHeight() - 300) + 100);

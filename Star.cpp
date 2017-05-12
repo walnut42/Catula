@@ -20,5 +20,5 @@ void Star::update() {
 
 void Star::collided() {
     removeFlag = true;
-    MainCharacter::getInstance()->increaseScore();
+    MainCharacter::getInstance()->increaseScore(1);
 }

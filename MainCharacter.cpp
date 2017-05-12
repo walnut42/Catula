@@ -6,8 +6,21 @@
 
 MainCharacter *MainCharacter::instance = nullptr;
 
-MainCharacter::MainCharacter() : Entity("../Resources/Mushroom.png", 100, 100), score(0) {
+MainCharacter::MainCharacter() : Entity("../Resources/Mushroom.png", 100, 100), lost{false}, score{0}, lives{3} {}
+
+MainCharacter *MainCharacter::getInstance() {
+    if (instance == nullptr) {
+        instance = new MainCharacter;
+    }
+    return instance;
 }
+
+void MainCharacter::handleInput() {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        vel.y -= upg * Window::getInstance()->getElapsed();
+    else
+        vel.y += g * Window::getInstance()->getElapsed();
+};
 
 void MainCharacter::update() {
     MainCharacter::handleInput();
@@ -23,27 +36,32 @@ void MainCharacter::update() {
     }
 }
 
-void MainCharacter::handleInput() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        vel.y -= upg * Window::getInstance()->getElapsed();
-    else
-        vel.y += g * Window::getInstance()->getElapsed();
-};
-
 bool MainCharacter::collide(Entity *obj) {
     return (vehicle != nullptr && Entity::collide(vehicle, obj)) || Entity::collide(this, obj);
 }
 
-MainCharacter *MainCharacter::getInstance() {
-    if (instance == nullptr) {
-        instance = new MainCharacter;
-    }
-    return instance;
+bool MainCharacter::hasLost() const {
+    return lost;
 }
 
-void MainCharacter::increaseScore() {
-    score += 1;
-    Textbox::getInstance()->add("You got a star. Score: " + std::to_string(score));
+int MainCharacter::getLives() const {
+    return lives;
+}
+
+int MainCharacter::getScore() const {
+    return score;
+}
+
+void MainCharacter::increaseLife(int l) {
+    if (lives)
+        lives += l;
+    else
+        lost = true;
+}
+
+void MainCharacter::increaseScore(int s) {
+    if (!lost)
+        score += s;
 }
 
 void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {
