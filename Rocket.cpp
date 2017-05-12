@@ -13,10 +13,7 @@ Rocket::Rocket(float x, float y) : Collidable("../Resources/rocket.png", x, y) {
 }
 
 void Rocket::update() {
-    relVel.y += acc.y * Window::getInstance()->getElapsed();
-    relPos.y += relVel.y * Window::getInstance()->getElapsed();
-    relPos.x += relVel.x * Window::getInstance()->getElapsed();
-    angle = atan2(-relVel.y, -relVel.x) * 180 / M_PI;
+    angle = static_cast<float>(atan2(-relVel.y, -relVel.x) * 180 / M_PI);
 
     Collidable::update();
 }

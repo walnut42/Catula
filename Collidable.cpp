@@ -14,6 +14,7 @@ Collidable::Collidable(const std::string &filename, float x, float y, sf::IntRec
 
 
 void Collidable::update() {
+    updateRelPos();
     float shift = Background::getInstance()->getShift();
     originPos.x += shift;
     pos = originPos + relPos;
@@ -29,8 +30,8 @@ void Collidable::update() {
 
 void Collidable::updateRelPos() {
     float seconds = Window::getInstance()->getElapsed();
-    relVel.x += acc.x * seconds;
-    relVel.y += acc.y * seconds;
-    relPos.x += relVel.x * seconds;
-    relPos.y += relVel.y * seconds;
+    relVel += acc * seconds;
+    relPos += relVel * seconds;
+    angleVel += angleAcc * seconds;
+    angle += angleVel * seconds;
 }

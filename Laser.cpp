@@ -6,15 +6,8 @@
 #include "Window.h"
 
 Laser::Laser(float x, float y) : Collidable("../Resources/laser.png", x, y) {
-    angleVel = 0.5;
+    angleVel = 50;
     sprite.setOrigin(size.x / 2, size.y / 2);
-}
-
-void Laser::update() {
-    relPos.y += relVel.y * Window::getInstance()->getElapsed();
-    angle += angleVel;
-
-    Collidable::update();
 }
 
 void Laser::collided() {

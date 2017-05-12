@@ -7,9 +7,9 @@
 
 #include "Collidable.h"
 
-class Obstacle : public Collidable {
+class Star : public Collidable {
 public:
-    Obstacle(float x, float y);
+    Star(float x, float y);
 
     virtual void update() override;
 

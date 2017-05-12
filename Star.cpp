@@ -2,15 +2,15 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 16/03/17.
 //
 
-#include "Obstacle.h"
+#include "Star.h"
 #include "Window.h"
 #include "MainCharacter.h"
 
-Obstacle::Obstacle(float x, float y) : Collidable("../Resources/star.png", x, y) {
+Star::Star(float x, float y) : Collidable("../Resources/star.png", x, y) {
     relVel.y = 6;
 }
 
-void Obstacle::update() {
+void Star::update() {
     relPos.y += relVel.y * Window::getInstance()->getElapsed();
 
     if (relPos.y > 10 || relPos.y < -10)
@@ -18,7 +18,7 @@ void Obstacle::update() {
     Collidable::update();
 }
 
-void Obstacle::collided() {
+void Star::collided() {
     removeFlag = true;
     MainCharacter::getInstance()->increaseScore();
 }

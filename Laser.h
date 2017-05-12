@@ -12,8 +12,6 @@ class Laser : public Collidable {
 public:
     Laser(float x, float y);
 
-    virtual void update() override;
-
     void collided() override;
 };
 
