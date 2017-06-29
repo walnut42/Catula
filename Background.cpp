@@ -9,6 +9,7 @@ Background *Background::instance = nullptr;
 Background::Background() : spriteSize(2802, 1000) {
     if (texture.loadFromFile("../Resources/background.png"))
         texture.setSmooth(true);
+    setV();
 }
 
 void Background::update() {
@@ -67,4 +68,8 @@ Background *Background::getInstance() {
         instance = new Background;
     }
     return instance;
+}
+
+void Background::setV(float v) {
+    Background::v = v;
 }

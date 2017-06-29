@@ -3,6 +3,7 @@
 //
 
 #include "MainCharacter.h"
+#include "Background.h"
 
 MainCharacter *MainCharacter::instance = nullptr;
 
@@ -53,6 +54,8 @@ int MainCharacter::getScore() const {
 }
 
 void MainCharacter::increaseLife(int l) {
+    if (l < 0)
+        Background::getInstance()->setV();
     if (lives)
         lives += l;
     else

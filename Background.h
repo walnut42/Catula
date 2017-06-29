@@ -23,7 +23,10 @@ public:
 
     float getVel() const;
 
+    void setV(float v = -300);
+
 private:
+
     Background();
 
     sf::Vector2f getSpritePos(std::list<sf::Sprite>::iterator &it);
@@ -37,7 +40,7 @@ private:
     const float levelUpTime = 5;
 
     sf::Vector2f spriteSize;
-    float v = -300;
+    float v;
     float pos = 0;
     float shift = 0;
     sf::Clock levelClock;
