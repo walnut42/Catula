@@ -14,11 +14,11 @@
 
 class MainCharacter : public Entity {
 public:
-    MainCharacter(Window *window);
+    MainCharacter();
 
-    void handleInput();
+    void handleInput(float elapsed);
 
-    virtual void update() override;
+    virtual void update(float elapsed) override;
 
     bool collide(Entity *obj);
 

@@ -5,18 +5,18 @@
 #include "Rocket.h"
 #include "MainCharacter.h"
 
-Rocket::Rocket(Window *window, Background *background, MainCharacter *maincharacter, float x, float y) : Collidable(
-        window, background, maincharacter, "../Resources/rocket.png", x, y) {
+Rocket::Rocket(Background *background, MainCharacter *maincharacter, float x, float y) : Collidable(
+        background, maincharacter, "../Resources/rocket.png", x, y) {
     relVel.x = -600;
     relVel.y = -200;
     acc.y = 200;
     sprite.setOrigin(size.x / 2, size.y / 2);
 }
 
-void Rocket::update() {
+void Rocket::update(float elapsed) {
     angle = static_cast<float>(atan2(-relVel.y, -relVel.x) * 180 / M_PI);
 
-    Collidable::update();
+    Collidable::update(elapsed);
 }
 
 void Rocket::collided() {

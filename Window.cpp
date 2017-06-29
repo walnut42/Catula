@@ -5,15 +5,16 @@
 #include "Window.h"
 
 #include "Debug.h"
-#include "CollidableManager.h"
+#include "Controller.h"
 
-Window::Window(const std::string &title) {
+Window::Window(const std::string &title, Controller &controller, Model &model) : controller{controller} {
     windowTitle = title;
     fullscreen = false;
     closed = false;
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
     create();
+    textBox = new Textbox(this, model);
 }
 
 void Window::create() {
@@ -27,9 +28,6 @@ void Window::destroy() {
     window.close();
 }
 
-void Window::update() {
-    notifyUpdate();
-}
 
 void Window::toggleFullscreen() {
     fullscreen = !fullscreen;
@@ -39,19 +37,20 @@ void Window::toggleFullscreen() {
 
 void Window::draw() {
     window.clear(sf::Color::Black);
-    notifyDraw();
+    controller.draw(this);
+    textBox->draw(this);
     //TODO remove debug at release time
     Debug::getInstance()->DrawText(window);
     window.display();
 }
 
-void Window::gameLoop(Background *background, MainCharacter *maincharacter) {
+void Window::gameLoop() {
     while (!closed) {
         processInput();
         elapsed += clock.restart();
         for (int loops = 0; elapsed >= ms_per_update && loops < max_loops; loops++) {
-            update();
-            CollidableManager::update(this, background, maincharacter);
+            controller.update(elapsed.asSeconds());
+            textBox->update();
             elapsed -= ms_per_update;
         }
         draw();
@@ -69,7 +68,8 @@ void Window::processInput() {
             toggleFullscreen();
         } else if (event.type == sf::Event::Resized) {
             window.setView(sf::View(sf::FloatRect(0, 0, getProportions(), getHeight())));
-        }
+        } else
+            controller.processInput(event);
     }
 }
 
@@ -92,4 +92,8 @@ void Window::drawDrawable(sf::Drawable &drawable) {
 float Window::getProportions() {
     sf::Vector2u size = window.getSize();
     return getHeight() * size.x / size.y;
+}
+
+Window::~Window() {
+    delete textBox;
 }

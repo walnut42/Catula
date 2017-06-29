@@ -3,25 +3,26 @@
 //
 
 #include "Background.h"
+#include "Model.h"
 
-Background::Background(Window *window) : Drawable{window}, spriteSize(2802, 1000) {
+Background::Background() : spriteSize(2802, 1000) {
     if (!texture.loadFromFile("../Resources/background.png"))
         return;
     texture.setSmooth(true);
 }
 
-void Background::update() {
+void Background::update(float elapsed) {
     // update level time
     float levelTime = levelClock.getElapsedTime().asSeconds();
     if (levelTime > levelDuration) {
         if (levelTime > levelDuration + levelUpTime) {
             levelClock.restart();
         } else
-            v += levelUpAcc * window->getElapsed();
+            v += levelUpAcc * elapsed;
     }
 
     // update position
-    shift = v * window->getElapsed();
+    shift = v * elapsed;
     pos += shift;
 
     // If first sprite is out on the left side, the loop removes it.
@@ -31,7 +32,7 @@ void Background::update() {
     }
 
     // If last sprite is in on the right, the loop adds a new one.
-    while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x < window->getWidth()) {
+    while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x < Model::getWidth()) {
         sf::Sprite sprite(texture);
         //sf::Vector2u oldSize = sprite.getTexture()->getSize();
         //sprite.setScale(spriteSize.x / oldSize.x, spriteSize.y / oldSize.y);
@@ -39,7 +40,7 @@ void Background::update() {
     }
 }
 
-void Background::draw() {
+void Background::draw(Window *window) {
     for (auto it = sprites.begin(), end = sprites.end(); it != end; ++it) {
         window->drawSprite(*it, getSpritePos(it), sf::Vector2f(v, 0));
     }

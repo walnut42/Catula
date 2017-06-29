@@ -8,25 +8,23 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Drawable.h"
-#include "Window.h"
-#include "MainCharacter.h"
+class Window;
 
-class MainCharacter;
-class Textbox : public Drawable {
+class Model;
+
+class Textbox {
 public:
-    Textbox(Window *window, MainCharacter *mainCharacter);
+    Textbox(Window *window, Model &model);
 
-    void draw() override;
+    void draw(Window *window);
 
-    void update() override;
+    void update();
 
 private:
     sf::RectangleShape backdrop;
     sf::Font font;
     sf::Text content;
-
-    MainCharacter *mainCharacter;
+    Model &model;
 };
 
 

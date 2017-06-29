@@ -10,9 +10,9 @@
 
 class Rocket : public Collidable {
 public:
-    Rocket(Window *window, Background *background, MainCharacter *maincharacter, float x, float y);
+    Rocket(Background *background, MainCharacter *maincharacter, float x, float y);
 
-    virtual void update() override;
+    virtual void update(float elapsed) override;
 
     void collided() override;
 };

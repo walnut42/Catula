@@ -9,14 +9,17 @@
 #include "Background.h"
 #include "MainCharacter.h"
 
+class MainCharacter;
+
+class Background;
 class Collidable : public Entity {
 public:
-    Collidable(Window *window, Background *background, MainCharacter *maincharacter, const std::string &filename,
+    Collidable(Background *background, MainCharacter *maincharacter, const std::string &filename,
                float x, float y, sf::IntRect textureRect = sf::IntRect());
 
     virtual ~Collidable() {};
 
-    virtual void update() override;
+    virtual void update(float elapsed) override;
 
     virtual void collided()=0;
 
@@ -25,7 +28,7 @@ public:
     }
 
 protected:
-    virtual void updateRelPos();
+    virtual void updateRelPos(float elapsed);
 
     bool removeFlag = false;
     sf::Vector2f originPos;

@@ -13,14 +13,14 @@
 
 class Entity : public Drawable {
 public:
-    Entity(Window *window, const std::string &filename, float x = 0, float y = 0,
+    Entity(const std::string &filename, float x = 0, float y = 0,
            sf::IntRect textureRect = sf::IntRect());
 
     virtual ~Entity() {};
 
     static bool collide(const Entity *obj1, const Entity *obj2);
 
-    virtual void draw() override;
+    virtual void draw(Window *window) override;
 
     const sf::Vector2f getPos() const {
         return pos + sprite.getOrigin();
@@ -45,7 +45,7 @@ public:
 protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const;
 
-    void updatePos();
+    void updatePos(float elapsed);
 
     sf::Texture texture;
     sf::Sprite sprite;

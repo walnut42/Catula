@@ -11,13 +11,14 @@
 #include "Drawable.h"
 #include "Window.h"
 
+
 class Background : public Drawable {
 public:
-    Background(Window *window);
+    Background();
 
-    virtual void update() override;
+    virtual void update(float elapsed) override;
 
-    virtual void draw() override;
+    virtual void draw(Window *window) override;
 
     float getShift() const;
 

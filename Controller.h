@@ -11,17 +11,21 @@
 #include "MainCharacter.h"
 #include "Collidable.h"
 #include "CollidableFactory.h"
+#include "Model.h"
 
+class Model;
 
-class CollidableManager {
+class Controller {
 public:
-    static void update(Window *window, Background *background, MainCharacter *maincharacter);
+    Controller(Model &model);
 
-    static void removeCollidables();
+    void update(float elapsed);
 
+    void processInput(sf::Event event);
+
+    void draw(Window *window);
 private:
-    CollidableManager() {};
-    static std::list<Collidable *> collidables;
+    Model &model;
 };
 
 

@@ -8,10 +8,14 @@
 
 #include "Collidable.h"
 
+class Collidable;
 
+class Background;
+
+class MainCharacter;
 class CollidableFactory {
 public:
-    static Collidable *createCollidable(Window *window, Background *background, MainCharacter *maincharacter);
+    static Collidable *createCollidable(Background *background, MainCharacter *maincharacter);
 
 private:
     CollidableFactory() {};

@@ -12,15 +12,23 @@
 #include "Entity.h"
 #include "Textbox.h"
 #include "Background.h"
+#include "Textbox.h"
+#include "Controller.h"
+
 
 class Background;
 
 class MainCharacter;
-class Window : public DrawableSubject {
-public:
-    Window(const std::string &title);
 
-    void gameLoop(Background *background, MainCharacter *maincharacter);
+class Controller;
+
+class Window {
+public:
+    Window(const std::string &title, Controller &controller, Model &model);
+
+    ~Window();
+
+    void gameLoop();
 
     void drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos, const sf::Vector2f &vel, float angle = 0,
                     float angleVel = 0);
@@ -51,8 +59,6 @@ private:
 
     void toggleFullscreen();
 
-    void update();
-
     void draw();
 
     void processInput();
@@ -69,6 +75,10 @@ private:
     const int max_loops = 5;
     sf::Clock clock;
     sf::Time elapsed;
+
+    Controller &controller;
+
+    Textbox *textBox;
 };
 
 

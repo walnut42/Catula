@@ -7,15 +7,15 @@
 #include "Background.h"
 #include "MainCharacter.h"
 
-Collidable::Collidable(Window *window, Background *background, MainCharacter *maincharacter,
+Collidable::Collidable(Background *background, MainCharacter *maincharacter,
                        const std::string &filename, float x, float y, sf::IntRect textureRect) :
-        Entity(window, filename, x, y, textureRect), background{background}, maincharacter{maincharacter} {
+        Entity(filename, x, y, textureRect), background{background}, maincharacter{maincharacter} {
     originPos = sf::Vector2f(x, y);
 }
 
 
-void Collidable::update() {
-    updateRelPos();
+void Collidable::update(float elapsed) {
+    updateRelPos(elapsed);
     float shift = background->getShift();
     originPos.x += shift;
     pos = originPos + relPos;
@@ -29,8 +29,8 @@ void Collidable::update() {
         collided();
 }
 
-void Collidable::updateRelPos() {
-    float seconds = window->getElapsed();
+void Collidable::updateRelPos(float elapsed) {
+    float seconds = elapsed;
     relVel += acc * seconds;
     relPos += relVel * seconds;
     angleVel += angleAcc * seconds;

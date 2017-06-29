@@ -7,16 +7,12 @@
 
 using namespace std;
 
-Entity::Entity(Window *window, const std::string &filename, float x, float y, sf::IntRect textureRect) : Drawable(
-        window),
-                                                                                                         angle(0),
-                                                                                                         angleVel(0),
-                                                                                                         angleAcc(0),
-                                                                                                         pos(x, y) {
+Entity::Entity(const std::string &filename, float x, float y, sf::IntRect textureRect) : angle(0), angleVel(0),
+                                                                                         angleAcc(0), pos(x, y) {
     setTexture(filename, textureRect);
 }
 
-void Entity::draw() {
+void Entity::draw(Window *window) {
     //Debug code: uncomment to see the red lines around the objects.
     /*
     vector<sf::Vector2f> pObj;
@@ -68,8 +64,8 @@ int Entity::ccw(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2) {
     return 0;
 }
 
-void Entity::updatePos() {
-    float seconds = window->getElapsed();
+void Entity::updatePos(float elapsed) {
+    float seconds = elapsed;
     vel.x += acc.x * seconds;
     vel.y += acc.y * seconds;
     pos.x += vel.x * seconds;

@@ -6,17 +6,17 @@
 #include "Window.h"
 #include "MainCharacter.h"
 
-Star::Star(Window *window, Background *background, MainCharacter *maincharacter, float x, float y) : Collidable(
-        window, background, maincharacter, "../Resources/star.png", x, y) {
+Star::Star(Background *background, MainCharacter *maincharacter, float x, float y) : Collidable(
+        background, maincharacter, "../Resources/star.png", x, y) {
     relVel.y = 6;
 }
 
-void Star::update() {
-    relPos.y += relVel.y * window->getElapsed();
+void Star::update(float elapsed) {
+    relPos.y += relVel.y * elapsed;
 
     if (relPos.y > 10 || relPos.y < -10)
         relVel.y *= -1;
-    Collidable::update();
+    Collidable::update(elapsed);
 }
 
 void Star::collided() {

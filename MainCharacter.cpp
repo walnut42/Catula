@@ -3,27 +3,28 @@
 //
 
 #include "MainCharacter.h"
+#include "Model.h"
 
 
-MainCharacter::MainCharacter(Window *window) : Entity(window, "../Resources/Mushroom.png", 100, 100), lost{false},
-                                               score{0}, lives{3} {}
+MainCharacter::MainCharacter() : Entity("../Resources/Mushroom.png", 100, 100), lost{false},
+                                 score{0}, lives{3} {}
 
 
-void MainCharacter::handleInput() {
+void MainCharacter::handleInput(float elapsed) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        vel.y -= upg * window->getElapsed();
+        vel.y -= upg * elapsed;
     else
-        vel.y += g * window->getElapsed();
+        vel.y += g * elapsed;
 };
 
-void MainCharacter::update() {
-    MainCharacter::handleInput();
-    pos.y += vel.y * window->getElapsed();
+void MainCharacter::update(float elapsed) {
+    MainCharacter::handleInput(elapsed);
+    pos.y += vel.y * elapsed;
 
     //Borders collision
-    if (pos.y + size.y >= window->getHeight() - bottom) {
+    if (pos.y + size.y >= Model::getHeight() - bottom) {
         vel.y = 0;
-        pos.y = window->getHeight() - bottom - size.y;
+        pos.y = Model::getHeight() - bottom - size.y;
     } else if (pos.y <= top) {
         vel.y = 0;
         pos.y = top;

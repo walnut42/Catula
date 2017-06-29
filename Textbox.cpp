@@ -3,24 +3,25 @@
 //
 
 #include "Textbox.h"
-#include "MainCharacter.h"
+#include "Model.h"
+#include "Window.h"
 
-void Textbox::draw() {
+void Textbox::draw(Window *window) {
     backdrop.setSize(sf::Vector2f(window->getWidth(), 100));
     window->drawDrawable(backdrop);
     window->drawDrawable(content);
 }
 
 void Textbox::update() {
-    if (mainCharacter->hasLost())
+    if (model.mainCharacter->hasLost())
         content.setString("GAME OVER!"
-                                  "\nYour score is: " + std::to_string(mainCharacter->getScore()));
+                                  "\nYour score is: " + std::to_string(model.mainCharacter->getScore()));
     else
-        content.setString("Score " + std::to_string(mainCharacter->getScore()) +
-                          "\nLives " + std::to_string(mainCharacter->getLives()));
+        content.setString("Score " + std::to_string(model.mainCharacter->getScore()) +
+                          "\nLives " + std::to_string(model.mainCharacter->getLives()));
 }
 
-Textbox::Textbox(Window *window, MainCharacter *mainCharacter) : Drawable{window}, mainCharacter{mainCharacter} {
+Textbox::Textbox(Window *window, Model &model) : model{model} {
     font.loadFromFile("../Resources/FreeSerif.ttf");
     content.setFont(font);
     content.setCharacterSize(20);

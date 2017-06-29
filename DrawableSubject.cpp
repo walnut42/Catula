@@ -14,13 +14,13 @@ void DrawableSubject::remove(Drawable *object) {
 
 void DrawableSubject::notifyUpdate() const {
     for (auto it = observers.begin(), end = observers.end(); it != end; it++) {
-        (*it)->update();
+        //(*it)->update();
     }
 }
 
 void DrawableSubject::notifyDraw() const {
     for (auto it = observers.begin(), end = observers.end(); it != end; it++) {
-        (*it)->draw();
+        //(*it)->draw();
     }
 }
 

@@ -10,7 +10,7 @@
 
 class Laser : public Collidable {
 public:
-    Laser(Window *window, Background *background, MainCharacter *maincharacter, float x, float y);
+    Laser(Background *background, MainCharacter *maincharacter, float x, float y);
 
     void collided() override;
 };
