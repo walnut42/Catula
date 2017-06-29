@@ -22,8 +22,7 @@ public:
 
     virtual void operator-=(Drawable *object);
 
-protected:
-    virtual ~DrawableSubject() {};
+    virtual ~DrawableSubject() = 0;
 private:
     std::list<Drawable *> observers;
 };

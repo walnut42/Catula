@@ -13,7 +13,8 @@
 
 class Entity : public Drawable {
 public:
-    Entity(const std::string &filename, float x = 0, float y = 0, sf::IntRect textureRect = sf::IntRect());
+    Entity(Window *window, const std::string &filename, float x = 0, float y = 0,
+           sf::IntRect textureRect = sf::IntRect());
 
     virtual ~Entity() {};
 

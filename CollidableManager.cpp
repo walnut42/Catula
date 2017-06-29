@@ -6,11 +6,11 @@
 
 std::list<Collidable *> CollidableManager::collidables;
 
-void CollidableManager::update() {
+void CollidableManager::update(Window *window, Background *background, MainCharacter *maincharacter) {
     removeCollidables();
 
-    if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() - 1000) {
-        collidables.push_back(CollidableFactory::createCollidable());
+    if (collidables.empty() || collidables.back()->getPos().x < window->getWidth() - 1000) {
+        collidables.push_back(CollidableFactory::createCollidable(window, background, maincharacter));
     }
 }
 

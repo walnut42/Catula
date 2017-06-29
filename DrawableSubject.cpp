@@ -31,3 +31,5 @@ void DrawableSubject::operator+=(Drawable *object) {
 void DrawableSubject::operator-=(Drawable *object) {
     remove(object);
 }
+
+DrawableSubject::~DrawableSubject() {}

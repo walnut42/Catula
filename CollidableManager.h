@@ -15,7 +15,7 @@
 
 class CollidableManager {
 public:
-    static void update();
+    static void update(Window *window, Background *background, MainCharacter *maincharacter);
 
     static void removeCollidables();
 
@@ -26,3 +26,5 @@ private:
 
 
 #endif //CATULA_OBSTACLES_H
+
+

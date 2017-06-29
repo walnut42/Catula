@@ -12,9 +12,10 @@
 int main() {
     srand((unsigned int) (time(NULL)));
 
-    Background::getInstance();
-    MainCharacter::getInstance();
-    Textbox::getInstance();
-    Window::getInstance()->gameLoop();
+    Window window("Game");
+    Background background(&window);
+    MainCharacter mainCharacter{&window};
+    Textbox textBox{&window, &mainCharacter};
+    window.gameLoop(&background, &mainCharacter);
     return 0;
 }

@@ -11,13 +11,16 @@
 #include "DrawableSubject.h"
 #include "Entity.h"
 #include "Textbox.h"
+#include "Background.h"
 
+class Background;
 
+class MainCharacter;
 class Window : public DrawableSubject {
 public:
-    static Window *getInstance();
+    Window(const std::string &title);
 
-    void gameLoop();
+    void gameLoop(Background *background, MainCharacter *maincharacter);
 
     void drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos, const sf::Vector2f &vel, float angle = 0,
                     float angleVel = 0);
@@ -34,27 +37,17 @@ public:
         return getHeight() / window.getSize().y;
     }
 
-    static float getWidth() {
-        if (instance != nullptr) {
-            sf::Vector2u size = instance->window.getSize();
-            return getHeight() * size.x / size.y;
-        }
-        return 0;
+    float getWidth() {
+        sf::Vector2u size = window.getSize();
+        return getHeight() * size.x / size.y;
     }
 
-    static float getHeight() {
+    float getHeight() const {
         return 1000;
     }
 
 private:
-    Window();
-
-    static Window *instance;
-
-    float getProportions() {
-        sf::Vector2u size = window.getSize();
-        return getHeight() * size.x / size.y;
-    }
+    float getProportions();
 
     void toggleFullscreen();
 
@@ -64,16 +57,14 @@ private:
 
     void processInput();
 
-    void setup(const std::string &title);
-
     void destroy();
 
     void create();
 
     sf::RenderWindow window;
     std::string windowTitle;
-    bool isFullscreen;
-    bool isDone;
+    bool fullscreen;
+    bool closed;
     const sf::Time ms_per_update = sf::milliseconds(7);
     const int max_loops = 5;
     sf::Clock clock;

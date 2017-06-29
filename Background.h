@@ -13,7 +13,7 @@
 
 class Background : public Drawable {
 public:
-    static Background *getInstance();
+    Background(Window *window);
 
     virtual void update() override;
 
@@ -24,13 +24,9 @@ public:
     float getVel() const;
 
 private:
-    Background();
-
     sf::Vector2f getSpritePos(std::list<sf::Sprite>::iterator &it);
 
     sf::Vector2f getSpritePos(long i);
-
-    static Background *instance;
 
     const float levelDuration = 10;
     const float levelUpAcc = -10;

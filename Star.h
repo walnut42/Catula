@@ -9,7 +9,7 @@
 
 class Star : public Collidable {
 public:
-    Star(float x, float y);
+    Star(Window *window, Background *background, MainCharacter *maincharacter, float x, float y);
 
     virtual void update() override;
 

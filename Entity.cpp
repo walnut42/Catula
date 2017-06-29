@@ -7,13 +7,18 @@
 
 using namespace std;
 
-Entity::Entity(const std::string &filename, float x, float y, sf::IntRect textureRect) :
-        angle(0), angleVel(0), angleAcc(0), pos(x, y) {
+Entity::Entity(Window *window, const std::string &filename, float x, float y, sf::IntRect textureRect) : Drawable(
+        window),
+                                                                                                         angle(0),
+                                                                                                         angleVel(0),
+                                                                                                         angleAcc(0),
+                                                                                                         pos(x, y) {
     setTexture(filename, textureRect);
 }
 
 void Entity::draw() {
-    //Debug code
+    //Debug code: uncomment to see the red lines around the objects.
+    /*
     vector<sf::Vector2f> pObj;
     getAbsolutePoints(pObj);
     sf::VertexArray lines(sf::LinesStrip, pObj.size() + 1);
@@ -22,9 +27,9 @@ void Entity::draw() {
         lines[i].color = sf::Color::Red;
     }
     Window::getInstance()->drawDrawable(lines);
-    //End debug code
+    //End debug code */
 
-    Window::getInstance()->drawEntity(*this);
+    window->drawEntity(*this);
 }
 
 bool Entity::collide(const Entity *obj1, const Entity *obj2) {
@@ -64,7 +69,7 @@ int Entity::ccw(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2) {
 }
 
 void Entity::updatePos() {
-    float seconds = Window::getInstance()->getElapsed();
+    float seconds = window->getElapsed();
     vel.x += acc.x * seconds;
     vel.y += acc.y * seconds;
     pos.x += vel.x * seconds;

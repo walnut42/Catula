@@ -5,38 +5,30 @@
 #include "Textbox.h"
 #include "MainCharacter.h"
 
-Textbox *Textbox::instance = nullptr;
-
-Textbox *Textbox::getInstance() {
-    if (instance == nullptr)
-        instance = new Textbox;
-    return instance;
-}
-
 void Textbox::draw() {
-    backdrop.setSize(sf::Vector2f(Window::getWidth(), 100));
-    Window::getInstance()->drawDrawable(backdrop);
-    Window::getInstance()->drawDrawable(content);
+    backdrop.setSize(sf::Vector2f(window->getWidth(), 100));
+    window->drawDrawable(backdrop);
+    window->drawDrawable(content);
 }
 
 void Textbox::update() {
-    if (MainCharacter::getInstance()->hasLost())
+    if (mainCharacter->hasLost())
         content.setString("GAME OVER!"
-                                  "\nYour score is: " + std::to_string(MainCharacter::getInstance()->getScore()));
+                                  "\nYour score is: " + std::to_string(mainCharacter->getScore()));
     else
-        content.setString("Score " + std::to_string(MainCharacter::getInstance()->getScore()) +
-                          "\nLives " + std::to_string(MainCharacter::getInstance()->getLives()));
+        content.setString("Score " + std::to_string(mainCharacter->getScore()) +
+                          "\nLives " + std::to_string(mainCharacter->getLives()));
 }
 
-Textbox::Textbox() {
+Textbox::Textbox(Window *window, MainCharacter *mainCharacter) : Drawable{window}, mainCharacter{mainCharacter} {
     font.loadFromFile("../Resources/FreeSerif.ttf");
     content.setFont(font);
     content.setCharacterSize(20);
-    float s = Window::getInstance()->getScale();
+    float s = window->getScale();
     content.setScale(s, s);
     content.setColor(sf::Color::Red);
     content.setPosition(100, 0);
-    backdrop.setSize(sf::Vector2f(Window::getWidth(), 100));
+    backdrop.setSize(sf::Vector2f(window->getWidth(), 100));
     backdrop.setFillColor(sf::Color(100, 100, 100, 100));
     backdrop.setPosition(0, 0);
 }

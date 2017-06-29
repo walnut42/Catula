@@ -6,12 +6,13 @@
 #include "Window.h"
 #include "MainCharacter.h"
 
-Star::Star(float x, float y) : Collidable("../Resources/star.png", x, y) {
+Star::Star(Window *window, Background *background, MainCharacter *maincharacter, float x, float y) : Collidable(
+        window, background, maincharacter, "../Resources/star.png", x, y) {
     relVel.y = 6;
 }
 
 void Star::update() {
-    relPos.y += relVel.y * Window::getInstance()->getElapsed();
+    relPos.y += relVel.y * window->getElapsed();
 
     if (relPos.y > 10 || relPos.y < -10)
         relVel.y *= -1;
@@ -20,5 +21,5 @@ void Star::update() {
 
 void Star::collided() {
     removeFlag = true;
-    MainCharacter::getInstance()->increaseScore(1);
+    maincharacter->increaseScore(1);
 }

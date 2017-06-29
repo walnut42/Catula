@@ -4,32 +4,26 @@
 
 #include "MainCharacter.h"
 
-MainCharacter *MainCharacter::instance = nullptr;
 
-MainCharacter::MainCharacter() : Entity("../Resources/Mushroom.png", 100, 100), lost{false}, score{0}, lives{3} {}
+MainCharacter::MainCharacter(Window *window) : Entity(window, "../Resources/Mushroom.png", 100, 100), lost{false},
+                                               score{0}, lives{3} {}
 
-MainCharacter *MainCharacter::getInstance() {
-    if (instance == nullptr) {
-        instance = new MainCharacter;
-    }
-    return instance;
-}
 
 void MainCharacter::handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        vel.y -= upg * Window::getInstance()->getElapsed();
+        vel.y -= upg * window->getElapsed();
     else
-        vel.y += g * Window::getInstance()->getElapsed();
+        vel.y += g * window->getElapsed();
 };
 
 void MainCharacter::update() {
     MainCharacter::handleInput();
-    pos.y += vel.y * Window::getInstance()->getElapsed();
+    pos.y += vel.y * window->getElapsed();
 
     //Borders collision
-    if (pos.y + size.y >= Window::getHeight() - bottom) {
+    if (pos.y + size.y >= window->getHeight() - bottom) {
         vel.y = 0;
-        pos.y = Window::getHeight() - bottom - size.y;
+        pos.y = window->getHeight() - bottom - size.y;
     } else if (pos.y <= top) {
         vel.y = 0;
         pos.y = top;

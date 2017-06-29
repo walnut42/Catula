@@ -11,7 +11,7 @@
 
 class CollidableFactory {
 public:
-    static Collidable *createCollidable();
+    static Collidable *createCollidable(Window *window, Background *background, MainCharacter *maincharacter);
 
 private:
     CollidableFactory() {};

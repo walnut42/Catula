@@ -3,10 +3,10 @@
 //
 
 #include "Rocket.h"
-#include "Window.h"
 #include "MainCharacter.h"
 
-Rocket::Rocket(float x, float y) : Collidable("../Resources/rocket.png", x, y) {
+Rocket::Rocket(Window *window, Background *background, MainCharacter *maincharacter, float x, float y) : Collidable(
+        window, background, maincharacter, "../Resources/rocket.png", x, y) {
     relVel.x = -600;
     relVel.y = -200;
     acc.y = 200;
@@ -21,5 +21,5 @@ void Rocket::update() {
 
 void Rocket::collided() {
     removeFlag = true;
-    MainCharacter::getInstance()->increaseScore(5);
+    maincharacter->increaseScore(5);
 }

@@ -6,10 +6,10 @@
 
 #include "Window.h"
 
-Drawable::Drawable() {
-    Window::getInstance()->add(this);
+Drawable::Drawable(Window *window) : window{window} {
+    window->add(this);
 }
 
 Drawable::~Drawable() {
-    Window::getInstance()->remove(this);
+    window->remove(this);
 }

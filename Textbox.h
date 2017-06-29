@@ -10,22 +10,23 @@
 
 #include "Drawable.h"
 #include "Window.h"
+#include "MainCharacter.h"
 
+class MainCharacter;
 class Textbox : public Drawable {
 public:
-    static Textbox *getInstance();
+    Textbox(Window *window, MainCharacter *mainCharacter);
 
     void draw() override;
 
     void update() override;
 
 private:
-    Textbox();
-
     sf::RectangleShape backdrop;
     sf::Font font;
     sf::Text content;
-    static Textbox *instance;
+
+    MainCharacter *mainCharacter;
 };
 
 

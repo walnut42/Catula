@@ -5,18 +5,21 @@
 #ifndef CATULA_DRAWABLE_H
 #define CATULA_DRAWABLE_H
 
-#include <SFML/Graphics.hpp>
 
+class Window;
 
 class Drawable {
 public:
-    Drawable();
+    Drawable(Window *window);
 
     virtual ~Drawable();
 
     virtual void update()=0;
 
     virtual void draw()=0;
+
+protected:
+    Window *window;
 };
 
 #endif //CATULA_DRAWABLE_H

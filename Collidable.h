@@ -6,10 +6,13 @@
 #define CATULA_COLLIDABLE_H
 
 #include "Entity.h"
+#include "Background.h"
+#include "MainCharacter.h"
 
 class Collidable : public Entity {
 public:
-    Collidable(const std::string &filename, float x, float y, sf::IntRect textureRect = sf::IntRect());
+    Collidable(Window *window, Background *background, MainCharacter *maincharacter, const std::string &filename,
+               float x, float y, sf::IntRect textureRect = sf::IntRect());
 
     virtual ~Collidable() {};
 
@@ -28,6 +31,9 @@ protected:
     sf::Vector2f originPos;
     sf::Vector2f relPos;
     sf::Vector2f relVel;
+
+    Background *background;
+    MainCharacter *maincharacter;
 };
 
 

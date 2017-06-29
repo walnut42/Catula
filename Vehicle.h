@@ -12,8 +12,9 @@
 
 class Vehicle : public Entity {
 public:
-    Vehicle(const std::string &filename, float x = 0, float y = 0, sf::IntRect textureRect = sf::IntRect()) :
-            Entity(filename, x, y, textureRect) {};
+    Vehicle(Window *window, const std::string &filename, float x = 0, float y = 0,
+            sf::IntRect textureRect = sf::IntRect()) :
+            Entity(window, filename, x, y, textureRect) {};
     std::string name;
 };
 

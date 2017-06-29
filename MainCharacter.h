@@ -14,7 +14,7 @@
 
 class MainCharacter : public Entity {
 public:
-    static MainCharacter *getInstance();
+    MainCharacter(Window *window);
 
     void handleInput();
 
@@ -36,9 +36,7 @@ protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const override;
 
 private:
-    MainCharacter();
 
-    static MainCharacter *instance;
     Vehicle *vehicle = nullptr;
     const float g = 980;
     const float upg = 1000;
