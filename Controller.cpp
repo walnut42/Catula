@@ -12,10 +12,10 @@ Controller::Controller(Model &model) : model{model} {
 void Controller::update(float elapsed) {
     model.removeCollidables();
 
-    if (model.collidables.empty() || model.collidables.back()->getPos().x < Model::getWidth() - 1000) {
-        model.collidables.push_back(
+    if (model.getCollidables().empty() || model.getCollidables().back()->getPos().x < Model::getWidth() - 1000) {
+        model.getCollidables().push_back(
                 std::unique_ptr<Collidable>(
-                        CollidableFactory::createCollidable(model.background, model.mainCharacter)));
+                        CollidableFactory::createCollidable(model.getBackground(), model.getMainCharacter())));
     }
 
     model.update(elapsed);

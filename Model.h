@@ -27,11 +27,20 @@ public:
 
     void draw(Window *window);
 
+    std::list<std::unique_ptr<Collidable>> &getCollidables();
+
+    const Background *getBackground() const;
+
+    Background *getBackground();
+
+    const MainCharacter *getMainCharacter() const;
+
+    MainCharacter *getMainCharacter();
+
+private:
     std::list<std::unique_ptr<Collidable>> collidables;
     Background *background;
     MainCharacter *mainCharacter;
-private:
-
     static const float width;
     static const float height;
 };

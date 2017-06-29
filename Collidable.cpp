@@ -4,9 +4,6 @@
 
 #include "Collidable.h"
 
-#include "Background.h"
-#include "MainCharacter.h"
-
 Collidable::Collidable(Background *background, MainCharacter *maincharacter,
                        const std::string &filename, float x, float y, sf::IntRect textureRect) :
         Entity(filename, x, y, textureRect), background{background}, maincharacter{maincharacter} {
@@ -16,8 +13,7 @@ Collidable::Collidable(Background *background, MainCharacter *maincharacter,
 
 void Collidable::update(float elapsed) {
     updateRelPos(elapsed);
-    float shift = background->getShift();
-    originPos.x += shift;
+    originPos.x += background->getShift();
     pos = originPos + relPos;
     vel.x = background->getVel() + relVel.x;
     vel.y = relVel.y;
@@ -30,9 +26,8 @@ void Collidable::update(float elapsed) {
 }
 
 void Collidable::updateRelPos(float elapsed) {
-    float seconds = elapsed;
-    relVel += acc * seconds;
-    relPos += relVel * seconds;
-    angleVel += angleAcc * seconds;
-    angle += angleVel * seconds;
+    relVel += acc * elapsed;
+    relPos += relVel * elapsed;
+    angleVel += angleAcc * elapsed;
+    angle += angleVel * elapsed;
 }

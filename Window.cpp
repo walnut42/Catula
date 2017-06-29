@@ -5,9 +5,8 @@
 #include "Window.h"
 
 #include "Debug.h"
-#include "Controller.h"
 
-Window::Window(const std::string &title, Controller &controller, Model &model) : controller{controller} {
+Window::Window(const std::string &title, Controller &controller, const Model &model) : controller{controller} {
     windowTitle = title;
     fullscreen = false;
     closed = false;
@@ -49,7 +48,7 @@ void Window::gameLoop() {
         processInput();
         elapsed += clock.restart();
         for (int loops = 0; elapsed >= ms_per_update && loops < max_loops; loops++) {
-            controller.update(elapsed.asSeconds());
+            controller.update(ms_per_update.asSeconds());
             textBox->update();
             elapsed -= ms_per_update;
         }

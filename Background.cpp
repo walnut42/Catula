@@ -3,7 +3,7 @@
 //
 
 #include "Background.h"
-#include "Model.h"
+#include "Window.h"
 
 Background::Background() : spriteSize(2802, 1000) {
     if (!texture.loadFromFile("../Resources/background.png"))

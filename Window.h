@@ -24,7 +24,7 @@ class Controller;
 
 class Window {
 public:
-    Window(const std::string &title, Controller &controller, Model &model);
+    Window(const std::string &title, Controller &controller, const Model &model);
 
     ~Window();
 
@@ -36,10 +36,6 @@ public:
     void drawEntity(Entity &entity);
 
     void drawDrawable(sf::Drawable &drawable);
-
-    float getElapsed() const {
-        return ms_per_update.asSeconds();
-    }
 
     float getScale() const {
         return getHeight() / window.getSize().y;

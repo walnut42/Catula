@@ -14,7 +14,7 @@ class Model;
 
 class Textbox {
 public:
-    Textbox(Window *window, Model &model);
+    Textbox(Window *window, const Model &model);
 
     void draw(Window *window);
 
@@ -24,7 +24,7 @@ private:
     sf::RectangleShape backdrop;
     sf::Font font;
     sf::Text content;
-    Model &model;
+    const Model &model;
 };
 
 

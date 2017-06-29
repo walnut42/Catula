@@ -4,7 +4,7 @@
 
 #include "Model.h"
 
-const float Model::width = 4000;
+const float Model::width = 2000;
 const float Model::height = 1000;
 
 
@@ -44,5 +44,25 @@ void Model::update(float elapsed) {
     for (auto &coll : collidables) {
         coll->update(elapsed);
     }
+}
+
+std::list<std::unique_ptr<Collidable>> &Model::getCollidables() {
+    return collidables;
+}
+
+const Background *Model::getBackground() const {
+    return background;
+}
+
+const MainCharacter *Model::getMainCharacter() const {
+    return mainCharacter;
+}
+
+MainCharacter *Model::getMainCharacter() {
+    return mainCharacter;
+}
+
+Background *Model::getBackground() {
+    return background;
 }
 
