@@ -9,11 +9,12 @@
 #include <SFML/Graphics.hpp>
 
 #include "Drawable.h"
-
+#include "ModelGame.h"
 
 class Entity : public Drawable {
 public:
-    Entity(const std::string &filename, float x = 0, float y = 0, sf::IntRect textureRect = sf::IntRect());
+    Entity(ModelGame &modelGame, const std::string &filename, float x = 0, float y = 0,
+           sf::IntRect textureRect = sf::IntRect());
 
     virtual ~Entity() {};
 
@@ -45,6 +46,8 @@ protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const;
 
     void updatePos();
+
+    ModelGame &modelGame;
 
     sf::Texture texture;
     sf::Sprite sprite;

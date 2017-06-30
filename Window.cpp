@@ -45,7 +45,6 @@ void Window::toggleFullscreen() {
 void Window::draw(Controller &controller) {
     window.clear(sf::Color::Black);
     controller.draw();
-    textbox.draw();
     Debug::getInstance()->DrawText(window);
     window.display();
 }
@@ -57,8 +56,6 @@ void Window::gameLoop(Controller &controller) {
 
         for (int loops = 0; elapsed >= ms_per_update && loops < max_loops; loops++) {
             update(controller);
-            controller.update();
-            textbox.update();
             elapsed -= ms_per_update;
         }
 

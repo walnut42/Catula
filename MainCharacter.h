@@ -12,9 +12,10 @@
 #include "Textbox.h"
 #include "Vehicle.h"
 
+class ModelGame;
 class MainCharacter : public Entity {
 public:
-    static MainCharacter *getInstance();
+    MainCharacter(ModelGame &modelGame);
 
     void handleInput();
 
@@ -36,9 +37,6 @@ protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const override;
 
 private:
-    MainCharacter();
-
-    static MainCharacter *instance;
     Vehicle *vehicle = nullptr;
     const float g = 980;
     const float upg = 1000;

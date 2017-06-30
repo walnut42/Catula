@@ -4,13 +4,11 @@
 
 #include "Background.h"
 
-Background *Background::instance = nullptr;
 
-Background::Background() : spriteSize(2802, 1000) {
+Background::Background(ModelGame &modelGame) : spriteSize(2802, 1000), modelGame(modelGame) {
     if (texture.loadFromFile("../Resources/background.png"))
         texture.setSmooth(true);
     setV();
-    //
 }
 
 void Background::update() {
@@ -62,13 +60,6 @@ float Background::getShift() const {
 
 float Background::getVel() const {
     return v;
-}
-
-Background *Background::getInstance() {
-    if (instance == nullptr) {
-        instance = new Background;
-    }
-    return instance;
 }
 
 void Background::setV(float v) {

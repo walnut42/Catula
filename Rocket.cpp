@@ -6,7 +6,7 @@
 #include "Window.h"
 #include "MainCharacter.h"
 
-Rocket::Rocket(float x, float y) : Collidable("../Resources/rocket.png", x, y) {
+Rocket::Rocket(ModelGame &modelGame, float x, float y) : Collidable(modelGame, "../Resources/rocket.png", x, y) {
     relVel.x = -600;
     relVel.y = -200;
     acc.y = 200;
@@ -21,5 +21,5 @@ void Rocket::update() {
 
 void Rocket::collided() {
     removeFlag = true;
-    MainCharacter::getInstance()->increaseScore(5);
+    modelGame.getMainCharacter()->increaseScore(5);
 }

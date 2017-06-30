@@ -10,10 +10,8 @@
 int main() {
     srand((unsigned int) (time(NULL)));
 
+    Window::getInstance();
     Controller controller;
-
-    Background::getInstance();
-    MainCharacter::getInstance();
     Window::getInstance()->gameLoop(controller);
     return 0;
 }

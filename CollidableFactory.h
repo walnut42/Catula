@@ -11,7 +11,7 @@
 
 class CollidableFactory {
 public:
-    static Collidable *createCollidable();
+    static Collidable *createCollidable(ModelGame &modelGame);
 
 private:
     CollidableFactory() {};

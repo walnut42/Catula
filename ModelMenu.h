@@ -10,11 +10,20 @@
 
 class ModelMenu : public ModelBase {
 public:
-    ModelMenu() {};
+    ModelMenu();
 
-    ~ModelMenu() {};
+    ~ModelMenu();
 
-    void processInput(const sf::Event &event) override {};
+    virtual ModelBase *processInput(const sf::Event &event) override;
+
+    virtual ModelBase *update() override;
+
+    virtual void draw() override;
+
+private:
+    sf::RectangleShape backdrop;
+    sf::Font font;
+    sf::Text content;
 };
 
 

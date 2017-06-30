@@ -13,15 +13,16 @@ void Textbox::draw() {
 }
 
 void Textbox::update() {
-    if (MainCharacter::getInstance()->hasLost())
+    MainCharacter *mainCharacter = modelGame.getMainCharacter();
+    if (mainCharacter->hasLost())
         content.setString("GAME OVER!"
-                                  "\nYour score is: " + std::to_string(MainCharacter::getInstance()->getScore()));
+                                  "\nYour score is: " + std::to_string(mainCharacter->getScore()));
     else
-        content.setString("Score " + std::to_string(MainCharacter::getInstance()->getScore()) +
-                          "\nLives " + std::to_string(MainCharacter::getInstance()->getLives()));
+        content.setString("Score " + std::to_string(mainCharacter->getScore()) +
+                          "\nLives " + std::to_string(mainCharacter->getLives()));
 }
 
-Textbox::Textbox() {
+Textbox::Textbox(ModelGame &modelGame) : modelGame{modelGame} {
     font.loadFromFile("../Resources/FreeSerif.ttf");
     content.setFont(font);
     content.setCharacterSize(20);

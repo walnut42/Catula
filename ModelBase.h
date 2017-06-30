@@ -5,27 +5,15 @@
 #ifndef CATULA_EVENT_H
 #define CATULA_EVENT_H
 
-#include <list>
 #include "Drawable.h"
 
 class ModelBase {
 public:
-    virtual void add(Drawable *object);
+    virtual ModelBase *processInput(const sf::Event &event)=0;
 
-    virtual void remove(Drawable *object);
+    virtual ModelBase *update()=0;
 
-    virtual void processInput(const sf::Event &event)=0;
-
-    virtual void notifyUpdate() const;
-
-    virtual void notifyDraw() const;
-
-    virtual void operator+=(Drawable *object);
-
-    virtual void operator-=(Drawable *object);
-
-private:
-    std::list<Drawable *> observers;
+    virtual void draw()=0;
 };
 
 

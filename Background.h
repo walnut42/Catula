@@ -11,9 +11,11 @@
 #include "Drawable.h"
 #include "Window.h"
 
+class ModelGame;
 class Background : public Drawable {
 public:
-    static Background *getInstance();
+
+    Background(ModelGame &modelGame);
 
     virtual void update() override;
 
@@ -27,13 +29,9 @@ public:
 
 private:
 
-    Background();
-
     sf::Vector2f getSpritePos(std::list<sf::Sprite>::iterator &it);
 
     sf::Vector2f getSpritePos(long i);
-
-    static Background *instance;
 
     const float levelDuration = 10;
     const float levelUpAcc = -10;
@@ -46,6 +44,7 @@ private:
     sf::Clock levelClock;
     sf::Texture texture;
     std::list<sf::Sprite> sprites;
+    ModelGame &modelGame;
 };
 
 #endif //CATULA_BACKGROUND_H

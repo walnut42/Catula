@@ -7,8 +7,8 @@
 
 using namespace std;
 
-Entity::Entity(const std::string &filename, float x, float y, sf::IntRect textureRect) :
-        angle(0), angleVel(0), angleAcc(0), pos(x, y) {
+Entity::Entity(ModelGame &modelGame, const std::string &filename, float x, float y, sf::IntRect textureRect) :
+        angle(0), angleVel(0), angleAcc(0), pos(x, y), modelGame(modelGame) {
     setTexture(filename, textureRect);
 }
 

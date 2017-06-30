@@ -7,11 +7,12 @@
 
 
 #include <SFML/Graphics.hpp>
+#include "ModelGame.h"
 
 
 class Textbox {
 public:
-    Textbox();
+    Textbox(ModelGame &modelGame);
 
     void draw();
 
@@ -21,6 +22,7 @@ private:
     sf::RectangleShape backdrop;
     sf::Font font;
     sf::Text content;
+    ModelGame &modelGame;
 };
 
 

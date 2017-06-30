@@ -5,16 +5,13 @@
 #include "MainCharacter.h"
 #include "Window.h"
 
-MainCharacter *MainCharacter::instance = nullptr;
 
-MainCharacter::MainCharacter() : Entity("../Resources/Mushroom.png", 100, 100), lost{false}, score{0}, lives{3} {}
+MainCharacter::MainCharacter(ModelGame &modelGame) : Entity(modelGame, "../Resources/Mushroom.png", 100, 100),
+                                                     lost{false},
+                                                     score{0}, lives{3} {
 
-MainCharacter *MainCharacter::getInstance() {
-    if (instance == nullptr) {
-        instance = new MainCharacter;
-    }
-    return instance;
 }
+
 
 void MainCharacter::handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))

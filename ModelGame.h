@@ -5,24 +5,43 @@
 #ifndef CATULA_MODELGAME_H
 #define CATULA_MODELGAME_H
 
+#include <list>
 
 #include "ModelBase.h"
-#include "Collidable.h"
 
+class Background;
+
+class MainCharacter;
+
+class Collidable;
+
+class Textbox;
 class ModelGame : public ModelBase {
 public:
-    ModelGame() {};
+    ModelGame();
 
-    ~ModelGame() {};
+    ~ModelGame();
 
-    void processInput(const sf::Event &event) override {};
+    virtual ModelBase *processInput(const sf::Event &event) override;
 
-    void update();
+    virtual ModelBase *update() override;
 
-    void removeCollidables();
+    virtual void draw() override;
+
+    Background *getBackground();
+
+    MainCharacter *getMainCharacter();
+
+    const std::list<Collidable *> &getCollidables() const;
+
 
 private:
+    void removeCollidables();
+
+    Background *background;
+    MainCharacter *mainCharacter;
     std::list<Collidable *> collidables;
+    Textbox *textbox;
 };
 
 

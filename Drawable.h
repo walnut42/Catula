@@ -10,10 +10,6 @@
 
 class Drawable {
 public:
-    Drawable();
-
-    virtual ~Drawable();
-
     virtual void update()=0;
 
     virtual void draw()=0;

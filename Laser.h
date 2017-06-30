@@ -10,7 +10,7 @@
 
 class Laser : public Collidable {
 public:
-    Laser(float x, float y);
+    Laser(ModelGame &modelGame, float x, float y);
 
     void collided() override;
 };

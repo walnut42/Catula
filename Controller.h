@@ -5,31 +5,23 @@
 #ifndef CATULA_OBSTACLES_H
 #define CATULA_OBSTACLES_H
 
-#include <list>
-
-#include "Background.h"
-#include "MainCharacter.h"
-#include "Collidable.h"
-#include "CollidableFactory.h"
-
+#include <SFML/Graphics.hpp>
+#include "ModelBase.h"
 
 class Controller {
 public:
-    void processInput(const sf::Event &event) {
-        activeModel->processInput(event);
-    }
+    Controller();
 
-    void update() {
-        activeModel->notifyUpdate();
-    }
+    void processInput(const sf::Event &event);
 
-    void draw() {
-        activeModel->notifyDraw();
-    }
+    void update();
+
+    void draw();
 
 private:
     ModelBase *activeModel;
 
+    void changeModel(ModelBase *newModel);
 };
 
 

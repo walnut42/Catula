@@ -15,6 +15,8 @@
 
 class Controller;
 
+class Entity;
+
 class Window {
 public:
     static Window *getInstance();
@@ -74,7 +76,6 @@ private:
 
     sf::RenderWindow window;
     std::string windowTitle;
-    Textbox textbox;
     bool isFullscreen;
     bool isDone;
     const sf::Time ms_per_update = sf::milliseconds(7);

@@ -6,7 +6,7 @@
 #include "Window.h"
 #include "MainCharacter.h"
 
-Star::Star(float x, float y) : Collidable("../Resources/star.png", x, y) {
+Star::Star(ModelGame &modelGame, float x, float y) : Collidable(modelGame, "../Resources/star.png", x, y) {
     relVel.y = 6;
 }
 
@@ -20,5 +20,5 @@ void Star::update() {
 
 void Star::collided() {
     removeFlag = true;
-    MainCharacter::getInstance()->increaseScore(1);
+    modelGame.getMainCharacter()->increaseScore(1);
 }
