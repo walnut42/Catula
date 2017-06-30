@@ -10,6 +10,7 @@ Background::Background() : spriteSize(2802, 1000) {
     if (texture.loadFromFile("../Resources/background.png"))
         texture.setSmooth(true);
     setV();
+    //
 }
 
 void Background::update() {
