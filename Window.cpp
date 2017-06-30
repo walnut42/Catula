@@ -5,7 +5,6 @@
 #include "Window.h"
 
 #include "Debug.h"
-#include "CollidableManager.h"
 
 Window *Window::instance = nullptr;
 
@@ -33,8 +32,8 @@ void Window::destroy() {
     window.close();
 }
 
-void Window::update() {
-    notifyUpdate();
+void Window::update(Controller &controller) {
+    controller.update();
 }
 
 void Window::toggleFullscreen() {
@@ -43,30 +42,32 @@ void Window::toggleFullscreen() {
     create();
 }
 
-void Window::draw() {
+void Window::draw(Controller &controller) {
     window.clear(sf::Color::Black);
-    notifyDraw();
+    controller.draw();
+    textbox.draw();
     Debug::getInstance()->DrawText(window);
     window.display();
 }
 
-void Window::gameLoop() {
+void Window::gameLoop(Controller &controller) {
     while (!isDone) {
-        processInput();
+        processInput(controller);
         elapsed += clock.restart();
 
         for (int loops = 0; elapsed >= ms_per_update && loops < max_loops; loops++) {
-            update();
-            CollidableManager::update();
+            update(controller);
+            controller.update();
+            textbox.update();
             elapsed -= ms_per_update;
         }
 
-        draw();
+        draw(controller);
     }
 }
 
 
-void Window::processInput() {
+void Window::processInput(Controller &controller) {
     sf::Event event;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
@@ -76,7 +77,8 @@ void Window::processInput() {
             toggleFullscreen();
         } else if (event.type == sf::Event::Resized) {
             window.setView(sf::View(sf::FloatRect(0, 0, getProportions(), getHeight())));
-        }
+        } else
+            controller.processInput(event);
     }
 }
 

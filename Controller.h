@@ -13,15 +13,23 @@
 #include "CollidableFactory.h"
 
 
-class CollidableManager {
+class Controller {
 public:
-    static void update();
+    void processInput(const sf::Event &event) {
+        activeModel->processInput(event);
+    }
 
-    static void removeCollidables();
+    void update() {
+        activeModel->notifyUpdate();
+    }
+
+    void draw() {
+        activeModel->notifyDraw();
+    }
 
 private:
-    CollidableManager() {};
-    static std::list<Collidable *> collidables;
+    ModelBase *activeModel;
+
 };
 
 

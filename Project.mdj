@@ -3928,7 +3928,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "DrawableSubject",
+											"text": "ModelBase",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -5792,7 +5792,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "CollidableManager",
+											"text": "Controller",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -7685,7 +7685,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "DrawableSubject",
+					"name": "ModelBase",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -8000,7 +8000,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "CollidableManager",
+					"name": "Controller",
 					"ownedElements": [
 						{
 							"_type": "UMLDependency",

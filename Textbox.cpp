@@ -4,14 +4,7 @@
 
 #include "Textbox.h"
 #include "MainCharacter.h"
-
-Textbox *Textbox::instance = nullptr;
-
-Textbox *Textbox::getInstance() {
-    if (instance == nullptr)
-        instance = new Textbox;
-    return instance;
-}
+#include "Window.h"
 
 void Textbox::draw() {
     backdrop.setSize(sf::Vector2f(Window::getWidth(), 100));

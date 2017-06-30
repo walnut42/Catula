@@ -1,12 +1,12 @@
 //
-// Created by Lorenzo Nuti and Paolo Valcepina on 26/03/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 30/06/17.
 //
 
-#include "CollidableManager.h"
+#include "ModelGame.h"
+#include "Window.h"
 
-std::list<Collidable *> CollidableManager::collidables;
 
-void CollidableManager::update() {
+void ModelGame::update() {
     removeCollidables();
 
     if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() - 1000) {
@@ -14,7 +14,7 @@ void CollidableManager::update() {
     }
 }
 
-void CollidableManager::removeCollidables() {
+void ModelGame::removeCollidables() {
     for (auto it = collidables.begin(), end = collidables.end(); it != end;) {
         // Updating the iterator before it's cancelled avoids to have a null iterator
         if ((*it)->getRemoveFlag()) {

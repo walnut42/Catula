@@ -5,7 +5,6 @@
 #include "Collidable.h"
 
 #include "Background.h"
-#include "MainCharacter.h"
 
 Collidable::Collidable(const std::string &filename, float x, float y, sf::IntRect textureRect) :
         Entity(filename, x, y, textureRect) {

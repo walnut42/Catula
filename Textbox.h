@@ -8,24 +8,19 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Drawable.h"
-#include "Window.h"
 
-class Textbox : public Drawable {
+class Textbox {
 public:
-    static Textbox *getInstance();
-
-    void draw() override;
-
-    void update() override;
-
-private:
     Textbox();
 
+    void draw();
+
+    void update();
+
+private:
     sf::RectangleShape backdrop;
     sf::Font font;
     sf::Text content;
-    static Textbox *instance;
 };
 
 

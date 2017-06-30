@@ -8,11 +8,13 @@
 #include <list>
 #include "Drawable.h"
 
-class DrawableSubject {
+class ModelBase {
 public:
     virtual void add(Drawable *object);
 
     virtual void remove(Drawable *object);
+
+    virtual void processInput(const sf::Event &event)=0;
 
     virtual void notifyUpdate() const;
 
@@ -22,8 +24,6 @@ public:
 
     virtual void operator-=(Drawable *object);
 
-protected:
-    virtual ~DrawableSubject() {};
 private:
     std::list<Drawable *> observers;
 };

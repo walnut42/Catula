@@ -2,32 +2,32 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 29/04/17.
 //
 
-#include "DrawableSubject.h"
+#include "ModelBase.h"
 
-void DrawableSubject::add(Drawable *object) {
+void ModelBase::add(Drawable *object) {
     observers.push_back(object);
 }
 
-void DrawableSubject::remove(Drawable *object) {
+void ModelBase::remove(Drawable *object) {
     observers.remove(object);
 }
 
-void DrawableSubject::notifyUpdate() const {
+void ModelBase::notifyUpdate() const {
     for (auto it = observers.begin(), end = observers.end(); it != end; it++) {
         (*it)->update();
     }
 }
 
-void DrawableSubject::notifyDraw() const {
+void ModelBase::notifyDraw() const {
     for (auto it = observers.begin(), end = observers.end(); it != end; it++) {
         (*it)->draw();
     }
 }
 
-void DrawableSubject::operator+=(Drawable *object) {
+void ModelBase::operator+=(Drawable *object) {
     add(object);
 }
 
-void DrawableSubject::operator-=(Drawable *object) {
+void ModelBase::operator-=(Drawable *object) {
     remove(object);
 }

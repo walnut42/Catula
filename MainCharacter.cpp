@@ -3,6 +3,7 @@
 //
 
 #include "MainCharacter.h"
+#include "Window.h"
 
 MainCharacter *MainCharacter::instance = nullptr;
 

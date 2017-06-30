@@ -8,16 +8,18 @@
 #include <SFML/Graphics.hpp>
 
 #include "Drawable.h"
-#include "DrawableSubject.h"
+#include "ModelBase.h"
 #include "Entity.h"
 #include "Textbox.h"
+#include "Controller.h"
 
+class Controller;
 
-class Window : public DrawableSubject {
+class Window {
 public:
     static Window *getInstance();
 
-    void gameLoop();
+    void gameLoop(Controller &controller);
 
     void drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos, const sf::Vector2f &vel, float angle = 0,
                     float angleVel = 0);
@@ -58,11 +60,11 @@ private:
 
     void toggleFullscreen();
 
-    void update();
+    void update(Controller &controller);
 
-    void draw();
+    void draw(Controller &controller);
 
-    void processInput();
+    void processInput(Controller &controller);
 
     void setup(const std::string &title);
 
@@ -72,6 +74,7 @@ private:
 
     sf::RenderWindow window;
     std::string windowTitle;
+    Textbox textbox;
     bool isFullscreen;
     bool isDone;
     const sf::Time ms_per_update = sf::milliseconds(7);
