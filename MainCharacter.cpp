@@ -3,15 +3,13 @@
 //
 
 #include "MainCharacter.h"
-#include "Window.h"
-
+#include "Background.h"
 
 MainCharacter::MainCharacter(ModelGame &modelGame) : Entity(modelGame, "../Resources/Mushroom.png", 100, 100),
                                                      lost{false},
                                                      score{0}, lives{3} {
 
 }
-
 
 void MainCharacter::handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -51,6 +49,8 @@ int MainCharacter::getScore() const {
 }
 
 void MainCharacter::increaseLife(int l) {
+    if (l < 0)
+        modelGame.getBackground()->setV();
     if (lives)
         lives += l;
     else
