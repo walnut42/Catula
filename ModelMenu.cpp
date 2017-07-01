@@ -5,7 +5,11 @@
 #include "ModelMenu.h"
 #include "Window.h"
 
-ModelMenu::ModelMenu() : baseColor{153, 144, 240}, titleStopY{2.5}, titleY{0} {
+enum {
+    Catula = 1, Mushroom = 3
+};
+
+ModelMenu::ModelMenu() : baseColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, selected{1} {
     titleFont.loadFromFile("../Resources/BlackWidow.ttf");
     titleText.setFont(titleFont);
     titleText.setCharacterSize(200);
@@ -14,7 +18,6 @@ ModelMenu::ModelMenu() : baseColor{153, 144, 240}, titleStopY{2.5}, titleY{0} {
     sf::FloatRect titleRect = titleText.getGlobalBounds();
     titleText.setOrigin(titleRect.left + titleRect.width / 2.0f,
                         titleRect.top + titleRect.height / 2.0f);
-    titleText.setPosition(Window::getWidth() / 2.0f, 0);
 
     contentFont.loadFromFile("../Resources/FreeSerif.ttf");
     contentText.setFont(contentFont);
@@ -23,24 +26,20 @@ ModelMenu::ModelMenu() : baseColor{153, 144, 240}, titleStopY{2.5}, titleY{0} {
     contentText.setString("Choose the character and play...");
     sf::FloatRect textRect = contentText.getGlobalBounds();
     contentText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-    contentText.setPosition(Window::getWidth() / 2.0f, Window::getHeight() / 2.0f);
 
     character1.loadFromFile("../Resources/Catula.png");
     character1Sprite.setTexture(character1);
     character1Sprite.setOrigin(character1.getSize().x / 2.0f, character1.getSize().y / 2.0f);
-    character1Sprite.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
 
     character2.loadFromFile("../Resources/Mushroom.png");
     character2Sprite.setTexture(character2);
     character2Sprite.setOrigin(character2.getSize().x / 2.0f, character2.getSize().y / 2.0f);
-    character2Sprite.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
 
     selection.setSize(sf::Vector2f(300, 300));
     selection.setFillColor(sf::Color::Transparent);
     selection.setOutlineColor(baseColor);
     selection.setOutlineThickness(5);
     selection.setOrigin(selection.getSize().x / 2.0f, selection.getSize().y / 2.0f);
-    selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
 }
 
 ModelMenu::~ModelMenu() {
@@ -49,7 +48,7 @@ ModelMenu::~ModelMenu() {
 
 ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
-        if (selected == 2) {
+        if (selected == Mushroom) {
             Controller::modelGame.reset(new ModelGame("../Resources/Mushroom.png"));
         } else
             Controller::modelGame.reset(new ModelGame);
@@ -57,12 +56,12 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
     }
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
         selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
-        selected = 1;
+        selected = Catula;
         return nullptr;
     }
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
         selection.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
-        selected = 2;
+        selected = Mushroom;
         return nullptr;
     } else
         return nullptr;
@@ -73,6 +72,9 @@ ModelBase *ModelMenu::update() {
         titleText.setPosition(Window::getWidth() / 2.0f, ++titleY);
     contentText.setPosition(Window::getWidth() / 2.0f,
                         Window::getHeight() / 2.0f + texture.getSize().y / 2.0f);
+    character1Sprite.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
+    character2Sprite.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
+    selection.setPosition(Window::getWidth() * selected / 4.0f, Window::getHeight() / 2.0f);
     return nullptr;
 }
 
