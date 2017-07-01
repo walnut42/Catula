@@ -50,6 +50,9 @@ public:
         return 1000;
     }
 
+    bool isDrawPrevision() const;
+
+    void setDrawPrevision(bool drawPrevision);
 private:
     Window();
 
@@ -82,6 +85,7 @@ private:
     const int max_loops = 5;
     sf::Clock clock;
     sf::Time elapsed;
+    bool drawPrevision = true;
 };
 
 

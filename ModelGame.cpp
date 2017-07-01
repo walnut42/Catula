@@ -7,16 +7,12 @@
 #include "CollidableFactory.h"
 #include "Background.h"
 #include "MainCharacter.h"
-#include "ModelMenu.h"
 
 
-ModelGame::ModelGame() {
-    background = new Background(*this);
-    mainCharacter = new MainCharacter(*this, "../Resources/Catula.png");
-    textbox = new Textbox(*this);
+ModelGame::ModelGame() : ModelGame("../Resources/Catula.png") {
 }
 
-ModelGame::ModelGame(const std::string fileName) {
+ModelGame::ModelGame(const std::string &fileName) {
     background = new Background(*this);
     mainCharacter = new MainCharacter(*this, fileName);
     textbox = new Textbox(*this);
@@ -66,9 +62,11 @@ void ModelGame::draw() {
 
 
 ModelBase *ModelGame::processInput(const sf::Event &event) {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        return new ModelMenu();
-    else
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+        if (!Controller::modelPause)
+            Controller::modelPause.reset(new ModelPause);
+        return Controller::modelPause.get();
+    } else
         return nullptr;
 }
 

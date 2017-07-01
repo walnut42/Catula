@@ -50,9 +50,10 @@ ModelMenu::~ModelMenu() {
 ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
         if (selected == 2) {
-            return new ModelGame("../Resources/Mushroom.png");
+            Controller::modelGame.reset(new ModelGame("../Resources/Mushroom.png"));
         } else
-            return new ModelGame();
+            Controller::modelGame.reset(new ModelGame);
+        return Controller::modelGame.get();
     }
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
         selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);

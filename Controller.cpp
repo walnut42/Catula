@@ -4,11 +4,15 @@
 
 
 #include "Controller.h"
-#include "ModelMenu.h"
 
+
+std::unique_ptr<ModelMenu> Controller::modelMenu;
+std::unique_ptr<ModelGame> Controller::modelGame;
+std::unique_ptr<ModelPause> Controller::modelPause;
 
 Controller::Controller() {
-    activeModel = new ModelMenu();
+    Controller::modelMenu.reset(new ModelMenu());
+    activeModel = Controller::modelMenu.get();
 }
 
 void Controller::processInput(const sf::Event &event) {
@@ -25,8 +29,6 @@ void Controller::draw() {
 
 void Controller::changeModel(ModelBase *newModel) {
     if (newModel != nullptr) {
-        if (activeModel != nullptr)
-            delete activeModel;
         activeModel = newModel;
     }
 }

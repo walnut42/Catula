@@ -82,8 +82,14 @@ void Window::processInput(Controller &controller) {
 
 void
 Window::drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos, const sf::Vector2f &vel, float angle, float angleVel) {
-    sprite.setPosition(pos + vel * elapsed.asSeconds());
-    sprite.setRotation(angle + angleVel * elapsed.asSeconds());
+    if (drawPrevision) {
+        sprite.setPosition(pos + vel * elapsed.asSeconds());
+        sprite.setRotation(angle + angleVel * elapsed.asSeconds());
+    } else {
+        sprite.setPosition(pos);
+        sprite.setRotation(angle);
+    }
+
     window.draw(sprite);
 }
 
@@ -100,4 +106,12 @@ Window *Window::getInstance() {
         instance = new Window;
     }
     return instance;
+}
+
+bool Window::isDrawPrevision() const {
+    return drawPrevision;
+}
+
+void Window::setDrawPrevision(bool drawPrevision) {
+    Window::drawPrevision = drawPrevision;
 }

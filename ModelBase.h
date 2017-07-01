@@ -5,7 +5,7 @@
 #ifndef CATULA_EVENT_H
 #define CATULA_EVENT_H
 
-#include "Drawable.h"
+#include <SFML/Graphics.hpp>
 
 class ModelBase {
 public:

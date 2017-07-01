@@ -7,6 +7,9 @@
 
 #include <SFML/Graphics.hpp>
 #include "ModelBase.h"
+#include "ModelMenu.h"
+#include "ModelGame.h"
+#include "ModelPause.h"
 
 class Controller {
 public:
@@ -17,6 +20,10 @@ public:
     void update();
 
     void draw();
+
+    static std::unique_ptr<ModelMenu> modelMenu;
+    static std::unique_ptr<ModelGame> modelGame;
+    static std::unique_ptr<ModelPause> modelPause;
 
 private:
     ModelBase *activeModel;
