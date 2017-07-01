@@ -8,6 +8,7 @@
 #include "Entity.h"
 
 class ModelGame;
+
 class Collidable : public Entity {
 public:
     Collidable(ModelGame &modelGame, const std::string &filename, float x, float y,
@@ -25,6 +26,7 @@ public:
 
 protected:
     virtual void updateRelPos();
+
     bool removeFlag = false;
     sf::Vector2f originPos;
     sf::Vector2f relPos;

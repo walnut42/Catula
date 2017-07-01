@@ -12,6 +12,7 @@
 #include "Window.h"
 
 class ModelGame;
+
 class Background : public Drawable {
 public:
 

@@ -16,6 +16,7 @@ class MainCharacter;
 class Collidable;
 
 class Textbox;
+
 class ModelGame : public ModelBase {
 public:
     ModelGame();
@@ -32,15 +33,12 @@ public:
 
     MainCharacter *getMainCharacter();
 
-    const std::list<Collidable *> &getCollidables() const;
-
-
 private:
     void removeCollidables();
 
     Background *background;
     MainCharacter *mainCharacter;
-    std::list<Collidable *> collidables;
+    std::list<std::unique_ptr<Collidable>> collidables;
     Textbox *textbox;
 };
 

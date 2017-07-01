@@ -13,6 +13,7 @@
 #include "Vehicle.h"
 
 class ModelGame;
+
 class MainCharacter : public Entity {
 public:
     MainCharacter(ModelGame &modelGame);

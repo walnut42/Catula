@@ -26,7 +26,7 @@ ModelBase *ModelGame::update() {
     removeCollidables();
 
     if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() - 1000) {
-        collidables.push_back(CollidableFactory::createCollidable(*this));
+        collidables.push_back(std::unique_ptr<Collidable>(CollidableFactory::createCollidable(*this)));
     }
 
     background->update();
@@ -43,7 +43,6 @@ void ModelGame::removeCollidables() {
         // Updating the iterator before it's cancelled avoids to have a null iterator
         if ((*it)->getRemoveFlag()) {
             auto prev = it++;
-            delete *prev;
             collidables.erase(prev);
         } else
             ++it;
@@ -73,8 +72,4 @@ Background *ModelGame::getBackground() {
 
 MainCharacter *ModelGame::getMainCharacter() {
     return mainCharacter;
-}
-
-const std::list<Collidable *> &ModelGame::getCollidables() const {
-    return collidables;
 }

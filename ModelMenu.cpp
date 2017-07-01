@@ -5,20 +5,22 @@
 #include "ModelMenu.h"
 #include "Window.h"
 
-ModelMenu::ModelMenu() {
+ModelMenu::ModelMenu() : posY{0} {
+
     font.loadFromFile("../Resources/FreeSerif.ttf");
     content.setFont(font);
     content.setCharacterSize(20);
-    float s = Window::getInstance()->getScale();
-    content.setScale(s, s);
     content.setColor(sf::Color::Red);
-    backdrop.setSize(sf::Vector2f(300, 100));
-    backdrop.setFillColor(sf::Color(100, 100, 100, 100));
-    backdrop.setPosition(Window::getWidth() / 2 - backdrop.getSize().x / 2,
-                         Window::getHeight() / 2 - backdrop.getSize().y / 2);
-    content.setPosition(Window::getWidth() / 2 - backdrop.getSize().x / 2,
-                        Window::getHeight() / 2 - backdrop.getSize().y / 2);
-    content.setString("Press enter!");
+    content.setCharacterSize(20);
+    content.setString("Press enter to play...");
+    sf::FloatRect textRect = content.getGlobalBounds();
+    content.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+    content.setPosition(Window::getWidth() / 2, Window::getHeight() / 2);
+    texture.loadFromFile("../Resources/Intro.png");
+    sprite.setTexture(texture);
+    sprite.setOrigin(texture.getSize().x / 2.0f, texture.getSize().y);
+    sprite.setPosition(Window::getWidth() / 2, posY);
+
 }
 
 ModelMenu::~ModelMenu() {
@@ -33,13 +35,16 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
 }
 
 ModelBase *ModelMenu::update() {
-    backdrop.setPosition(Window::getWidth() / 2 - backdrop.getSize().x / 2,
-                         Window::getHeight() / 2 - backdrop.getSize().y / 2);
-    content.setPosition(Window::getWidth() / 2 - 60, Window::getHeight() / 2 - 20);
+    if (posY < Window::getHeight() / 2)
+        sprite.setPosition(Window::getWidth() / 2, ++posY);
+    content.setPosition(Window::getWidth() / 2.0f,
+                        Window::getHeight() / 2.0f + texture.getSize().y / 2.0f);
     return nullptr;
 }
 
 void ModelMenu::draw() {
-    Window::getInstance()->drawDrawable(backdrop);
-    Window::getInstance()->drawDrawable(content);
+    Window::getInstance()->drawDrawable(sprite);
+    if (posY >= Window::getHeight() / 2) {
+        Window::getInstance()->drawDrawable(content);
+    }
 }
