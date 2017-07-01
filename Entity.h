@@ -8,10 +8,9 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "Drawable.h"
 #include "ModelGame.h"
 
-class Entity : public Drawable {
+class Entity {
 public:
     Entity(ModelGame &modelGame, const std::string &filename, float x = 0, float y = 0,
            sf::IntRect textureRect = sf::IntRect());
@@ -20,7 +19,9 @@ public:
 
     static bool collide(const Entity *obj1, const Entity *obj2);
 
-    virtual void draw() override;
+    virtual void draw();
+
+    virtual void update()=0;
 
     const sf::Vector2f getPos() const {
         return pos + sprite.getOrigin();

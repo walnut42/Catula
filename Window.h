@@ -7,15 +7,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Drawable.h"
-#include "ModelBase.h"
 #include "Entity.h"
-#include "Textbox.h"
 #include "Controller.h"
-
-class Controller;
-
-class Entity;
 
 class Window {
 public:
@@ -38,21 +31,14 @@ public:
         return getHeight() / window.getSize().y;
     }
 
-    static float getWidth() {
-        if (instance != nullptr) {
-            sf::Vector2u size = instance->window.getSize();
-            return getHeight() * size.x / size.y;
-        }
-        return 0;
-    }
+    static float getWidth();
 
     static float getHeight() {
         return 1000;
     }
 
-    bool isDrawPrevision() const;
-
     void setDrawPrevision(bool drawPrevision);
+
 private:
     Window();
 
@@ -65,15 +51,9 @@ private:
 
     void toggleFullscreen();
 
-    void update(Controller &controller);
-
     void draw(Controller &controller);
 
     void processInput(Controller &controller);
-
-    void setup(const std::string &title);
-
-    void destroy();
 
     void create();
 

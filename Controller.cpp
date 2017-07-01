@@ -10,9 +10,9 @@ std::unique_ptr<ModelMenu> Controller::modelMenu;
 std::unique_ptr<ModelGame> Controller::modelGame;
 std::unique_ptr<ModelPause> Controller::modelPause;
 
+
 Controller::Controller() {
-    Controller::modelMenu.reset(new ModelMenu());
-    activeModel = Controller::modelMenu.get();
+    changeModel(newModel(Controller::modelMenu));
 }
 
 void Controller::processInput(const sf::Event &event) {
@@ -30,5 +30,8 @@ void Controller::draw() {
 void Controller::changeModel(ModelBase *newModel) {
     if (newModel != nullptr) {
         activeModel = newModel;
+        activeModel->enter();
     }
 }
+
+

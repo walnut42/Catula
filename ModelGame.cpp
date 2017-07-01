@@ -62,11 +62,9 @@ void ModelGame::draw() {
 
 
 ModelBase *ModelGame::processInput(const sf::Event &event) {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-        if (!Controller::modelPause)
-            Controller::modelPause.reset(new ModelPause);
-        return Controller::modelPause.get();
-    } else
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+        return getModel(Controller::modelPause);
+    else
         return nullptr;
 }
 
@@ -76,4 +74,8 @@ Background *ModelGame::getBackground() {
 
 MainCharacter *ModelGame::getMainCharacter() {
     return mainCharacter;
+}
+
+void ModelGame::enter() {
+
 }

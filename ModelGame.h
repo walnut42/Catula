@@ -31,6 +31,8 @@ public:
 
     virtual void draw() override;
 
+    virtual void enter() override;
+
     Background *getBackground();
 
     MainCharacter *getMainCharacter();

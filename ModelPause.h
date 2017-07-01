@@ -20,6 +20,8 @@ public:
 
     virtual void draw() override;
 
+    virtual void enter() override;
+
 private:
     sf::RectangleShape backdrop;
     sf::Font font;

@@ -14,6 +14,8 @@ public:
     virtual ModelBase *update()=0;
 
     virtual void draw()=0;
+
+    virtual void enter()=0;
 };
 
 

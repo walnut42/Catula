@@ -50,7 +50,7 @@ int MainCharacter::getScore() const {
 
 void MainCharacter::increaseLife(int l) {
     if (l < 0)
-        modelGame.getBackground()->setV();
+        modelGame.getBackground()->setVel();
     if (lives)
         lives += l;
     else

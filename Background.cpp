@@ -8,7 +8,7 @@
 Background::Background(ModelGame &modelGame) : spriteSize(2802, 1000), modelGame(modelGame) {
     if (texture.loadFromFile("../Resources/background.png"))
         texture.setSmooth(true);
-    setV();
+    setVel();
 }
 
 void Background::update() {
@@ -18,11 +18,11 @@ void Background::update() {
         if (levelTime > levelDuration + levelUpTime) {
             levelClock.restart();
         } else
-            v += levelUpAcc * Window::getInstance()->getElapsed();
+            vel += levelUpAcc * Window::getInstance()->getElapsed();
     }
 
     // update position
-    shift = v * Window::getInstance()->getElapsed();
+    shift = vel * Window::getInstance()->getElapsed();
     pos += shift;
 
     // If first sprite is out on the left side, the loop removes it.
@@ -42,7 +42,7 @@ void Background::update() {
 
 void Background::draw() {
     for (auto it = sprites.begin(), end = sprites.end(); it != end; ++it) {
-        Window::getInstance()->drawSprite(*it, getSpritePos(it), sf::Vector2f(v, 0));
+        Window::getInstance()->drawSprite(*it, getSpritePos(it), sf::Vector2f(vel, 0));
     }
 }
 
@@ -59,9 +59,9 @@ float Background::getShift() const {
 }
 
 float Background::getVel() const {
-    return v;
+    return vel;
 }
 
-void Background::setV(float v) {
-    Background::v = v;
+void Background::setVel(float v) {
+    Background::vel = v;
 }

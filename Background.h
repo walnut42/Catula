@@ -8,25 +8,24 @@
 #include <list>
 #include <SFML/Graphics.hpp>
 
-#include "Drawable.h"
 #include "Window.h"
 
 class ModelGame;
 
-class Background : public Drawable {
+class Background {
 public:
 
     Background(ModelGame &modelGame);
 
-    virtual void update() override;
+    virtual void update();
 
-    virtual void draw() override;
+    virtual void draw();
 
     float getShift() const;
 
     float getVel() const;
 
-    void setV(float v = -300);
+    void setVel(float v = -300);
 
 private:
 
@@ -39,7 +38,7 @@ private:
     const float levelUpTime = 5;
 
     sf::Vector2f spriteSize;
-    float v;
+    float vel;
     float pos = 0;
     float shift = 0;
     sf::Clock levelClock;

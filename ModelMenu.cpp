@@ -48,11 +48,10 @@ ModelMenu::~ModelMenu() {
 
 ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
-        if (selected == Mushroom) {
-            Controller::modelGame.reset(new ModelGame("../Resources/Mushroom.png"));
-        } else
-            Controller::modelGame.reset(new ModelGame);
-        return Controller::modelGame.get();
+        if (selected == Mushroom)
+            return newModel(Controller::modelGame, "../Resources/Mushroom.png");
+        else
+            return newModel(Controller::modelGame);
     }
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
         selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
@@ -88,4 +87,8 @@ void ModelMenu::draw() {
     Window::getInstance()->drawDrawable(character1Sprite);
     Window::getInstance()->drawDrawable(character2Sprite);
     Window::getInstance()->drawDrawable(selection);
+}
+
+void ModelMenu::enter() {
+    titleY = 0;
 }

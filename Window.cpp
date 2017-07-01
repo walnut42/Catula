@@ -8,14 +8,7 @@
 
 Window *Window::instance = nullptr;
 
-Window::Window() {
-    setup("Catula");
-}
-
-void Window::setup(const std::string &title) {
-    windowTitle = title;
-    isFullscreen = false;
-    isDone = false;
+Window::Window() : windowTitle{"Catula"}, isFullscreen{false}, isDone{false} {
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
     create();
@@ -28,17 +21,9 @@ void Window::create() {
     window.setView(sf::View(sf::FloatRect(0, 0, getProportions(), getHeight())));
 }
 
-void Window::destroy() {
-    window.close();
-}
-
-void Window::update(Controller &controller) {
-    controller.update();
-}
-
 void Window::toggleFullscreen() {
     isFullscreen = !isFullscreen;
-    destroy();
+    window.close();
     create();
 }
 
@@ -55,7 +40,7 @@ void Window::gameLoop(Controller &controller) {
         elapsed += clock.restart();
 
         for (int loops = 0; elapsed >= ms_per_update && loops < max_loops; loops++) {
-            update(controller);
+            controller.update();
             elapsed -= ms_per_update;
         }
 
@@ -69,7 +54,7 @@ void Window::processInput(Controller &controller) {
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
             isDone = true;
-            destroy();
+            window.close();
         } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F11) {
             toggleFullscreen();
         } else if (event.type == sf::Event::Resized) {
@@ -108,10 +93,14 @@ Window *Window::getInstance() {
     return instance;
 }
 
-bool Window::isDrawPrevision() const {
-    return drawPrevision;
-}
-
 void Window::setDrawPrevision(bool drawPrevision) {
     Window::drawPrevision = drawPrevision;
+}
+
+float Window::getWidth() {
+    if (instance != nullptr) {
+        sf::Vector2u size = instance->window.getSize();
+        return getHeight() * size.x / size.y;
+    }
+    return 0;
 }
