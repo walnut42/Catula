@@ -70,8 +70,10 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
 ModelBase *ModelMenu::update() {
     if (titleY < Window::getHeight() / titleStopY)
         titleText.setPosition(Window::getWidth() / 2.0f, ++titleY);
+    else
+        titleText.setPosition(Window::getWidth() / 2.0f, Window::getHeight() / titleStopY);
     contentText.setPosition(Window::getWidth() / 2.0f,
-                        Window::getHeight() / 2.0f + texture.getSize().y / 2.0f);
+                            Window::getHeight() / 2.0f + texture.getSize().y / 2.0f);
     character1Sprite.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
     character2Sprite.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
     selection.setPosition(Window::getWidth() * selected / 4.0f, Window::getHeight() / 2.0f);
