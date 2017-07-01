@@ -5,31 +5,41 @@
 #include "ModelMenu.h"
 #include "Window.h"
 
-ModelMenu::ModelMenu() : posY{0} {
+ModelMenu::ModelMenu() : baseColor{153, 144, 240}, titleStopY{2.5}, titleY{0} {
+    titleFont.loadFromFile("../Resources/BlackWidow.ttf");
+    titleText.setFont(titleFont);
+    titleText.setCharacterSize(200);
+    titleText.setColor(baseColor);
+    titleText.setString("CATULA");
+    sf::FloatRect titleRect = titleText.getGlobalBounds();
+    titleText.setOrigin(titleRect.left + titleRect.width / 2.0f,
+                        titleRect.top + titleRect.height / 2.0f);
+    titleText.setPosition(Window::getWidth() / 2.0f, 0);
 
-    font.loadFromFile("../Resources/FreeSerif.ttf");
-    content.setFont(font);
-    content.setCharacterSize(20);
-    content.setColor(sf::Color::Red);
-    content.setCharacterSize(20);
-    content.setString("Choose the character and play...");
-    sf::FloatRect textRect = content.getGlobalBounds();
-    content.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-    content.setPosition(Window::getWidth() / 2, Window::getHeight() / 2);
-    texture.loadFromFile("../Resources/Intro.png");
-    sprite.setTexture(texture);
-    sprite.setOrigin(texture.getSize().x / 2.0f, texture.getSize().y);
-    sprite.setPosition(Window::getWidth() / 2, posY);
+    contentFont.loadFromFile("../Resources/FreeSerif.ttf");
+    contentText.setFont(contentFont);
+    contentText.setCharacterSize(30);
+    contentText.setColor(baseColor);
+    contentText.setString("Choose the character and play...");
+    sf::FloatRect textRect = contentText.getGlobalBounds();
+    contentText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
+    contentText.setPosition(Window::getWidth() / 2.0f, Window::getHeight() / 2.0f);
+
     character1.loadFromFile("../Resources/Catula.png");
     character1Sprite.setTexture(character1);
+    character1Sprite.setOrigin(character1.getSize().x / 2.0f, character1.getSize().y / 2.0f);
     character1Sprite.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
+
     character2.loadFromFile("../Resources/Mushroom.png");
     character2Sprite.setTexture(character2);
+    character2Sprite.setOrigin(character2.getSize().x / 2.0f, character2.getSize().y / 2.0f);
     character2Sprite.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
+
     selection.setSize(sf::Vector2f(300, 300));
     selection.setFillColor(sf::Color::Transparent);
-    selection.setOutlineColor(sf::Color::Red);
+    selection.setOutlineColor(baseColor);
     selection.setOutlineThickness(5);
+    selection.setOrigin(selection.getSize().x / 2.0f, selection.getSize().y / 2.0f);
     selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
 }
 
@@ -58,19 +68,19 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
 }
 
 ModelBase *ModelMenu::update() {
-    if (posY < Window::getHeight() / 2)
-        sprite.setPosition(Window::getWidth() / 2, ++posY);
-    content.setPosition(Window::getWidth() / 2.0f,
+    if (titleY < Window::getHeight() / titleStopY)
+        titleText.setPosition(Window::getWidth() / 2.0f, ++titleY);
+    contentText.setPosition(Window::getWidth() / 2.0f,
                         Window::getHeight() / 2.0f + texture.getSize().y / 2.0f);
     return nullptr;
 }
 
 void ModelMenu::draw() {
-    Window::getInstance()->drawDrawable(sprite);
-    if (posY >= Window::getHeight() / 2) {
-        Window::getInstance()->drawDrawable(content);
-        Window::getInstance()->drawDrawable(character1Sprite);
-        Window::getInstance()->drawDrawable(character2Sprite);
-        Window::getInstance()->drawDrawable(selection);
+    Window::getInstance()->drawDrawable(titleText);
+    if (titleY >= Window::getHeight() / titleStopY) {
+        Window::getInstance()->drawDrawable(contentText);
     }
+    Window::getInstance()->drawDrawable(character1Sprite);
+    Window::getInstance()->drawDrawable(character2Sprite);
+    Window::getInstance()->drawDrawable(selection);
 }
