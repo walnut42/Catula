@@ -25,6 +25,10 @@ private:
     sf::Font font;
     sf::Text content;
     sf::Texture texture;
+    sf::Texture character1;
+    sf::Texture character2;
+    sf::Sprite character1Sprite;
+    sf::Sprite character2Sprite;
     sf::Sprite sprite;
     float posY;
 };

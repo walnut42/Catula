@@ -21,6 +21,8 @@ class ModelGame : public ModelBase {
 public:
     ModelGame();
 
+    explicit ModelGame(std::string fileName);
+
     ~ModelGame();
 
     virtual ModelBase *processInput(const sf::Event &event) override;

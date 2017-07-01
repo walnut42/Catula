@@ -20,7 +20,12 @@ ModelMenu::ModelMenu() : posY{0} {
     sprite.setTexture(texture);
     sprite.setOrigin(texture.getSize().x / 2.0f, texture.getSize().y);
     sprite.setPosition(Window::getWidth() / 2, posY);
-
+    character1.loadFromFile("../Resources/Catula.png");
+    character1Sprite.setTexture(character1);
+    character1Sprite.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
+    character2.loadFromFile("../Resources/Mushroom.png");
+    character2Sprite.setTexture(character2);
+    character2Sprite.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
 }
 
 ModelMenu::~ModelMenu() {
@@ -30,7 +35,13 @@ ModelMenu::~ModelMenu() {
 ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         return new ModelGame();
-    else
+    if (event.type == sf::Event::MouseButtonPressed &&
+        character1Sprite.getPosition().x - character1.getSize().x / 2 < sf::Mouse::getPosition().x &&
+        character1Sprite.getPosition().x + character1.getSize().x / 2 > sf::Mouse::getPosition().x &&
+        character1Sprite.getPosition().y - character1.getSize().y / 2 < sf::Mouse::getPosition().y &&
+        character1Sprite.getPosition().y + character1.getSize().y / 2 > sf::Mouse::getPosition().y) {
+        return new ModelGame("../Resources/Catula.png");
+    } else
         return nullptr;
 }
 
@@ -47,4 +58,6 @@ void ModelMenu::draw() {
     if (posY >= Window::getHeight() / 2) {
         Window::getInstance()->drawDrawable(content);
     }
+    Window::getInstance()->drawDrawable(character1Sprite);
+    Window::getInstance()->drawDrawable(character2Sprite);
 }

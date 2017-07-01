@@ -12,7 +12,13 @@
 
 ModelGame::ModelGame() {
     background = new Background(*this);
-    mainCharacter = new MainCharacter(*this);
+    mainCharacter = new MainCharacter(*this, "../Resources/Catula.png");
+    textbox = new Textbox(*this);
+}
+
+ModelGame::ModelGame(std::string fileName) {
+    background = new Background(*this);
+    mainCharacter = new MainCharacter(*this, fileName);
     textbox = new Textbox(*this);
 }
 

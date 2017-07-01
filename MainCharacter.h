@@ -16,7 +16,7 @@ class ModelGame;
 
 class MainCharacter : public Entity {
 public:
-    MainCharacter(ModelGame &modelGame);
+    MainCharacter(ModelGame &modelGame, const std::string &filename);
 
     void handleInput();
 
