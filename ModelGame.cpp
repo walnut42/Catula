@@ -16,7 +16,7 @@ ModelGame::ModelGame() {
     textbox = new Textbox(*this);
 }
 
-ModelGame::ModelGame(std::string fileName) {
+ModelGame::ModelGame(const std::string fileName) {
     background = new Background(*this);
     mainCharacter = new MainCharacter(*this, fileName);
     textbox = new Textbox(*this);

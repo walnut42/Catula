@@ -21,7 +21,7 @@ class ModelGame : public ModelBase {
 public:
     ModelGame();
 
-    explicit ModelGame(std::string fileName);
+    explicit ModelGame(const std::string fileName);
 
     ~ModelGame();
 

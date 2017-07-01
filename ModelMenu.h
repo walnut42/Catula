@@ -23,6 +23,7 @@ public:
 private:
     sf::RectangleShape backdrop;
     sf::Font font;
+    sf::RectangleShape selection;
     sf::Text content;
     sf::Texture texture;
     sf::Texture character1;
@@ -30,6 +31,7 @@ private:
     sf::Sprite character1Sprite;
     sf::Sprite character2Sprite;
     sf::Sprite sprite;
+    unsigned short int selected;
     float posY;
 };
 

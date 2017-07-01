@@ -12,7 +12,7 @@ ModelMenu::ModelMenu() : posY{0} {
     content.setCharacterSize(20);
     content.setColor(sf::Color::Red);
     content.setCharacterSize(20);
-    content.setString("Press enter to play...");
+    content.setString("Choose the character and play...");
     sf::FloatRect textRect = content.getGlobalBounds();
     content.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     content.setPosition(Window::getWidth() / 2, Window::getHeight() / 2);
@@ -26,6 +26,11 @@ ModelMenu::ModelMenu() : posY{0} {
     character2.loadFromFile("../Resources/Mushroom.png");
     character2Sprite.setTexture(character2);
     character2Sprite.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
+    selection.setSize(sf::Vector2f(300, 300));
+    selection.setFillColor(sf::Color::Transparent);
+    selection.setOutlineColor(sf::Color::Red);
+    selection.setOutlineThickness(5);
+    selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
 }
 
 ModelMenu::~ModelMenu() {
@@ -33,14 +38,21 @@ ModelMenu::~ModelMenu() {
 }
 
 ModelBase *ModelMenu::processInput(const sf::Event &event) {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
-        return new ModelGame();
-    if (event.type == sf::Event::MouseButtonPressed &&
-        character1Sprite.getPosition().x - character1.getSize().x / 2 < sf::Mouse::getPosition().x &&
-        character1Sprite.getPosition().x + character1.getSize().x / 2 > sf::Mouse::getPosition().x &&
-        character1Sprite.getPosition().y - character1.getSize().y / 2 < sf::Mouse::getPosition().y &&
-        character1Sprite.getPosition().y + character1.getSize().y / 2 > sf::Mouse::getPosition().y) {
-        return new ModelGame("../Resources/Catula.png");
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
+        if (selected == 2) {
+            return new ModelGame("../Resources/Mushroom.png");
+        } else
+            return new ModelGame();
+    }
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
+        selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
+        selected = 1;
+        return nullptr;
+    }
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
+        selection.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
+        selected = 2;
+        return nullptr;
     } else
         return nullptr;
 }
@@ -57,7 +69,8 @@ void ModelMenu::draw() {
     Window::getInstance()->drawDrawable(sprite);
     if (posY >= Window::getHeight() / 2) {
         Window::getInstance()->drawDrawable(content);
+        Window::getInstance()->drawDrawable(character1Sprite);
+        Window::getInstance()->drawDrawable(character2Sprite);
+        Window::getInstance()->drawDrawable(selection);
     }
-    Window::getInstance()->drawDrawable(character1Sprite);
-    Window::getInstance()->drawDrawable(character2Sprite);
 }
