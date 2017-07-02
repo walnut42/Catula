@@ -44,6 +44,8 @@ private:
     MainCharacter *mainCharacter;
     std::list<std::unique_ptr<Collidable>> collidables;
     Textbox *textbox;
+
+    sf::Music music;
 };
 
 

@@ -10,9 +10,14 @@
 
 
 ModelGame::ModelGame() : ModelGame("../Resources/Catula.png") {
+    music.openFromFile("../Resources/Music/deadend.wav");
+    music.play();
 }
 
 ModelGame::ModelGame(const std::string &fileName) {
+    music.openFromFile("../Resources/Music/deadend.wav");
+    music.play();
+
     background = new Background(*this);
     mainCharacter = new MainCharacter(*this, fileName);
     textbox = new Textbox(*this);
@@ -25,6 +30,8 @@ ModelGame::~ModelGame() {
 }
 
 ModelBase *ModelGame::update() {
+    if (music.getStatus() == 0)
+        music.play();
     removeCollidables();
 
     if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() - 1000) {
@@ -62,8 +69,10 @@ void ModelGame::draw() {
 
 
 ModelBase *ModelGame::processInput(const sf::Event &event) {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+        music.stop();
         return getModel(Controller::modelPause);
+    }
     else
         return nullptr;
 }
