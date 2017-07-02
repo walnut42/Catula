@@ -3,10 +3,9 @@
 //
 
 #include "Rocket.h"
-#include "Window.h"
 #include "MainCharacter.h"
 
-Rocket::Rocket(ModelGame &modelGame, float x, float y) : Collidable(modelGame, "../Resources/rocket.png", x, y) {
+Rocket::Rocket(ModelGame &modelGame, float x, float y) : Collidable(modelGame, "../Resources/Images/rocket.png", x, y) {
     relVel.x = -600;
     relVel.y = -200;
     acc.y = 200;

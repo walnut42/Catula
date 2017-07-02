@@ -6,9 +6,9 @@
 
 
 Background::Background(ModelGame &modelGame) : spriteSize(2596, 1000), modelGame(modelGame), countSprites(0) {
-    if (texture1.loadFromFile("../Resources/cemetery.png"))
+    if (texture1.loadFromFile("../Resources/Images/cem.png"))
         texture1.setSmooth(true);
-    if (texture2.loadFromFile("../Resources/sunAndSand.png"))
+    if (texture2.loadFromFile("../Resources/Images/sunAndSand.png"))
         texture2.setSmooth(true);
     setVel();
 }

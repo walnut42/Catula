@@ -23,7 +23,7 @@ void Textbox::update() {
 }
 
 Textbox::Textbox(ModelGame &modelGame) : modelGame{modelGame} {
-    font.loadFromFile("../Resources/FreeSerif.ttf");
+    font.loadFromFile("../Resources/Font/FreeSerif.ttf");
     content.setFont(font);
     content.setCharacterSize(20);
     float s = Window::getInstance()->getScale();

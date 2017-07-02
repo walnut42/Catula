@@ -20,7 +20,7 @@ ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, s
     background.setFillColor(sf::Color(11, 11, 12, 180));
     background.setPosition(0, 0);
 
-    titleFont.loadFromFile("../Resources/BlackWidow.ttf");
+    titleFont.loadFromFile("../Resources/Font/blackWidow.ttf");
     titleText.setFont(titleFont);
     titleText.setCharacterSize(200);
     titleText.setColor(textColor);
@@ -29,7 +29,7 @@ ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, s
     titleText.setOrigin(titleRect.left + titleRect.width / 2.0f,
                         titleRect.top + titleRect.height / 2.0f);
 
-    contentFont.loadFromFile("../Resources/FreeSerif.ttf");
+    contentFont.loadFromFile("../Resources/Font/FreeSerif.ttf");
     contentText.setFont(contentFont);
     contentText.setCharacterSize(30);
     contentText.setColor(textColor);
@@ -37,11 +37,11 @@ ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, s
     sf::FloatRect textRect = contentText.getGlobalBounds();
     contentText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 
-    character1.loadFromFile("../Resources/Catula.png");
+    character1.loadFromFile("../Resources/Images/catula.png");
     character1Sprite.setTexture(character1);
     character1Sprite.setOrigin(character1.getSize().x / 2.0f, character1.getSize().y / 2.0f);
 
-    character2.loadFromFile("../Resources/Mushroom.png");
+    character2.loadFromFile("../Resources/Images/mushroom.png");
     character2Sprite.setTexture(character2);
     character2Sprite.setOrigin(character2.getSize().x / 2.0f, character2.getSize().y / 2.0f);
 
@@ -60,7 +60,7 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
         if (selected == Mushroom) {
             music.stop();
-            return newModel(Controller::modelGame, "../Resources/Mushroom.png");
+            return newModel(Controller::modelGame, "../Resources/Images/mushroom.png");
         } else {
             music.stop();
             return newModel(Controller::modelGame);

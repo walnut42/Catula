@@ -9,7 +9,7 @@
 #include "MainCharacter.h"
 
 
-ModelGame::ModelGame() : ModelGame("../Resources/Catula.png") {
+ModelGame::ModelGame() : ModelGame("../Resources/Images/catula.png") {
     music.openFromFile("../Resources/Music/nightmare.wav");
     music.play();
 }

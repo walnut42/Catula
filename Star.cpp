@@ -6,7 +6,7 @@
 #include "Window.h"
 #include "MainCharacter.h"
 
-Star::Star(ModelGame &modelGame, float x, float y) : Collidable(modelGame, "../Resources/star.png", x, y) {
+Star::Star(ModelGame &modelGame, float x, float y) : Collidable(modelGame, "../Resources/Images/star.png", x, y) {
     relVel.y = 6;
 }
 

@@ -7,7 +7,7 @@
 
 ModelPause::ModelPause() : posY{0} {
 
-    font.loadFromFile("../Resources/FreeSerif.ttf");
+    font.loadFromFile("../Resources/Font/FreeSerif.ttf");
     content.setFont(font);
     content.setCharacterSize(20);
     content.setColor(sf::Color::Red);
@@ -16,7 +16,7 @@ ModelPause::ModelPause() : posY{0} {
     sf::FloatRect textRect = content.getGlobalBounds();
     content.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     content.setPosition(Window::getWidth() / 2, Window::getHeight() / 2);
-    texture.loadFromFile("../Resources/Intro.png");
+    texture.loadFromFile("../Resources/Images/intro.png");
     sprite.setTexture(texture);
     sprite.setOrigin(texture.getSize().x / 2.0f, texture.getSize().y);
     sprite.setPosition(Window::getWidth() / 2, posY);

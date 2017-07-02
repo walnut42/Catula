@@ -7,7 +7,7 @@
 Debug *Debug::instance = nullptr;
 
 Debug::Debug() {
-    font.loadFromFile("../Resources/FreeSerif.ttf");
+    font.loadFromFile("../Resources/Font/FreeSerif.ttf");
     text.setFont(font);
     text.setCharacterSize(20);
     text.setColor(sf::Color::Red);
