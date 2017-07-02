@@ -10,6 +10,7 @@
 #include "ModelMenu.h"
 #include "ModelGame.h"
 #include "ModelPause.h"
+#include "ModelGameOver.h"
 
 class Controller {
 public:
@@ -24,6 +25,8 @@ public:
     static std::unique_ptr<ModelMenu> modelMenu;
     static std::unique_ptr<ModelGame> modelGame;
     static std::unique_ptr<ModelPause> modelPause;
+    static std::unique_ptr<ModelGameOver> modelGameOver;
+
 
 private:
     ModelBase *activeModel;

@@ -10,13 +10,11 @@
 
 
 ModelGame::ModelGame() : ModelGame("../Resources/Images/catula.png") {
-    music.openFromFile("../Resources/Audio/nightmare.wav");
-    music.play();
 }
 
 ModelGame::ModelGame(const std::string &fileName) {
-    music.openFromFile("../Resources/Audio/nightmare.wav");
-    music.play();
+    Audio::setMusic(music, Music::Game);
+    music.setLoop(true);
 
     background = new Background(*this);
     mainCharacter = new MainCharacter(*this, fileName);
@@ -30,8 +28,6 @@ ModelGame::~ModelGame() {
 }
 
 ModelBase *ModelGame::update() {
-    if (music.getStatus() == 0)
-        music.play();
     removeCollidables();
 
     if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() - 1000) {
@@ -44,6 +40,11 @@ ModelBase *ModelGame::update() {
         coll->update();
     }
     textbox->update();
+    if (mainCharacter->hasLost()) {
+        music.stop();
+        return getModel(Controller::modelGameOver);
+    }
+
     return nullptr;
 }
 
@@ -86,5 +87,6 @@ MainCharacter *ModelGame::getMainCharacter() {
 }
 
 void ModelGame::enter() {
-
+    if (music.getStatus() != sf::SoundSource::Status::Playing)
+        music.play();
 }

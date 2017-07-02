@@ -21,4 +21,5 @@ void Rocket::update() {
 void Rocket::collided() {
     removeFlag = true;
     modelGame.getMainCharacter()->increaseScore(5);
+    modelGame.getMainCharacter()->playSound(Sound::Explosion);
 }

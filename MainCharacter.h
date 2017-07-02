@@ -11,6 +11,7 @@
 #include "Entity.h"
 #include "Textbox.h"
 #include "Vehicle.h"
+#include "Audio.h"
 
 class ModelGame;
 
@@ -34,6 +35,12 @@ public:
 
     void increaseScore(int s);
 
+    void playSound(Sound name) {
+        sound.stop();
+        Audio::setSound(sound, name);
+        sound.play();
+    }
+
 protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const override;
 
@@ -46,6 +53,8 @@ private:
     bool lost;
     int lives;
     int score;
+
+    sf::Sound sound;
 };
 
 

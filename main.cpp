@@ -5,10 +5,13 @@
 #include <SFML/Graphics.hpp>
 
 #include "Window.h"
+#include "Audio.h"
 
 
 int main() {
     srand((unsigned int) (time(NULL)));
+
+    Audio::loadSounds();
 
     Window::getInstance();
     Controller controller;

@@ -44,9 +44,7 @@ private:
 
     sf::RectangleShape background;
 
-    sf::SoundBuffer buffer;
     sf::Sound sound;
-
     sf::Music music;
 };
 

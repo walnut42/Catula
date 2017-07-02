@@ -5,17 +5,17 @@
 #include "ModelMenu.h"
 
 #include "Window.h"
+#include "Audio.h"
 
 enum {
     Catula = 1, Mushroom = 3
 };
 
 ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, selected{1} {
-    music.openFromFile("../Resources/Audio/darkshadow.wav");
-    music.play();
+    Audio::setMusic(music, Music::Menu);
+    music.setLoop(true);
 
-    buffer.loadFromFile("../Resources/Audio/footstep.ogg");
-    sound.setBuffer(buffer);
+    Audio::setSound(sound, Sound::Menu);
 
     background.setFillColor(sf::Color(11, 11, 12, 180));
     background.setPosition(0, 0);
@@ -80,9 +80,6 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
 }
 
 ModelBase *ModelMenu::update() {
-    if (music.getStatus() == 0)
-        music.play();
-
     if (titleY < Window::getHeight() / titleStopY)
         titleText.setPosition(Window::getWidth() / 2.0f, ++titleY);
     else
@@ -108,5 +105,7 @@ void ModelMenu::draw() {
 }
 
 void ModelMenu::enter() {
+    if (music.getStatus() != sf::SoundSource::Status::Playing)
+        music.play();
     titleY = 0;
 }
