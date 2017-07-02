@@ -3,6 +3,7 @@
 //
 
 #include "ModelMenu.h"
+
 #include "Window.h"
 
 enum {
@@ -10,6 +11,9 @@ enum {
 };
 
 ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, selected{1} {
+    music.openFromFile("../Resources/Music/darkshadow.wav");
+    music.play();
+
     buffer.loadFromFile("../Resources/Audio/footstep.ogg");
     sound.setBuffer(buffer);
 
@@ -54,10 +58,13 @@ ModelMenu::~ModelMenu() {
 
 ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
-        if (selected == Mushroom)
+        if (selected == Mushroom) {
+            music.stop();
             return newModel(Controller::modelGame, "../Resources/Mushroom.png");
-        else
+        } else {
+            music.stop();
             return newModel(Controller::modelGame);
+        }
     }
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
         selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
@@ -67,11 +74,15 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
         selection.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
         selected = Mushroom;
+        sound.play();
     }
     return nullptr;
 }
 
 ModelBase *ModelMenu::update() {
+    if (music.getStatus() == 0)
+        music.play();
+
     if (titleY < Window::getHeight() / titleStopY)
         titleText.setPosition(Window::getWidth() / 2.0f, ++titleY);
     else
