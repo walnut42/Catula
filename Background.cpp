@@ -5,9 +5,11 @@
 #include "Background.h"
 
 
-Background::Background(ModelGame &modelGame) : spriteSize(2802, 1000), modelGame(modelGame) {
-    if (texture.loadFromFile("../Resources/background.png"))
-        texture.setSmooth(true);
+Background::Background(ModelGame &modelGame) : spriteSize(2596, 1000), modelGame(modelGame), countSprites(0) {
+    if (texture1.loadFromFile("../Resources/cemetery.png"))
+        texture1.setSmooth(true);
+    if (texture2.loadFromFile("../Resources/sunAndSand.png"))
+        texture2.setSmooth(true);
     setVel();
 }
 
@@ -33,7 +35,14 @@ void Background::update() {
 
     // If last sprite is in on the right, the loop adds a new one.
     while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x < Window::getWidth()) {
-        sf::Sprite sprite(texture);
+        sf::Sprite sprite;
+        if (countSprites < 3)
+            sprite.setTexture(texture1);
+        else
+            sprite.setTexture(texture2);
+        countSprites++;
+        if (countSprites > 6)
+            countSprites = 0;
         //sf::Vector2u oldSize = sprite.getTexture()->getSize();
         //sprite.setScale(spriteSize.x / oldSize.x, spriteSize.y / oldSize.y);
         sprites.push_back(sprite);
