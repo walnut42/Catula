@@ -40,7 +40,9 @@ private:
     sf::Sprite character1Sprite;
     sf::Sprite character2Sprite;
 
-    sf::Color baseColor;
+    sf::Color textColor;
+
+    sf::RectangleShape background;
 };
 
 
