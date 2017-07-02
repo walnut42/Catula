@@ -11,7 +11,7 @@ enum {
 };
 
 ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, selected{1} {
-    music.openFromFile("../Resources/Music/darkshadow.wav");
+    music.openFromFile("../Resources/Audio/darkshadow.wav");
     music.play();
 
     buffer.loadFromFile("../Resources/Audio/footstep.ogg");

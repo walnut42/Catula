@@ -25,7 +25,7 @@ public:
 
     float getVel() const;
 
-    void setVel(float v = -300);
+    void setVel(float v = -500);
 
 private:
 
@@ -34,7 +34,7 @@ private:
     sf::Vector2f getSpritePos(long i);
 
     const float levelDuration = 10;
-    const float levelUpAcc = -10;
+    const float levelUpAcc = -100;
     const float levelUpTime = 5;
 
     sf::Vector2f spriteSize;

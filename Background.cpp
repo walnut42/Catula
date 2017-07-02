@@ -36,12 +36,12 @@ void Background::update() {
     // If last sprite is in on the right, the loop adds a new one.
     while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x < Window::getWidth()) {
         sf::Sprite sprite;
-        if (countSprites < 3)
+        if (countSprites < 10)
             sprite.setTexture(texture1);
         else
             sprite.setTexture(texture2);
         countSprites++;
-        if (countSprites > 6)
+        if (countSprites > 20)
             countSprites = 0;
         //sf::Vector2u oldSize = sprite.getTexture()->getSize();
         //sprite.setScale(spriteSize.x / oldSize.x, spriteSize.y / oldSize.y);

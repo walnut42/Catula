@@ -10,12 +10,12 @@
 
 
 ModelGame::ModelGame() : ModelGame("../Resources/Images/catula.png") {
-    music.openFromFile("../Resources/Music/nightmare.wav");
+    music.openFromFile("../Resources/Audio/nightmare.wav");
     music.play();
 }
 
 ModelGame::ModelGame(const std::string &fileName) {
-    music.openFromFile("../Resources/Music/nightmare.wav");
+    music.openFromFile("../Resources/Audio/nightmare.wav");
     music.play();
 
     background = new Background(*this);
