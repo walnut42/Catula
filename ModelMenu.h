@@ -43,6 +43,9 @@ private:
     sf::Color textColor;
 
     sf::RectangleShape background;
+
+    sf::SoundBuffer buffer;
+    sf::Sound sound;
 };
 
 

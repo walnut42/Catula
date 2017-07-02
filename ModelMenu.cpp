@@ -10,6 +10,9 @@ enum {
 };
 
 ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, selected{1} {
+    buffer.loadFromFile("../Resources/Audio/footstep.ogg");
+    sound.setBuffer(buffer);
+
     background.setFillColor(sf::Color(11, 11, 12, 180));
     background.setPosition(0, 0);
 
@@ -59,6 +62,7 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
         selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
         selected = Catula;
+        sound.play();
     }
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
         selection.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);

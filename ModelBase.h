@@ -5,6 +5,7 @@
 #ifndef CATULA_EVENT_H
 #define CATULA_EVENT_H
 
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
 class ModelBase {
