@@ -20,6 +20,6 @@ void Rocket::update() {
 
 void Rocket::collided() {
     removeFlag = true;
-    modelGame.increaseScore(5);
+    modelGame.getMainCharacter()->increaseScore(5);
     modelGame.getMainCharacter()->playSound(Sound::Explosion);
 }

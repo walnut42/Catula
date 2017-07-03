@@ -27,6 +27,10 @@ public:
 
     void setVel(float v = -500);
 
+    float getDistance() {
+        return distance / 100;
+    }
+
 private:
 
     sf::Vector2f getSpritePos(std::list<sf::Sprite>::iterator &it);
@@ -45,6 +49,7 @@ private:
     std::list<sf::Sprite> sprites;
     int countSprites;
     ModelGame &modelGame;
+    float distance;
 };
 
 #endif //CATULA_BACKGROUND_H

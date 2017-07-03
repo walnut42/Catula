@@ -5,7 +5,8 @@
 #include "Background.h"
 
 
-Background::Background(ModelGame &modelGame) : spriteSize(2596, 1000), modelGame(modelGame), countSprites(0) {
+Background::Background(ModelGame &modelGame) : spriteSize(1251, 1000), modelGame(modelGame), countSprites(0),
+                                               distance{0} {
     setVel();
 }
 
@@ -22,6 +23,7 @@ void Background::update() {
     // update position
     shift = vel * Window::getInstance()->getElapsed();
     pos += shift;
+    distance -= shift;
 
     // If first sprite is out on the left side, the loop removes it.
     while (!sprites.empty() && getSpritePos(0).x + spriteSize.x < 0) {

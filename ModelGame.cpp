@@ -12,13 +12,13 @@
 ModelGame::ModelGame() : ModelGame(Image::Catula) {
 }
 
-ModelGame::ModelGame(Image image) : lost{false}, score{0}, lives{3} {
+ModelGame::ModelGame(Image image) {
     Audio::setMusic(music, Music::Game);
     music.setLoop(true);
 
     background = new Background(*this);
     mainCharacter = new MainCharacter(*this, image);
-    textbox = new Textbox(*this);
+    textbox = new GameInfo(*this);
 }
 
 ModelGame::~ModelGame() {
@@ -41,7 +41,7 @@ ModelBase *ModelGame::update() {
     }
     textbox->update();
 
-    if (hasLost())
+    if (mainCharacter->hasLost())
         return getModel(Controller::modelGameOver);
 
     return nullptr;
@@ -65,32 +65,6 @@ void ModelGame::draw() {
         coll->draw();
     }
     textbox->draw();
-}
-
-bool ModelGame::hasLost() const {
-    return lost;
-}
-
-int ModelGame::getLives() const {
-    return lives;
-}
-
-int ModelGame::getScore() const {
-    return score;
-}
-
-void ModelGame::increaseLife(int l) {
-    if (l < 0)
-        background->setVel();
-    if (lives)
-        lives += l;
-    else
-        lost = true;
-}
-
-void ModelGame::increaseScore(int s) {
-    if (!lost)
-        score += s;
 }
 
 ModelBase *ModelGame::processInput(const sf::Event &event) {

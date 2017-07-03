@@ -16,7 +16,7 @@ class MainCharacter;
 
 class Collidable;
 
-class Textbox;
+class GameInfo;
 
 class ModelGame : public ModelBase {
 public:
@@ -36,16 +36,6 @@ public:
 
     virtual void exit() override;
 
-    bool hasLost() const;
-
-    int getLives() const;
-
-    int getScore() const;
-
-    void increaseLife(int l);
-
-    void increaseScore(int s);
-
     Background *getBackground();
 
     MainCharacter *getMainCharacter();
@@ -56,13 +46,9 @@ private:
     Background *background;
     MainCharacter *mainCharacter;
     std::list<std::unique_ptr<Collidable>> collidables;
-    Textbox *textbox;
+    GameInfo *textbox;
 
     sf::Music music;
-
-    bool lost;
-    int lives;
-    int score;
 };
 
 

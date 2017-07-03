@@ -10,16 +10,15 @@
 #include "ModelGame.h"
 
 
-class Textbox {
+class GameInfo {
 public:
-    Textbox(ModelGame &modelGame);
+    GameInfo(ModelGame &modelGame);
 
     void draw();
 
     void update();
 
 private:
-    sf::RectangleShape backdrop;
     sf::Font font;
     sf::Text content;
     ModelGame &modelGame;
