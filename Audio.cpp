@@ -10,15 +10,16 @@ std::map<Music, std::string> Audio::musicFiles;
 
 void Audio::loadSounds() {
     //Sounds
-    soundBuffers[Sound::Menu].loadFromFile("../Resources/Audio/footstep.ogg");
-    soundBuffers[Sound::Laser].loadFromFile("../Resources/Audio/laser.ogg");
-    soundBuffers[Sound::Explosion].loadFromFile("../Resources/Audio/explosion.ogg");
-    soundBuffers[Sound::Bonus].loadFromFile("../Resources/Audio/bonus.ogg");
-    soundBuffers[Sound::Fail].loadFromFile("../Resources/Audio/fail.ogg");
+    const std::string path = "../Resources/Audio/";
+    soundBuffers[Sound::Menu].loadFromFile(path + "footstep.ogg");
+    soundBuffers[Sound::Laser].loadFromFile(path + "laser.ogg");
+    soundBuffers[Sound::Explosion].loadFromFile(path + "explosion.ogg");
+    soundBuffers[Sound::Bonus].loadFromFile(path + "bonus.ogg");
+    soundBuffers[Sound::Fail].loadFromFile(path + "fail.ogg");
 
     //Musics
-    musicFiles[Music::Menu] = "../Resources/Audio/darkshadow.wav";
-    musicFiles[Music::Game] = "../Resources/Audio/nightmare.wav";
+    musicFiles[Music::Menu] = path + "darkshadow.wav";
+    musicFiles[Music::Game] = path + "nightmare.wav";
 }
 
 void Audio::setSound(sf::Sound &sound, Sound name) {

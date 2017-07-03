@@ -1,5 +1,5 @@
 //
-// Created by lorenzo on 03/07/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 02/07/17.
 //
 
 #ifndef CATULA_IMAGES_H
