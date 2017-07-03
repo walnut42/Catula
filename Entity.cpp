@@ -7,9 +7,12 @@
 
 using namespace std;
 
-Entity::Entity(ModelGame &modelGame, const std::string &filename, float x, float y, sf::IntRect textureRect) :
+Entity::Entity(ModelGame &modelGame, Image image, float x, float y) :
         angle(0), angleVel(0), angleAcc(0), pos(x, y), modelGame(modelGame) {
-    setTexture(filename, textureRect);
+
+    Images::setSprite(sprite, image);
+    sf::IntRect textureSize = sprite.getTextureRect();
+    size = sf::Vector2f(textureSize.width, textureSize.height);
 }
 
 void Entity::draw() {
@@ -69,19 +72,6 @@ void Entity::updatePos() {
     vel.y += acc.y * seconds;
     pos.x += vel.x * seconds;
     pos.y += vel.y * seconds;
-}
-
-void Entity::setTexture(const std::string &filename, sf::IntRect textureRect) {
-    texture.loadFromFile(filename);
-    texture.setSmooth(true);
-    sprite.setTexture(texture);
-    if (textureRect != sf::IntRect()) {
-        sprite.setTextureRect(textureRect);
-        size = sf::Vector2f(textureRect.width, textureRect.height);
-    } else {
-        sf::Vector2u textureSize = sprite.getTexture()->getSize();
-        size = sf::Vector2f(textureSize.x, textureSize.y);
-    }
 }
 
 void Entity::getAbsolutePoints(std::vector<sf::Vector2f> &points) const {

@@ -37,13 +37,11 @@ ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, s
     sf::FloatRect textRect = contentText.getGlobalBounds();
     contentText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 
-    character1.loadFromFile("../Resources/Images/catula.png");
-    character1Sprite.setTexture(character1);
-    character1Sprite.setOrigin(character1.getSize().x / 2.0f, character1.getSize().y / 2.0f);
+    Images::setSprite(character1, Image::Catula);
+    character1.setOrigin(character1.getTextureRect().width / 2.0f, character1.getTextureRect().height / 2.0f);
 
-    character2.loadFromFile("../Resources/Images/mushroom.png");
-    character2Sprite.setTexture(character2);
-    character2Sprite.setOrigin(character2.getSize().x / 2.0f, character2.getSize().y / 2.0f);
+    Images::setSprite(character2, Image::Mushroom);
+    character2.setOrigin(character2.getTextureRect().width / 2.0f, character2.getTextureRect().height / 2.0f);
 
     selection.setSize(sf::Vector2f(300, 300));
     selection.setFillColor(sf::Color::Transparent);
@@ -60,7 +58,7 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
         if (selected == Mushroom) {
             music.stop();
-            return newModel(Controller::modelGame, "../Resources/Images/mushroom.png");
+            return newModel(Controller::modelGame, Image::Mushroom);
         } else {
             music.stop();
             return newModel(Controller::modelGame);
@@ -86,9 +84,9 @@ ModelBase *ModelMenu::update() {
         titleText.setPosition(Window::getWidth() / 2.0f, Window::getHeight() / titleStopY);
     background.setSize(sf::Vector2f(Window::getWidth(), Window::getHeight()));
     contentText.setPosition(Window::getWidth() / 2.0f,
-                            Window::getHeight() / 2.0f + texture.getSize().y / 2.0f);
-    character1Sprite.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
-    character2Sprite.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
+                            Window::getHeight() / 2.0f);
+    character1.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
+    character2.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
     selection.setPosition(Window::getWidth() * selected / 4.0f, Window::getHeight() / 2.0f);
     return nullptr;
 }
@@ -99,8 +97,8 @@ void ModelMenu::draw() {
     if (titleY >= Window::getHeight() / titleStopY) {
         Window::getInstance()->drawDrawable(contentText);
     }
-    Window::getInstance()->drawDrawable(character1Sprite);
-    Window::getInstance()->drawDrawable(character2Sprite);
+    Window::getInstance()->drawDrawable(character1);
+    Window::getInstance()->drawDrawable(character2);
     Window::getInstance()->drawDrawable(selection);
 }
 

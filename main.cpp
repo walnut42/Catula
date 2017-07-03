@@ -12,6 +12,7 @@ int main() {
     srand((unsigned int) (time(NULL)));
 
     Audio::loadSounds();
+    Images::loadImages();
 
     Window::getInstance();
     Controller controller;

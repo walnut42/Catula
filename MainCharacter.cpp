@@ -5,9 +5,9 @@
 #include "MainCharacter.h"
 #include "Background.h"
 
-MainCharacter::MainCharacter(ModelGame &modelGame, const std::string &filename) : Entity(modelGame, filename, 100, 100),
-                                                                                  lost{false},
-                                                                                  score{0}, lives{3} {
+MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity(modelGame, image, 100, 100),
+                                                                  lost{false},
+                                                                  score{0}, lives{3} {
 
 }
 

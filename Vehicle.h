@@ -12,9 +12,8 @@
 
 class Vehicle : public Entity {
 public:
-    Vehicle(ModelGame &modelGame, const std::string &filename, float x = 0, float y = 0,
-            sf::IntRect textureRect = sf::IntRect()) :
-            Entity(modelGame, filename, x, y, textureRect) {};
+    Vehicle(ModelGame &modelGame, Image image, float x = 0, float y = 0) :
+            Entity(modelGame, image, x, y) {};
     std::string name;
 };
 

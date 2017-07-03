@@ -14,9 +14,6 @@ public:
     virtual void update() override;
 
     void collided() override;
-
-private:
-    sf::Texture texture;
 };
 
 #endif //CATULA_OBSTACLE_H

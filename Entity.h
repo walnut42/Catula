@@ -9,11 +9,11 @@
 #include <SFML/Graphics.hpp>
 
 #include "ModelGame.h"
+#include "Images.h"
 
 class Entity {
 public:
-    Entity(ModelGame &modelGame, const std::string &filename, float x = 0, float y = 0,
-           sf::IntRect textureRect = sf::IntRect());
+    Entity(ModelGame &modelGame, Image image, float x = 0, float y = 0);
 
     virtual ~Entity() {};
 
@@ -50,7 +50,6 @@ protected:
 
     ModelGame &modelGame;
 
-    sf::Texture texture;
     sf::Sprite sprite;
     sf::Vector2f size;
     sf::Vector2f pos;
@@ -61,8 +60,6 @@ protected:
     float angleAcc;
 private:
     void getAbsolutePoints(std::vector<sf::Vector2f> &points) const;
-
-    void setTexture(const std::string &filename, sf::IntRect textureRect = sf::IntRect());
 
     static bool intersect(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f p3);
 

@@ -5,7 +5,7 @@
 #include "Rocket.h"
 #include "MainCharacter.h"
 
-Rocket::Rocket(ModelGame &modelGame, float x, float y) : Collidable(modelGame, "../Resources/Images/rocket.png", x, y) {
+Rocket::Rocket(ModelGame &modelGame, float x, float y) : Collidable(modelGame, Image::Rocket, x, y) {
     relVel.x = -600;
     relVel.y = -200;
     acc.y = 200;

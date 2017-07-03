@@ -5,7 +5,7 @@
 #include "Laser.h"
 #include "MainCharacter.h"
 
-Laser::Laser(ModelGame &modelGame, float x, float y) : Collidable(modelGame, "../Resources/Images/laser.png", x, y) {
+Laser::Laser(ModelGame &modelGame, float x, float y) : Collidable(modelGame, Image::Laser, x, y) {
     angleVel = 50;
     sprite.setOrigin(size.x / 2, size.y / 2);
 }

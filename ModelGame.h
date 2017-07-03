@@ -8,6 +8,7 @@
 #include <list>
 
 #include "ModelBase.h"
+#include "Images.h"
 
 class Background;
 
@@ -21,7 +22,7 @@ class ModelGame : public ModelBase {
 public:
     ModelGame();
 
-    explicit ModelGame(const std::string &fileName);
+    explicit ModelGame(Image image);
 
     ~ModelGame();
 

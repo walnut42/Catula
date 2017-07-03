@@ -42,8 +42,6 @@ private:
     float pos = 0;
     float shift = 0;
     sf::Clock levelClock;
-    sf::Texture texture1;
-    sf::Texture texture2;
     std::list<sf::Sprite> sprites;
     int countSprites;
     ModelGame &modelGame;

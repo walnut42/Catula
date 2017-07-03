@@ -11,8 +11,7 @@ class ModelGame;
 
 class Collidable : public Entity {
 public:
-    Collidable(ModelGame &modelGame, const std::string &filename, float x, float y,
-               sf::IntRect textureRect = sf::IntRect());
+    Collidable(ModelGame &modelGame, Image image, float x, float y);
 
     virtual ~Collidable() {};
 

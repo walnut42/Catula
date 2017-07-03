@@ -9,15 +9,15 @@
 #include "MainCharacter.h"
 
 
-ModelGame::ModelGame() : ModelGame("../Resources/Images/catula.png") {
+ModelGame::ModelGame() : ModelGame(Image::Catula) {
 }
 
-ModelGame::ModelGame(const std::string &fileName) {
+ModelGame::ModelGame(Image image) {
     Audio::setMusic(music, Music::Game);
     music.setLoop(true);
 
     background = new Background(*this);
-    mainCharacter = new MainCharacter(*this, fileName);
+    mainCharacter = new MainCharacter(*this, image);
     textbox = new Textbox(*this);
 }
 

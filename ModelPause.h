@@ -26,7 +26,6 @@ private:
     sf::RectangleShape backdrop;
     sf::Font font;
     sf::Text content;
-    sf::Texture texture;
     sf::Sprite sprite;
     float posY;
 };

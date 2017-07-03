@@ -16,9 +16,8 @@ ModelPause::ModelPause() : posY{0} {
     sf::FloatRect textRect = content.getGlobalBounds();
     content.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     content.setPosition(Window::getWidth() / 2, Window::getHeight() / 2);
-    texture.loadFromFile("../Resources/Images/intro.png");
-    sprite.setTexture(texture);
-    sprite.setOrigin(texture.getSize().x / 2.0f, texture.getSize().y);
+    Images::setSprite(sprite, Image::Intro);
+    sprite.setOrigin(sprite.getTextureRect().width / 2.0f, sprite.getTextureRect().height);
     sprite.setPosition(Window::getWidth() / 2, posY);
 
     backdrop.setFillColor(sf::Color(0, 0, 0, 180));
@@ -42,7 +41,7 @@ ModelBase *ModelPause::update() {
     if (posY < Window::getHeight() / 2)
         sprite.setPosition(Window::getWidth() / 2, ++posY);
     content.setPosition(Window::getWidth() / 2.0f,
-                        Window::getHeight() / 2.0f + texture.getSize().y / 2.0f);
+                        Window::getHeight() / 2.0f + sprite.getTextureRect().height / 2.0f);
     backdrop.setSize(sf::Vector2f(Window::getWidth(), Window::getHeight()));
 
     return nullptr;

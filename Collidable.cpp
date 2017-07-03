@@ -7,8 +7,8 @@
 #include "Background.h"
 #include "MainCharacter.h"
 
-Collidable::Collidable(ModelGame &modelGame, const std::string &filename, float x, float y, sf::IntRect textureRect) :
-        Entity(modelGame, filename, x, y, textureRect) {
+Collidable::Collidable(ModelGame &modelGame, Image image, float x, float y) :
+        Entity(modelGame, image, x, y) {
     originPos = sf::Vector2f(x, y);
 }
 

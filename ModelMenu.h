@@ -30,15 +30,12 @@ private:
 
     sf::Font contentFont;
     sf::Text contentText;
-    sf::Texture texture;
 
     sf::RectangleShape selection;
     unsigned short int selected;
 
-    sf::Texture character1;
-    sf::Texture character2;
-    sf::Sprite character1Sprite;
-    sf::Sprite character2Sprite;
+    sf::Sprite character1;
+    sf::Sprite character2;
 
     sf::Color textColor;
 

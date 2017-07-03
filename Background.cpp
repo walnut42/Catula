@@ -6,10 +6,6 @@
 
 
 Background::Background(ModelGame &modelGame) : spriteSize(2596, 1000), modelGame(modelGame), countSprites(0) {
-    if (texture1.loadFromFile("../Resources/Images/cem.png"))
-        texture1.setSmooth(true);
-    if (texture2.loadFromFile("../Resources/Images/sunAndSand.png"))
-        texture2.setSmooth(true);
     setVel();
 }
 
@@ -37,14 +33,13 @@ void Background::update() {
     while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x < Window::getWidth()) {
         sf::Sprite sprite;
         if (countSprites < 10)
-            sprite.setTexture(texture1);
+            Images::setSprite(sprite, Image::CemeteryBk);
         else
-            sprite.setTexture(texture2);
+            Images::setSprite(sprite, Image::SunBk);
         countSprites++;
         if (countSprites > 20)
             countSprites = 0;
-        //sf::Vector2u oldSize = sprite.getTexture()->getSize();
-        //sprite.setScale(spriteSize.x / oldSize.x, spriteSize.y / oldSize.y);
+
         sprites.push_back(sprite);
     }
 }
