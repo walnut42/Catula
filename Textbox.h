@@ -23,6 +23,8 @@ private:
     sf::Font font;
     sf::Text content;
     ModelGame &modelGame;
+    sf::Sprite life;
+    sf::Vector2f lifePos;
 };
 
 

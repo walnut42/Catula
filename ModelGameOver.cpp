@@ -52,3 +52,7 @@ void ModelGameOver::draw() {
 void ModelGameOver::enter() {
     sound.play();
 }
+
+void ModelGameOver::exit() {
+
+}

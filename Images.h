@@ -11,7 +11,7 @@
 
 
 enum class Image {
-    CemeteryBk, SunBk, Laser, Star, Rocket, Intro, Catula, Mushroom
+    CemeteryBk, SunBk, Laser, Star, Rocket, Intro, Catula, Mushroom, Heart
 };
 
 

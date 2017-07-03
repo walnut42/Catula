@@ -13,6 +13,6 @@ Laser::Laser(ModelGame &modelGame, float x, float y) : Collidable(modelGame, Ima
 void Laser::collided() {
 
     removeFlag = true;
-    modelGame.getMainCharacter()->increaseLife(-1);
+    modelGame.increaseLife(-1);
     modelGame.getMainCharacter()->playSound(Sound::Laser);
 }

@@ -12,7 +12,7 @@
 ModelGame::ModelGame() : ModelGame(Image::Catula) {
 }
 
-ModelGame::ModelGame(Image image) {
+ModelGame::ModelGame(Image image) : lost{false}, score{0}, lives{3} {
     Audio::setMusic(music, Music::Game);
     music.setLoop(true);
 
@@ -40,10 +40,9 @@ ModelBase *ModelGame::update() {
         coll->update();
     }
     textbox->update();
-    if (mainCharacter->hasLost()) {
-        music.stop();
+
+    if (hasLost())
         return getModel(Controller::modelGameOver);
-    }
 
     return nullptr;
 }
@@ -68,12 +67,35 @@ void ModelGame::draw() {
     textbox->draw();
 }
 
+bool ModelGame::hasLost() const {
+    return lost;
+}
+
+int ModelGame::getLives() const {
+    return lives;
+}
+
+int ModelGame::getScore() const {
+    return score;
+}
+
+void ModelGame::increaseLife(int l) {
+    if (l < 0)
+        background->setVel();
+    if (lives)
+        lives += l;
+    else
+        lost = true;
+}
+
+void ModelGame::increaseScore(int s) {
+    if (!lost)
+        score += s;
+}
 
 ModelBase *ModelGame::processInput(const sf::Event &event) {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
-        music.stop();
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
         return getModel(Controller::modelPause);
-    }
     else
         return nullptr;
 }
@@ -87,6 +109,9 @@ MainCharacter *ModelGame::getMainCharacter() {
 }
 
 void ModelGame::enter() {
-    if (music.getStatus() != sf::SoundSource::Status::Playing)
-        music.play();
+    music.play();
+}
+
+void ModelGame::exit() {
+    music.pause();
 }

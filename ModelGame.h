@@ -34,6 +34,18 @@ public:
 
     virtual void enter() override;
 
+    virtual void exit() override;
+
+    bool hasLost() const;
+
+    int getLives() const;
+
+    int getScore() const;
+
+    void increaseLife(int l);
+
+    void increaseScore(int s);
+
     Background *getBackground();
 
     MainCharacter *getMainCharacter();
@@ -47,6 +59,10 @@ private:
     Textbox *textbox;
 
     sf::Music music;
+
+    bool lost;
+    int lives;
+    int score;
 };
 
 

@@ -16,8 +16,8 @@ public:
 
     void gameLoop(Controller &controller);
 
-    void drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos, const sf::Vector2f &vel, float angle = 0,
-                    float angleVel = 0);
+    void drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos, const sf::Vector2f &vel = sf::Vector2f(),
+                    float angle = 0, float angleVel = 0);
 
     void drawEntity(Entity &entity);
 

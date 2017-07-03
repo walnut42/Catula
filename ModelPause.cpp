@@ -63,3 +63,7 @@ void ModelPause::draw() {
 void ModelPause::enter() {
     posY = 0;
 }
+
+void ModelPause::exit() {
+
+}

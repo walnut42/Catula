@@ -25,16 +25,6 @@ public:
 
     bool collide(Entity *obj);
 
-    bool hasLost() const;
-
-    int getLives() const;
-
-    int getScore() const;
-
-    void increaseLife(int l);
-
-    void increaseScore(int s);
-
     void playSound(Sound name) {
         sound.stop();
         Audio::setSound(sound, name);
@@ -50,9 +40,6 @@ private:
     const float upg = 1000;
     const float top = 0;
     const float bottom = 0;
-    bool lost;
-    int lives;
-    int score;
 
     sf::Sound sound;
 };

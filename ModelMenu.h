@@ -22,6 +22,8 @@ public:
 
     virtual void enter() override;
 
+    virtual void exit() override;
+
 private:
     sf::Font titleFont;
     sf::Text titleText;

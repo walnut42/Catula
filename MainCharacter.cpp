@@ -5,9 +5,7 @@
 #include "MainCharacter.h"
 #include "Background.h"
 
-MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity(modelGame, image, 100, 100),
-                                                                  lost{false},
-                                                                  score{0}, lives{3} {
+MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity(modelGame, image, 100, 100) {
 
 }
 
@@ -34,32 +32,6 @@ void MainCharacter::update() {
 
 bool MainCharacter::collide(Entity *obj) {
     return (vehicle != nullptr && Entity::collide(vehicle, obj)) || Entity::collide(this, obj);
-}
-
-bool MainCharacter::hasLost() const {
-    return lost;
-}
-
-int MainCharacter::getLives() const {
-    return lives;
-}
-
-int MainCharacter::getScore() const {
-    return score;
-}
-
-void MainCharacter::increaseLife(int l) {
-    if (l < 0)
-        modelGame.getBackground()->setVel();
-    if (lives)
-        lives += l;
-    else
-        lost = true;
-}
-
-void MainCharacter::increaseScore(int s) {
-    if (!lost)
-        score += s;
 }
 
 void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {

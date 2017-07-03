@@ -18,6 +18,7 @@ void Images::loadImages(bool smooth) {
     textures[Image::Intro].loadFromFile(path + "intro.png");
     textures[Image::Catula].loadFromFile(path + "catula.png");
     textures[Image::Mushroom].loadFromFile(path + "mushroom.png");
+    textures[Image::Heart].loadFromFile(path + "heart.png");
 
 
     for (auto &texture:textures) {

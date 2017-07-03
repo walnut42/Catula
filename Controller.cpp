@@ -12,7 +12,7 @@ std::unique_ptr<ModelPause> Controller::modelPause;
 std::unique_ptr<ModelGameOver> Controller::modelGameOver;
 
 
-Controller::Controller() {
+Controller::Controller() : activeModel{nullptr} {
     changeModel(newModel(Controller::modelMenu));
 }
 
@@ -30,6 +30,8 @@ void Controller::draw() {
 
 void Controller::changeModel(ModelBase *newModel) {
     if (newModel != nullptr) {
+        if (activeModel != nullptr)
+            activeModel->exit();
         activeModel = newModel;
         activeModel->enter();
     }

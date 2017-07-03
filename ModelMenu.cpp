@@ -56,13 +56,10 @@ ModelMenu::~ModelMenu() {
 
 ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
-        if (selected == Mushroom) {
-            music.stop();
+        if (selected == Mushroom)
             return newModel(Controller::modelGame, Image::Mushroom);
-        } else {
-            music.stop();
+        else
             return newModel(Controller::modelGame);
-        }
     }
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
         selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
@@ -103,7 +100,10 @@ void ModelMenu::draw() {
 }
 
 void ModelMenu::enter() {
-    if (music.getStatus() != sf::SoundSource::Status::Playing)
-        music.play();
+    music.play();
     titleY = 0;
+}
+
+void ModelMenu::exit() {
+    music.stop();
 }

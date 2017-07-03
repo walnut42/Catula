@@ -8,7 +8,7 @@
 using namespace std;
 
 Entity::Entity(ModelGame &modelGame, Image image, float x, float y) :
-        angle(0), angleVel(0), angleAcc(0), pos(x, y), modelGame(modelGame) {
+        modelGame(modelGame), pos(x, y), angle(0), angleVel(0), angleAcc(0) {
 
     Images::setSprite(sprite, image);
     sf::IntRect textureSize = sprite.getTextureRect();
