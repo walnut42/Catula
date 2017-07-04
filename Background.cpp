@@ -4,10 +4,10 @@
 
 #include "Background.h"
 
-Background::Background(ModelGame &modelGame) : spriteSize(1251, 1000), modelGame(modelGame), countSprites(0),
-                                               distance{0}, countRep{0} {
-    randRep = rand() % 3 + 1;
+Background::Background(ModelGame &modelGame) : spriteSize{1251, 1000}, modelGame{modelGame}, countSprites{0},
+                                               distance{0}, countRep{0}, maxRep{20}, minRep{10} {
 
+    setRandRep();
     // Get Image index.
     nBg = Images::getNumberBg();
     int randSel = 4 * (rand() % nBg) + 1;
@@ -47,17 +47,26 @@ void Background::update() {
             countRep++;
         } else {
 
+            // get the random value from 1 to nBg
+            int nextRand = rand() % (nBg - 1) + 1;
+
+            // get the bg index from 0 to (nBg - 1)
+            int bgIndex = (static_cast<int>(active) - 1) / (nBg + 1);
+
             // get the random value excluding the active image
-            int next = (((rand() % (nBg - 1) + 1) + ((static_cast<int>(active) - 1) / (nBg + 1))) % nBg) * 4 + 1;
+            int next = ((nextRand + bgIndex) % nBg) * (nBg + 1) + 1;
+
+            // get the nextBg index from 0 to (nBg - 1)
+            int nextBgIndex = (next - 1) / (nBg + 1);
 
             // get the transition bg index
-            int trans = nBg * ((static_cast<int>(active) - 1) / (nBg + 1) + 1) + (next - 1) / (nBg + 1) + 1 - nBg;
+            int trans = nBg * (bgIndex + 1) + nextBgIndex + 1 - nBg;
 
             Images::setSprite(sprite, Image(trans));
 
             active = Image(next);
 
-            randRep = rand() % 3 + 1;
+            setRandRep();
             countRep = 0;
         }
         sprites.push_back(sprite);
@@ -88,4 +97,8 @@ float Background::getVel() const {
 
 void Background::setVel(float v) {
     Background::vel = v;
+}
+
+void Background::setRandRep() {
+    Background::randRep = rand() % maxRep + minRep;;
 }
