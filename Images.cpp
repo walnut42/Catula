@@ -30,6 +30,10 @@ void Images::loadImages(bool smooth) {
     textures[Image::Star].loadFromFile(path + "star.png");
     textures[Image::Rocket].loadFromFile(path + "rocket.png");
 
+    textures[Image::GameOver].loadFromFile(path + "gameOver.png");
+    textures[Image::MenuBg].loadFromFile(path + "menuBg.png");
+
+
     for (auto &texture:textures) {
         texture.second.setSmooth(smooth);
     }

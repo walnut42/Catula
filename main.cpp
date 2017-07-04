@@ -6,6 +6,7 @@
 
 #include "Window.h"
 #include "Audio.h"
+#include "Fonts.h"
 
 
 int main() {
@@ -13,6 +14,7 @@ int main() {
 
     Audio::loadSounds();
     Images::loadImages();
+    Fonts::loadFonts();
 
     Window::getInstance();
     Controller controller;

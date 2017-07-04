@@ -12,14 +12,15 @@ MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity(modelGa
 
 void MainCharacter::handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        vel.y -= upg * Window::getInstance()->getElapsed();
+        acc.y = upg;
     else
-        vel.y += g * Window::getInstance()->getElapsed();
+        acc.y = g;
 };
 
 void MainCharacter::update() {
     MainCharacter::handleInput();
-    pos.y += vel.y * Window::getInstance()->getElapsed();
+
+    updatePos();
 
     //Borders collision
     if (pos.y + size.y >= Window::getHeight() - bottom) {

@@ -47,7 +47,7 @@ protected:
 private:
     Vehicle *vehicle = nullptr;
     const float g = 980;
-    const float upg = 1000;
+    const float upg = -1000;
     const float top = 0;
     const float bottom = 0;
 

@@ -27,7 +27,7 @@ public:
 
     void setVel(float v = -500);
 
-    float getDistance() {
+    float getDistance() const {
         return distance / 100;
     }
 

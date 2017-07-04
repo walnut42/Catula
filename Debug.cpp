@@ -3,12 +3,12 @@
 //
 
 #include "Debug.h"
+#include "Fonts.h"
 
 Debug *Debug::instance = nullptr;
 
 Debug::Debug() {
-    font.loadFromFile("../Resources/Font/FreeSerif.ttf");
-    text.setFont(font);
+    Fonts::setText(text, Font::Serif);
     text.setCharacterSize(20);
     text.setColor(sf::Color::Red);
 }

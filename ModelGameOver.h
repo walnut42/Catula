@@ -26,9 +26,10 @@ public:
 
 private:
     sf::RectangleShape backdrop;
-    sf::Font font;
     sf::Text content;
     sf::Sound sound;
+    sf::Sprite sprite;
+    float opacity;
 };
 
 

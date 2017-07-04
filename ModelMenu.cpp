@@ -6,22 +6,22 @@
 
 #include "Window.h"
 #include "Audio.h"
+#include "Fonts.h"
 
 enum {
     Catula = 1, Mushroom = 3
 };
 
-ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, selected{1} {
+ModelMenu::ModelMenu() : textColor{14, 1, 140}, titleStopY{2.5}, titleY{0}, selected{1} {
     Audio::setMusic(music, Music::Menu);
     music.setLoop(true);
 
     Audio::setSound(sound, Sound::Menu);
 
-    background.setFillColor(sf::Color(11, 11, 12, 180));
+    Images::setSprite(background, Image::MenuBg);
     background.setPosition(0, 0);
 
-    titleFont.loadFromFile("../Resources/Font/blackWidow.ttf");
-    titleText.setFont(titleFont);
+    Fonts::setText(titleText, Font::Widow);
     titleText.setCharacterSize(200);
     titleText.setColor(textColor);
     titleText.setString("CATULA");
@@ -29,8 +29,7 @@ ModelMenu::ModelMenu() : textColor{153, 144, 240}, titleStopY{2.5}, titleY{0}, s
     titleText.setOrigin(titleRect.left + titleRect.width / 2.0f,
                         titleRect.top + titleRect.height / 2.0f);
 
-    contentFont.loadFromFile("../Resources/Font/FreeSerif.ttf");
-    contentText.setFont(contentFont);
+    Fonts::setText(contentText, Font::Serif);
     contentText.setCharacterSize(30);
     contentText.setColor(textColor);
     contentText.setString("Choose the character and play...");
@@ -79,7 +78,9 @@ ModelBase *ModelMenu::update() {
         titleText.setPosition(Window::getWidth() / 2.0f, ++titleY);
     else
         titleText.setPosition(Window::getWidth() / 2.0f, Window::getHeight() / titleStopY);
-    background.setSize(sf::Vector2f(Window::getWidth(), Window::getHeight()));
+    sf::Vector2f targetSize(Window::getWidth(), Window::getHeight());
+    background.setScale(targetSize.x / background.getTextureRect().width,
+                        targetSize.y / background.getTextureRect().height);
     contentText.setPosition(Window::getWidth() / 2.0f,
                             Window::getHeight() / 2.0f);
     character1.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
@@ -90,6 +91,7 @@ ModelBase *ModelMenu::update() {
 
 void ModelMenu::draw() {
     Window::getInstance()->drawDrawable(background);
+
     Window::getInstance()->drawDrawable(titleText);
     if (titleY >= Window::getHeight() / titleStopY) {
         Window::getInstance()->drawDrawable(contentText);
@@ -97,6 +99,8 @@ void ModelMenu::draw() {
     Window::getInstance()->drawDrawable(character1);
     Window::getInstance()->drawDrawable(character2);
     Window::getInstance()->drawDrawable(selection);
+
+
 }
 
 void ModelMenu::enter() {

@@ -9,7 +9,7 @@
 #include "MainCharacter.h"
 
 
-ModelGame::ModelGame() : ModelGame(Image::Catula) {
+ModelGame::ModelGame() : ModelGame{Image::Catula} {
 }
 
 ModelGame::ModelGame(Image image) {

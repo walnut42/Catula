@@ -34,6 +34,7 @@ private:
     void changeModel(ModelBase *newModel);
 };
 
+
 /**
  * Deletes old model and creates a new one passing args to his constructor
  * @param model

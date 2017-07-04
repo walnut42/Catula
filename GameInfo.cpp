@@ -6,11 +6,11 @@
 #include "MainCharacter.h"
 #include "Window.h"
 #include "Background.h"
+#include "Fonts.h"
 #include <iomanip>
 
 GameInfo::GameInfo(ModelGame &modelGame) : modelGame{modelGame} {
-    font.loadFromFile("../Resources/Font/score.ttf");
-    content.setFont(font);
+    Fonts::setText(content, Font::Score);
     content.setCharacterSize(30);
     float s = Window::getInstance()->getScale();
     content.setScale(s, s);

@@ -25,12 +25,10 @@ public:
     virtual void exit() override;
 
 private:
-    sf::Font titleFont;
     sf::Text titleText;
     int titleY;
     float titleStopY;
 
-    sf::Font contentFont;
     sf::Text contentText;
 
     sf::RectangleShape selection;
@@ -41,10 +39,10 @@ private:
 
     sf::Color textColor;
 
-    sf::RectangleShape background;
-
     sf::Sound sound;
     sf::Music music;
+
+    sf::Sprite background;
 };
 
 

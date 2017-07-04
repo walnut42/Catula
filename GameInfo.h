@@ -19,7 +19,6 @@ public:
     void update();
 
 private:
-    sf::Font font;
     sf::Text content;
     ModelGame &modelGame;
     sf::Sprite life;

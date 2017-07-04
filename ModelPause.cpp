@@ -4,15 +4,14 @@
 
 #include "ModelPause.h"
 #include "Window.h"
+#include "Fonts.h"
 
 ModelPause::ModelPause() : posY{0} {
-
-    font.loadFromFile("../Resources/Font/FreeSerif.ttf");
-    content.setFont(font);
+    Fonts::setText(content, Font::Serif);
     content.setCharacterSize(20);
     content.setColor(sf::Color::Red);
-    content.setCharacterSize(20);
-    content.setString("Pause! Press enter to play...");
+    content.setCharacterSize(25);
+    content.setString("Pause! Press enter to play \nor esc to return to menu...");
     sf::FloatRect textRect = content.getGlobalBounds();
     content.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     content.setPosition(Window::getWidth() / 2, Window::getHeight() / 2);

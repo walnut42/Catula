@@ -33,7 +33,6 @@ private:
     // Simulate a slower (<1) or faster (>1) pace
     const float speed = 1;
 
-    sf::Font font;
     std::map<std::string, std::string> debug;
     sf::Text text;
     sf::Clock clock;

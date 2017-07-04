@@ -19,7 +19,7 @@ enum class Image {
     Hal2CavBg, Hal2CemBg, HalBg,
 
     Catula, Mushroom, Heart,
-    Laser, Star, Rocket
+    Laser, Star, Rocket, GameOver, MenuBg
 };
 
 
