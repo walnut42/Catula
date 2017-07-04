@@ -4,9 +4,17 @@
 
 #include "Background.h"
 
-
 Background::Background(ModelGame &modelGame) : spriteSize(1251, 1000), modelGame(modelGame), countSprites(0),
-                                               distance{0} {
+                                               distance{0}, countRep{0} {
+    randRep = rand() % 3 + 1;
+
+    // Get Image index.
+    nBg = Images::getNumberBg();
+    int randSel = 4 * (rand() % nBg) + 1;
+
+    sf::Sprite sprite;
+    active = Image(randSel);
+    Images::setSprite(sprite, active);
     setVel();
 }
 
@@ -34,14 +42,24 @@ void Background::update() {
     // If last sprite is in on the right, the loop adds a new one.
     while (sprites.empty() || getSpritePos(sprites.size() - 1).x + spriteSize.x < Window::getWidth()) {
         sf::Sprite sprite;
-        if (countSprites < 10)
-            Images::setSprite(sprite, Image::CemeteryBk);
-        else
-            Images::setSprite(sprite, Image::SunBk);
-        countSprites++;
-        if (countSprites > 20)
-            countSprites = 0;
+        if (countRep < randRep) {
+            Images::setSprite(sprite, active);
+            countRep++;
+        } else {
 
+            // get the random value excluding the active image
+            int next = (((rand() % (nBg - 1) + 1) + ((static_cast<int>(active) - 1) / (nBg + 1))) % nBg) * 4 + 1;
+
+            // get the transition bg index
+            int trans = nBg * ((static_cast<int>(active) - 1) / (nBg + 1) + 1) + (next - 1) / (nBg + 1) + 1 - nBg;
+
+            Images::setSprite(sprite, Image(trans));
+
+            active = Image(next);
+
+            randRep = rand() % 3 + 1;
+            countRep = 0;
+        }
         sprites.push_back(sprite);
     }
 }

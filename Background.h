@@ -41,6 +41,11 @@ private:
     const float levelUpAcc = -100;
     const float levelUpTime = 5;
 
+    int nBg;
+
+    Image active;
+    int randRep;
+    int countRep;
     sf::Vector2f spriteSize;
     float vel;
     float pos = 0;
