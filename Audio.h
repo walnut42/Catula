@@ -8,7 +8,6 @@
 #include <map>
 #include <SFML/Audio.hpp>
 
-
 enum class Sound {
     Menu, Laser, Explosion, Bonus, Fail
 };
@@ -19,7 +18,7 @@ enum class Music {
 
 class Audio {
 public:
-    static void loadSounds();
+    static bool loadSounds();
 
     static void setSound(sf::Sound &sound, Sound name);
 

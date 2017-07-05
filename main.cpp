@@ -7,13 +7,18 @@
 #include "Window.h"
 #include "Audio.h"
 #include "Fonts.h"
+#include "LoadFileError.h"
 
 int main() {
     srand((unsigned int) (time(NULL)));
 
-    Audio::loadSounds();
-    Images::loadImages();
-    Fonts::loadFonts();
+    try {
+        Audio::loadSounds();
+        Images::loadImages();
+        Fonts::loadFonts();
+    }
+    catch (const LoadFileError &e) {
+    }
 
     Window::getInstance();
     Controller controller;

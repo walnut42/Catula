@@ -8,7 +8,7 @@ add_subdirectory(test)
 
 set(SOURCE_FILES Background.cpp Background.h Entity.cpp Entity.h
         MainCharacter.cpp MainCharacter.h Star.cpp Star.h Vehicle.cpp Vehicle.h
-        Controller.cpp Controller.h Collidable.cpp Collidable.h Debug.h Window.cpp Window.h ModelBase.h Debug.cpp CollidableFactory.cpp CollidableFactory.h Laser.cpp Laser.h GameInfo.cpp GameInfo.h Rocket.cpp Rocket.h ModelMenu.cpp ModelMenu.h ModelGame.cpp ModelGame.h ModelPause.cpp ModelPause.h Audio.cpp Audio.h ModelGameOver.cpp ModelGameOver.h Images.cpp Images.h Fonts.cpp Fonts.h Skull.cpp Skull.h)
+        Controller.cpp Controller.h Collidable.cpp Collidable.h Debug.h Window.cpp Window.h ModelBase.h Debug.cpp CollidableFactory.cpp CollidableFactory.h Laser.cpp Laser.h GameInfo.cpp GameInfo.h Rocket.cpp Rocket.h ModelMenu.cpp ModelMenu.h ModelGame.cpp ModelGame.h ModelPause.cpp ModelPause.h Audio.cpp Audio.h ModelGameOver.cpp ModelGameOver.h Images.cpp Images.h Fonts.cpp Fonts.h Skull.cpp Skull.h LoadFileError.cpp LoadFileError.h)
 add_executable(Catula main.cpp)
 
 ### Add Google Test library
