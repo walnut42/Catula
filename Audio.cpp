@@ -2,21 +2,23 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 02/07/17.
 //
 
-#include <SFML/Graphics/Color.hpp>
 #include "Audio.h"
+
+#include <SFML/Graphics/Color.hpp>
 
 std::map<Sound, sf::SoundBuffer> Audio::soundBuffers;
 std::map<Music, std::string> Audio::musicFiles;
 
-bool Audio::loadSounds() throw(LoadFileError) {
+void Audio::loadSounds() throw(LoadFileError) {
     const std::string error = "Error in sound loading";
     //Sounds
     const std::string path = "../Resources/Audio/";
     std::map<Sound, std::string> soundList = {
             {Sound::Menu,      "footstep.ogg"},
-            {Sound::Laser,     "laser.ogg"},
-            {Sound::Explosion, "explosion.ogg"},
             {Sound::Bonus,     "bonus.ogg"},
+            {Sound::Zombie,    "zombie.wav"},
+            {Sound::Explosion, "explosion.ogg"},
+            {Sound::Laser,     "laser.ogg"},
             {Sound::Fail,      "fail.ogg"}
     };
 
