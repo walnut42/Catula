@@ -7,7 +7,7 @@
 #include "Background.h"
 
 MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity{modelGame, image, 100, 100}, lost{false},
-                                                                  score{90}, lives{3}, lifeScore{100}, maxLives{4} {
+                                                                  score{0}, lives{3}, lifeScore{100}, maxLives{4} {
     Audio::setSound(lifeSound, Sound::Life);
 }
 
