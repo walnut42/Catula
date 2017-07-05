@@ -18,6 +18,6 @@ void Laser::update() {
 
 void Laser::collided() {
     removeFlag = true;
-    modelGame.getMainCharacter()->increaseLife(-1);
+    modelGame.getMainCharacter()->increaseLives(-1);
     modelGame.getMainCharacter()->playSound(Sound::Laser);
 }

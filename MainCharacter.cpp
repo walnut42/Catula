@@ -7,7 +7,7 @@
 #include "Background.h"
 
 MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity{modelGame, image, 100, 100}, lost{false},
-                                                                  score{0}, lives{3} {
+                                                                  score{0}, lives{3}, lifeScore{100}, maxLives{4} {
 
 }
 
@@ -49,11 +49,10 @@ int MainCharacter::getScore() const {
     return score;
 }
 
-void MainCharacter::increaseLife(int l) {
+void MainCharacter::increaseLives(int l) {
     if (l < 0)
         modelGame.getBackground()->setVel();
-
-    lives += l;
+    lives + l > maxLives ? lives = maxLives : lives += l;
     if (lives <= 0)
         lost = true;
 }
@@ -61,6 +60,10 @@ void MainCharacter::increaseLife(int l) {
 void MainCharacter::increaseScore(int s) {
     if (!lost)
         score + s < 0 ? score = 0 : score += s;
+    if (score > lifeScore) {
+        lifeScore += 100;
+        increaseLives(1);
+    }
 }
 
 void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {

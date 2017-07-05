@@ -30,7 +30,7 @@ public:
 
     int getScore() const;
 
-    void increaseLife(int l);
+    void increaseLives(int l);
 
     void increaseScore(int s);
 
@@ -52,6 +52,8 @@ private:
     bool lost;
     int lives;
     int score;
+    int lifeScore;
+    int maxLives;
 
     sf::Sound sound;
 };

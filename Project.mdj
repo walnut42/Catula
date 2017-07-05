@@ -10716,7 +10716,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFboLpCtySVCWQ="
 							},
-							"name": "increaseLife",
+							"name": "increaseLives",
 							"visibility": "public",
 							"isStatic": false,
 							"isLeaf": false,
