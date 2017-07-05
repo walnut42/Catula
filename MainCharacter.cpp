@@ -60,7 +60,7 @@ void MainCharacter::increaseLives(int l) {
 void MainCharacter::increaseScore(int s) {
     if (!lost)
         score + s < 0 ? score = 0 : score += s;
-    if (score > lifeScore) {
+    if (score >= lifeScore) {
         lifeScore += 100;
         increaseLives(1);
     }
