@@ -31,7 +31,7 @@ void GameInfo::draw() {
 
 void GameInfo::update() {
     std::stringstream stream;
-    stream << std::fixed << std::setprecision(1) << modelGame.getBackground()->getDistance();
+    stream << std::fixed << std::setprecision(0) << modelGame.getBackground()->getDistance();
     content.setString("Score: " + std::to_string(modelGame.getMainCharacter()->getScore()) +
                       "\t\tDistance: " + stream.str());
     lifePos = sf::Vector2f(Window::getWidth() - 70, 10);

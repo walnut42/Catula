@@ -7,6 +7,7 @@
 
 #include "ModelBase.h"
 
+class MainCharacter;
 
 class ModelGameOver : public ModelBase {
 public:
@@ -27,6 +28,7 @@ public:
 private:
     sf::RectangleShape backdrop;
     sf::Text content;
+    sf::Text score;
     sf::Sound sound;
     sf::Sprite sprite;
     float opacity;

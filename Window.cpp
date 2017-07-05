@@ -48,7 +48,6 @@ void Window::gameLoop(Controller &controller) {
     }
 }
 
-
 void Window::processInput(Controller &controller) {
     sf::Event event;
     while (window.pollEvent(event)) {
@@ -63,7 +62,6 @@ void Window::processInput(Controller &controller) {
             controller.processInput(event);
     }
 }
-
 
 void
 Window::drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos, const sf::Vector2f &vel, float angle, float angleVel) {
