@@ -21,7 +21,7 @@ ModelGameOver::ModelGameOver() : opacity{0} {
     sf::FloatRect textRect = content.getGlobalBounds();
     content.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 
-    Fonts::setText(score, Font::Widow);
+    Fonts::setText(score, Font::BlackWidow);
     score.setColor(sf::Color(150, 170, 230));
     score.setCharacterSize(75);
     std::stringstream stream;

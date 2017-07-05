@@ -10,7 +10,7 @@
 
 
 enum class Font {
-    Widow, Serif, Score
+    BlackWidow, Serif, Score
 };
 
 class Fonts {

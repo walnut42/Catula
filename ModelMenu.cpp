@@ -21,7 +21,7 @@ ModelMenu::ModelMenu() : textColor{14, 1, 140}, titleStopY{2.5}, titleY{0}, sele
     Images::setSprite(background, Image::MenuBg);
     background.setPosition(0, 0);
 
-    Fonts::setText(titleText, Font::Widow);
+    Fonts::setText(titleText, Font::BlackWidow);
     titleText.setCharacterSize(200);
     titleText.setColor(textColor);
     titleText.setString("CATULA");

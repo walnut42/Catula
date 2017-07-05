@@ -26,8 +26,8 @@ public:
 
 private:
     sf::RectangleShape backdrop;
+    sf::Text title;
     sf::Text content;
-    sf::Sprite sprite;
     float posY;
 };
 

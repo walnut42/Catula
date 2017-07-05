@@ -13,9 +13,9 @@ void Fonts::loadFonts() {
     const std::string path = "../Resources/Font/";
 
     std::map<Font, std::string> fontList = {
-            {Font::Widow, "blackWidow.ttf"},
-            {Font::Serif, "FreeSerif.ttf"},
-            {Font::Score, "score.ttf"},
+            {Font::BlackWidow, "blackWidow.ttf"},
+            {Font::Serif,      "FreeSerif.ttf"},
+            {Font::Score,      "score.ttf"},
     };
 
     for (const auto &font:fontList)
