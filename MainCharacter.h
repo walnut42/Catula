@@ -9,7 +9,6 @@
 
 #include "Entity.h"
 #include "GameInfo.h"
-#include "Vehicle.h"
 #include "Audio.h"
 
 
@@ -45,7 +44,6 @@ protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const override;
 
 private:
-    Vehicle *vehicle = nullptr;
     const float g = 980;
     const float upg = -1000;
     const float top = 0;

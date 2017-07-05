@@ -34,7 +34,7 @@ void MainCharacter::update() {
 }
 
 bool MainCharacter::collide(Entity *obj) {
-    return (vehicle != nullptr && Entity::collide(vehicle, obj)) || Entity::collide(this, obj);
+    return Entity::collide(this, obj);
 }
 
 bool MainCharacter::hasLost() const {
