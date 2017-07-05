@@ -1,5 +1,5 @@
 //
-// Created by lorenzo on 05/07/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 13/04/17.
 //
 
 #ifndef CATULA_MESSAGEBOX_H
