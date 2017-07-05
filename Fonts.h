@@ -5,13 +5,13 @@
 #ifndef CATULA_FONTS_H
 #define CATULA_FONTS_H
 
-#include <map>
 #include <SFML/Graphics.hpp>
+#include <map>
+
 
 enum class Font {
     Widow, Serif, Score
 };
-
 
 class Fonts {
 public:
@@ -23,5 +23,6 @@ private:
     Fonts() {};
     static std::map<Font, sf::Font> fonts;
 };
+
 
 #endif //CATULA_FONTS_H

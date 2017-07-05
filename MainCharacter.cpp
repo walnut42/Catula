@@ -3,9 +3,10 @@
 //
 
 #include "MainCharacter.h"
+
 #include "Background.h"
 
-MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity(modelGame, image, 100, 100), lost{false},
+MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity{modelGame, image, 100, 100}, lost{false},
                                                                   score{0}, lives{3} {
 
 }

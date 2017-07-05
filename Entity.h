@@ -5,11 +5,12 @@
 #ifndef CATULA_ENTITY_H
 #define CATULA_ENTITY_H
 
-#include <vector>
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 #include "ModelGame.h"
 #include "Images.h"
+
 
 class Entity {
 public:
@@ -49,7 +50,6 @@ protected:
     void updatePos();
 
     ModelGame &modelGame;
-
     sf::Sprite sprite;
     sf::Vector2f size;
     sf::Vector2f pos;
@@ -65,5 +65,6 @@ private:
 
     static int ccw(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2);
 };
+
 
 #endif //CATULA_ENTITY_H

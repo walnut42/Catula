@@ -3,11 +3,11 @@
 //
 
 #include "ModelGame.h"
+
 #include "Window.h"
 #include "CollidableFactory.h"
 #include "Background.h"
 #include "MainCharacter.h"
-
 
 ModelGame::ModelGame() : ModelGame{Image::Catula} {
 }
@@ -25,6 +25,13 @@ ModelGame::~ModelGame() {
     delete background;
     delete mainCharacter;
     delete textbox;
+}
+
+ModelBase *ModelGame::processInput(const sf::Event &event) {
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+        return getModel(Controller::modelPause);
+    else
+        return nullptr;
 }
 
 ModelBase *ModelGame::update() {
@@ -47,17 +54,6 @@ ModelBase *ModelGame::update() {
     return nullptr;
 }
 
-void ModelGame::removeCollidables() {
-    for (auto it = collidables.begin(), end = collidables.end(); it != end;) {
-        // Updating the iterator before it's cancelled avoids to have a null iterator
-        if ((*it)->getRemoveFlag()) {
-            auto prev = it++;
-            collidables.erase(prev);
-        } else
-            ++it;
-    }
-}
-
 void ModelGame::draw() {
     background->draw();
     mainCharacter->draw();
@@ -67,11 +63,12 @@ void ModelGame::draw() {
     textbox->draw();
 }
 
-ModelBase *ModelGame::processInput(const sf::Event &event) {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        return getModel(Controller::modelPause);
-    else
-        return nullptr;
+void ModelGame::enter() {
+    music.play();
+}
+
+void ModelGame::exit() {
+    music.pause();
 }
 
 Background *ModelGame::getBackground() {
@@ -82,10 +79,13 @@ MainCharacter *ModelGame::getMainCharacter() {
     return mainCharacter;
 }
 
-void ModelGame::enter() {
-    music.play();
-}
-
-void ModelGame::exit() {
-    music.pause();
+void ModelGame::removeCollidables() {
+    for (auto it = collidables.begin(), end = collidables.end(); it != end;) {
+        // Updating the iterator before it's cancelled avoids to have a null iterator
+        if ((*it)->getRemoveFlag()) {
+            auto prev = it++;
+            collidables.erase(prev);
+        } else
+            ++it;
+    }
 }

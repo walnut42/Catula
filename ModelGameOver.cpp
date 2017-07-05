@@ -3,6 +3,7 @@
 //
 
 #include "ModelGameOver.h"
+
 #include "Window.h"
 #include "Audio.h"
 #include "Fonts.h"
@@ -12,7 +13,7 @@ ModelGameOver::ModelGameOver() : opacity{0} {
     Fonts::setText(content, Font::Serif);
     content.setColor(sf::Color(178, 0, 0));
     content.setCharacterSize(25);
-    content.setString("Press esc to return to menu...");
+    content.setString("Press esc to go back to menu...");
     sf::FloatRect textRect = content.getGlobalBounds();
     content.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 

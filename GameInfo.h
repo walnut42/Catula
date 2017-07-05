@@ -5,8 +5,8 @@
 #ifndef CATULA_TEXTBOX_H
 #define CATULA_TEXTBOX_H
 
-
 #include <SFML/Graphics.hpp>
+
 #include "ModelGame.h"
 
 

@@ -5,8 +5,8 @@
 #ifndef CATULA_MODELMENU_H
 #define CATULA_MODELMENU_H
 
-
 #include "ModelBase.h"
+
 
 class ModelMenu : public ModelBase {
 public:

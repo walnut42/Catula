@@ -5,8 +5,8 @@
 #ifndef CATULA_MODELPAUSE_H
 #define CATULA_MODELPAUSE_H
 
-
 #include "ModelBase.h"
+
 
 class ModelPause : public ModelBase {
 public:

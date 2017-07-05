@@ -2,9 +2,7 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 26/03/17.
 //
 
-
 #include "Controller.h"
-
 
 std::unique_ptr<ModelMenu> Controller::modelMenu;
 std::unique_ptr<ModelGame> Controller::modelGame;
@@ -36,5 +34,3 @@ void Controller::changeModel(ModelBase *newModel) {
         activeModel->enter();
     }
 }
-
-

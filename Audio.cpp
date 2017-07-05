@@ -7,8 +7,8 @@
 std::map<Sound, sf::SoundBuffer> Audio::soundBuffers;
 std::map<Music, std::string> Audio::musicFiles;
 
-
 void Audio::loadSounds() {
+
     //Sounds
     const std::string path = "../Resources/Audio/";
     soundBuffers[Sound::Menu].loadFromFile(path + "footstep.ogg");
@@ -29,4 +29,3 @@ void Audio::setSound(sf::Sound &sound, Sound name) {
 void Audio::setMusic(sf::Music &music, Music name) {
     music.openFromFile(musicFiles[name]);
 }
-

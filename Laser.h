@@ -5,8 +5,8 @@
 #ifndef CATULA_LASER_H
 #define CATULA_LASER_H
 
-
 #include "Collidable.h"
+
 
 class Laser : public Collidable {
 public:

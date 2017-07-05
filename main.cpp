@@ -8,7 +8,6 @@
 #include "Audio.h"
 #include "Fonts.h"
 
-
 int main() {
     srand((unsigned int) (time(NULL)));
 

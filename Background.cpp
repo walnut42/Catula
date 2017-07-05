@@ -6,11 +6,11 @@
 
 Background::Background(ModelGame &modelGame) : spriteSize{1251, 1000}, modelGame{modelGame}, countSprites{0},
                                                distance{0}, countRep{0}, maxRep{20}, minRep{10} {
-
     setRandRep();
+
     // Get Image index.
     nBg = Images::getNumberBg();
-    int randSel = 4 * (rand() % nBg) + 1;
+    int randSel = (nBg + 1) * (rand() % nBg) + 1;
 
     sf::Sprite sprite;
     active = Image(randSel);
@@ -19,7 +19,8 @@ Background::Background(ModelGame &modelGame) : spriteSize{1251, 1000}, modelGame
 }
 
 void Background::update() {
-    // update level time
+
+    // Update level time.
     float levelTime = levelClock.getElapsedTime().asSeconds();
     if (levelTime > levelDuration) {
         if (levelTime > levelDuration + levelUpTime) {
@@ -28,7 +29,7 @@ void Background::update() {
             vel += levelUpAcc * Window::getInstance()->getElapsed();
     }
 
-    // update position
+    // Update position.
     shift = vel * Window::getInstance()->getElapsed();
     pos += shift;
     distance -= shift;
@@ -47,19 +48,19 @@ void Background::update() {
             countRep++;
         } else {
 
-            // get the random value from 1 to nBg
+            // Get the random value from 1 to nBg.
             int nextRand = rand() % (nBg - 1) + 1;
 
-            // get the bg index from 0 to (nBg - 1)
+            // Get the bg index from 0 to (nBg - 1).
             int bgIndex = (static_cast<int>(active) - 1) / (nBg + 1);
 
-            // get the random value excluding the active image
+            // Get the random value excluding the active image.
             int next = ((nextRand + bgIndex) % nBg) * (nBg + 1) + 1;
 
-            // get the nextBg index from 0 to (nBg - 1)
+            // Get the nextBg index from 0 to (nBg - 1).
             int nextBgIndex = (next - 1) / (nBg + 1);
 
-            // get the transition bg index
+            // Get the transition bg index.
             int trans = nBg * (bgIndex + 1) + nextBgIndex + 1 - nBg;
 
             Images::setSprite(sprite, Image(trans));
@@ -79,14 +80,6 @@ void Background::draw() {
     }
 }
 
-sf::Vector2f Background::getSpritePos(std::list<sf::Sprite>::iterator &it) {
-    return getSpritePos(std::distance(sprites.begin(), it));
-}
-
-sf::Vector2f Background::getSpritePos(long i) {
-    return sf::Vector2f(pos + spriteSize.x * i, 0);
-}
-
 float Background::getShift() const {
     return shift;
 }
@@ -97,6 +90,14 @@ float Background::getVel() const {
 
 void Background::setVel(float v) {
     Background::vel = v;
+}
+
+sf::Vector2f Background::getSpritePos(std::list<sf::Sprite>::iterator &it) {
+    return getSpritePos(std::distance(sprites.begin(), it));
+}
+
+sf::Vector2f Background::getSpritePos(long i) {
+    return sf::Vector2f(pos + spriteSize.x * i, 0);
 }
 
 void Background::setRandRep() {

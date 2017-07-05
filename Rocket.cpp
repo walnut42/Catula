@@ -3,9 +3,10 @@
 //
 
 #include "Rocket.h"
+
 #include "MainCharacter.h"
 
-Rocket::Rocket(ModelGame &modelGame, float x, float y) : Collidable(modelGame, Image::Rocket, x, y) {
+Rocket::Rocket(ModelGame &modelGame, float x, float y) : Collidable{modelGame, Image::Rocket, x, y} {
     relVel.x = -600;
     relVel.y = -200;
     acc.y = 200;
@@ -20,6 +21,6 @@ void Rocket::update() {
 
 void Rocket::collided() {
     removeFlag = true;
-    modelGame.getMainCharacter()->increaseScore(5);
+    modelGame.getMainCharacter()->increaseScore(-5);
     modelGame.getMainCharacter()->playSound(Sound::Explosion);
 }

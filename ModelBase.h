@@ -8,6 +8,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 
+
 class ModelBase {
 public:
     virtual ModelBase *processInput(const sf::Event &event)=0;

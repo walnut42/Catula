@@ -3,11 +3,13 @@
 //
 
 #include "GameInfo.h"
+
+#include <iomanip>
+
 #include "MainCharacter.h"
 #include "Window.h"
 #include "Background.h"
 #include "Fonts.h"
-#include <iomanip>
 
 GameInfo::GameInfo(ModelGame &modelGame) : modelGame{modelGame} {
     Fonts::setText(content, Font::Score);
@@ -34,5 +36,3 @@ void GameInfo::update() {
                       "\t\tDistance: " + stream.str());
     lifePos = sf::Vector2f(Window::getWidth() - 70, 10);
 }
-
-

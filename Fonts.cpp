@@ -4,9 +4,7 @@
 
 #include "Fonts.h"
 
-
 std::map<Font, sf::Font> Fonts::fonts;
-
 
 void Fonts::loadFonts() {
     const std::string path = "../Resources/Font/";

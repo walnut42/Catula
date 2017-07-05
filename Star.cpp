@@ -3,10 +3,11 @@
 //
 
 #include "Star.h"
+
 #include "Window.h"
 #include "MainCharacter.h"
 
-Star::Star(ModelGame &modelGame, float x, float y) : Collidable(modelGame, Image::Star, x, y) {
+Star::Star(ModelGame &modelGame, float x, float y) : Collidable{modelGame, Image::Star, x, y} {
     relVel.y = 6;
 }
 

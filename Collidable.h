@@ -7,6 +7,7 @@
 
 #include "Entity.h"
 
+
 class ModelGame;
 
 class Collidable : public Entity {

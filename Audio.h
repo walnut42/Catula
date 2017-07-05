@@ -8,6 +8,7 @@
 #include <map>
 #include <SFML/Audio.hpp>
 
+
 enum class Sound {
     Menu, Laser, Explosion, Bonus, Fail
 };
@@ -24,12 +25,10 @@ public:
 
     static void setMusic(sf::Music &music, Music name);
 
-
 private:
     Audio() {};
     static std::map<Sound, sf::SoundBuffer> soundBuffers;
     static std::map<Music, std::string> musicFiles;
-
 };
 
 

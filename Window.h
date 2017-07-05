@@ -10,6 +10,7 @@
 #include "Entity.h"
 #include "Controller.h"
 
+
 class Window {
 public:
     static Window *getInstance();

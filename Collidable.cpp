@@ -8,10 +8,9 @@
 #include "MainCharacter.h"
 
 Collidable::Collidable(ModelGame &modelGame, Image image, float x, float y) :
-        Entity(modelGame, image, x, y) {
+        Entity{modelGame, image, x, y} {
     originPos = sf::Vector2f(x, y);
 }
-
 
 void Collidable::update() {
     updateRelPos();

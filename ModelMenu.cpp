@@ -39,7 +39,7 @@ ModelMenu::ModelMenu() : textColor{14, 1, 140}, titleStopY{2.5}, titleY{0}, sele
     Images::setSprite(character1, Image::Catula);
     character1.setOrigin(character1.getTextureRect().width / 2.0f, character1.getTextureRect().height / 2.0f);
 
-    Images::setSprite(character2, Image::Mushroom);
+    Images::setSprite(character2, Image::CatPumpkin);
     character2.setOrigin(character2.getTextureRect().width / 2.0f, character2.getTextureRect().height / 2.0f);
 
     selection.setSize(sf::Vector2f(300, 300));
@@ -56,7 +56,7 @@ ModelMenu::~ModelMenu() {
 ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
         if (selected == Mushroom)
-            return newModel(Controller::modelGame, Image::Mushroom);
+            return newModel(Controller::modelGame, Image::CatPumpkin);
         else
             return newModel(Controller::modelGame);
     }

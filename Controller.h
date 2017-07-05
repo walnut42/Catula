@@ -6,11 +6,13 @@
 #define CATULA_OBSTACLES_H
 
 #include <SFML/Graphics.hpp>
+
 #include "ModelBase.h"
 #include "ModelMenu.h"
 #include "ModelGame.h"
 #include "ModelPause.h"
 #include "ModelGameOver.h"
+
 
 class Controller {
 public:
@@ -26,14 +28,11 @@ public:
     static std::unique_ptr<ModelGame> modelGame;
     static std::unique_ptr<ModelPause> modelPause;
     static std::unique_ptr<ModelGameOver> modelGameOver;
-
-
 private:
     ModelBase *activeModel;
 
     void changeModel(ModelBase *newModel);
 };
-
 
 /**
  * Deletes old model and creates a new one passing args to his constructor
@@ -59,5 +58,6 @@ ModelBase *getModel(std::unique_ptr<T> &model, Args... args) {
         model.reset(new T(args...));
     return model.get();
 }
+
 
 #endif //CATULA_OBSTACLES_H

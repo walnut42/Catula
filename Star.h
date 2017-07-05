@@ -7,6 +7,7 @@
 
 #include "Collidable.h"
 
+
 class Star : public Collidable {
 public:
     Star(ModelGame &modelGame, float x, float y);
@@ -15,5 +16,6 @@ public:
 
     void collided() override;
 };
+
 
 #endif //CATULA_OBSTACLE_H

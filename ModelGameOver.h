@@ -5,8 +5,8 @@
 #ifndef CATULA_MODELGAMEOVER_H
 #define CATULA_MODELGAMEOVER_H
 
-
 #include "ModelBase.h"
+
 
 class ModelGameOver : public ModelBase {
 public:

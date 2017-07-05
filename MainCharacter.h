@@ -5,13 +5,13 @@
 #ifndef CATULA_MAINCHARACTER_H
 #define CATULA_MAINCHARACTER_H
 
-
 #include <iostream>
 
 #include "Entity.h"
 #include "GameInfo.h"
 #include "Vehicle.h"
 #include "Audio.h"
+
 
 class ModelGame;
 

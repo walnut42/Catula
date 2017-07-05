@@ -3,31 +3,17 @@
 //
 
 #include "Entity.h"
+
 #include "Window.h"
 
 using namespace std;
 
 Entity::Entity(ModelGame &modelGame, Image image, float x, float y) :
-        modelGame(modelGame), pos(x, y), angle(0), angleVel(0), angleAcc(0) {
+        modelGame{modelGame}, pos{x, y}, angle{0}, angleVel{0}, angleAcc{0} {
 
     Images::setSprite(sprite, image);
     sf::IntRect textureSize = sprite.getTextureRect();
     size = sf::Vector2f(textureSize.width, textureSize.height);
-}
-
-void Entity::draw() {
-    //Debug code
-    vector<sf::Vector2f> pObj;
-    getAbsolutePoints(pObj);
-    sf::VertexArray lines(sf::LinesStrip, pObj.size() + 1);
-    for (int i = 0; i <= pObj.size(); i++) {
-        lines[i].position = pObj[i % pObj.size()];
-        lines[i].color = sf::Color::Red;
-    }
-    Window::getInstance()->drawDrawable(lines);
-    //End debug code
-
-    Window::getInstance()->drawEntity(*this);
 }
 
 bool Entity::collide(const Entity *obj1, const Entity *obj2) {
@@ -46,24 +32,29 @@ bool Entity::collide(const Entity *obj1, const Entity *obj2) {
     return false;
 }
 
-bool Entity::intersect(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f p3) {
-    return ((ccw(p0, p1, p2) * ccw(p0, p1, p3)) <= 0) &&
-           ((ccw(p2, p3, p0) * ccw(p2, p3, p1)) <= 0);
+void Entity::draw() {
+
+    // Debug code.
+    vector<sf::Vector2f> pObj;
+    getAbsolutePoints(pObj);
+    sf::VertexArray lines(sf::LinesStrip, pObj.size() + 1);
+    for (int i = 0; i <= pObj.size(); i++) {
+        lines[i].position = pObj[i % pObj.size()];
+        lines[i].color = sf::Color::Red;
+    }
+    Window::getInstance()->drawDrawable(lines);
+    // End debug code.
+
+    Window::getInstance()->drawEntity(*this);
 }
 
-int Entity::ccw(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2) {
-    float dx1, dx2, dy1, dy2;
-
-    dx1 = p1.x - p0.x;
-    dy1 = p1.y - p0.y;
-    dx2 = p2.x - p0.x;
-    dy2 = p2.y - p0.y;
-
-    if (dx1 * dy2 > dy1 * dx2) return +1;
-    if (dx1 * dy2 < dy1 * dx2) return -1;
-    if ((dx1 * dx2 < 0) || (dy1 * dy2 < 0)) return -1;
-    if ((dx1 * dx1 + dy1 * dy1) < (dx2 * dx2 + dy2 * dy2)) return +1;
-    return 0;
+void Entity::getRelativePoints(std::vector<sf::Vector2f> &points) const {
+    // Points of a rectangle with a 0° angle
+    points.clear();
+    points.push_back(sf::Vector2f(0, 0));
+    points.push_back(sf::Vector2f(size.x, 0));
+    points.push_back(sf::Vector2f(size.x, size.y));
+    points.push_back(sf::Vector2f(0, size.y));
 }
 
 void Entity::updatePos() {
@@ -86,11 +77,22 @@ void Entity::getAbsolutePoints(std::vector<sf::Vector2f> &points) const {
     }
 }
 
-void Entity::getRelativePoints(std::vector<sf::Vector2f> &points) const {
-    // Points of a rectangle with a 0° angle
-    points.clear();
-    points.push_back(sf::Vector2f(0, 0));
-    points.push_back(sf::Vector2f(size.x, 0));
-    points.push_back(sf::Vector2f(size.x, size.y));
-    points.push_back(sf::Vector2f(0, size.y));
+bool Entity::intersect(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f p3) {
+    return ((ccw(p0, p1, p2) * ccw(p0, p1, p3)) <= 0) &&
+           ((ccw(p2, p3, p0) * ccw(p2, p3, p1)) <= 0);
+}
+
+int Entity::ccw(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2) {
+    float dx1, dx2, dy1, dy2;
+
+    dx1 = p1.x - p0.x;
+    dy1 = p1.y - p0.y;
+    dx2 = p2.x - p0.x;
+    dy2 = p2.y - p0.y;
+
+    if (dx1 * dy2 > dy1 * dx2) return +1;
+    if (dx1 * dy2 < dy1 * dx2) return -1;
+    if ((dx1 * dx2 < 0) || (dy1 * dy2 < 0)) return -1;
+    if ((dx1 * dx1 + dy1 * dy1) < (dx2 * dx2 + dy2 * dy2)) return +1;
+    return 0;
 }

@@ -5,8 +5,8 @@
 #ifndef CATULA_ROCKET_H
 #define CATULA_ROCKET_H
 
-
 #include "Collidable.h"
+
 
 class Rocket : public Collidable {
 public:

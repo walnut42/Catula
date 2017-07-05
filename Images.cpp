@@ -4,9 +4,7 @@
 
 #include "Images.h"
 
-
 std::map<Image, sf::Texture> Images::textures;
-
 
 void Images::loadImages(bool smooth) {
     const std::string path = "../Resources/Images/";
@@ -24,9 +22,10 @@ void Images::loadImages(bool smooth) {
     textures[Image::Hal2CemBg].loadFromFile(path + "hal2cem.png");
 
     textures[Image::Catula].loadFromFile(path + "catula.png");
-    textures[Image::Mushroom].loadFromFile(path + "mushroom.png");
+    textures[Image::CatPumpkin].loadFromFile(path + "catPumpkin.png");
     textures[Image::Heart].loadFromFile(path + "heart.png");
     textures[Image::Laser].loadFromFile(path + "laser.png");
+    textures[Image::Skull].loadFromFile(path + "skull.png");
     textures[Image::Star].loadFromFile(path + "star.png");
     textures[Image::Rocket].loadFromFile(path + "rocket.png");
 
@@ -46,5 +45,3 @@ void Images::setSprite(sf::Sprite &sprite, Image name) {
 const int Images::getNumberBg() {
     return numberBg;
 }
-
-
