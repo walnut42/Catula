@@ -3,38 +3,44 @@
 //
 
 #include "Images.h"
+#include "LoadFileError.h"
 
 std::map<Image, sf::Texture> Images::textures;
 
 void Images::loadImages(bool smooth) {
+    const std::string error = "Error in image loading";
+
     const std::string path = "../Resources/Images/";
 
-    textures[Image::Intro].loadFromFile(path + "intro.png");
+    std::map<Image, std::string> imageList = {
+            {Image::Intro,      "intro.png"},
 
-    textures[Image::CavBg].loadFromFile(path + "cav.png");
-    textures[Image::CemBg].loadFromFile(path + "cem.png");
-    textures[Image::HalBg].loadFromFile(path + "hal.png");
-    textures[Image::Cav2CemBg].loadFromFile(path + "cav2cem.png");
-    textures[Image::Cav2HalBg].loadFromFile(path + "cav2hal.png");
-    textures[Image::Cem2CavBg].loadFromFile(path + "cem2cav.png");
-    textures[Image::Cem2HalBg].loadFromFile(path + "cem2hal.png");
-    textures[Image::Hal2CavBg].loadFromFile(path + "hal2cav.png");
-    textures[Image::Hal2CemBg].loadFromFile(path + "hal2cem.png");
+            {Image::CavBg,      "cav.png"},
+            {Image::CemBg,      "cem.png"},
+            {Image::HalBg,      "hal.png"},
+            {Image::Cav2CemBg,  "cav2cem.png"},
+            {Image::Cav2HalBg,  "cav2hal.png"},
+            {Image::Cem2CavBg,  "cem2cav.png"},
+            {Image::Cem2HalBg,  "cem2hal.png"},
+            {Image::Hal2CavBg,  "hal2cav.png"},
+            {Image::Hal2CemBg,  "hal2cem.png"},
 
-    textures[Image::Catula].loadFromFile(path + "catula.png");
-    textures[Image::CatPumpkin].loadFromFile(path + "catPumpkin.png");
-    textures[Image::Heart].loadFromFile(path + "heart.png");
-    textures[Image::Laser].loadFromFile(path + "laser.png");
-    textures[Image::Skull].loadFromFile(path + "skull.png");
-    textures[Image::Star].loadFromFile(path + "star.png");
-    textures[Image::Rocket].loadFromFile(path + "rocket.png");
+            {Image::Catula,     "catula.png"},
+            {Image::CatPumpkin, "catPumpkin.png"},
+            {Image::Heart,      "heart.png"},
+            {Image::Laser,      "laser.png"},
+            {Image::Skull,      "skull.png"},
+            {Image::Star,       "star.png"},
+            {Image::Rocket,     "rocket.png"},
+            {Image::GameOver,   "gameOver.png"},
+            {Image::MenuBg,     "menuBg.png"},
+    };
 
-    textures[Image::GameOver].loadFromFile(path + "gameOver.png");
-    textures[Image::MenuBg].loadFromFile(path + "menuBg.png");
-
-
-    for (auto &texture:textures) {
-        texture.second.setSmooth(smooth);
+    for (const auto &image:imageList) {
+        if (!textures[image.first].loadFromFile(path + image.second))
+            throw LoadFileError(error, path, image.second);
+        else
+            textures[image.first].setSmooth(smooth);
     }
 }
 

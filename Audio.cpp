@@ -2,20 +2,28 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 02/07/17.
 //
 
+#include <SFML/Graphics/Color.hpp>
 #include "Audio.h"
+#include "LoadFileError.h"
 
 std::map<Sound, sf::SoundBuffer> Audio::soundBuffers;
 std::map<Music, std::string> Audio::musicFiles;
 
-void Audio::loadSounds() {
-
+bool Audio::loadSounds() {
+    const std::string error = "Error in sound loading";
     //Sounds
     const std::string path = "../Resources/Audio/";
-    soundBuffers[Sound::Menu].loadFromFile(path + "footstep.ogg");
-    soundBuffers[Sound::Laser].loadFromFile(path + "laser.ogg");
-    soundBuffers[Sound::Explosion].loadFromFile(path + "explosion.ogg");
-    soundBuffers[Sound::Bonus].loadFromFile(path + "bonus.ogg");
-    soundBuffers[Sound::Fail].loadFromFile(path + "fail.ogg");
+    std::map<Sound, std::string> soundList = {
+            {Sound::Menu,      "footstep.ogg"},
+            {Sound::Laser,     "laser.ogg"},
+            {Sound::Explosion, "explosion.ogg"},
+            {Sound::Bonus,     "bonus.ogg"},
+            {Sound::Fail,      "fail.ogg"}
+    };
+
+    for (const auto &sound:soundList)
+        if (!soundBuffers[sound.first].loadFromFile(path + sound.second))
+            throw LoadFileError(error, path, sound.second);
 
     //Musics
     musicFiles[Music::Menu] = path + "darkshadow.wav";
