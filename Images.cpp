@@ -13,27 +13,27 @@ void Images::loadImages(bool smooth) {
     const std::string path = "../Resources/Images/";
 
     std::map<Image, std::string> imageList = {
-            {Image::Intro,      "intro.ogg"},
+            {Image::Intro,      "intro.png"},
 
-            {Image::CavBg,      "cav.ogg"},
-            {Image::CemBg,      "cem.ogg"},
-            {Image::HalBg,      "hal.ogg"},
-            {Image::Cav2CemBg,  "cav2cem.ogg"},
-            {Image::Cav2HalBg,  "cav2hal.ogg"},
-            {Image::Cem2CavBg,  "cem2cav.ogg"},
-            {Image::Cem2HalBg,  "cem2hal.ogg"},
-            {Image::Hal2CavBg,  "hal2cav.ogg"},
-            {Image::Hal2CemBg,  "hal2cem.ogg"},
+            {Image::CavBg,      "cav.png"},
+            {Image::CemBg,      "cem.png"},
+            {Image::HalBg,      "hal.png"},
+            {Image::Cav2CemBg,  "cav2cem.png"},
+            {Image::Cav2HalBg,  "cav2hal.png"},
+            {Image::Cem2CavBg,  "cem2cav.png"},
+            {Image::Cem2HalBg,  "cem2hal.png"},
+            {Image::Hal2CavBg,  "hal2cav.png"},
+            {Image::Hal2CemBg,  "hal2cem.png"},
 
-            {Image::Catula,     "catula.ogg"},
-            {Image::CatPumpkin, "catPumpkin.ogg"},
-            {Image::Heart,      "heart.ogg"},
-            {Image::Laser,      "laser.ogg"},
-            {Image::Skull,      "skull.ogg"},
-            {Image::Star,       "star.ogg"},
-            {Image::Rocket,     "rocket.ogg"},
-            {Image::GameOver,   "gameOver.ogg"},
-            {Image::MenuBg,     "menuBg.ogg"},
+            {Image::Catula,     "catula.png"},
+            {Image::CatPumpkin, "catPumpkin.png"},
+            {Image::Heart,      "heart.png"},
+            {Image::Laser,      "laser.png"},
+            {Image::Skull,      "skull.png"},
+            {Image::Star,       "star.png"},
+            {Image::Rocket,     "rocket.png"},
+            {Image::GameOver,   "gameOver.png"},
+            {Image::MenuBg,     "menuBg.png"},
     };
 
     for (const auto &image:imageList) {
