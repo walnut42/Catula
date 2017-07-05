@@ -4,8 +4,6 @@
 
 #include "Audio.h"
 
-#include <SFML/Graphics/Color.hpp>
-
 std::map<Sound, sf::SoundBuffer> Audio::soundBuffers;
 std::map<Music, std::string> Audio::musicFiles;
 
