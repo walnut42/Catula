@@ -7,8 +7,8 @@
 #include "Background.h"
 
 MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity{modelGame, image, 100, 100}, lost{false},
-                                                                  score{0}, lives{3}, lifeScore{100}, maxLives{4} {
-
+                                                                  score{90}, lives{3}, lifeScore{100}, maxLives{4} {
+    Audio::setSound(lifeSound, Sound::Life);
 }
 
 void MainCharacter::handleInput() {
@@ -63,6 +63,7 @@ void MainCharacter::increaseScore(int s) {
     if (score >= lifeScore) {
         lifeScore += 100;
         increaseLives(1);
+        lifeSound.play();
     }
 }
 

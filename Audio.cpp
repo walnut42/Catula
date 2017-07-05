@@ -17,7 +17,8 @@ void Audio::loadSounds() throw(LoadFileError) {
             {Sound::Zombie,    "zombie.wav"},
             {Sound::Explosion, "explosion.ogg"},
             {Sound::Laser,     "laser.ogg"},
-            {Sound::Fail,      "fail.ogg"}
+            {Sound::Fail,      "fail.ogg"},
+            {Sound::Life,      "life.ogg"}
     };
 
     for (const auto &sound:soundList)

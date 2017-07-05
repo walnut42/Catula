@@ -37,7 +37,8 @@ public:
     void playSound(Sound name) {
         sound.stop();
         Audio::setSound(sound, name);
-        sound.play();
+        if (lifeSound.getStatus() != sf::Sound::Status::Playing)
+            sound.play();
     }
 
 protected:
@@ -56,6 +57,7 @@ private:
     int maxLives;
 
     sf::Sound sound;
+    sf::Sound lifeSound;
 };
 
 

@@ -12,7 +12,7 @@
 
 
 enum class Sound {
-    Menu, Bonus, Zombie, Explosion, Laser, Fail
+    Menu, Bonus, Zombie, Explosion, Laser, Fail, Life
 };
 
 enum class Music {
