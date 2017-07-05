@@ -4,8 +4,6 @@
 
 #include "Window.h"
 
-#include "Debug.h"
-
 Window *Window::instance = nullptr;
 
 Window::Window() : windowTitle{"Catula"}, isFullscreen{false}, isDone{false} {
@@ -30,7 +28,6 @@ void Window::toggleFullscreen() {
 void Window::draw(Controller &controller) {
     window.clear(sf::Color::Black);
     controller.draw();
-    Debug::getInstance()->DrawText(window);
     window.display();
 }
 
