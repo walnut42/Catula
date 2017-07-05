@@ -3,18 +3,15 @@
 //
 
 #include "Images.h"
-#include "LoadFileError.h"
 
 std::map<Image, sf::Texture> Images::textures;
 
-void Images::loadImages(bool smooth) {
+void Images::loadImages(bool smooth) throw(LoadFileError) {
     const std::string error = "Error in image loading";
 
     const std::string path = "../Resources/Images/";
 
     std::map<Image, std::string> imageList = {
-            {Image::Intro,      "intro.png"},
-
             {Image::CavBg,      "cav.png"},
             {Image::CemBg,      "cem.png"},
             {Image::HalBg,      "hal.png"},

@@ -4,12 +4,11 @@
 
 #include <SFML/Graphics/Color.hpp>
 #include "Audio.h"
-#include "LoadFileError.h"
 
 std::map<Sound, sf::SoundBuffer> Audio::soundBuffers;
 std::map<Music, std::string> Audio::musicFiles;
 
-bool Audio::loadSounds() {
+bool Audio::loadSounds() throw(LoadFileError) {
     const std::string error = "Error in sound loading";
     //Sounds
     const std::string path = "../Resources/Audio/";

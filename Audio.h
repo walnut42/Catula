@@ -7,6 +7,7 @@
 
 #include <map>
 #include <SFML/Audio.hpp>
+#include "LoadFileError.h"
 
 enum class Sound {
     Menu, Laser, Explosion, Bonus, Fail
@@ -18,7 +19,7 @@ enum class Music {
 
 class Audio {
 public:
-    static bool loadSounds();
+    static bool loadSounds() throw(LoadFileError);
 
     static void setSound(sf::Sound &sound, Sound name);
 

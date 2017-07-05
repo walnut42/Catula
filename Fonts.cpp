@@ -3,11 +3,10 @@
 //
 
 #include "Fonts.h"
-#include "LoadFileError.h"
 
 std::map<Font, sf::Font> Fonts::fonts;
 
-void Fonts::loadFonts() {
+void Fonts::loadFonts() throw(LoadFileError) {
     const std::string error = "Error in font loading";
     //Fonts
     const std::string path = "../Resources/Font/";
