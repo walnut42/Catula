@@ -35,14 +35,14 @@ bool Entity::collide(const Entity *obj1, const Entity *obj2) {
 void Entity::draw() {
 
     // Debug code.
-    vector<sf::Vector2f> pObj;
-    getAbsolutePoints(pObj);
-    sf::VertexArray lines(sf::LinesStrip, pObj.size() + 1);
-    for (int i = 0; i <= pObj.size(); i++) {
-        lines[i].position = pObj[i % pObj.size()];
-        lines[i].color = sf::Color::Red;
-    }
-    Window::getInstance()->drawDrawable(lines);
+//    vector<sf::Vector2f> pObj;
+//    getAbsolutePoints(pObj);
+//    sf::VertexArray lines(sf::LinesStrip, pObj.size() + 1);
+//    for (int i = 0; i <= pObj.size(); i++) {
+//        lines[i].position = pObj[i % pObj.size()];
+//        lines[i].color = sf::Color::Red;
+//    }
+//    Window::getInstance()->drawDrawable(lines);
     // End debug code.
 
     Window::getInstance()->drawEntity(*this);

@@ -16,6 +16,7 @@ Rocket::Rocket(ModelGame &modelGame, float x, float y) : Collidable{modelGame, I
 void Rocket::update() {
     angle = static_cast<float>(atan2(-relVel.y, -relVel.x) * 180 / M_PI);
 
+    updateRelPos();
     Collidable::update();
 }
 

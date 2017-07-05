@@ -4,18 +4,17 @@
 
 #include "Star.h"
 
-#include "Window.h"
 #include "MainCharacter.h"
 
 Star::Star(ModelGame &modelGame, float x, float y) : Collidable{modelGame, Image::Star, x, y} {
-    relVel.y = 6;
+    relVel.y = 10;
 }
 
 void Star::update() {
-    relPos.y += relVel.y * Window::getInstance()->getElapsed();
-
-    if (relPos.y > 10 || relPos.y < -10)
+    if (relPos.y > 15 || relPos.y < -15)
         relVel.y *= -1;
+
+    updateRelPos();
     Collidable::update();
 }
 

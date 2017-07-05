@@ -13,7 +13,6 @@ Collidable::Collidable(ModelGame &modelGame, Image image, float x, float y) :
 }
 
 void Collidable::update() {
-    updateRelPos();
     float shift = modelGame.getBackground()->getShift();
     originPos.x += shift;
     pos = originPos + relPos;

@@ -19,7 +19,12 @@ ModelGameOver::ModelGameOver() : opacity{0} {
 
     backdrop.setPosition(0, 0);
     Images::setSprite(sprite, Image::GameOver);
+
     sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height / 2);
+    backdrop.setFillColor(sf::Color(0, 0, 0, static_cast<sf::Uint8>(opacity)));
+    content.setPosition(Window::getWidth() / 2.0f, Window::getHeight() * 7 / 8.0f);
+    backdrop.setSize(sf::Vector2f(Window::getWidth(), Window::getHeight()));
+    sprite.setPosition(Window::getWidth() / 2, Window::getHeight() / 2);
 }
 
 ModelGameOver::~ModelGameOver() {

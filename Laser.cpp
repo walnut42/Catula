@@ -11,6 +11,11 @@ Laser::Laser(ModelGame &modelGame, float x, float y) : Collidable{modelGame, Ima
     sprite.setOrigin(size.x / 2, size.y / 2);
 }
 
+void Laser::update() {
+    updateRelPos();
+    Collidable::update();
+}
+
 void Laser::collided() {
     removeFlag = true;
     modelGame.getMainCharacter()->increaseLife(-1);
