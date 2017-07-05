@@ -61,6 +61,8 @@ void MainCharacter::increaseLife(int l) {
 void MainCharacter::increaseScore(int s) {
     if (!lost)
         score += s;
+    if (score < 0)
+        score = 0;
 }
 
 void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {
