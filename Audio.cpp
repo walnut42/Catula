@@ -21,9 +21,9 @@ void Audio::loadSounds() throw(load_file_error) {
             {Sound::Life,      "life.ogg"}
     };
 
-    for (const auto &sound:soundList)
-        if (!soundBuffers[sound.first].loadFromFile(path + sound.second))
-            throw load_file_error(error, path, sound.second);
+    for (const auto &i:soundList)
+        if (!soundBuffers[i.first].loadFromFile(path + i.second))
+            throw load_file_error(error, path, i.second);
 
     //Musics
     musicFiles[Music::Menu] = path + "darkshadow.wav";

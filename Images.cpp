@@ -33,11 +33,11 @@ void Images::loadImages(bool smooth) throw(load_file_error) {
             {Image::MenuBg,     "menuBg.png"},
     };
 
-    for (const auto &image:imageList) {
-        if (!textures[image.first].loadFromFile(path + image.second))
-            throw load_file_error(error, path, image.second);
+    for (const auto &i:imageList) {
+        if (!textures[i.first].loadFromFile(path + i.second))
+            throw load_file_error(error, path, i.second);
         else
-            textures[image.first].setSmooth(smooth);
+            textures[i.first].setSmooth(smooth);
     }
 }
 
