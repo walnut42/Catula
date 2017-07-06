@@ -10,7 +10,7 @@ Background::Background(ModelGame &modelGame) : spriteSize{1251, 1000}, modelGame
 
     // Get Image index.
     nBg = Images::getNumberBg();
-    int randSel = (nBg + 1) * (rand() % nBg) + 1;
+    int randSel = (nBg + 1) * (std::rand() % nBg) + 1;
 
     sf::Sprite sprite;
     active = Image(randSel);
@@ -49,7 +49,7 @@ void Background::update() {
         } else {
 
             // Get the random value from 1 to nBg.
-            int nextRand = rand() % (nBg - 1) + 1;
+            int nextRand = std::rand() % (nBg - 1) + 1;
 
             // Get the bg index from 0 to (nBg - 1).
             int bgIndex = (static_cast<int>(active) - 1) / (nBg + 1);
@@ -101,5 +101,5 @@ sf::Vector2f Background::getSpritePos(long i) {
 }
 
 void Background::setRandRep() {
-    Background::randRep = rand() % maxRep + minRep;;
+    Background::randRep = std::rand() % maxRep + minRep;;
 }

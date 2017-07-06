@@ -6,7 +6,7 @@
 
 std::map<Font, sf::Font> Fonts::fonts;
 
-void Fonts::loadFonts() throw(LoadFileError) {
+void Fonts::loadFonts() throw(load_file_error) {
     const std::string error = "Error in font loading";
     //Fonts
     const std::string path = "../Resources/Font/";
@@ -19,7 +19,7 @@ void Fonts::loadFonts() throw(LoadFileError) {
 
     for (const auto &font:fontList)
         if (!fonts[font.first].loadFromFile(path + font.second))
-            throw LoadFileError(error, path, font.second);
+            throw load_file_error(error, path, font.second);
 }
 
 void Fonts::setText(sf::Text &text, Font name) {

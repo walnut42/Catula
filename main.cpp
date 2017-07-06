@@ -7,21 +7,20 @@
 #include "Window.h"
 #include "Audio.h"
 #include "Fonts.h"
-#include "LoadFileError.h"
 #include "MessageBox.h"
 
 int main() {
-    srand((unsigned int) (time(NULL)));
+    std::srand(std::time(0));
 
     try {
         Audio::loadSounds();
         Images::loadImages();
         Fonts::loadFonts();
     }
-    catch (const LoadFileError &e) {
+    catch (const load_file_error &e) {
         MessageBox mb("Error!");
         mb.showMessage(std::string(e.what()) + ": \nPath: " + e.getPath() + "\nFilename: " + e.getFilename());
-        return 0;
+        std::exit(EXIT_FAILURE);
     }
 
     Window::getInstance();

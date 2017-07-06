@@ -7,11 +7,13 @@
 
 #include <SFML/Graphics.hpp>
 #include <map>
-#include "LoadFileError.h"
+
+#include "load_file_error.h"
 
 
 enum class Image {
-    // The order is important for the background random generator!
+
+    // The order is important for the background random generator.
             CavBg = 1, Cav2CemBg, Cav2HalBg,
     Cem2CavBg, CemBg, Cem2HalBg,
     Hal2CavBg, Hal2CemBg, HalBg,
@@ -22,7 +24,7 @@ enum class Image {
 
 class Images {
 public:
-    static void loadImages(bool smooth = true) throw(LoadFileError);
+    static void loadImages(bool smooth = true) throw(load_file_error);
 
     static void setSprite(sf::Sprite &sprite, Image name);
 

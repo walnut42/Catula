@@ -8,7 +8,7 @@ add_subdirectory(test)
 
 set(SOURCE_FILES Audio.cpp Audio.h Background.cpp Background.h Collidable.cpp Collidable.h CollidableFactory.cpp
         CollidableFactory.h Controller.cpp Controller.h Entity.cpp Entity.h Fonts.cpp Fonts.h GameInfo.cpp GameInfo.h
-        Images.cpp Images.h Laser.cpp Laser.h LoadFileError.cpp LoadFileError.h main.cpp MainCharacter.cpp
+        Images.cpp Images.h Laser.cpp Laser.h load_file_error.cpp load_file_error.h main.cpp MainCharacter.cpp
         MainCharacter.h MessageBox.cpp MessageBox.h ModelBase.h ModelGame.cpp ModelGame.h ModelGameOver.cpp
         ModelGameOver.h ModelMenu.cpp ModelMenu.h ModelPause.cpp ModelPause.h Rocket.cpp Rocket.h Skull.cpp Skull.h
         Star.cpp Star.h Window.cpp Window.h)

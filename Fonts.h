@@ -7,7 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <map>
-#include "LoadFileError.h"
+#include "load_file_error.h"
 
 
 enum class Font {
@@ -16,7 +16,7 @@ enum class Font {
 
 class Fonts {
 public:
-    static void loadFonts() throw(LoadFileError);
+    static void loadFonts() throw(load_file_error);
 
     static void setText(sf::Text &text, Font name);
 

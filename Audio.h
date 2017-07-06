@@ -5,10 +5,10 @@
 #ifndef CATULA_SOUNDS_H
 #define CATULA_SOUNDS_H
 
-#include <map>
 #include <SFML/Audio.hpp>
+#include <map>
 
-#include "LoadFileError.h"
+#include "load_file_error.h"
 
 
 enum class Sound {
@@ -21,7 +21,7 @@ enum class Music {
 
 class Audio {
 public:
-    static void loadSounds() throw(LoadFileError);
+    static void loadSounds() throw(load_file_error);
 
     static void setSound(sf::Sound &sound, Sound name);
 

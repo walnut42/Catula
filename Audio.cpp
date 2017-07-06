@@ -7,7 +7,7 @@
 std::map<Sound, sf::SoundBuffer> Audio::soundBuffers;
 std::map<Music, std::string> Audio::musicFiles;
 
-void Audio::loadSounds() throw(LoadFileError) {
+void Audio::loadSounds() throw(load_file_error) {
     const std::string error = "Error in sound loading";
     //Sounds
     const std::string path = "../Resources/Audio/";
@@ -23,7 +23,7 @@ void Audio::loadSounds() throw(LoadFileError) {
 
     for (const auto &sound:soundList)
         if (!soundBuffers[sound.first].loadFromFile(path + sound.second))
-            throw LoadFileError(error, path, sound.second);
+            throw load_file_error(error, path, sound.second);
 
     //Musics
     musicFiles[Music::Menu] = path + "darkshadow.wav";

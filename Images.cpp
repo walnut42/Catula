@@ -6,7 +6,7 @@
 
 std::map<Image, sf::Texture> Images::textures;
 
-void Images::loadImages(bool smooth) throw(LoadFileError) {
+void Images::loadImages(bool smooth) throw(load_file_error) {
     const std::string error = "Error in image loading";
 
     const std::string path = "../Resources/Images/";
@@ -35,7 +35,7 @@ void Images::loadImages(bool smooth) throw(LoadFileError) {
 
     for (const auto &image:imageList) {
         if (!textures[image.first].loadFromFile(path + image.second))
-            throw LoadFileError(error, path, image.second);
+            throw load_file_error(error, path, image.second);
         else
             textures[image.first].setSmooth(smooth);
     }
