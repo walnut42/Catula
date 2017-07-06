@@ -23,8 +23,8 @@ int main() {
         std::exit(EXIT_FAILURE);
     }
 
-    Window::getInstance();
+    Window *instance = Window::getInstance();
     Controller controller;
-    Window::getInstance()->gameLoop(controller);
+    instance->gameLoop(controller);
     return 0;
 }
