@@ -47,6 +47,7 @@ private:
     Background *background;
     MainCharacter *mainCharacter;
     std::list<std::unique_ptr<Collidable>> collidables;
+    float numberColl;
     GameInfo *textbox;
 
     sf::Music music;

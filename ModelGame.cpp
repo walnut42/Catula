@@ -10,9 +10,10 @@
 #include "MainCharacter.h"
 
 ModelGame::ModelGame() : ModelGame{Image::Catula} {
+    numberColl = 4;
 }
 
-ModelGame::ModelGame(Image image) {
+ModelGame::ModelGame(Image image) : numberColl{4} {
     Audio::setMusic(music, Music::Game);
     music.setLoop(true);
 
@@ -37,7 +38,7 @@ ModelBase *ModelGame::processInput(const sf::Event &event) {
 ModelBase *ModelGame::update() {
     removeCollidables();
 
-    if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() - 1000) {
+    if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() * (numberColl - 1) / numberColl) {
         collidables.push_back(std::unique_ptr<Collidable>(CollidableFactory::createCollidable(*this)));
     }
 
@@ -81,7 +82,8 @@ MainCharacter *ModelGame::getMainCharacter() {
 
 void ModelGame::removeCollidables() {
     for (auto it = collidables.begin(), end = collidables.end(); it != end;) {
-        // Updating the iterator before it's cancelled avoids to have a null iterator
+
+        // Updating the iterator before it's cancelled avoids to have a null iterator.
         if ((*it)->getRemoveFlag()) {
             auto prev = it++;
             collidables.erase(prev);
