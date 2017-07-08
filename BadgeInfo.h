@@ -48,6 +48,7 @@ public:
         if (ptr != nullptr) {
             updateBadge();
             delete ptr;
+            ptr = nullptr;
         }
     }
 

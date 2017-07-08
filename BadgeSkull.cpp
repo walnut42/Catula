@@ -24,14 +24,18 @@ void BadgeSkull::attach() {
 }
 
 void BadgeSkull::detach() {
-    if (mainCharacter != nullptr)
+    if (mainCharacter != nullptr) {
         mainCharacter->unsubscribe(Subscription::Score, this);
+        mainCharacter = nullptr;
+    }
+
 }
 
 void BadgeSkull::update() {
     progress += static_cast<int>(Score::Skull);
     if (progress > 100) {
         locked = false;
+        detach();
         // TODO: save;
     }
 }

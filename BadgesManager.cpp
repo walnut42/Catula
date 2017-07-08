@@ -5,14 +5,12 @@
 #include <iostream>
 #include <typeinfo>
 #include "BadgesManager.h"
-#include "BadgeFly.h"
-#include "BadgeScore.h"
 #include "BadgeSkull.h"
 
 const std::string BadgesManager::filename = "../Resources/Saves/badges.dat";
 std::map<std::string, BadgeInfo> BadgesManager::badges{
-        {"BadgeFly",   BadgeInfo(&createInstance<BadgeFly>)},
-        {"BadgeScore", BadgeInfo(&createInstance<BadgeScore>)},
+//        {"BadgeFly",   BadgeInfo(&createInstance<BadgeFly>)},
+//        {"BadgeScore", BadgeInfo(&createInstance<BadgeScore>)},
         {"BadgeSkull", BadgeInfo(&createInstance<BadgeSkull>)}
 };
 

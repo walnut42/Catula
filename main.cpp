@@ -30,6 +30,7 @@ int main() {
     Controller controller;
     instance->gameLoop(controller);
 
+    BadgesManager::destroyBadgesObservers();
     BadgesManager::saveBadges();
     return 0;
 }
