@@ -8,6 +8,7 @@
 #include "CollidableFactory.h"
 #include "Background.h"
 #include "MainCharacter.h"
+#include "BadgesManager.h"
 
 //// test
 //#include "BadgeScore.h"
@@ -31,9 +32,12 @@ ModelGame::ModelGame(Image image) : numberColl{4} {
 //    badgeSkull = new BadgeSkull(mainCharacter, true, 99);
 //    badgeFly = new BadgeFly(mainCharacter, true, 10);
 
+
+    BadgesManager::createBadgesObservers(mainCharacter);
 }
 
 ModelGame::~ModelGame() {
+    BadgesManager::destroyBadgesObservers();
     delete background;
     delete mainCharacter;
     delete textbox;

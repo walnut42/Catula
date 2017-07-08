@@ -8,9 +8,10 @@
 #include "Audio.h"
 #include "Fonts.h"
 #include "MessageBox.h"
+#include "BadgesManager.h"
 
 int main() {
-    std::srand(std::time(0));
+    std::srand(static_cast<unsigned int>(std::time(0)));
 
     try {
         Audio::loadSounds();
@@ -23,8 +24,12 @@ int main() {
         std::exit(EXIT_FAILURE);
     }
 
+    BadgesManager::loadBadges();
+
     Window *instance = Window::getInstance();
     Controller controller;
     instance->gameLoop(controller);
+
+    BadgesManager::saveBadges();
     return 0;
 }

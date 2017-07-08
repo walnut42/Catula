@@ -4,7 +4,7 @@
 
 #include "BadgeScore.h"
 
-BadgeScore::BadgeScore(MainCharacter *mC, bool l) {
+BadgeScore::BadgeScore(MainCharacter *mC, bool l, float p) {
     mainCharacter = mC;
 
     // test
