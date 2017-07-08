@@ -4,10 +4,7 @@
 
 #include "BadgeFly.h"
 
-BadgeFly::BadgeFly(MainCharacter *mC, bool l, float p) {
-    mainCharacter = mC;
-    locked = l;
-    progress = p;
+BadgeFly::BadgeFly(MainCharacter *mC, float p) : Badge{mC, p} {
     top = false;
     attach();
 }

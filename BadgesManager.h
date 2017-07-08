@@ -21,12 +21,13 @@ public:
 
     static void createBadgesObservers(MainCharacter *mC);
 
-    static void destroyBadgesObservers(bool all);
+    static void destroyBadgesObservers();
 
 private:
     BadgesManager() = delete;
 
     static const std::string filename;
+    static bool created;
     static std::map<std::string, BadgeInfo> badges;
 };
 

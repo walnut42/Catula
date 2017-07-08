@@ -13,8 +13,8 @@
 
 
 template<typename T>
-Badge *createInstance(MainCharacter *mC, bool locked, float progress) {
-    return new T(mC, locked, progress);
+Badge *createInstance(MainCharacter *mC, float progress) {
+    return new T(mC, progress);
 }
 
 template<typename T>
@@ -31,46 +31,22 @@ void writeBinary(std::fstream &stream, T &value) {
 
 class BadgeInfo {
 public:
-    BadgeInfo(Badge *(*f)(MainCharacter *mC, bool locked, float progress)) : creator{f}, locked{true}, progress{0},
-                                                                             ptr{nullptr} {
-    }
+    BadgeInfo(Badge *(*f)(MainCharacter *mC, float progress));
 
-    ~BadgeInfo() {
-        destroyBadge();
-    }
+    ~BadgeInfo();
 
-    void createBadge(MainCharacter *mC) {
-        if (locked)
-            ptr = creator(mC, locked, progress);
-    }
+    void createBadge(MainCharacter *mC);
 
-    void destroyBadge() {
-        if (ptr != nullptr) {
-            updateBadge();
-            delete ptr;
-            ptr = nullptr;
-        }
-    }
+    void destroyBadge();
 
-    void loadBadge(std::fstream &stream) {
-        readBinary(stream, locked);
-        readBinary(stream, progress);
-    }
+    void loadBadge(std::fstream &stream);
 
-    void saveBadge(std::fstream &stream) {
-        writeBinary(stream, locked);
-        writeBinary(stream, progress);
-    }
+    void saveBadge(std::fstream &stream);
 
-    void updateBadge() {
-        if (ptr != nullptr) {
-            locked = ptr->isLocked();
-            progress = ptr->getProgress();
-        }
-    }
+    void updateBadge();
 
 private:
-    Badge *(*creator)(MainCharacter *mC, bool locked, float progress);
+    Badge *(*creator)(MainCharacter *mC, float progress);
 
     bool locked;
     float progress;

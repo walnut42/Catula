@@ -4,13 +4,7 @@
 
 #include "BadgeSkull.h"
 
-BadgeSkull::BadgeSkull(MainCharacter *mC, bool l, float p) {
-    mainCharacter = mC;
-
-    // test
-    locked = l;
-
-    progress = p;
+BadgeSkull::BadgeSkull(MainCharacter *mC, float p) : Badge{mC, p} {
     attach();
 }
 

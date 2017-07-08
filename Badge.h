@@ -12,6 +12,10 @@ class MainCharacter;
 
 class Badge {
 public:
+    Badge(MainCharacter *mC, float p = 0) : locked{true}, progress{p}, mainCharacter{mC} {
+
+    }
+
     virtual ~Badge() {}
 
     virtual void update()=0;

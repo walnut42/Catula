@@ -10,11 +10,6 @@
 #include "MainCharacter.h"
 #include "BadgesManager.h"
 
-//// test
-//#include "BadgeScore.h"
-//#include "BadgeSkull.h"
-//#include "BadgeFly.h"
-
 ModelGame::ModelGame() : ModelGame{Image::Catula} {
     numberColl = 4;
 }
@@ -27,17 +22,11 @@ ModelGame::ModelGame(Image image) : numberColl{4} {
     mainCharacter = new MainCharacter(*this, image);
     textbox = new GameInfo(*this);
 
-//    // test
-//    badgeZero = new BadgeScore(mainCharacter, true);
-//    badgeSkull = new BadgeSkull(mainCharacter, true, 99);
-//    badgeFly = new BadgeFly(mainCharacter, true, 10);
-
-
     BadgesManager::createBadgesObservers(mainCharacter);
 }
 
 ModelGame::~ModelGame() {
-    BadgesManager::destroyBadgesObservers(false);
+    BadgesManager::destroyBadgesObservers();
     delete background;
     delete mainCharacter;
     delete textbox;

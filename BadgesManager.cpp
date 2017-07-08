@@ -9,6 +9,7 @@
 #include "BadgeFly.h"
 #include "BadgeScore.h"
 
+bool BadgesManager::created = false;
 const std::string BadgesManager::filename = "../Resources/Saves/badges.dat";
 std::map<std::string, BadgeInfo> BadgesManager::badges{
         {"BadgeFly",   BadgeInfo(&createInstance<BadgeFly>)},
@@ -76,18 +77,18 @@ void BadgesManager::saveBadges() {
 }
 
 void BadgesManager::createBadgesObservers(MainCharacter *mC) {
+    created = true;
     for (auto &badge:badges) {
         badge.second.createBadge(mC);
     }
 }
 
-void BadgesManager::destroyBadgesObservers(bool all) {
-    static int destroyAll = false;
-    if (!destroyAll)
+void BadgesManager::destroyBadgesObservers() {
+    if (created) {
         for (auto &badge:badges) {
             badge.second.destroyBadge();
         }
-    if (all)
-        destroyAll = true;
+        created = false;
+    }
 }
 
