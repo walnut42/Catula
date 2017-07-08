@@ -9,8 +9,7 @@ BadgeFly::BadgeFly(MainCharacter *mC, bool l, float p) {
     locked = l;
     progress = p;
     top = false;
-    if (l)
-        attach();
+    attach();
 }
 
 BadgeFly::~BadgeFly() {
@@ -22,8 +21,10 @@ void BadgeFly::attach() {
 }
 
 void BadgeFly::detach() {
-    if (mainCharacter != nullptr)
+    if (mainCharacter != nullptr) {
         mainCharacter->unsubscribe(Subscription::Position, this);
+        mainCharacter = nullptr;
+    }
 }
 
 void BadgeFly::update() {
@@ -40,12 +41,10 @@ void BadgeFly::update() {
             time = clock.restart();
             progress += time.asMilliseconds();
             top = false;
-            std::cout << progress << std::endl;
         }
     }
-    if (progress > 10000) {
+    if (progress > 0) {
         locked = false;
-
-        // TODO: save
+        detach();
     }
 }

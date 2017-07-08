@@ -11,8 +11,7 @@ BadgeSkull::BadgeSkull(MainCharacter *mC, bool l, float p) {
     locked = l;
 
     progress = p;
-    if (l)
-        attach();
+    attach();
 }
 
 BadgeSkull::~BadgeSkull() {
@@ -33,9 +32,8 @@ void BadgeSkull::detach() {
 
 void BadgeSkull::update() {
     progress += static_cast<int>(Score::Skull);
-    if (progress > 100) {
+    if (progress > 0) {
         locked = false;
         detach();
-        // TODO: save;
     }
 }

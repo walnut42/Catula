@@ -5,16 +5,12 @@
 #include "BadgeScore.h"
 
 BadgeScore::BadgeScore(MainCharacter *mC, bool l, float p) {
+    std::cout << "BadgeScore" << std::endl;
     mainCharacter = mC;
-
-    // test
-    locked = l;
-
     progress = 0;
     count = 0;
     previousScore = 0;
-    if (l)
-        attach();
+    attach();
 }
 
 BadgeScore::~BadgeScore() {
@@ -22,21 +18,26 @@ BadgeScore::~BadgeScore() {
 }
 
 void BadgeScore::attach() {
+    std::cout << "BadgeScore::attach" << std::endl;
     mainCharacter->subscribe(Subscription::Score, this);
 }
 
 void BadgeScore::detach() {
-    if (mainCharacter != nullptr)
+    std::cout << "BadgeScore::detach" << std::endl;
+    if (mainCharacter != nullptr) {
         mainCharacter->unsubscribe(Subscription::Score, this);
+        mainCharacter = nullptr;
+    }
 }
 
 void BadgeScore::update() {
+    std::cout << "BadgeScore::update" << std::endl;
     mainCharacter->getScore() > previousScore || mainCharacter->getLives() >= previousLives ? count++ : count = 0;
     previousScore = mainCharacter->getScore();
     previousLives = mainCharacter->getLives();
 
     if (count > 2) {
         locked = false;
-        // TODO: save
+        detach();
     }
 }
