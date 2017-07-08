@@ -42,3 +42,22 @@ void BadgeInfo::updateBadge() {
         progress = ptr->getProgress();
     }
 }
+
+void BadgeInfo::setTexture(sf::Texture &t) {
+    texture = t;
+    Images::setSprite(bar, Image::Bar);
+    Images::setSprite(barEmpty, Image::BarEmpty);
+}
+
+void BadgeInfo::drawBadge(Window *window, float x, float y) {
+    updateBadge();
+    if (locked)
+        Images::setSprite(sprite, Image::BadgeLocked);
+    else
+        sprite.setTexture(texture);
+    window->drawSprite(sprite, sf::Vector2f(x, y));
+    window->drawSprite(barEmpty, sf::Vector2f(x, y + 155));
+    bar.setTextureRect(sf::IntRect(0, 0, progress / 100 * 150, 9));
+    window->drawSprite(bar, sf::Vector2f(x, y + 155));
+
+}

@@ -5,6 +5,7 @@
 #include "Controller.h"
 
 std::unique_ptr<ModelMenu> Controller::modelMenu;
+std::unique_ptr<ModelBadge> Controller::modelBadge;
 std::unique_ptr<ModelGame> Controller::modelGame;
 std::unique_ptr<ModelPause> Controller::modelPause;
 std::unique_ptr<ModelGameOver> Controller::modelGameOver;

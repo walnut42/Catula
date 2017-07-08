@@ -59,16 +59,16 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
             return newModel(Controller::modelGame, Image::CatPumpkin);
         else
             return newModel(Controller::modelGame);
-    }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
+    } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
         selection.setPosition(Window::getWidth() / 4.0f, Window::getHeight() / 2.0f);
         selected = Catula;
         sound.play();
-    }
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
+    } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
         selection.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
         selected = Mushroom;
         sound.play();
+    } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
+        return getModel(Controller::modelBadge);
     }
     return nullptr;
 }

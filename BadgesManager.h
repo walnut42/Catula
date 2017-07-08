@@ -7,7 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <fstream>
-
+#include <functional>
 #include "Badge.h"
 #include "MainCharacter.h"
 #include "BadgeInfo.h"
@@ -23,9 +23,10 @@ public:
 
     static void destroyBadgesObservers();
 
+    static void foreachBadge(std::function<void(BadgeInfo &)> lambda);
+
 private:
     BadgesManager() = delete;
-
     static const std::string filename;
     static bool created;
     static std::map<std::string, BadgeInfo> badges;

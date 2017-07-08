@@ -12,6 +12,7 @@
 #include "ModelGame.h"
 #include "ModelPause.h"
 #include "ModelGameOver.h"
+#include "ModelBadge.h"
 
 
 class Controller {
@@ -25,6 +26,7 @@ public:
     void draw();
 
     static std::unique_ptr<ModelMenu> modelMenu;
+    static std::unique_ptr<ModelBadge> modelBadge;
     static std::unique_ptr<ModelGame> modelGame;
     static std::unique_ptr<ModelPause> modelPause;
     static std::unique_ptr<ModelGameOver> modelGameOver;

@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <typeinfo>
+#include <functional>
 #include "BadgesManager.h"
 #include "BadgeSkull.h"
 #include "BadgeFly.h"
@@ -43,10 +44,15 @@ void BadgesManager::loadBadges() {
                 //If a badge has been removed simply does't load it
             }
         }
+    }
 
-        //2
-//        for (auto &badge:badges)
-//            badge.second.loadBadge(stream);
+    //Load images
+    const std::string path = "../Resources/Images/Badges/";
+    for (auto &badge:badges) {
+        sf::Texture t;
+        t.loadFromFile(path + 'b' + badge.first.substr(1) + ".png");
+        t.setSmooth(true);
+        badge.second.setTexture(t);
     }
 }
 
@@ -70,9 +76,6 @@ void BadgesManager::saveBadges() {
             }
             badge.second.saveBadge(stream);
         }
-//        2
-//        for (auto &badge:badges)
-//            badge.second.saveBadge(stream);
     }
 }
 
@@ -89,6 +92,12 @@ void BadgesManager::destroyBadgesObservers() {
             badge.second.destroyBadge();
         }
         created = false;
+    }
+}
+
+void BadgesManager::foreachBadge(std::function<void(BadgeInfo &)> lambda) {
+    for (auto &badge:badges) {
+        lambda(badge.second);
     }
 }
 

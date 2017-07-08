@@ -9,6 +9,7 @@
 #include <fstream>
 
 #include "Badge.h"
+#include "Window.h"
 #include "MainCharacter.h"
 
 
@@ -39,18 +40,27 @@ public:
 
     void destroyBadge();
 
+    void setTexture(sf::Texture &t);
+
     void loadBadge(std::fstream &stream);
 
     void saveBadge(std::fstream &stream);
 
-    void updateBadge();
+    void drawBadge(Window *window, float x, float y);
 
 private:
     Badge *(*creator)(MainCharacter *mC, float progress);
 
+    void updateBadge();
+
     bool locked;
     float progress;
     Badge *ptr;
+
+    sf::Texture texture;
+    sf::Sprite sprite;
+    sf::Sprite bar;
+    sf::Sprite barEmpty;
 };
 
 
