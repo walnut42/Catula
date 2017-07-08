@@ -22,7 +22,6 @@ void MainCharacter::update() {
     MainCharacter::handleInput();
 
     updatePos();
-
     //Borders collision
     if (pos.y + size.y >= Window::getHeight() - bottom) {
         vel.y = 0;
@@ -31,6 +30,7 @@ void MainCharacter::update() {
         vel.y = 0;
         pos.y = top;
     }
+    notify(Subscription::Position);
 }
 
 bool MainCharacter::collide(Entity *obj) {
@@ -53,8 +53,11 @@ void MainCharacter::increaseLives(int l) {
     if (l < 0)
         modelGame.getBackground()->setVel();
     lives + l > maxLives ? lives = maxLives : lives += l;
-    if (lives <= 0)
+    if (lives <= 0) {
         lost = true;
+        notify(Subscription::Position);
+    }
+    notify(Subscription::Score);
 }
 
 void MainCharacter::increaseScore(int s) {
@@ -65,6 +68,7 @@ void MainCharacter::increaseScore(int s) {
         increaseLives(1);
         lifeSound.play();
     }
+    notify(Subscription::Score);
 }
 
 void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {
@@ -77,4 +81,24 @@ void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {
     points.push_back(sf::Vector2f(60, size.y));
     points.push_back(sf::Vector2f(0, 140));
     points.push_back(sf::Vector2f(0, 60));
+}
+
+void MainCharacter::notify(Subscription s) {
+    auto range = badges.equal_range(s);
+
+    for (auto i = range.first; i != range.second; ++i) {
+        i->second->update();
+    }
+}
+
+void MainCharacter::subscribe(Subscription s, Badge *b) {
+    badges.insert(std::make_pair(s, b));
+}
+
+void MainCharacter::unsubscribe(Subscription s, Badge *b) {
+    auto range = badges.equal_range(s);
+    for (auto i = range.first; i != range.second; ++i) {
+        if (i->second == b);
+        badges.erase(i);
+    }
 }

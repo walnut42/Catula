@@ -9,6 +9,11 @@
 #include "Background.h"
 #include "MainCharacter.h"
 
+//// test
+//#include "BadgeScore.h"
+//#include "BadgeSkull.h"
+//#include "BadgeFly.h"
+
 ModelGame::ModelGame() : ModelGame{Image::Catula} {
     numberColl = 4;
 }
@@ -20,6 +25,12 @@ ModelGame::ModelGame(Image image) : numberColl{4} {
     background = new Background(*this);
     mainCharacter = new MainCharacter(*this, image);
     textbox = new GameInfo(*this);
+
+//    // test
+//    badgeZero = new BadgeScore(mainCharacter, true);
+//    badgeSkull = new BadgeSkull(mainCharacter, true, 99);
+//    badgeFly = new BadgeFly(mainCharacter, true, 10);
+
 }
 
 ModelGame::~ModelGame() {

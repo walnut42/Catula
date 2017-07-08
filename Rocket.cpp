@@ -22,6 +22,6 @@ void Rocket::update() {
 
 void Rocket::collided() {
     removeFlag = true;
-    modelGame.getMainCharacter()->increaseScore(-5);
+    modelGame.getMainCharacter()->increaseScore(static_cast<int>(Score::Rocket));
     modelGame.getMainCharacter()->playSound(Sound::Explosion);
 }

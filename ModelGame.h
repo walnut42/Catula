@@ -10,6 +10,10 @@
 #include "ModelBase.h"
 #include "Images.h"
 
+// test
+//#include "Badge.h"
+
+class Badge;
 
 class Background;
 
@@ -51,6 +55,11 @@ private:
     GameInfo *textbox;
 
     sf::Music music;
+
+//    // test
+//    Badge *badgeZero;
+//    Badge *badgeSkull;
+//    Badge *badgeFly;
 };
 
 

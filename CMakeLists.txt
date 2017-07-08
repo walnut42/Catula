@@ -11,7 +11,7 @@ set(SOURCE_FILES Audio.cpp Audio.h Background.cpp Background.h Collidable.cpp Co
         Images.cpp Images.h Laser.cpp Laser.h load_file_error.cpp load_file_error.h main.cpp MainCharacter.cpp
         MainCharacter.h MessageBox.cpp MessageBox.h ModelBase.h ModelGame.cpp ModelGame.h ModelGameOver.cpp
         ModelGameOver.h ModelMenu.cpp ModelMenu.h ModelPause.cpp ModelPause.h Rocket.cpp Rocket.h Skull.cpp Skull.h
-        Star.cpp Star.h Window.cpp Window.h)
+        Star.cpp Star.h Window.cpp Window.h Badge.h BadgeScore.cpp BadgeScore.h BadgeSkull.cpp BadgeSkull.h BadgeFly.cpp BadgeFly.h)
 
 add_executable(Catula main.cpp)
 

@@ -6,7 +6,9 @@
 #define CATULA_BADGE_H
 
 #include "Images.h"
+#include "MainCharacter.h"
 
+class MainCharacter;
 
 class Badge {
 public:
@@ -16,10 +18,6 @@ public:
 
     bool isLocked() const {
         return locked;
-    }
-
-    bool toSave() const {
-        return save;
     }
 
     float getProgress() const {
@@ -32,9 +30,8 @@ protected:
     virtual void detach()=0;
 
     bool locked;
-    bool save;
     float progress;
-    Image image;
+    MainCharacter *mainCharacter;
 };
 
 

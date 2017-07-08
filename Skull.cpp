@@ -21,6 +21,6 @@ void Skull::update() {
 
 void Skull::collided() {
     removeFlag = true;
-    modelGame.getMainCharacter()->increaseScore(5);
+    modelGame.getMainCharacter()->increaseScore(static_cast<int>(Score::Skull));
     modelGame.getMainCharacter()->playSound(Sound::Zombie);
 }

@@ -20,6 +20,6 @@ void Star::update() {
 
 void Star::collided() {
     removeFlag = true;
-    modelGame.getMainCharacter()->increaseScore(1);
+    modelGame.getMainCharacter()->increaseScore(static_cast<int>(Score::Star));
     modelGame.getMainCharacter()->playSound(Sound::Bonus);
 }
