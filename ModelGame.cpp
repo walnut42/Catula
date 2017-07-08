@@ -37,7 +37,7 @@ ModelGame::ModelGame(Image image) : numberColl{4} {
 }
 
 ModelGame::~ModelGame() {
-    BadgesManager::destroyBadgesObservers();
+    BadgesManager::destroyBadgesObservers(false);
     delete background;
     delete mainCharacter;
     delete textbox;

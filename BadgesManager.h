@@ -1,5 +1,5 @@
 //
-// Created by lorenzo on 07/07/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 08/07/17.
 //
 
 #ifndef CATULA_BADGESMANAGER_H
@@ -21,7 +21,7 @@ public:
 
     static void createBadgesObservers(MainCharacter *mC);
 
-    static void destroyBadgesObservers();
+    static void destroyBadgesObservers(bool all);
 
 private:
     BadgesManager() = delete;

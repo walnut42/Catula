@@ -1,16 +1,18 @@
 //
-// Created by lorenzo on 07/07/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 08/07/17.
 //
 
 #include <iostream>
 #include <typeinfo>
 #include "BadgesManager.h"
 #include "BadgeSkull.h"
+#include "BadgeFly.h"
+#include "BadgeScore.h"
 
 const std::string BadgesManager::filename = "../Resources/Saves/badges.dat";
 std::map<std::string, BadgeInfo> BadgesManager::badges{
-//        {"BadgeFly",   BadgeInfo(&createInstance<BadgeFly>)},
-//        {"BadgeScore", BadgeInfo(&createInstance<BadgeScore>)},
+        {"BadgeFly",   BadgeInfo(&createInstance<BadgeFly>)},
+        {"BadgeScore", BadgeInfo(&createInstance<BadgeScore>)},
         {"BadgeSkull", BadgeInfo(&createInstance<BadgeSkull>)}
 };
 
@@ -79,9 +81,13 @@ void BadgesManager::createBadgesObservers(MainCharacter *mC) {
     }
 }
 
-void BadgesManager::destroyBadgesObservers() {
-    for (auto &badge:badges) {
-        badge.second.destroyBadge();
-    }
+void BadgesManager::destroyBadgesObservers(bool all) {
+    static int destroyAll = false;
+    if (!destroyAll)
+        for (auto &badge:badges) {
+            badge.second.destroyBadge();
+        }
+    if (all)
+        destroyAll = true;
 }
 
