@@ -24,7 +24,7 @@ public:
 
 private:
     float points;
-    const float goalPoints = 10;
+    const float goalPoints = 3;
     int previousScore;
 };
 

@@ -4,6 +4,8 @@
 
 #include "BadgeFly.h"
 
+// Fly on the top of the screen for goalPoints milliseconds (progress).
+
 BadgeFly::BadgeFly(MainCharacter *mC, float p) : Badge{mC, p} {
     points = progress * goalPoints / 100;
     top = false;
@@ -41,7 +43,7 @@ void BadgeFly::update() {
             top = false;
         }
     }
-    if (points >= 10000) {
+    if (points >= goalPoints) {
         locked = false;
         progress = 100;
         detach();

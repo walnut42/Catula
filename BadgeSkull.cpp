@@ -4,6 +4,8 @@
 
 #include "BadgeSkull.h"
 
+// Get goalPoints skulls (progress).
+
 BadgeSkull::BadgeSkull(MainCharacter *mC, float p) : Badge{mC, p} {
     previousScore = mainCharacter->getScore();
     points = progress * goalPoints / 100;

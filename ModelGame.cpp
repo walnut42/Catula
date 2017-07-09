@@ -24,7 +24,6 @@ ModelGame::ModelGame(Image image) {
 }
 
 ModelGame::~ModelGame() {
-    BadgesManager::destroyBadgesObservers();
     delete background;
     delete mainCharacter;
     delete textbox;
@@ -41,7 +40,7 @@ ModelBase *ModelGame::update() {
     removeCollidables();
 
     // Use pixel instead of number of collidable objects because of playability on different screen widths.
-    if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() * -1000) {
+    if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() - 800) {
         collidables.push_back(std::unique_ptr<Collidable>(CollidableFactory::createCollidable(*this)));
     }
 
