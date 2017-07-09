@@ -24,6 +24,7 @@ ModelGame::ModelGame(Image image) {
 }
 
 ModelGame::~ModelGame() {
+    BadgesManager::destroyBadgesObservers();
     delete background;
     delete mainCharacter;
     delete textbox;
