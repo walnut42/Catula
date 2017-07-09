@@ -32,7 +32,7 @@ ModelMenu::ModelMenu() : textColor{14, 1, 140}, titleStopY{2.5}, titleY{0}, sele
     Fonts::setText(contentText, Font::Serif);
     contentText.setCharacterSize(30);
     contentText.setColor(textColor);
-    contentText.setString("Choose the character and play...");
+    contentText.setString("Choose the character and play.\nPress b to see badges.");
     sf::FloatRect textRect = contentText.getGlobalBounds();
     contentText.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
 

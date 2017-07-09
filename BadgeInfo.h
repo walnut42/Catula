@@ -36,6 +36,12 @@ public:
 
     ~BadgeInfo();
 
+    // General badges info for all badges.
+
+    static const int numberOfBadges = 3;
+
+    static const int badgeSize = 150;
+
     void createBadge(MainCharacter *mC);
 
     void destroyBadge();

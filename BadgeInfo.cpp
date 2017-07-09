@@ -55,9 +55,12 @@ void BadgeInfo::drawBadge(Window *window, float x, float y) {
         Images::setSprite(sprite, Image::BadgeLocked);
     else
         sprite.setTexture(texture);
+    sprite.setOrigin(sprite.getGlobalBounds().width / 2.0f, 0);
     window->drawSprite(sprite, sf::Vector2f(x, y));
-    window->drawSprite(barEmpty, sf::Vector2f(x, y + 155));
-    bar.setTextureRect(sf::IntRect(0, 0, progress / 100 * 150, 9));
-    window->drawSprite(bar, sf::Vector2f(x, y + 155));
 
+    barEmpty.setOrigin(barEmpty.getGlobalBounds().width / 2.0f, 0);
+    window->drawSprite(barEmpty, sf::Vector2f(x, y + badgeSize + 5));
+
+    bar.setTextureRect(sf::IntRect(0, 0, static_cast<int>(progress / 100 * badgeSize), 9));
+    window->drawSprite(bar, sf::Vector2f(x - barEmpty.getGlobalBounds().width / 2.0f, y + badgeSize + 5));
 }

@@ -21,6 +21,11 @@ public:
     virtual void attach() override;
 
     virtual void detach() override;
+
+private:
+    float points;
+    const float goalPoints = 10;
+    int previousScore;
 };
 
 

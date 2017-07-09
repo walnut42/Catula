@@ -4,7 +4,10 @@
 
 #include "BadgeScore.h"
 
-BadgeScore::BadgeScore(MainCharacter *mC, float p) : Badge{mC, p}, count{0}, previousScore{0}, previousLives{0} {
+BadgeScore::BadgeScore(MainCharacter *mC, float p) : Badge{mC, p}, count{0} {
+    previousScore = mainCharacter->getScore();
+    previousLives = mainCharacter->getLives();
+    progress = 0;
     attach();
 }
 
@@ -28,8 +31,9 @@ void BadgeScore::update() {
     previousScore = mainCharacter->getScore();
     previousLives = mainCharacter->getLives();
 
-    if (count > 2) {
+    if (count > goalPoints) {
         locked = false;
+        progress = 100;
         detach();
     }
 }

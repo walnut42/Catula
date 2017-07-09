@@ -5,6 +5,8 @@
 #include "BadgeSkull.h"
 
 BadgeSkull::BadgeSkull(MainCharacter *mC, float p) : Badge{mC, p} {
+    previousScore = mainCharacter->getScore();
+    points = progress * goalPoints / 100;
     attach();
 }
 
@@ -25,9 +27,15 @@ void BadgeSkull::detach() {
 }
 
 void BadgeSkull::update() {
-    progress += static_cast<int>(Score::Skull);
-    if (progress > 0) {
-        locked = false;
-        detach();
+    int score = mainCharacter->getScore();
+    if (score == previousScore + static_cast<int>(Score::Skull)) {
+        points++;
+        if (points >= goalPoints) {
+            locked = false;
+            progress = 100;
+            detach();
+        } else
+            progress = points * 100 / goalPoints;
     }
+    previousScore = score;
 }

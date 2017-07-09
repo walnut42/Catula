@@ -5,6 +5,7 @@
 #include "BadgeFly.h"
 
 BadgeFly::BadgeFly(MainCharacter *mC, float p) : Badge{mC, p} {
+    points = progress * goalPoints / 100;
     top = false;
     attach();
 }
@@ -31,17 +32,19 @@ void BadgeFly::update() {
             top = true;
         } else if (mainCharacter->getLives() < 0) {
             time = clock.restart();
-            progress += time.asMilliseconds();
+            points += time.asMilliseconds();
         }
     } else {
         if (top) {
             time = clock.restart();
-            progress += time.asMilliseconds();
+            points += time.asMilliseconds();
             top = false;
         }
     }
-    if (progress > 0) {
+    if (points >= 10000) {
         locked = false;
+        progress = 100;
         detach();
     }
+    progress = points * 100 / goalPoints;
 }

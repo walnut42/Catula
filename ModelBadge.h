@@ -29,6 +29,7 @@ private:
     sf::Text title;
     sf::Text content;
     sf::Clock clock;
+    const int padding = 50;
 };
 
 

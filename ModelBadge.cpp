@@ -17,7 +17,7 @@ ModelBadge::ModelBadge() {
     Fonts::setText(content, Font::Serif);
     content.setColor(sf::Color(150, 170, 230));
     content.setCharacterSize(25);
-    content.setString("Your badges!");
+    content.setString("Your badges!\nPress esc to go back to menu.");
     sf::FloatRect textRect = content.getGlobalBounds();
     content.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
     content.setPosition(Window::getWidth() / 2, 200);
@@ -64,17 +64,23 @@ void ModelBadge::draw() {
     Window::getInstance()->drawDrawable(title);
     Window::getInstance()->drawDrawable(content);
 
-    float x = 100, y = 300;
+    float newLine = -1;
+    int i = 0;
+    while (newLine < 0) {
+        newLine = Window::getWidth() / 2.0f - (BadgeInfo::numberOfBadges - i) * BadgeInfo::badgeSize / 2.0f;
+        i++;
+    }
+    float x = newLine;
+    float y = 300;
     Window *w = Window::getInstance();
     float maxWidth = Window::getWidth();
     BadgesManager::foreachBadge([&](BadgeInfo &b) {
         b.drawBadge(w, x, y);
-        x += 200;
-        if (x > maxWidth - 150) {
-            y += 200;
-            x = 100;
+        x += BadgeInfo::badgeSize + padding;
+        if (x > maxWidth - BadgeInfo::badgeSize) {
+            y += BadgeInfo::badgeSize + padding;
+            x = newLine;
         }
-
     });
 }
 

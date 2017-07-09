@@ -26,6 +26,7 @@ private:
     int count;
     int previousScore;
     int previousLives;
+    const float goalPoints = 10;
 };
 
 
