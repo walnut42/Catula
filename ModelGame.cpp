@@ -10,11 +10,9 @@
 #include "MainCharacter.h"
 #include "BadgesManager.h"
 
-ModelGame::ModelGame() : ModelGame{Image::Catula} {
-    numberColl = 4;
-}
+ModelGame::ModelGame() : ModelGame{Image::Catula} {}
 
-ModelGame::ModelGame(Image image) : numberColl{4} {
+ModelGame::ModelGame(Image image) {
     Audio::setMusic(music, Music::Game);
     music.setLoop(true);
 
@@ -42,7 +40,8 @@ ModelBase *ModelGame::processInput(const sf::Event &event) {
 ModelBase *ModelGame::update() {
     removeCollidables();
 
-    if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() * (numberColl - 1) / numberColl) {
+    // Use pixel instead of number of collidable objects because of playability on different screen widths.
+    if (collidables.empty() || collidables.back()->getPos().x < Window::getWidth() * -1000) {
         collidables.push_back(std::unique_ptr<Collidable>(CollidableFactory::createCollidable(*this)));
     }
 
