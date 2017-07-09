@@ -12,24 +12,35 @@
 #include "MainCharacter.h"
 #include "BadgeInfo.h"
 
-
 class BadgesManager {
 public:
-    static void loadBadges();
+    static BadgesManager *getInstance();
 
-    static void saveBadges();
+    void loadBadges();
 
-    static void createBadgesObservers(MainCharacter *mC);
+    void saveBadges();
 
-    static void destroyBadgesObservers();
+    void createBadgesObservers(MainCharacter *mC);
 
-    static void foreachBadge(std::function<void(BadgeInfo &)> lambda);
+    void destroyBadgesObservers();
+
+    void foreachBadge(std::function<void(BadgeInfo &)> lambda);
+
+    const int numberOfBadges();
+
+    const int getBadgeSize() const;
 
 private:
-    BadgesManager() = delete;
-    static const std::string filename;
-    static bool created;
-    static std::map<std::string, BadgeInfo> badges;
+    BadgesManager();
+
+    static BadgesManager *instance;
+
+    const int badgeSize;
+
+    const std::string filename;
+
+    bool created;
+    std::vector<std::unique_ptr<BadgeInfo>> badges;
 };
 
 

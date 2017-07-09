@@ -12,12 +12,6 @@
 #include "Window.h"
 #include "MainCharacter.h"
 
-
-template<typename T>
-Badge *createInstance(MainCharacter *mC, float progress) {
-    return new T(mC, progress);
-}
-
 template<typename T>
 void readBinary(std::fstream &stream, T &value) {
     stream.read(reinterpret_cast<char *>(&value), sizeof value);
@@ -32,17 +26,11 @@ void writeBinary(std::fstream &stream, T &value) {
 
 class BadgeInfo {
 public:
-    BadgeInfo(Badge *(*f)(MainCharacter *mC, float progress));
+    BadgeInfo(const std::string &className);
 
     ~BadgeInfo();
 
-    // General badges info for all badges.
-
-    static const int numberOfBadges = 3;
-
-    static const int badgeSize = 150;
-
-    void createBadge(MainCharacter *mC);
+    virtual void createBadge(MainCharacter *mC)=0;
 
     void destroyBadge();
 
@@ -54,10 +42,13 @@ public:
 
     void drawBadge(Window *window, float x, float y);
 
-private:
-    Badge *(*creator)(MainCharacter *mC, float progress);
+    const std::string &getClassName() const;
 
+
+protected:
     void updateBadge();
+
+    float getProgress();
 
     bool locked;
     float progress;
@@ -67,7 +58,21 @@ private:
     sf::Sprite sprite;
     sf::Sprite bar;
     sf::Sprite barEmpty;
+    const std::string className;
 };
 
+
+template<typename T>
+class BadgeInfoT : public BadgeInfo {
+public:
+    BadgeInfoT(const std::string &className) : BadgeInfo{className} {
+
+    }
+
+    virtual void createBadge(MainCharacter *mC) {
+        if (locked)
+            ptr = new T(mC, progress);
+    }
+};
 
 #endif //CATULA_BADGEINFO_H

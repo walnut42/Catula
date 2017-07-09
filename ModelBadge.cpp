@@ -64,21 +64,24 @@ void ModelBadge::draw() {
     Window::getInstance()->drawDrawable(title);
     Window::getInstance()->drawDrawable(content);
 
+    BadgesManager *badgesManager = BadgesManager::getInstance();
+
     float newLine = -1;
     int i = 0;
     while (newLine < 0) {
-        newLine = Window::getWidth() / 2.0f - (BadgeInfo::numberOfBadges - i) * BadgeInfo::badgeSize / 2.0f;
+        newLine = Window::getWidth() / 2.0f -
+                  (badgesManager->numberOfBadges() - i) * badgesManager->getBadgeSize() / 2.0f;
         i++;
     }
     float x = newLine;
     float y = 300;
     Window *w = Window::getInstance();
     float maxWidth = Window::getWidth();
-    BadgesManager::foreachBadge([&](BadgeInfo &b) {
+    badgesManager->foreachBadge([&](BadgeInfo &b) {
         b.drawBadge(w, x, y);
-        x += BadgeInfo::badgeSize + padding;
-        if (x > maxWidth - BadgeInfo::badgeSize) {
-            y += BadgeInfo::badgeSize + padding;
+        x += badgesManager->getBadgeSize() + padding;
+        if (x > maxWidth - badgesManager->getBadgeSize()) {
+            y += badgesManager->getBadgeSize() + padding;
             x = newLine;
         }
     });

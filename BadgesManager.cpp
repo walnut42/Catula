@@ -10,20 +10,19 @@
 #include "BadgeFly.h"
 #include "BadgeScore.h"
 
-bool BadgesManager::created = false;
-const std::string BadgesManager::filename = "../Resources/Saves/badges.dat";
-std::map<std::string, BadgeInfo> BadgesManager::badges{
-        {"BadgeFly",   BadgeInfo(&createInstance<BadgeFly>)},
-        {"BadgeScore", BadgeInfo(&createInstance<BadgeScore>)},
-        {"BadgeSkull", BadgeInfo(&createInstance<BadgeSkull>)}
-};
+BadgesManager *BadgesManager::instance = nullptr;
 
+
+BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/badges.dat"}, created{false} {
+    badges.emplace_back(new BadgeInfoT<BadgeFly>("BadgeFly"));
+    badges.emplace_back(new BadgeInfoT<BadgeScore>("BadgeScore"));
+    badges.emplace_back(new BadgeInfoT<BadgeSkull>("BadgeSkull"));
+}
 
 void BadgesManager::loadBadges() {
     std::fstream stream;
     stream.open(filename, std::ios::binary | std::ios::in);
     if (stream.is_open()) {
-        //1
         //n: number of badges
         int n;
         readBinary(stream, n);
@@ -37,12 +36,12 @@ void BadgesManager::loadBadges() {
                 readBinary(stream, c);
                 name += c;
             }
-            try {
-                badges.at(name).loadBadge(stream);
-            }
-            catch (std::out_of_range &e) {
-                //If a badge has been removed simply does't load it
-            }
+
+            auto element = std::find_if(badges.begin(), badges.end(), [&name](std::unique_ptr<BadgeInfo> &ptr) {
+                return ptr->getClassName() == name;
+            });
+            if (element != badges.end())
+                (*element)->loadBadge(stream);
         }
     }
 
@@ -50,9 +49,9 @@ void BadgesManager::loadBadges() {
     const std::string path = "../Resources/Images/Badges/";
     for (auto &badge:badges) {
         sf::Texture t;
-        t.loadFromFile(path + 'b' + badge.first.substr(1) + ".png");
+        t.loadFromFile(path + 'b' + badge->getClassName().substr(1) + ".png");
         t.setSmooth(true);
-        badge.second.setTexture(t);
+        badge->setTexture(t);
     }
 }
 
@@ -61,43 +60,57 @@ void BadgesManager::saveBadges() {
     std::fstream stream;
     stream.open(filename, std::ios::binary | std::ios::out);
     if (stream.is_open()) {
-        //1
         //n: number of badges
         int n = static_cast<int>(badges.size());
         writeBinary(stream, n);
 
         for (auto &badge:badges) {
             //s: length of name
-            int s = static_cast<int>(badge.first.length());
+            int s = static_cast<int>(badge->getClassName().length());
             writeBinary(stream, s);
-            std::string name = badge.first;
+            std::string name = badge->getClassName();
             for (int i = 0; i != s; i++) {
                 writeBinary(stream, name[i]);
             }
-            badge.second.saveBadge(stream);
+            badge->saveBadge(stream);
         }
     }
 }
 
 void BadgesManager::createBadgesObservers(MainCharacter *mC) {
     created = true;
-    for (auto &badge:badges) {
-        badge.second.createBadge(mC);
-    }
+    for (auto &badge:badges)
+        badge->createBadge(mC);
 }
 
 void BadgesManager::destroyBadgesObservers() {
     if (created) {
-        for (auto &badge:badges) {
-            badge.second.destroyBadge();
-        }
+        for (auto &badge:badges)
+            badge->destroyBadge();
         created = false;
     }
 }
 
 void BadgesManager::foreachBadge(std::function<void(BadgeInfo &)> lambda) {
-    for (auto &badge:badges) {
-        lambda(badge.second);
-    }
+    for (auto &badge:badges)
+        lambda(*badge);
 }
+
+const int BadgesManager::numberOfBadges() {
+    return static_cast<int>(badges.size());
+}
+
+
+BadgesManager *BadgesManager::getInstance() {
+    if (instance == nullptr) {
+        instance = new BadgesManager;
+    }
+    return instance;
+}
+
+const int BadgesManager::getBadgeSize() const {
+    return badgeSize;
+}
+
+
 

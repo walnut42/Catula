@@ -20,11 +20,11 @@ ModelGame::ModelGame(Image image) {
     mainCharacter = new MainCharacter(*this, image);
     textbox = new GameInfo(*this);
 
-    BadgesManager::createBadgesObservers(mainCharacter);
+    BadgesManager::getInstance()->createBadgesObservers(mainCharacter);
 }
 
 ModelGame::~ModelGame() {
-    BadgesManager::destroyBadgesObservers();
+    BadgesManager::getInstance()->destroyBadgesObservers();
     delete background;
     delete mainCharacter;
     delete textbox;

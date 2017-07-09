@@ -24,14 +24,14 @@ int main() {
         std::exit(EXIT_FAILURE);
     }
 
-    BadgesManager::loadBadges();
+    BadgesManager *badgesManager = BadgesManager::getInstance();
+    badgesManager->loadBadges();
 
     Window *instance = Window::getInstance();
     Controller controller;
     instance->gameLoop(controller);
 
-    BadgesManager::destroyBadgesObservers();
-
-    BadgesManager::saveBadges();
+    badgesManager->destroyBadgesObservers();
+    badgesManager->saveBadges();
     return 0;
 }
