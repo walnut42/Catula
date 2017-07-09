@@ -9,7 +9,7 @@
 #include "Fonts.h"
 
 enum {
-    Catula = 1, Mushroom = 3
+    Catula = 1, CatPumpkin = 3
 };
 
 ModelMenu::ModelMenu() : textColor{14, 1, 140}, titleStopY{2.5}, titleY{0}, selected{1} {
@@ -55,7 +55,7 @@ ModelMenu::~ModelMenu() {
 
 ModelBase *ModelMenu::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return) {
-        if (selected == Mushroom)
+        if (selected == CatPumpkin)
             return newModel(Controller::modelGame, Image::CatPumpkin);
         else
             return newModel(Controller::modelGame);
@@ -65,7 +65,7 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
         sound.play();
     } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
         selection.setPosition(Window::getWidth() * 3.0f / 4.0f, Window::getHeight() / 2.0f);
-        selected = Mushroom;
+        selected = CatPumpkin;
         sound.play();
     } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
         return getModel(Controller::modelBadge);
