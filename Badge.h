@@ -39,7 +39,6 @@ protected:
         detach();
     }
     bool locked;
-    float goalPoints;
     float points;
     float progress;
     MainCharacter *mainCharacter;
