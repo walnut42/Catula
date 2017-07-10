@@ -40,8 +40,8 @@ private:
 
     sf::Vector2f spriteSize;
     float distance;
-    float pos = 0;
-    float shift = 0;
+    float pos;
+    float shift;
     float vel;
     sf::Clock levelClock;
     std::list<sf::Sprite> sprites;

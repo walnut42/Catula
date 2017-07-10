@@ -5,7 +5,7 @@
 #include "Background.h"
 
 Background::Background(ModelGame &modelGame) : spriteSize{1251, 1000}, modelGame{modelGame}, countSprites{0},
-                                               distance{0}, countRep{0}, maxRep{20}, minRep{10} {
+                                               distance{0}, pos{0}, shift{0}, countRep{0}, maxRep{20}, minRep{10} {
     setRandRep();
 
     // Get Image index.
