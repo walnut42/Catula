@@ -55,9 +55,8 @@ void MainCharacter::increaseLives(int l) {
     lives + l > maxLives ? lives = maxLives : lives += l;
     if (lives <= 0) {
         lost = true;
-        notify(Subscription::Position);
     }
-    notify(Subscription::Score);
+    notify(Subscription::Life);
 }
 
 void MainCharacter::increaseScore(int s) {

@@ -23,7 +23,7 @@ enum class Score {
 };
 
 enum class Subscription {
-    Position, Score
+    Life, Position, Score
 };
 
 class MainCharacter : public Entity {

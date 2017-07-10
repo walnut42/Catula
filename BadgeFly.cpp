@@ -43,10 +43,8 @@ void BadgeFly::update() {
             top = false;
         }
     }
-    if (points >= goalPoints) {
-        locked = false;
-        progress = 100;
-        detach();
-    }
-    progress = points * 100 / goalPoints;
+    if (points >= goalPoints)
+        unlock();
+    else
+        progress = points * 100 / goalPoints;
 }

@@ -19,11 +19,13 @@ BadgeScore::~BadgeScore() {
 
 void BadgeScore::attach() {
     mainCharacter->subscribe(Subscription::Score, this);
+    mainCharacter->subscribe(Subscription::Life, this);
 }
 
 void BadgeScore::detach() {
     if (mainCharacter != nullptr) {
         mainCharacter->unsubscribe(Subscription::Score, this);
+        mainCharacter->unsubscribe(Subscription::Life, this);
         mainCharacter = nullptr;
     }
 }
@@ -32,10 +34,6 @@ void BadgeScore::update() {
     mainCharacter->getScore() > previousScore || mainCharacter->getLives() >= previousLives ? count++ : count = 0;
     previousScore = mainCharacter->getScore();
     previousLives = mainCharacter->getLives();
-
-    if (count >= goalPoints) {
-        locked = false;
-        progress = 100;
-        detach();
-    }
+    if (points >= goalPoints)
+        unlock();
 }

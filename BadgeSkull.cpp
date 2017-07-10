@@ -32,11 +32,9 @@ void BadgeSkull::update() {
     int score = mainCharacter->getScore();
     if (score == previousScore + static_cast<int>(Score::Skull)) {
         points++;
-        if (points >= goalPoints) {
-            locked = false;
-            progress = 100;
-            detach();
-        } else
+        if (points >= goalPoints)
+            unlock();
+        else
             progress = points * 100 / goalPoints;
     }
     previousScore = score;
