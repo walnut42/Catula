@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
 project(Catula)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 ### Add subdirectory for Google Test
 add_subdirectory(test)
