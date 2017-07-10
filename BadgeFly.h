@@ -24,6 +24,7 @@ public:
 
 private:
     bool top;
+    float initDistance;
     sf::Clock clock;
     sf::Time time;
 };

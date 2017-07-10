@@ -39,13 +39,14 @@ protected:
     virtual void detach()=0;
 
     void unlock() {
+        detach();
         locked = false;
         points = goalPoints;
-        detach();
     }
 
     bool locked;
     float points;
+    float goalPoints;
     MainCharacter *mainCharacter;
 };
 

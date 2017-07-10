@@ -6,8 +6,7 @@
 
 // Fly on the top of the screen for goalPoints milliseconds (progress).
 
-BadgeFly::BadgeFly(MainCharacter *mC, float p) : Badge{mC, 10000, p} {
-    top = false;
+BadgeFly::BadgeFly(MainCharacter *mC, float p) : Badge{mC, 100, p}, top{false}, initDistance{0} {
     attach();
 }
 
@@ -29,18 +28,15 @@ void BadgeFly::detach() {
 void BadgeFly::update() {
     if (mainCharacter->getPos().y <= 0) {
         if (!top) {
-            time = clock.restart();
+            initDistance = mainCharacter->getDistance();
             top = true;
-        } else if (mainCharacter->getLives() < 0) {
-            time = clock.restart();
-            points += time.asMilliseconds();
+        } else {
+            float d = mainCharacter->getDistance();
+            points += d - initDistance;
+            initDistance = d;
         }
-    } else {
-        if (top) {
-            time = clock.restart();
-            points += time.asMilliseconds();
-            top = false;
-        }
-    }
+    } else if (top)
+        top = false;
+
     Badge::update();
 }
