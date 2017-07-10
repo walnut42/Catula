@@ -101,3 +101,7 @@ void MainCharacter::unsubscribe(Subscription s, Badge *b) {
         badges.erase(i);
     }
 }
+
+float MainCharacter::getDistance() {
+    return modelGame.getBackground()->getDistance();
+}

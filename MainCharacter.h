@@ -44,6 +44,8 @@ public:
 
     void increaseLives(int l);
 
+    float getDistance();
+
     void increaseScore(int s);
 
     void playSound(Sound name) {
