@@ -32,4 +32,4 @@
 .idea/
 Resources/Saves/
 cmake-build-debug/
-test/
+test/lib/
