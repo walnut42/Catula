@@ -12,20 +12,25 @@ class MainCharacter;
 
 class Badge {
 public:
-    explicit Badge(MainCharacter *mC, float p = 0) : locked{true}, progress{p}, mainCharacter{mC} {
+    explicit Badge(MainCharacter *mC, float goalPoints, float p = 0) : locked{true}, goalPoints{goalPoints},
+                                                                       mainCharacter{mC},
+                                                                       points{p * goalPoints / 100} {
 
     }
 
     virtual ~Badge() {}
 
-    virtual void update()=0;
+    virtual void update() {
+        if (points >= goalPoints)
+            unlock();
+    }
 
     bool isLocked() const {
         return locked;
     }
 
     float getProgress() const {
-        return progress;
+        return points * 100 / goalPoints;
     }
 
 protected:
@@ -35,13 +40,13 @@ protected:
 
     void unlock() {
         locked = false;
-        progress = 100;
+        points = goalPoints;
         detach();
     }
+
     bool locked;
     float goalPoints;
     float points;
-    float progress;
     MainCharacter *mainCharacter;
 };
 

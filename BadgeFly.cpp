@@ -6,8 +6,7 @@
 
 // Fly on the top of the screen for goalPoints milliseconds (progress).
 
-BadgeFly::BadgeFly(MainCharacter *mC, float p) : Badge{mC, p} {
-    points = progress * goalPoints / 100;
+BadgeFly::BadgeFly(MainCharacter *mC, float p) : Badge{mC, 10000, p} {
     top = false;
     attach();
 }
@@ -43,8 +42,5 @@ void BadgeFly::update() {
             top = false;
         }
     }
-    if (points >= goalPoints)
-        unlock();
-    else
-        progress = points * 100 / goalPoints;
+    Badge::update();
 }

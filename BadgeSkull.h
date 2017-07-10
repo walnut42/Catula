@@ -23,8 +23,6 @@ public:
     virtual void detach() override;
 
 private:
-    float points;
-    const float goalPoints = 3;
     int previousScore;
 };
 

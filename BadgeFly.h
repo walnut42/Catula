@@ -26,8 +26,6 @@ private:
     bool top;
     sf::Clock clock;
     sf::Time time;
-    float points;
-    const float goalPoints = 10000;
 };
 
 

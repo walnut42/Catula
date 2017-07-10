@@ -6,10 +6,9 @@
 
 // Get goalPoints positive objects in a row.
 
-BadgeScore::BadgeScore(MainCharacter *mC, float p) : Badge{mC, p}, count{0} {
+BadgeScore::BadgeScore(MainCharacter *mC, float p) : Badge{mC, 10}, count{0} {
     previousScore = mainCharacter->getScore();
     previousLives = mainCharacter->getLives();
-    progress = 0;
     attach();
 }
 
@@ -34,6 +33,5 @@ void BadgeScore::update() {
     mainCharacter->getScore() > previousScore || mainCharacter->getLives() >= previousLives ? count++ : count = 0;
     previousScore = mainCharacter->getScore();
     previousLives = mainCharacter->getLives();
-    if (points >= goalPoints)
-        unlock();
+    Badge::update();
 }

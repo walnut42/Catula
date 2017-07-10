@@ -6,9 +6,8 @@
 
 // Get goalPoints skulls (progress).
 
-BadgeSkull::BadgeSkull(MainCharacter *mC, float p) : Badge{mC, p} {
+BadgeSkull::BadgeSkull(MainCharacter *mC, float p) : Badge{mC, 5, p} {
     previousScore = mainCharacter->getScore();
-    points = progress * goalPoints / 100;
     attach();
 }
 
@@ -30,12 +29,8 @@ void BadgeSkull::detach() {
 
 void BadgeSkull::update() {
     int score = mainCharacter->getScore();
-    if (score == previousScore + static_cast<int>(Score::Skull)) {
+    if (score == previousScore + static_cast<int>(Score::Skull))
         points++;
-        if (points >= goalPoints)
-            unlock();
-        else
-            progress = points * 100 / goalPoints;
-    }
     previousScore = score;
+    Badge::update();
 }
