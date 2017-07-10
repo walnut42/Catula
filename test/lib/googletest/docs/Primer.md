@@ -434,7 +434,7 @@ class FooTest : public ::testing::Test {
     // before the destructor).
   }
 
-  // CollidableFactory declared here can be used by all tests in the test case for Foo.
+  // Objects declared here can be used by all tests in the test case for Foo.
 };
 
 // Tests that the Foo::Bar() method does Abc.

@@ -3268,7 +3268,6 @@ namespace testing {
         };
 
 # if GTEST_HAS_COMBINE
-
 // INTERNAL IMPLEMENTATION - DO NOT USE IN USER CODE.
 //
 // Generates values from the Cartesian product of values produced

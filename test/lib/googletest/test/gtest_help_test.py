@@ -80,7 +80,7 @@ HELP_REGEX = re.compile(
 
 def RunWithFlag(flag):
     """Runs gtest_help_test_ with the given flag.
-  
+
     Returns:
       the exit code and the text output as a tuple.
     Args:
@@ -100,10 +100,10 @@ class GTestHelpTest(gtest_test_utils.TestCase):
 
     def TestHelpFlag(self, flag):
         """Verifies correct behavior when help flag is specified.
-    
+
         The right message must be printed and the tests must
         skipped when the given flag is specified.
-    
+
         Args:
           flag:  A flag to pass to the binary or None.
         """
@@ -124,10 +124,10 @@ class GTestHelpTest(gtest_test_utils.TestCase):
 
     def TestNonHelpFlag(self, flag):
         """Verifies correct behavior when no help flag is specified.
-    
+
         Verifies that when no help flag is specified, the tests are run
         and the help message is not printed.
-    
+
         Args:
           flag:  A flag to pass to the binary or None.
         """

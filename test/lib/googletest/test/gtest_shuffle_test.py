@@ -87,11 +87,11 @@ def RunAndReturnOutput(extra_env, args):
 
 def GetTestsForAllIterations(extra_env, args):
     """Runs the test program and returns a list of test lists.
-  
+
     Args:
       extra_env: a map from environment variables to their values
       args: command line flags to pass to gtest_shuffle_test_
-  
+
     Returns:
       A list where the i-th element is the list of tests run in the i-th
       test iteration.
@@ -110,10 +110,10 @@ def GetTestsForAllIterations(extra_env, args):
 
 def GetTestCases(tests):
     """Returns a list of test cases in the given full test names.
-  
+
     Args:
       tests: a list of full test names
-  
+
     Returns:
       A list of test cases from 'tests', in their original order.
       Consecutive duplicates are removed.
@@ -321,7 +321,6 @@ class GTestShuffleUnitTest(gtest_test_utils.TestCase):
         sorted_active_tests.extend(ACTIVE_TESTS)
         sorted_active_tests.sort()
         self.assertEqual(sorted_active_tests, sorted_sharded_tests)
-
 
 if __name__ == '__main__':
     gtest_test_utils.Main()

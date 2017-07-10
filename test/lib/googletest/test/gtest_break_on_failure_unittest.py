@@ -64,6 +64,7 @@ CATCH_EXCEPTIONS_ENV_VAR = 'GTEST_CATCH_EXCEPTIONS'
 EXE_PATH = gtest_test_utils.GetTestExecutablePath(
     'gtest_break_on_failure_unittest_')
 
+
 environ = gtest_test_utils.environ
 SetEnvVar = gtest_test_utils.SetEnvVar
 
@@ -97,7 +98,7 @@ class GTestBreakOnFailureUnitTest(gtest_test_utils.TestCase):
     def RunAndVerify(self, env_var_value, flag_value, expect_seg_fault):
         """Runs gtest_break_on_failure_unittest_ and verifies that it does
         (or does not) have a seg-fault.
-    
+
         Args:
           env_var_value:    value of the GTEST_BREAK_ON_FAILURE environment
                             variable; None if the variable should be unset.

@@ -165,7 +165,7 @@ class GTestXMLOutputUnitTest(gtest_xml_test_utils.GTestXMLTestCase):
 
     def testEmptyXmlOutput(self):
         """Verifies XML output for a Google Test binary without actual tests.
-    
+
         Runs a test program that generates an empty XML output, and
         tests that the XML output is expected.
         """
@@ -174,7 +174,7 @@ class GTestXMLOutputUnitTest(gtest_xml_test_utils.GTestXMLTestCase):
 
     def testTimestampValue(self):
         """Checks whether the timestamp attribute in the XML output is valid.
-    
+
         Runs a test program that generates an empty XML output, and checks if
         the timestamp attribute in the testsuites tag is valid.
         """
@@ -251,7 +251,7 @@ class GTestXMLOutputUnitTest(gtest_xml_test_utils.GTestXMLTestCase):
 
     def testFilteredTestXmlOutput(self):
         """Verifies XML output when a filter is applied.
-    
+
         Runs a test program that executes only some tests and verifies that
         non-selected tests do not show up in the XML output.
         """

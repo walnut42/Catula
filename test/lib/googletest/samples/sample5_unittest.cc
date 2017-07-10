@@ -97,44 +97,41 @@ class IntegerFunctionTest : public QuickTest {
 // Now we can write tests in the IntegerFunctionTest test case.
 
 // Tests Factorial()
-TEST_F(IntegerFunctionTest, Factorial
-) {
-// Tests factorial of negative numbers.
-EXPECT_EQ(1, Factorial(-5));
-EXPECT_EQ(1, Factorial(-1));
-EXPECT_GT(Factorial(-10),
-0);
+TEST_F(IntegerFunctionTest, Factorial) {
+    // Tests factorial of negative numbers.
+    EXPECT_EQ(1, Factorial(-5));
+    EXPECT_EQ(1, Factorial(-1));
+    EXPECT_GT(Factorial(-10), 0);
 
-// Tests factorial of 0.
-EXPECT_EQ(1, Factorial(0));
+    // Tests factorial of 0.
+    EXPECT_EQ(1, Factorial(0));
 
-// Tests factorial of positive numbers.
-EXPECT_EQ(1, Factorial(1));
-EXPECT_EQ(2, Factorial(2));
-EXPECT_EQ(6, Factorial(3));
-EXPECT_EQ(40320, Factorial(8));
+    // Tests factorial of positive numbers.
+    EXPECT_EQ(1, Factorial(1));
+    EXPECT_EQ(2, Factorial(2));
+    EXPECT_EQ(6, Factorial(3));
+    EXPECT_EQ(40320, Factorial(8));
 }
 
 
 // Tests IsPrime()
-TEST_F(IntegerFunctionTest, IsPrime
-) {
-// Tests negative input.
-EXPECT_FALSE(IsPrime(-1));
-EXPECT_FALSE(IsPrime(-2));
-EXPECT_FALSE(IsPrime(INT_MIN));
+TEST_F(IntegerFunctionTest, IsPrime) {
+    // Tests negative input.
+    EXPECT_FALSE(IsPrime(-1));
+    EXPECT_FALSE(IsPrime(-2));
+    EXPECT_FALSE(IsPrime(INT_MIN));
 
-// Tests some trivial cases.
-EXPECT_FALSE(IsPrime(0));
-EXPECT_FALSE(IsPrime(1));
-EXPECT_TRUE(IsPrime(2));
-EXPECT_TRUE(IsPrime(3));
+    // Tests some trivial cases.
+    EXPECT_FALSE(IsPrime(0));
+    EXPECT_FALSE(IsPrime(1));
+    EXPECT_TRUE(IsPrime(2));
+    EXPECT_TRUE(IsPrime(3));
 
-// Tests positive input.
-EXPECT_FALSE(IsPrime(4));
-EXPECT_TRUE(IsPrime(5));
-EXPECT_FALSE(IsPrime(6));
-EXPECT_TRUE(IsPrime(23));
+    // Tests positive input.
+    EXPECT_FALSE(IsPrime(4));
+    EXPECT_TRUE(IsPrime(5));
+    EXPECT_FALSE(IsPrime(6));
+    EXPECT_TRUE(IsPrime(23));
 }
 
 
@@ -173,45 +170,26 @@ protected:
 // Now, let's write tests using the QueueTest fixture.
 
 // Tests the default constructor.
-TEST_F(QueueTest, DefaultConstructor
-) {
-EXPECT_EQ(0u, q0_.
-
-Size()
-
-);
+TEST_F(QueueTest, DefaultConstructor) {
+    EXPECT_EQ(0u, q0_.Size());
 }
 
 // Tests Dequeue().
-TEST_F(QueueTest, Dequeue
-) {
-int *n = q0_.Dequeue();
-EXPECT_TRUE(n
-== NULL);
+TEST_F(QueueTest, Dequeue) {
+    int *n = q0_.Dequeue();
+    EXPECT_TRUE(n == NULL);
 
-n = q1_.Dequeue();
-EXPECT_TRUE(n
-!= NULL);
-EXPECT_EQ(1, *n);
-EXPECT_EQ(0u, q1_.
+    n = q1_.Dequeue();
+    EXPECT_TRUE(n != NULL);
+    EXPECT_EQ(1, *n);
+    EXPECT_EQ(0u, q1_.Size());
+    delete n;
 
-Size()
-
-);
-delete
-n;
-
-n = q2_.Dequeue();
-EXPECT_TRUE(n
-!= NULL);
-EXPECT_EQ(2, *n);
-EXPECT_EQ(1u, q2_.
-
-Size()
-
-);
-delete
-n;
+    n = q2_.Dequeue();
+    EXPECT_TRUE(n != NULL);
+    EXPECT_EQ(2, *n);
+    EXPECT_EQ(1u, q2_.Size());
+    delete n;
 }
 
 // If necessary, you can derive further test fixtures from a derived

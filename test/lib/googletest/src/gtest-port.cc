@@ -43,9 +43,7 @@
 # include <sys/stat.h>
 # include <map>  // Used in ThreadLocal.
 #else
-
 # include <unistd.h>
-
 #endif  // GTEST_OS_WINDOWS
 
 #if GTEST_OS_MAC
@@ -76,9 +74,7 @@
 // prevent the accidental inclusion of gtest-internal-inl.h in the
 // user's code.
 #define GTEST_IMPLEMENTATION_ 1
-
 #include "src/gtest-internal-inl.h"
-
 #undef GTEST_IMPLEMENTATION_
 
 namespace testing {
@@ -96,24 +92,24 @@ namespace testing {
 #if GTEST_OS_LINUX
 
         namespace {
-        template <typename T>
-        T ReadProcFileField(const string& filename, int field) {
-          std::string dummy;
-          std::ifstream file(filename.c_str());
-          while (field-- > 0) {
-            file >> dummy;
-          }
-          T output = 0;
-          file >> output;
-          return output;
-        }
+            template<typename T>
+            T ReadProcFileField(const string &filename, int field) {
+                std::string dummy;
+                std::ifstream file(filename.c_str());
+                while (field-- > 0) {
+                    file >> dummy;
+                }
+                T output = 0;
+                file >> output;
+                return output;
+            }
         }  // namespace
 
-        // Returns the number of active threads, or 0 when there is an error.
+// Returns the number of active threads, or 0 when there is an error.
         size_t GetThreadCount() {
-          const string filename =
-              (Message() << "/proc/" << getpid() << "/stat").GetString();
-          return ReadProcFileField<int>(filename, 19);
+            const string filename =
+                    (Message() << "/proc/" << getpid() << "/stat").GetString();
+            return ReadProcFileField<int>(filename, 19);
         }
 
 #elif GTEST_OS_MAC
@@ -171,9 +167,9 @@ namespace testing {
 #else
 
         size_t GetThreadCount() {
-            // There's no portable way to detect the number of threads, so we just
-            // return 0 to indicate that we cannot detect it.
-            return 0;
+          // There's no portable way to detect the number of threads, so we just
+          // return 0 to indicate that we cannot detect it.
+          return 0;
         }
 
 #endif  // GTEST_OS_LINUX
@@ -563,65 +559,65 @@ namespace testing {
 
 #if GTEST_USES_POSIX_RE
 
-        // Implements RE.  Currently only needed for death tests.
+// Implements RE.  Currently only needed for death tests.
 
         RE::~RE() {
-          if (is_valid_) {
-            // regfree'ing an invalid regex might crash because the content
-            // of the regex is undefined. Since the regex's are essentially
-            // the same, one cannot be valid (or invalid) without the other
-            // being so too.
-            regfree(&partial_regex_);
-            regfree(&full_regex_);
-          }
-          free(const_cast<char*>(pattern_));
+            if (is_valid_) {
+                // regfree'ing an invalid regex might crash because the content
+                // of the regex is undefined. Since the regex's are essentially
+                // the same, one cannot be valid (or invalid) without the other
+                // being so too.
+                regfree(&partial_regex_);
+                regfree(&full_regex_);
+            }
+            free(const_cast<char *>(pattern_));
         }
 
-        // Returns true iff regular expression re matches the entire str.
-        bool RE::FullMatch(const char* str, const RE& re) {
-          if (!re.is_valid_) return false;
+// Returns true iff regular expression re matches the entire str.
+        bool RE::FullMatch(const char *str, const RE &re) {
+            if (!re.is_valid_) return false;
 
-          regmatch_t match;
-          return regexec(&re.full_regex_, str, 1, &match, 0) == 0;
+            regmatch_t match;
+            return regexec(&re.full_regex_, str, 1, &match, 0) == 0;
         }
 
-        // Returns true iff regular expression re matches a substring of str
-        // (including str itself).
-        bool RE::PartialMatch(const char* str, const RE& re) {
-          if (!re.is_valid_) return false;
+// Returns true iff regular expression re matches a substring of str
+// (including str itself).
+        bool RE::PartialMatch(const char *str, const RE &re) {
+            if (!re.is_valid_) return false;
 
-          regmatch_t match;
-          return regexec(&re.partial_regex_, str, 1, &match, 0) == 0;
+            regmatch_t match;
+            return regexec(&re.partial_regex_, str, 1, &match, 0) == 0;
         }
 
-        // Initializes an RE from its string representation.
-        void RE::Init(const char* regex) {
-          pattern_ = posix::StrDup(regex);
+// Initializes an RE from its string representation.
+        void RE::Init(const char *regex) {
+            pattern_ = posix::StrDup(regex);
 
-          // Reserves enough bytes to hold the regular expression used for a
-          // full match.
-          const size_t full_regex_len = strlen(regex) + 10;
-          char* const full_pattern = new char[full_regex_len];
+            // Reserves enough bytes to hold the regular expression used for a
+            // full match.
+            const size_t full_regex_len = strlen(regex) + 10;
+            char *const full_pattern = new char[full_regex_len];
 
-          snprintf(full_pattern, full_regex_len, "^(%s)$", regex);
-          is_valid_ = regcomp(&full_regex_, full_pattern, REG_EXTENDED) == 0;
-          // We want to call regcomp(&partial_regex_, ...) even if the
-          // previous expression returns false.  Otherwise partial_regex_ may
-          // not be properly initialized can may cause trouble when it's
-          // freed.
-          //
-          // Some implementation of POSIX regex (e.g. on at least some
-          // versions of Cygwin) doesn't accept the empty string as a valid
-          // regex.  We change it to an equivalent form "()" to be safe.
-          if (is_valid_) {
-            const char* const partial_regex = (*regex == '\0') ? "()" : regex;
-            is_valid_ = regcomp(&partial_regex_, partial_regex, REG_EXTENDED) == 0;
-          }
-          EXPECT_TRUE(is_valid_)
-              << "Regular expression \"" << regex
-              << "\" is not a valid POSIX Extended regular expression.";
+            snprintf(full_pattern, full_regex_len, "^(%s)$", regex);
+            is_valid_ = regcomp(&full_regex_, full_pattern, REG_EXTENDED) == 0;
+            // We want to call regcomp(&partial_regex_, ...) even if the
+            // previous expression returns false.  Otherwise partial_regex_ may
+            // not be properly initialized can may cause trouble when it's
+            // freed.
+            //
+            // Some implementation of POSIX regex (e.g. on at least some
+            // versions of Cygwin) doesn't accept the empty string as a valid
+            // regex.  We change it to an equivalent form "()" to be safe.
+            if (is_valid_) {
+                const char *const partial_regex = (*regex == '\0') ? "()" : regex;
+                is_valid_ = regcomp(&partial_regex_, partial_regex, REG_EXTENDED) == 0;
+            }
+            EXPECT_TRUE(is_valid_)
+                                << "Regular expression \"" << regex
+                                << "\" is not a valid POSIX Extended regular expression.";
 
-          delete[] full_pattern;
+            delete[] full_pattern;
         }
 
 #elif GTEST_USES_SIMPLE_RE
@@ -881,7 +877,7 @@ namespace testing {
 
 // Formats a source file path and a line number as they would appear
 // in an error message from the compiler used to compile this code.
-        GTEST_API_::std::string FormatFileLocation(const char *file, int line) {
+        GTEST_API_ ::std::string FormatFileLocation(const char *file, int line) {
             const std::string file_name(file == NULL ? kUnknownFile : file);
 
             if (line < 0) {
@@ -899,7 +895,7 @@ namespace testing {
 // FormatFileLocation in order to contrast the two functions.
 // Note that FormatCompilerIndependentFileLocation() does NOT append colon
 // to the file location it produces, unlike FormatFileLocation().
-        GTEST_API_::std::string FormatCompilerIndependentFileLocation(
+        GTEST_API_ ::std::string FormatCompilerIndependentFileLocation(
                 const char *file, int line) {
             const std::string file_name(file == NULL ? kUnknownFile : file);
 
@@ -927,135 +923,134 @@ namespace testing {
                 posix::Abort();
             }
         }
-
 // Disable Microsoft deprecation warnings for POSIX functions called from
 // this class (creat, dup, dup2, and close)
         GTEST_DISABLE_MSC_WARNINGS_PUSH_(4996)
 
 #if GTEST_HAS_STREAM_REDIRECTION
 
-        // Object that captures an output stream (stdout/stderr).
+// Object that captures an output stream (stdout/stderr).
         class CapturedStream {
-         public:
-          // The ctor redirects the stream to a temporary file.
-          explicit CapturedStream(int fd) : fd_(fd), uncaptured_fd_(dup(fd)) {
+        public:
+            // The ctor redirects the stream to a temporary file.
+            explicit CapturedStream(int fd) : fd_(fd), uncaptured_fd_(dup(fd)) {
 # if GTEST_OS_WINDOWS
-            char temp_dir_path[MAX_PATH + 1] = { '\0' };  // NOLINT
-            char temp_file_path[MAX_PATH + 1] = { '\0' };  // NOLINT
+                char temp_dir_path[MAX_PATH + 1] = { '\0' };  // NOLINT
+                char temp_file_path[MAX_PATH + 1] = { '\0' };  // NOLINT
 
-            ::GetTempPathA(sizeof(temp_dir_path), temp_dir_path);
-            const UINT success = ::GetTempFileNameA(temp_dir_path,
-                                                    "gtest_redir",
-                                                    0,  // Generate unique file name.
-                                                    temp_file_path);
-            GTEST_CHECK_(success != 0)
-                << "Unable to create a temporary file in " << temp_dir_path;
-            const int captured_fd = creat(temp_file_path, _S_IREAD | _S_IWRITE);
-            GTEST_CHECK_(captured_fd != -1) << "Unable to open temporary file "
-                                            << temp_file_path;
-            filename_ = temp_file_path;
+                ::GetTempPathA(sizeof(temp_dir_path), temp_dir_path);
+                const UINT success = ::GetTempFileNameA(temp_dir_path,
+                                                        "gtest_redir",
+                                                        0,  // Generate unique file name.
+                                                        temp_file_path);
+                GTEST_CHECK_(success != 0)
+                    << "Unable to create a temporary file in " << temp_dir_path;
+                const int captured_fd = creat(temp_file_path, _S_IREAD | _S_IWRITE);
+                GTEST_CHECK_(captured_fd != -1) << "Unable to open temporary file "
+                                                << temp_file_path;
+                filename_ = temp_file_path;
 # else
-            // There's no guarantee that a test has write access to the current
-            // directory, so we create the temporary file in the /tmp directory
-            // instead. We use /tmp on most systems, and /sdcard on Android.
-            // That's because Android doesn't have /tmp.
+                // There's no guarantee that a test has write access to the current
+                // directory, so we create the temporary file in the /tmp directory
+                // instead. We use /tmp on most systems, and /sdcard on Android.
+                // That's because Android doesn't have /tmp.
 #  if GTEST_OS_LINUX_ANDROID
-            // Note: Android applications are expected to call the framework's
-            // Context.getExternalStorageDirectory() method through JNI to get
-            // the location of the world-writable SD Card directory. However,
-            // this requires a Context handle, which cannot be retrieved
-            // globally from native code. Doing so also precludes running the
-            // code as part of a regular standalone executable, which doesn't
-            // run in a Dalvik process (e.g. when running it through 'adb shell').
-            //
-            // The location /sdcard is directly accessible from native code
-            // and is the only location (unofficially) supported by the Android
-            // team. It's generally a symlink to the real SD Card mount point
-            // which can be /mnt/sdcard, /mnt/sdcard0, /system/media/sdcard, or
-            // other OEM-customized locations. Never rely on these, and always
-            // use /sdcard.
-            char name_template[] = "/sdcard/gtest_captured_stream.XXXXXX";
+                // Note: Android applications are expected to call the framework's
+                // Context.getExternalStorageDirectory() method through JNI to get
+                // the location of the world-writable SD Card directory. However,
+                // this requires a Context handle, which cannot be retrieved
+                // globally from native code. Doing so also precludes running the
+                // code as part of a regular standalone executable, which doesn't
+                // run in a Dalvik process (e.g. when running it through 'adb shell').
+                //
+                // The location /sdcard is directly accessible from native code
+                // and is the only location (unofficially) supported by the Android
+                // team. It's generally a symlink to the real SD Card mount point
+                // which can be /mnt/sdcard, /mnt/sdcard0, /system/media/sdcard, or
+                // other OEM-customized locations. Never rely on these, and always
+                // use /sdcard.
+                char name_template[] = "/sdcard/gtest_captured_stream.XXXXXX";
 #  else
-            char name_template[] = "/tmp/captured_stream.XXXXXX";
+                char name_template[] = "/tmp/captured_stream.XXXXXX";
 #  endif  // GTEST_OS_LINUX_ANDROID
-            const int captured_fd = mkstemp(name_template);
-            filename_ = name_template;
+                const int captured_fd = mkstemp(name_template);
+                filename_ = name_template;
 # endif  // GTEST_OS_WINDOWS
-            fflush(NULL);
-            dup2(captured_fd, fd_);
-            close(captured_fd);
-          }
-
-          ~CapturedStream() {
-            remove(filename_.c_str());
-          }
-
-          std::string GetCapturedString() {
-            if (uncaptured_fd_ != -1) {
-              // Restores the original stream.
-              fflush(NULL);
-              dup2(uncaptured_fd_, fd_);
-              close(uncaptured_fd_);
-              uncaptured_fd_ = -1;
+                fflush(NULL);
+                dup2(captured_fd, fd_);
+                close(captured_fd);
             }
 
-            FILE* const file = posix::FOpen(filename_.c_str(), "r");
-            const std::string content = ReadEntireFile(file);
-            posix::FClose(file);
-            return content;
-          }
+            ~CapturedStream() {
+                remove(filename_.c_str());
+            }
 
-         private:
-          const int fd_;  // A stream to capture.
-          int uncaptured_fd_;
-          // Name of the temporary file holding the stderr output.
-          ::std::string filename_;
+            std::string GetCapturedString() {
+                if (uncaptured_fd_ != -1) {
+                    // Restores the original stream.
+                    fflush(NULL);
+                    dup2(uncaptured_fd_, fd_);
+                    close(uncaptured_fd_);
+                    uncaptured_fd_ = -1;
+                }
 
-          GTEST_DISALLOW_COPY_AND_ASSIGN_(CapturedStream);
+                FILE *const file = posix::FOpen(filename_.c_str(), "r");
+                const std::string content = ReadEntireFile(file);
+                posix::FClose(file);
+                return content;
+            }
+
+        private:
+            const int fd_;  // A stream to capture.
+            int uncaptured_fd_;
+            // Name of the temporary file holding the stderr output.
+            ::std::string filename_;
+
+            GTEST_DISALLOW_COPY_AND_ASSIGN_(CapturedStream);
         };
 
         GTEST_DISABLE_MSC_WARNINGS_POP_()
 
-        static CapturedStream* g_captured_stderr = NULL;
-        static CapturedStream* g_captured_stdout = NULL;
+        static CapturedStream *g_captured_stderr = NULL;
+        static CapturedStream *g_captured_stdout = NULL;
 
-        // Starts capturing an output stream (stdout/stderr).
-        void CaptureStream(int fd, const char* stream_name, CapturedStream** stream) {
-          if (*stream != NULL) {
-            GTEST_LOG_(FATAL) << "Only one " << stream_name
-                              << " capturer can exist at a time.";
-          }
-          *stream = new CapturedStream(fd);
+// Starts capturing an output stream (stdout/stderr).
+        void CaptureStream(int fd, const char *stream_name, CapturedStream **stream) {
+            if (*stream != NULL) {
+                GTEST_LOG_(FATAL) << "Only one " << stream_name
+                                  << " capturer can exist at a time.";
+            }
+            *stream = new CapturedStream(fd);
         }
 
-        // Stops capturing the output stream and returns the captured string.
-        std::string GetCapturedStream(CapturedStream** captured_stream) {
-          const std::string content = (*captured_stream)->GetCapturedString();
+// Stops capturing the output stream and returns the captured string.
+        std::string GetCapturedStream(CapturedStream **captured_stream) {
+            const std::string content = (*captured_stream)->GetCapturedString();
 
-          delete *captured_stream;
-          *captured_stream = NULL;
+            delete *captured_stream;
+            *captured_stream = NULL;
 
-          return content;
+            return content;
         }
 
-        // Starts capturing stdout.
+// Starts capturing stdout.
         void CaptureStdout() {
-          CaptureStream(kStdOutFileno, "stdout", &g_captured_stdout);
+            CaptureStream(kStdOutFileno, "stdout", &g_captured_stdout);
         }
 
-        // Starts capturing stderr.
+// Starts capturing stderr.
         void CaptureStderr() {
-          CaptureStream(kStdErrFileno, "stderr", &g_captured_stderr);
+            CaptureStream(kStdErrFileno, "stderr", &g_captured_stderr);
         }
 
-        // Stops capturing stdout and returns the captured string.
+// Stops capturing stdout and returns the captured string.
         std::string GetCapturedStdout() {
-          return GetCapturedStream(&g_captured_stdout);
+            return GetCapturedStream(&g_captured_stdout);
         }
 
-        // Stops capturing stderr and returns the captured string.
+// Stops capturing stderr and returns the captured string.
         std::string GetCapturedStderr() {
-          return GetCapturedStream(&g_captured_stderr);
+            return GetCapturedStream(&g_captured_stderr);
         }
 
 #endif  // GTEST_HAS_STREAM_REDIRECTION
@@ -1107,20 +1102,20 @@ namespace testing {
 
 #if GTEST_HAS_DEATH_TEST
 
-        static const ::std::vector<testing::internal::string>* g_injected_test_argvs =
-                                                NULL;  // Owned.
+        static const ::std::vector<testing::internal::string> *g_injected_test_argvs =
+                NULL;  // Owned.
 
-        void SetInjectableArgvs(const ::std::vector<testing::internal::string>* argvs) {
-          if (g_injected_test_argvs != argvs)
-            delete g_injected_test_argvs;
-          g_injected_test_argvs = argvs;
+        void SetInjectableArgvs(const ::std::vector<testing::internal::string> *argvs) {
+            if (g_injected_test_argvs != argvs)
+                delete g_injected_test_argvs;
+            g_injected_test_argvs = argvs;
         }
 
-        const ::std::vector<testing::internal::string>& GetInjectableArgvs() {
-          if (g_injected_test_argvs != NULL) {
-            return *g_injected_test_argvs;
-          }
-          return GetArgvs();
+        const ::std::vector<testing::internal::string> &GetInjectableArgvs() {
+            if (g_injected_test_argvs != NULL) {
+                return *g_injected_test_argvs;
+            }
+            return GetArgvs();
         }
 #endif  // GTEST_HAS_DEATH_TEST
 

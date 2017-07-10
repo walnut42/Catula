@@ -49,9 +49,8 @@
 namespace {
 
 // A test that's expected to fail.
-    TEST(Foo, Bar
-    ) {
-    EXPECT_EQ(2, 3);
+    TEST(Foo, Bar) {
+        EXPECT_EQ(2, 3);
 }
 
 #if GTEST_HAS_SEH && !GTEST_OS_WINDOWS_MOBILE

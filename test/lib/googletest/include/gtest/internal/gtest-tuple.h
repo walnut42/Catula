@@ -242,7 +242,7 @@ namespace std {
                 return CopyFrom(t);
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_1_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_1_TUPLE_(U) &t) {
@@ -286,7 +286,7 @@ namespace std {
                 return *this;
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_2_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_2_TUPLE_(U) &t) {
@@ -322,7 +322,7 @@ namespace std {
                 return CopyFrom(t);
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_3_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_3_TUPLE_(U) &t) {
@@ -362,7 +362,7 @@ namespace std {
                 return CopyFrom(t);
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_4_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_4_TUPLE_(U) &t) {
@@ -405,7 +405,7 @@ namespace std {
                 return CopyFrom(t);
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_5_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_5_TUPLE_(U) &t) {
@@ -451,7 +451,7 @@ namespace std {
                 return CopyFrom(t);
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_6_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_6_TUPLE_(U) &t) {
@@ -499,7 +499,7 @@ namespace std {
                 return CopyFrom(t);
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_7_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_7_TUPLE_(U) &t) {
@@ -550,7 +550,7 @@ namespace std {
                 return CopyFrom(t);
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_8_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_8_TUPLE_(U) &t) {
@@ -604,7 +604,7 @@ namespace std {
                 return CopyFrom(t);
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_9_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_9_TUPLE_(U) &t) {
@@ -662,7 +662,7 @@ namespace std {
                 return CopyFrom(t);
             }
 
-            GTEST_DECLARE_TUPLE_AS_FRIEND_
+  GTEST_DECLARE_TUPLE_AS_FRIEND_
 
             template<GTEST_10_TYPENAMES_(U)>
             tuple &CopyFrom(const GTEST_10_TUPLE_(U) &t) {

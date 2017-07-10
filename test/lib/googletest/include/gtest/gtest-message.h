@@ -155,7 +155,6 @@ namespace testing {
             }
             return *this;
         }
-
 #endif  // GTEST_OS_SYMBIAN
 
         // Since the basic IO manipulators are overloaded for both narrow
@@ -185,7 +184,6 @@ namespace testing {
         // Converts the given wide string to a narrow string using the UTF-8
         // encoding, and streams the result to this Message object.
         Message &operator<<(const ::std::wstring &wstr);
-
 #endif  // GTEST_HAS_STD_WSTRING
 
 #if GTEST_HAS_GLOBAL_WSTRING

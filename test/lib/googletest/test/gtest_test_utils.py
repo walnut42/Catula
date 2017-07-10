@@ -39,7 +39,6 @@ import shutil
 import sys
 import tempfile
 import unittest
-
 _test_module = unittest
 
 # Suppresses the 'Import not at the top of the file' lint complaint.
@@ -140,11 +139,9 @@ def GetBuildDir():
 
 _temp_dir = None
 
-
 def _RemoveTempDir():
     if _temp_dir:
         shutil.rmtree(_temp_dir, ignore_errors=True)
-
 
 atexit.register(_RemoveTempDir)
 
@@ -160,15 +157,15 @@ def GetTempDir():
 
 def GetTestExecutablePath(executable_name, build_dir=None):
     """Returns the absolute path of the test binary given its name.
-  
+
     The function will print a message and abort the program if the resulting file
     doesn't exist.
-  
+
     Args:
       executable_name: name of the test binary that the test script runs.
       build_dir:       directory where to look for executables, by default
                        the result of GetBuildDir().
-  
+
     Returns:
       The absolute path of the test binary.
     """
@@ -191,7 +188,7 @@ def GetTestExecutablePath(executable_name, build_dir=None):
 
 def GetExitStatus(exit_code):
     """Returns the argument to exit(), or -1 if exit() wasn't called.
-  
+
     Args:
       exit_code: the result value of os.system(command).
     """
@@ -212,16 +209,16 @@ def GetExitStatus(exit_code):
 class Subprocess:
     def __init__(self, command, working_dir=None, capture_stderr=True, env=None):
         """Changes into a specified directory, if provided, and executes a command.
-    
+
         Restores the old directory afterwards.
-    
+
         Args:
           command:        The command to run, in the form of sys.argv.
           working_dir:    The directory to change into.
           capture_stderr: Determines whether to capture stderr in the output member
                           or to discard it.
           env:            Dictionary with environment to pass to the subprocess.
-    
+
         Returns:
           An object that represents outcome of the executed process. It has the
           following attributes:

@@ -261,12 +261,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
 #ifndef _WIN32_WCE
-
 # include <sys/types.h>
 # include <sys/stat.h>
-
 #endif  // !_WIN32_WCE
 
 #if defined __APPLE__
@@ -415,7 +412,6 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 // mentioned above.
 # include <unistd.h>
 # include <strings.h>
-
 #endif  // GTEST_OS_WINDOWS
 
 #if GTEST_OS_LINUX_ANDROID
@@ -600,9 +596,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 // It's this header's responsibility to #include <typeinfo> when RTTI
 // is enabled.
 #if GTEST_HAS_RTTI
-
 # include <typeinfo>
-
 #endif
 
 // Determines whether Google Test can use the pthreads library.
@@ -623,7 +617,6 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 
 // For timespec and nanosleep, used below.
 # include <time.h>  // NOLINT
-
 #endif
 
 // Determines if hash_map/hash_set are available.
@@ -687,9 +680,7 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 // gtest-port.h's responsibility to #include the header implementing
 // tuple.
 #if GTEST_HAS_STD_TUPLE_
-
 # include <tuple>  // IWYU pragma: export
-
 # define GTEST_TUPLE_NAMESPACE_ ::std
 #endif  // GTEST_HAS_STD_TUPLE_
 
@@ -703,7 +694,6 @@ typedef struct _RTL_CRITICAL_SECTION GTEST_CRITICAL_SECTION;
 # if GTEST_USE_OWN_TR1_TUPLE
 #  include "gtest/internal/gtest-tuple.h"  // IWYU pragma: export  // NOLINT
 # elif GTEST_ENV_HAS_STD_TUPLE_
-
 #  include <tuple>
 // C++11 puts its tuple into the ::std namespace rather than
 // ::std::tr1.  gtest expects tuple to live in ::std::tr1, so put it there.
@@ -1475,7 +1465,6 @@ namespace testing {
 // Defines synchronization primitives.
 #if GTEST_IS_THREADSAFE
 # if GTEST_HAS_PTHREAD
-
 // Sleeps for (roughly) n milliseconds.  This function is only for testing
 // Google Test's own constructs.  Don't use it in user tests, either
 // directly or indirectly.
@@ -1486,7 +1475,6 @@ namespace testing {
             };
             nanosleep(&time, NULL);
         }
-
 # endif  // GTEST_HAS_PTHREAD
 
 # if GTEST_HAS_NOTIFICATION_
@@ -1494,7 +1482,6 @@ namespace testing {
         // Nothing to do here.
 
 # elif GTEST_HAS_PTHREAD
-
 // Allows a controller thread to pause execution of newly created
 // threads until notified.  Instances of this class must be created
 // and destroyed in the controller thread.
@@ -1673,7 +1660,6 @@ namespace testing {
 
             GTEST_DISALLOW_COPY_AND_ASSIGN_(ThreadWithParam);
         };
-
 # endif  // !GTEST_OS_WINDOWS && GTEST_HAS_PTHREAD ||
         // GTEST_HAS_MUTEX_AND_THREAD_LOCAL_
 
@@ -2285,8 +2271,8 @@ namespace testing {
 #if GTEST_OS_WINDOWS
 # define GTEST_PATH_SEP_ "\\"
 # define GTEST_HAS_ALT_PATH_SEP_ 1
-        // The biggest signed integer type the compiler supports.
-        typedef __int64 BiggestInt;
+// The biggest signed integer type the compiler supports.
+typedef __int64 BiggestInt;
 #else
 # define GTEST_PATH_SEP_ "/"
 # define GTEST_HAS_ALT_PATH_SEP_ 0
@@ -2430,13 +2416,11 @@ namespace testing {
 #if !GTEST_OS_WINDOWS_MOBILE && !GTEST_OS_WINDOWS_PHONE && !GTEST_OS_WINDOWS_RT
 
             inline int ChDir(const char *dir) { return chdir(dir); }
-
 #endif
 
             inline FILE *FOpen(const char *path, const char *mode) {
                 return fopen(path, mode);
             }
-
 #if !GTEST_OS_WINDOWS_MOBILE
 
             inline FILE *FReopen(const char *path, const char *mode, FILE *stream) {
@@ -2444,11 +2428,9 @@ namespace testing {
             }
 
             inline FILE *FDOpen(int fd, const char *mode) { return fdopen(fd, mode); }
-
 #endif
 
             inline int FClose(FILE *fp) { return fclose(fp); }
-
 #if !GTEST_OS_WINDOWS_MOBILE
 
             inline int Read(int fd, void *buf, unsigned int count) {
@@ -2462,7 +2444,6 @@ namespace testing {
             inline int Close(int fd) { return close(fd); }
 
             inline const char *StrError(int errnum) { return strerror(errnum); }
-
 #endif
 
             inline const char *GetEnv(const char *name) {
@@ -2490,7 +2471,6 @@ namespace testing {
 #else
 
             inline void Abort() { abort(); }
-
 #endif  // GTEST_OS_WINDOWS_MOBILE
 
         }  // namespace posix

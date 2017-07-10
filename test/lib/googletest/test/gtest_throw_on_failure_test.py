@@ -83,7 +83,7 @@ class ThrowOnFailureTest(gtest_test_utils.TestCase):
     def RunAndVerify(self, env_var_value, flag_value, should_fail):
         """Runs gtest_throw_on_failure_test_ and verifies that it does
         (or does not) exit with a non-zero code.
-    
+
         Args:
           env_var_value:    value of the GTEST_BREAK_ON_FAILURE environment
                             variable; None if the variable should be unset.

@@ -88,10 +88,10 @@ def ToUnixLineEnding(s):
 
 def RemoveLocations(test_output):
     """Removes all file location info from a Google Test program's output.
-  
+
     Args:
          test_output:  the output of a Google Test program.
-  
+
     Returns:
          output with all file location info (in the form of
          'DIRECTORY/FILE_NAME:LINE_NUMBER: 'or
@@ -125,10 +125,10 @@ def RemoveTime(output):
 
 def RemoveTypeInfoDetails(test_output):
     """Removes compiler-specific type info from Google Test program's output.
-  
+
     Args:
          test_output:  the output of a Google Test program.
-  
+
     Returns:
          output with type information normalized to canonical form.
     """
@@ -167,15 +167,15 @@ def RemoveTestCounts(output):
 
 def RemoveMatchingTests(test_output, pattern):
     """Removes output of specified tests from a Google Test program's output.
-  
+
     This function strips not only the beginning and the end of a test but also
     all output in between.
-  
+
     Args:
       test_output:       A string containing the test output.
       pattern:           A regex string that matches names of test cases or
                          tests to remove.
-  
+
     Returns:
       Contents of test_output with tests whose names match pattern removed.
     """
@@ -200,12 +200,12 @@ def NormalizeOutput(output):
 
 def GetShellCommandOutput(env_cmd):
     """Runs a command in a sub-process, and returns its output in a string.
-  
+
     Args:
       env_cmd: The shell command. A 2-tuple where element 0 is a dict of extra
                environment variables to set, and element 1 is a string with
                the command and any flags.
-  
+
     Returns:
       A string with the command's combined standard and diagnostic output.
     """
@@ -222,7 +222,7 @@ def GetShellCommandOutput(env_cmd):
 def GetCommandOutput(env_cmd):
     """Runs a command and returns its output with all file location
     info stripped off.
-  
+
     Args:
       env_cmd:  The shell command. A 2-tuple where element 0 is a dict of extra
                 environment variables to set, and element 1 is a string with
@@ -255,7 +255,6 @@ CAN_GENERATE_GOLDEN_FILE = (SUPPORTS_DEATH_TESTS and
                             SUPPORTS_TYPED_TESTS and
                             SUPPORTS_THREADS and
                             not IS_WINDOWS)
-
 
 class GTestOutputTest(gtest_test_utils.TestCase):
     def RemoveUnsupportedTests(self, test_output):

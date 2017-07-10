@@ -120,52 +120,32 @@ protected:  // You should make the members protected s.t. they can be
 // instead of TEST.
 
 // Tests the default c'tor.
-TEST_F(QueueTest, DefaultConstructor
-) {
-// You can access data in the test fixture here.
-EXPECT_EQ(0u, q0_.
-
-Size()
-
-);
+TEST_F(QueueTest, DefaultConstructor) {
+    // You can access data in the test fixture here.
+    EXPECT_EQ(0u, q0_.Size());
 }
 
 // Tests Dequeue().
-TEST_F(QueueTest, Dequeue
-) {
-int *n = q0_.Dequeue();
-EXPECT_TRUE(n
-== NULL);
+TEST_F(QueueTest, Dequeue) {
+    int *n = q0_.Dequeue();
+    EXPECT_TRUE(n == NULL);
 
-n = q1_.Dequeue();
-ASSERT_TRUE(n
-!= NULL);
-EXPECT_EQ(1, *n);
-EXPECT_EQ(0u, q1_.
+    n = q1_.Dequeue();
+    ASSERT_TRUE(n != NULL);
+    EXPECT_EQ(1, *n);
+    EXPECT_EQ(0u, q1_.Size());
+    delete n;
 
-Size()
-
-);
-delete
-n;
-
-n = q2_.Dequeue();
-ASSERT_TRUE(n
-!= NULL);
-EXPECT_EQ(2, *n);
-EXPECT_EQ(1u, q2_.
-
-Size()
-
-);
-delete
-n;
+    n = q2_.Dequeue();
+    ASSERT_TRUE(n != NULL);
+    EXPECT_EQ(2, *n);
+    EXPECT_EQ(1u, q2_.Size());
+    delete n;
 }
 
 // Tests the Queue::Map() function.
-TEST_F(QueueTest, Map
-) {
-MapTester(&q0_);
-MapTester(&q1_);
-MapTester(&q2_);
+TEST_F(QueueTest, Map) {
+    MapTester(&q0_);
+    MapTester(&q1_);
+    MapTester(&q2_);
 }

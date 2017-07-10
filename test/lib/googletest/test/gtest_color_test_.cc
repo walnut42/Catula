@@ -43,9 +43,7 @@
 // prevent a user from accidentally including gtest-internal-inl.h in
 // his code.
 #define GTEST_IMPLEMENTATION_ 1
-
 #include "src/gtest-internal-inl.h"
-
 #undef GTEST_IMPLEMENTATION_
 
 using testing::internal::ShouldUseColor;
@@ -54,8 +52,7 @@ using testing::internal::ShouldUseColor;
 // created before main() is entered, and thus that ShouldUseColor()
 // works the same way as in a real Google-Test-based test.  We don't actual
 // run the TEST itself.
-TEST(GTestColorTest, Dummy
-) {
+TEST(GTestColorTest, Dummy) {
 }
 
 int main(int argc, char **argv) {

@@ -12,7 +12,7 @@ class MainCharacter;
 
 class Badge {
 public:
-    Badge(MainCharacter *mC, float p = 0) : locked{true}, progress{p}, mainCharacter{mC} {
+    explicit Badge(MainCharacter *mC, float p = 0) : locked{true}, progress{p}, mainCharacter{mC} {
 
     }
 
