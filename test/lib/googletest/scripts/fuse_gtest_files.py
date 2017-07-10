@@ -60,7 +60,6 @@ __author__ = 'wan@google.com (Zhanyong Wan)'
 
 import os
 import re
-
 try:
     from sets import Set as set  # For Python 2.3 compatibility
 except ImportError:
@@ -89,7 +88,7 @@ GTEST_ALL_CC_OUTPUT = 'gtest/gtest-all.cc'
 
 def VerifyFileExists(directory, relative_path):
     """Verifies that the given file exists; aborts on failure.
-  
+
     relative_path is the file path relative to the given directory.
     """
 
@@ -103,7 +102,7 @@ def VerifyFileExists(directory, relative_path):
 
 def ValidateGTestRootDir(gtest_root):
     """Makes sure gtest_root points to a valid gtest root directory.
-  
+
     The function aborts the program on failure.
     """
 
@@ -113,7 +112,7 @@ def ValidateGTestRootDir(gtest_root):
 
 def VerifyOutputFile(output_dir, relative_path):
     """Verifies that the given output file path is valid.
-  
+
     relative_path is relative to the output_dir directory.
     """
 
@@ -139,7 +138,7 @@ def VerifyOutputFile(output_dir, relative_path):
 
 def ValidateOutputDir(output_dir):
     """Makes sure output_dir points to a valid output directory.
-  
+
     The function aborts the program on failure.
     """
 

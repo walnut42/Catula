@@ -30,8 +30,6 @@ class MainCharacter : public Entity {
 public:
     MainCharacter(ModelGame &modelGame, Image image);
 
-    void handleInput();
-
     virtual void update() override;
 
     bool collide(Entity *obj);
@@ -65,6 +63,8 @@ protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const override;
 
 private:
+    void handleInput();
+
     const float g = 980;
     const float upg = -1000;
     const float top = 0;

@@ -111,7 +111,6 @@ FooTest\.
   Test3
 """)
 
-
 # Utilities.
 
 
@@ -130,7 +129,7 @@ class GTestListTestsUnitTest(gtest_test_utils.TestCase):
     def RunAndVerify(self, flag_value, expected_output_re, other_flag):
         """Runs gtest_list_tests_unittest_ and verifies that it prints
         the correct tests.
-    
+
         Args:
           flag_value:         value of the --gtest_list_tests flag;
                               None if the flag should not be present.

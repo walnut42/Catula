@@ -375,8 +375,6 @@ INSTANTIATE_TYPED_TEST_CASE_P(My, TrimmedTest, TrimTypes);
 // that library at all and consequently complain about missing entry
 // point defined in that library (fatal error LNK1561: entry point
 // must be defined). This dummy test keeps gtest_main linked in.
-TEST(DummyTest, TypedTestsAreNotSupportedOnThisPlatform
-) {
-}
+TEST(DummyTest, TypedTestsAreNotSupportedOnThisPlatform) {}
 
 #endif  // #if !defined(GTEST_HAS_TYPED_TEST) && !defined(GTEST_HAS_TYPED_TEST_P)

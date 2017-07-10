@@ -182,9 +182,7 @@ TEST_P(DerivedTest, DoesBlah) {
 #include "gtest/internal/gtest-port.h"
 
 #if !GTEST_OS_SYMBIAN
-
 # include <utility>
-
 #endif
 
 // scripts/fuse_gtest.py depends on gtest's own header being #included
@@ -1303,7 +1301,6 @@ namespace testing {
     }
 
 # if GTEST_HAS_COMBINE
-
 // Combine() allows the user to combine two or more sequences to produce
 // values of a Cartesian product of those sequences' elements.
 //
@@ -1455,7 +1452,6 @@ namespace testing {
                 Generator10>(
                 g1, g2, g3, g4, g5, g6, g7, g8, g9, g10);
     }
-
 # endif  // GTEST_HAS_COMBINE
 
 

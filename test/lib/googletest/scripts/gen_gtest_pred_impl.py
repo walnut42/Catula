@@ -64,7 +64,7 @@ UNIT_TEST = os.path.join(SCRIPT_DIR, '../test/gtest_pred_impl_unittest.cc')
 
 def HeaderPreamble(n):
     """Returns the preamble for the header file.
-  
+
     Args:
       n:  the maximum arity of the predicate macros to be generated.
     """
@@ -191,9 +191,9 @@ def Iter(n, format, sep=''):
     more '%s' format specs, and optionally a separator string, returns
     the join of n strings, each formatted with the format string on an
     iterator ranged from 1 to n.
-  
+
     Example:
-  
+
     Iter(3, 'v%s', sep=', ') returns 'v1, v2, v3'.
     """
 
@@ -570,7 +570,7 @@ typedef Predicate%(n)sTest ASSERT_PRED%(n)sTest;
     def GenTest(use_format, use_assert, expect_failure,
                 use_functor, use_user_type):
         """Returns the test for a predicate assertion macro.
-    
+
         Args:
           use_format:     true iff the assertion is a *_PRED_FORMAT*.
           use_assert:     true iff the assertion is a ASSERT_*.
@@ -579,9 +579,9 @@ typedef Predicate%(n)sTest ASSERT_PRED%(n)sTest;
                           a functor (as opposed to a function)
           use_user_type:  true iff the predicate functor/function takes
                           argument(s) of a user-defined type.
-    
+
         Example:
-    
+
           GenTest(1, 0, 0, 1, 0) returns a test that tests the behavior
           of a successful EXPECT_PRED_FORMATn() that takes a functor
           whose arguments have built-in types."""

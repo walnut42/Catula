@@ -113,6 +113,5 @@ class GTestEnvVarTest(gtest_test_utils.TestCase):
         SetEnvVar('XML_OUTPUT_FILE', 'tmp/bar.xml')
         AssertEq('xml:tmp/foo.xml', GetFlag('output'))
 
-
 if __name__ == '__main__':
     gtest_test_utils.Main()

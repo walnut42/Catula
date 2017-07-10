@@ -736,7 +736,6 @@ namespace testing {
 #if GTEST_HAS_DEATH_TEST
 
         friend class internal::DefaultDeathTestFactory;
-
 #endif  // GTEST_HAS_DEATH_TEST
 
         friend class Test;
@@ -1246,7 +1245,6 @@ namespace testing {
         // INTERNAL IMPLEMENTATION - DO NOT USE IN A USER PROGRAM.
         internal::ParameterizedTestCaseRegistry &parameterized_test_registry()
         GTEST_LOCK_EXCLUDED_(mutex_);
-
 #endif  // GTEST_HAS_PARAM_TEST
 
         // Gets the number of successful test cases.
@@ -1691,7 +1689,6 @@ GTEST_API_ AssertionResult CmpHelper##op_name(\
     GTEST_API_ AssertionResult IsNotSubstring(
             const char *needle_expr, const char *haystack_expr,
             const ::std::wstring &needle, const ::std::wstring &haystack);
-
 #endif  // GTEST_HAS_STD_WSTRING
 
     namespace internal {

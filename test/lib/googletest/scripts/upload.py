@@ -64,12 +64,12 @@ MAX_UPLOAD_SIZE = 900 * 1024
 
 def GetEmail(prompt):
     """Prompts the user for their email address and returns it.
-  
+
     The last used email address is saved to a file and offered up as a suggestion
     to the user. If the user presses enter without typing in anything the last
     used email address is used. If the user enters a new address, it is saved
     for next time we prompt.
-  
+
     """
     last_email_file_name = os.path.expanduser("~/.last_codereview_email_address")
     last_email = ""
@@ -96,9 +96,9 @@ def GetEmail(prompt):
 
 def StatusUpdate(msg):
     """Print a status message to stdout.
-  
+
     If 'verbosity' is greater than 0, print the message.
-  
+
     Args:
       msg: The string to print.
     """
@@ -127,7 +127,7 @@ class AbstractRpcServer(object):
     def __init__(self, host, auth_function, host_override=None, extra_headers={},
                  save_cookies=False):
         """Creates a new HttpRpcServer.
-    
+
         Args:
           host: The host to send requests to.
           auth_function: A function that takes no arguments and returns an
@@ -153,7 +153,7 @@ class AbstractRpcServer(object):
 
     def _GetOpener(self):
         """Returns an OpenerDirector for making HTTP requests.
-    
+
         Returns:
           A urllib2.OpenerDirector object.
         """
@@ -171,15 +171,15 @@ class AbstractRpcServer(object):
 
     def _GetAuthToken(self, email, password):
         """Uses ClientLogin to authenticate the user, returning an auth token.
-    
+
         Args:
           email:    The user's email address
           password: The user's password
-    
+
         Raises:
           ClientLoginError: If there was an error authenticating with ClientLogin.
           HTTPError: If there was some other form of HTTP error.
-    
+
         Returns:
           The authentication token returned by ClientLogin.
         """
@@ -214,10 +214,10 @@ class AbstractRpcServer(object):
 
     def _GetAuthCookie(self, auth_token):
         """Fetches authentication cookies for an authentication token.
-    
+
         Args:
           auth_token: The authentication token returned by ClientLogin.
-    
+
         Raises:
           HTTPError: If there was an error fetching the authentication cookies.
         """
@@ -238,7 +238,7 @@ class AbstractRpcServer(object):
 
     def _Authenticate(self):
         """Authenticates the user.
-    
+
         The authentication process works as follows:
          1) We get a username and password from the user
          2) We use ClientLogin to obtain an AUTH token for the user
@@ -246,7 +246,7 @@ class AbstractRpcServer(object):
          3) We pass the auth token to /_ah/login on the server to obtain an
             authentication cookie. If login was successful, it tries to redirect
             us to the URL we provided.
-    
+
         If we attempt to access the upload API without first obtaining an
         authentication cookie, it returns a 401 response and directs us to
         authenticate ourselves with ClientLogin.
@@ -293,7 +293,7 @@ class AbstractRpcServer(object):
              timeout=None,
              **kwargs):
         """Sends an RPC and returns the response.
-    
+
         Args:
           request_path: The path to send the request to, eg /api/appversion/create.
           payload: The body of the request, or None to send an empty request.
@@ -301,7 +301,7 @@ class AbstractRpcServer(object):
           timeout: timeout in seconds; default None i.e. no timeout.
             (Note: for large requests on OS X, the timeout doesn't work right.)
           kwargs: Any keyword arguments are converted into query string parameters.
-    
+
         Returns:
           The response body, as a string.
         """
@@ -353,7 +353,7 @@ class HttpRpcServer(AbstractRpcServer):
 
     def _GetOpener(self):
         """Returns an OpenerDirector that supports cookies and ignores redirects.
-    
+
         Returns:
           A urllib2.OpenerDirector object.
         """
@@ -457,7 +457,7 @@ group.add_option("--send_mail", action="store_true",
 
 def GetRpcServer(options):
     """Returns an instance of an AbstractRpcServer.
-  
+
     Returns:
       A new AbstractRpcServer, on which RPC calls can be made.
     """
@@ -497,14 +497,14 @@ def GetRpcServer(options):
 
 def EncodeMultipartFormData(fields, files):
     """Encode form fields for multipart/form-data.
-  
+
     Args:
       fields: A sequence of (name, value) elements for regular form fields.
       files: A sequence of (name, filename, value) elements for data to be
              uploaded as files.
     Returns:
       (content_type, body) ready for httplib.HTTP instance.
-  
+
     Source:
       http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/146306
     """
@@ -538,17 +538,16 @@ def GetContentType(filename):
 # Use a shell for subcommands on Windows to get a PATH search.
 use_shell = sys.platform.startswith("win")
 
-
 def RunShellWithReturnCode(command, print_output=False,
                            universal_newlines=True):
     """Executes a command and returns the output from stdout and the return code.
-  
+
     Args:
       command: Command to execute.
       print_output: If True, the output is printed to stdout.
                     If False, both stdout and stderr are ignored.
       universal_newlines: Use universal_newlines flag (default: True).
-  
+
     Returns:
       Tuple (output, return code)
     """
@@ -591,7 +590,7 @@ class VersionControlSystem(object):
 
     def __init__(self, options):
         """Constructor.
-    
+
         Args:
           options: Command line options.
         """
@@ -599,7 +598,7 @@ class VersionControlSystem(object):
 
     def GenerateDiff(self, args):
         """Return the current diff as a string.
-    
+
         Args:
           args: Extra arguments to pass to the diff command.
         """
@@ -625,7 +624,7 @@ class VersionControlSystem(object):
 
     def GetBaseFile(self, filename):
         """Get the content of the upstream version of a file.
-    
+
         Returns:
           A tuple (base_content, new_content, is_binary, status)
             base_content: The contents of the base file.
@@ -641,7 +640,7 @@ class VersionControlSystem(object):
 
     def GetBaseFiles(self, diff):
         """Helper that calls GetBase file for each file in the patch.
-    
+
         Returns:
           A dictionary that maps from filename to GetBaseFile's tuple.  Filenames
           are retrieved based on lines that start with "Index:" or
@@ -744,7 +743,7 @@ class SubversionVCS(VersionControlSystem):
 
     def _GuessBase(self, required):
         """Returns the SVN base URL.
-    
+
         Args:
           required: If true, exits if the url can't be guessed, otherwise None is
             returned.
@@ -1140,10 +1139,10 @@ class MercurialVCS(VersionControlSystem):
 # NOTE: The SplitPatch function is duplicated in engine.py, keep them in sync.
 def SplitPatch(data):
     """Splits a patch into separate pieces for each file.
-  
+
     Args:
       data: A string containing the output of svn diff.
-  
+
     Returns:
       A list of 2-tuple (filename, text) where text is the svn diff output
         pertaining to filename.
@@ -1180,7 +1179,7 @@ def SplitPatch(data):
 
 def UploadSeparatePatches(issue, rpc_server, patchset, data, options):
     """Uploads a separate patch for each file in the diff output.
-  
+
     Returns a list of [patch_key, filename] for each file.
     """
     patches = SplitPatch(data)
@@ -1208,11 +1207,11 @@ def UploadSeparatePatches(issue, rpc_server, patchset, data, options):
 
 def GuessVCS(options):
     """Helper to guess the version control system.
-  
+
     This examines the current directory, guesses which VersionControlSystem
     we're using, and returns an instance of the appropriate class.  Exit with an
     error if we can't figure it out.
-  
+
     Returns:
       A VersionControlSystem instance. Exits if the VCS can't be guessed.
     """
@@ -1249,12 +1248,12 @@ def GuessVCS(options):
 
 def RealMain(argv, data=None):
     """The real main function.
-  
+
     Args:
       argv: Command line arguments.
       data: Diff contents. If None (default) the diff is generated by
         the VersionControlSystem implementation returned by GuessVCS().
-  
+
     Returns:
       A 2-tuple (issue id, patchset id).
       The patchset id is None if the base files are not uploaded by this

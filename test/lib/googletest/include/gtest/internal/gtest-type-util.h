@@ -49,9 +49,7 @@
 // #ifdef __GNUC__ is too general here.  It is possible to use gcc without using
 // libstdc++ (which is where cxxabi.h comes from).
 # if GTEST_HAS_CXXABI_H_
-
 #  include <cxxabi.h>
-
 # elif defined(__HP_aCC)
 #  include <acxx_demangle.h>
 # endif  // GTEST_HASH_CXXABI_H_

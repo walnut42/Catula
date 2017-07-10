@@ -76,6 +76,7 @@ if SUPPORTS_SEH_EXCEPTIONS:
 EX_BINARY_OUTPUT = gtest_test_utils.Subprocess(
     [EX_EXE_PATH], env=environ).output
 
+
 # The tests.
 if SUPPORTS_SEH_EXCEPTIONS:
     # pylint:disable-msg=C6302
@@ -109,7 +110,7 @@ if SUPPORTS_SEH_EXCEPTIONS:
 
 class CatchCxxExceptionsTest(gtest_test_utils.TestCase):
     """Tests C++ exception-catching behavior.
-  
+
        Tests in this test case verify that:
        * C++ exceptions are caught and logged as C++ (not SEH) exceptions
        * Exception thrown affect the remainder of the test work flow in the

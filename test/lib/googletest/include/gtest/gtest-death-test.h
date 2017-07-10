@@ -201,7 +201,6 @@ namespace testing {
     };
 
 # if !GTEST_OS_WINDOWS
-
 // Tests that an exit code describes an exit due to termination by a
 // given signal.
     class GTEST_API_ KilledBySignal {
@@ -213,7 +212,6 @@ namespace testing {
     private:
         const int signum_;
     };
-
 # endif  // !GTEST_OS_WINDOWS
 
 // EXPECT_DEBUG_DEATH asserts that the given statements die in debug mode.

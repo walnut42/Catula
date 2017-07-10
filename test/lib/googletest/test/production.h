@@ -39,12 +39,10 @@
 class PrivateCode {
 public:
     // Declares a friend test that does not use a fixture.
-    FRIEND_TEST(PrivateCodeTest, CanAccessPrivateMembers
-    );
+    FRIEND_TEST(PrivateCodeTest, CanAccessPrivateMembers);
 
     // Declares a friend test that uses a fixture.
-    FRIEND_TEST(PrivateCodeFixtureTest, CanAccessPrivateMembers
-    );
+    FRIEND_TEST(PrivateCodeFixtureTest, CanAccessPrivateMembers);
 
     PrivateCode();
 

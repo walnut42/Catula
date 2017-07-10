@@ -120,6 +120,7 @@ AssertionResult AssertPred1Helper(const char *pred_text,
   GTEST_PRED1_(pred, v1, GTEST_FATAL_FAILURE_)
 
 
+
 // Helper function for implementing {EXPECT|ASSERT}_PRED2.  Don't use
 // this in your code.
 template<typename Pred,
@@ -165,6 +166,7 @@ AssertionResult AssertPred2Helper(const char *pred_text,
   GTEST_PRED_FORMAT2_(pred_format, v1, v2, GTEST_FATAL_FAILURE_)
 #define ASSERT_PRED2(pred, v1, v2) \
   GTEST_PRED2_(pred, v1, v2, GTEST_FATAL_FAILURE_)
+
 
 
 // Helper function for implementing {EXPECT|ASSERT}_PRED3.  Don't use
@@ -219,6 +221,7 @@ AssertionResult AssertPred3Helper(const char *pred_text,
   GTEST_PRED_FORMAT3_(pred_format, v1, v2, v3, GTEST_FATAL_FAILURE_)
 #define ASSERT_PRED3(pred, v1, v2, v3) \
   GTEST_PRED3_(pred, v1, v2, v3, GTEST_FATAL_FAILURE_)
+
 
 
 // Helper function for implementing {EXPECT|ASSERT}_PRED4.  Don't use

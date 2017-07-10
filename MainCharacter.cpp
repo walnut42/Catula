@@ -52,8 +52,8 @@ int MainCharacter::getScore() const {
 void MainCharacter::increaseLives(int l) {
     if (l < 0)
         modelGame.getBackground()->setVel();
-    lives + l > maxLives ? lives = maxLives : lives += l;
-    if (lives <= 0) {
+    lives = lives + l > maxLives ? maxLives : (lives + l < 0 ? 0 : lives + l);
+    if (lives == 0) {
         lost = true;
     }
     notify(Subscription::Life);

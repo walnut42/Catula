@@ -55,7 +55,7 @@
 
 #if GTEST_OS_LINUX
 
-                                                                                                                        // TODO(kenton@google.com): Use autoconf to detect availability of
+// TODO(kenton@google.com): Use autoconf to detect availability of
 // gettimeofday().
 # define GTEST_HAS_GETTIMEOFDAY_ 1
 
@@ -74,7 +74,7 @@
 # include <sys/time.h>  // NOLINT
 
 #elif GTEST_OS_ZOS
-                                                                                                                        # define GTEST_HAS_GETTIMEOFDAY_ 1
+# define GTEST_HAS_GETTIMEOFDAY_ 1
 # include <sys/time.h>  // NOLINT
 
 // On z/OS we additionally need strings.h for strcasecmp.
@@ -82,12 +82,12 @@
 
 #elif GTEST_OS_WINDOWS_MOBILE  // We are on Windows CE.
 
-                                                                                                                        # include <windows.h>  // NOLINT
+# include <windows.h>  // NOLINT
 # undef min
 
 #elif GTEST_OS_WINDOWS  // We are on Windows proper.
 
-                                                                                                                        # include <io.h>  // NOLINT
+# include <io.h>  // NOLINT
 # include <sys/timeb.h>  // NOLINT
 # include <sys/types.h>  // NOLINT
 # include <sys/stat.h>  // NOLINT
@@ -127,7 +127,8 @@
 #endif
 
 #if GTEST_CAN_STREAM_RESULTS_
-                                                                                                                        # include <arpa/inet.h>  // NOLINT
+
+# include <arpa/inet.h>  // NOLINT
 # include <netdb.h>  // NOLINT
 # include <sys/socket.h>  // NOLINT
 # include <sys/types.h>  // NOLINT
@@ -139,9 +140,7 @@
 // prevent a user from accidentally including gtest-internal-inl.h in
 // his code.
 #define GTEST_IMPLEMENTATION_ 1
-
 #include "src/gtest-internal-inl.h"
-
 #undef GTEST_IMPLEMENTATION_
 
 #if GTEST_OS_WINDOWS
@@ -234,9 +233,8 @@ namespace testing {
     "exclude).  A test is run if it matches one of the positive "
     "patterns and does not match any of the negative patterns.");
 
-    GTEST_DEFINE_bool_(list_tests,
-    false,
-    "List all tests without running them.");
+    GTEST_DEFINE_bool_(list_tests, false,
+                       "List all tests without running them.");
 
     GTEST_DEFINE_string_(
             output,
@@ -269,8 +267,7 @@ namespace testing {
     "for repeating forever.  Useful for shaking out flaky tests.");
 
     GTEST_DEFINE_bool_(
-            show_internal_stack_frames,
-    false,
+            show_internal_stack_frames, false,
     "True iff " GTEST_NAME_ " should include internal stack frames when "
     "printing test failure stack traces.");
 
@@ -301,7 +298,7 @@ namespace testing {
     "otherwise.");
 
 #if GTEST_USE_OWN_FLAGFILE_FLAG_
-                                                                                                                            GTEST_DEFINE_string_(
+    GTEST_DEFINE_string_(
     flagfile,
     internal::StringFromGTestEnv("flagfile", ""),
     "This flag specifies the flagfile to read command-line flags from.");
@@ -317,10 +314,10 @@ namespace testing {
             state_ = (1103515245U * state_ + 12345U) % kMaxRange;
 
             GTEST_CHECK_(range > 0)
-                    << "Cannot generate a number in the range [0, 0).";
+                        << "Cannot generate a number in the range [0, 0).";
             GTEST_CHECK_(range <= kMaxRange)
-                    << "Generation of a number in [0, " << range << ") was requested, "
-                    << "but this can only generate numbers in [0, " << kMaxRange << ").";
+                        << "Generation of a number in [0, " << range << ") was requested, "
+                        << "but this can only generate numbers in [0, " << kMaxRange << ").";
 
             // Converting via modulus introduces a bit of downward bias, but
             // it's simple, and a linear congruential generator isn't too good
@@ -905,7 +902,7 @@ const char* String::Utf16ToAnsi(LPCWSTR utf16_str)  {
 
 #if GTEST_HAS_STD_WSTRING || GTEST_HAS_GLOBAL_WSTRING
 
-                                                                                                                                // Converts an array of wide chars to a narrow string using the UTF-8
+// Converts an array of wide chars to a narrow string using the UTF-8
 // encoding, and streams the result to the given Message object.
 static void StreamWideCharsToMessage(const wchar_t* wstr, size_t length,
                                      Message* msg) {
@@ -964,7 +961,8 @@ static void StreamWideCharsToMessage(const wchar_t* wstr, size_t length,
     }
 
 #if GTEST_HAS_STD_WSTRING
-                                                                                                                            // Converts the given wide string to a narrow string using the UTF-8
+
+// Converts the given wide string to a narrow string using the UTF-8
 // encoding, and streams the result to this Message object.
 Message& Message::operator <<(const ::std::wstring& wstr) {
   internal::StreamWideCharsToMessage(wstr.c_str(), wstr.length(), this);
@@ -997,7 +995,7 @@ Message& Message::operator <<(const ::wstring& wstr) {
     }
 
 // Swaps two AssertionResults.
-    void AssertionResult::swap(AssertionResult & other) {
+    void AssertionResult::swap(AssertionResult &other) {
         using std::swap;
         swap(success_, other.success_);
         swap(message_, other.message_);
@@ -1396,7 +1394,7 @@ Message& Message::operator <<(const ::wstring& wstr) {
             }
 
             // or if val1 is almost equal to val2.
-            const FloatingPoint <RawType> lhs(val1), rhs(val2);
+            const FloatingPoint<RawType> lhs(val1), rhs(val2);
             if (lhs.AlmostEquals(rhs)) {
                 return AssertionSuccess();
             }
@@ -1645,7 +1643,8 @@ AssertionResult CmpHelper##op_name(const char* expr1, const char* expr2, \
     }
 
 #if GTEST_HAS_STD_WSTRING
-                                                                                                                            AssertionResult IsSubstring(
+
+    AssertionResult IsSubstring(
     const char* needle_expr, const char* haystack_expr,
     const ::std::wstring& needle, const ::std::wstring& haystack) {
   return IsSubstringImpl(true, needle_expr, haystack_expr, needle, haystack);
@@ -1938,14 +1937,14 @@ AssertionResult IsHRESULTFailure(const char* expr, long hr) {  // NOLINT
 #elif GTEST_OS_LINUX && !GTEST_OS_LINUX_ANDROID
             return wcscasecmp(lhs, rhs) == 0;
 #else
-            // Android, Mac OS X and Cygwin don't define wcscasecmp.
-            // Other unknown OSes may not define it either.
-            wint_t left, right;
-            do {
-                left = towlower(*lhs++);
-                right = towlower(*rhs++);
-            } while (left && left == right);
-            return left == right;
+                                                                                                                                    // Android, Mac OS X and Cygwin don't define wcscasecmp.
+  // Other unknown OSes may not define it either.
+  wint_t left, right;
+  do {
+    left = towlower(*lhs++);
+    right = towlower(*rhs++);
+  } while (left && left == right);
+  return left == right;
 #endif  // OS selector
         }
 
@@ -2353,7 +2352,7 @@ static std::string* FormatSehExceptionMessage(DWORD exception_code,
 
 #if GTEST_HAS_EXCEPTIONS
 
-                                                                                                                                // Adds an "exception thrown" fatal failure to the current test.
+// Adds an "exception thrown" fatal failure to the current test.
 static std::string FormatCxxExceptionMessage(const char* description,
                                              const char* location) {
   Message message;
@@ -2439,7 +2438,7 @@ GoogleTestFailureException::GoogleTestFailureException(
             // exception handling in the method where the exception is thrown.
             if (internal::GetUnitTestImpl()->catch_exceptions()) {
 #if GTEST_HAS_EXCEPTIONS
-                                                                                                                                        try {
+                try {
       return HandleSehExceptionsInMethodIfSupported(object, method, location);
     } catch (const internal::GoogleTestFailureException&) {  // NOLINT
       // This exception type can only be thrown by a failed Google
@@ -2563,8 +2562,9 @@ GoogleTestFailureException::GoogleTestFailureException(
         }
 
 #if GTEST_HAS_PARAM_TEST
-                                                                                                                                void ReportInvalidTestCaseType(const char* test_case_name,
-                               CodeLocation code_location) {
+
+        void ReportInvalidTestCaseType(const char *test_case_name,
+                                       CodeLocation code_location) {
   Message errors;
   errors
       << "Attempted redefinition of test case " << test_case_name << ".\n"
@@ -2621,7 +2621,7 @@ GoogleTestFailureException::GoogleTestFailureException(
 // This will be done just once during the program runtime.
         void UnitTestImpl::RegisterParameterizedTests() {
 #if GTEST_HAS_PARAM_TEST
-                                                                                                                                    if (!parameterized_tests_registered_) {
+            if (!parameterized_tests_registered_) {
     parameterized_test_registry_.RegisterTests();
     parameterized_tests_registered_ = true;
   }
@@ -2755,7 +2755,7 @@ GoogleTestFailureException::GoogleTestFailureException(
 
 // Adds a test to this test case.  Will delete the test upon
 // destruction of the TestCase object.
-    void TestCase::AddTestInfo(TestInfo * test_info) {
+    void TestCase::AddTestInfo(TestInfo *test_info) {
         test_info_list_.push_back(test_info);
         test_indices_.push_back(static_cast<int>(test_indices_.size()));
     }
@@ -3308,7 +3308,7 @@ WORD GetColorAttribute(GTestColor color) {
         };
 
         TestEventRepeater::~TestEventRepeater() {
-            ForEach(listeners_, Delete < TestEventListener > );
+            ForEach(listeners_, Delete<TestEventListener>);
         }
 
         void TestEventRepeater::Append(TestEventListener *listener) {
@@ -3662,8 +3662,8 @@ void TestEventRepeater::Name(const Type& parameter) { \
 
             GTEST_CHECK_(std::find(allowed_names.begin(), allowed_names.end(), name) !=
                          allowed_names.end())
-                    << "Attribute " << name << " is not allowed for element <" << element_name
-                    << ">.";
+                        << "Attribute " << name << " is not allowed for element <" << element_name
+                        << ">.";
 
             *stream << " " << name << "=\"" << EscapeXmlAttribute(value) << "\"";
         }
@@ -3801,7 +3801,7 @@ void TestEventRepeater::Name(const Type& parameter) { \
 
 #if GTEST_CAN_STREAM_RESULTS_
 
-                                                                                                                                // Checks if str contains '=', '&', '%' or '\n' characters. If yes,
+// Checks if str contains '=', '&', '%' or '\n' characters. If yes,
 // replaces them by "%xx" where xx is their hexadecimal value. For
 // example, replaces "=" with "%3D".  This algorithm is O(strlen(str))
 // in both time and space -- important as the input str may contain an
@@ -3874,30 +3874,26 @@ void StreamingListener::SocketWriter::MakeConnection() {
 // Pushes the given source file location and message onto a per-thread
 // trace stack maintained by Google Test.
         ScopedTrace::ScopedTrace(const char *file, int line, const Message &message)
-
         GTEST_LOCK_EXCLUDED_(&UnitTest::mutex_) {
-                TraceInfo trace;
-                trace.file = file;
-                trace.line = line;
-                trace.message = message.GetString();
+            TraceInfo trace;
+            trace.file = file;
+            trace.line = line;
+            trace.message = message.GetString();
 
-                UnitTest::GetInstance()->PushGTestTrace(trace);
+            UnitTest::GetInstance()->PushGTestTrace(trace);
         }
 
 // Pops the info pushed by the c'tor.
         ScopedTrace::~ScopedTrace()
-
         GTEST_LOCK_EXCLUDED_(&UnitTest::mutex_) {
-                UnitTest::GetInstance()->PopGTestTrace();
+            UnitTest::GetInstance()->PopGTestTrace();
         }
 
 
 // class OsStackTraceGetter
 
-                const
-        char *const OsStackTraceGetterInterface::kElidedFramesMarker =
-                "... "
-        GTEST_NAME_ " internal frames ...";
+        const char *const OsStackTraceGetterInterface::kElidedFramesMarker =
+                "... " GTEST_NAME_ " internal frames ...";
 
         string OsStackTraceGetter::CurrentStackTrace(int /*max_depth*/,
                                                      int /*skip_count*/) {
@@ -4162,63 +4158,61 @@ void StreamingListener::SocketWriter::MakeConnection() {
             const char *file_name,
             int line_number,
             const std::string &message,
-            const std::string &os_stack_trace)
+            const std::string &os_stack_trace) GTEST_LOCK_EXCLUDED_(mutex_) {
+        Message msg;
+        msg << message;
 
-    GTEST_LOCK_EXCLUDED_(mutex_) {
-            Message msg;
-            msg << message;
+        internal::MutexLock lock(&mutex_);
+        if (impl_->gtest_trace_stack().size() > 0) {
+            msg << "\n" << GTEST_NAME_ << " trace:";
 
-            internal::MutexLock lock(&mutex_);
-            if (impl_->gtest_trace_stack().size() > 0) {
-                msg << "\n" << GTEST_NAME_ << " trace:";
-
-                for (int i = static_cast<int>(impl_->gtest_trace_stack().size());
-                     i > 0; --i) {
-                    const internal::TraceInfo &trace = impl_->gtest_trace_stack()[i - 1];
-                    msg << "\n" << internal::FormatFileLocation(trace.file, trace.line)
-                        << " " << trace.message;
-                }
+            for (int i = static_cast<int>(impl_->gtest_trace_stack().size());
+                 i > 0; --i) {
+                const internal::TraceInfo &trace = impl_->gtest_trace_stack()[i - 1];
+                msg << "\n" << internal::FormatFileLocation(trace.file, trace.line)
+                    << " " << trace.message;
             }
+        }
 
-            if (os_stack_trace.c_str() != NULL && !os_stack_trace.empty()) {
-                msg << internal::kStackTraceMarker << os_stack_trace;
-            }
+        if (os_stack_trace.c_str() != NULL && !os_stack_trace.empty()) {
+            msg << internal::kStackTraceMarker << os_stack_trace;
+        }
 
-            const TestPartResult result =
-            TestPartResult(result_type, file_name, line_number,
-            msg.GetString().c_str());
-            impl_->GetTestPartResultReporterForCurrentThread()->
-            ReportTestPartResult(result);
+        const TestPartResult result =
+                TestPartResult(result_type, file_name, line_number,
+                               msg.GetString().c_str());
+        impl_->GetTestPartResultReporterForCurrentThread()->
+                ReportTestPartResult(result);
 
-            if (result_type != TestPartResult::kSuccess) {
-                // gtest_break_on_failure takes precedence over
-                // gtest_throw_on_failure.  This allows a user to set the latter
-                // in the code (perhaps in order to use Google Test assertions
-                // with another testing framework) and specify the former on the
-                // command line for debugging.
-                if (GTEST_FLAG(break_on_failure)) {
+        if (result_type != TestPartResult::kSuccess) {
+            // gtest_break_on_failure takes precedence over
+            // gtest_throw_on_failure.  This allows a user to set the latter
+            // in the code (perhaps in order to use Google Test assertions
+            // with another testing framework) and specify the former on the
+            // command line for debugging.
+            if (GTEST_FLAG(break_on_failure)) {
 #if GTEST_OS_WINDOWS && !GTEST_OS_WINDOWS_PHONE && !GTEST_OS_WINDOWS_RT
-                                                                                                                                            // Using DebugBreak on Windows allows gtest to still break into a debugger
+                                                                                                                                        // Using DebugBreak on Windows allows gtest to still break into a debugger
       // when a failure happens and both the --gtest_break_on_failure and
       // the --gtest_catch_exceptions flags are specified.
       DebugBreak();
 #else
-                    // Dereference NULL through a volatile pointer to prevent the compiler
-                    // from removing. We use this rather than abort() or __builtin_trap() for
-                    // portability: Symbian doesn't implement abort() well, and some debuggers
-                    // don't correctly trap abort().
-                    *static_cast<volatile int *>(NULL) = 1;
+                // Dereference NULL through a volatile pointer to prevent the compiler
+                // from removing. We use this rather than abort() or __builtin_trap() for
+                // portability: Symbian doesn't implement abort() well, and some debuggers
+                // don't correctly trap abort().
+                *static_cast<volatile int *>(NULL) = 1;
 #endif  // GTEST_OS_WINDOWS
-                } else if (GTEST_FLAG(throw_on_failure)) {
+            } else if (GTEST_FLAG(throw_on_failure)) {
 #if GTEST_HAS_EXCEPTIONS
-                    throw internal::GoogleTestFailureException(result);
+                throw internal::GoogleTestFailureException(result);
 #else
-                    // We cannot call abort() as it generates a pop-up in debug mode
-                    // that cannot be suppressed in VC 7.1 or below.
-                    exit(1);
+                                                                                                                                        // We cannot call abort() as it generates a pop-up in debug mode
+      // that cannot be suppressed in VC 7.1 or below.
+      exit(1);
 #endif
-                }
             }
+        }
     }
 
 // Adds a TestProperty to the current TestResult object when invoked from
@@ -4323,28 +4317,25 @@ void StreamingListener::SocketWriter::MakeConnection() {
 // Returns the TestCase object for the test that's currently running,
 // or NULL if no test is running.
     const TestCase *UnitTest::current_test_case() const
-
     GTEST_LOCK_EXCLUDED_(mutex_) {
-            internal::MutexLock lock(&mutex_);
-            return impl_->current_test_case();
+        internal::MutexLock lock(&mutex_);
+        return impl_->current_test_case();
     }
 
 // Returns the TestInfo object for the test that's currently running,
 // or NULL if no test is running.
-            const
-
-    TestInfo *UnitTest::current_test_info() const
-
+    const TestInfo *UnitTest::current_test_info() const
     GTEST_LOCK_EXCLUDED_(mutex_) {
-            internal::MutexLock lock(&mutex_);
-            return impl_->current_test_info();
+        internal::MutexLock lock(&mutex_);
+        return impl_->current_test_info();
     }
 
 // Returns the random seed used at the start of the current test run.
     int UnitTest::random_seed() const { return impl_->random_seed(); }
 
 #if GTEST_HAS_PARAM_TEST
-                                                                                                                            // Returns ParameterizedTestCaseRegistry object used to keep track of
+
+// Returns ParameterizedTestCaseRegistry object used to keep track of
 // value-parameterized tests and instantiate and register them.
 internal::ParameterizedTestCaseRegistry&
     UnitTest::parameterized_test_registry()
@@ -4366,53 +4357,49 @@ internal::ParameterizedTestCaseRegistry&
 // Pushes a trace defined by SCOPED_TRACE() on to the per-thread
 // Google Test trace stack.
     void UnitTest::PushGTestTrace(const internal::TraceInfo &trace)
-
     GTEST_LOCK_EXCLUDED_(mutex_) {
-            internal::MutexLock lock(&mutex_);
-            impl_->gtest_trace_stack().push_back(trace);
+        internal::MutexLock lock(&mutex_);
+        impl_->gtest_trace_stack().push_back(trace);
     }
 
 // Pops a trace from the per-thread Google Test trace stack.
     void UnitTest::PopGTestTrace()
-
     GTEST_LOCK_EXCLUDED_(mutex_) {
-            internal::MutexLock lock(&mutex_);
-            impl_->gtest_trace_stack().pop_back();
+        internal::MutexLock lock(&mutex_);
+        impl_->gtest_trace_stack().pop_back();
     }
 
     namespace internal {
 
-        UnitTestImpl::UnitTestImpl(UnitTest * parent)
+        UnitTestImpl::UnitTestImpl(UnitTest *parent)
                 : parent_(parent),
                   GTEST_DISABLE_MSC_WARNINGS_PUSH_(4355 /* using this in initializer */)
-        default_global_test_part_result_reporter_(this),
-        default_per_thread_test_part_result_reporter_(this),
-
-        GTEST_DISABLE_MSC_WARNINGS_POP_()
-
-        global_test_part_result_repoter_ (
-        &default_global_test_part_result_reporter_),
-        per_thread_test_part_result_reporter_(
-                &default_per_thread_test_part_result_reporter_),
+                  default_global_test_part_result_reporter_(this),
+                  default_per_thread_test_part_result_reporter_(this),
+                  GTEST_DISABLE_MSC_WARNINGS_POP_()
+                  global_test_part_result_repoter_(
+                          &default_global_test_part_result_reporter_),
+                  per_thread_test_part_result_reporter_(
+                          &default_per_thread_test_part_result_reporter_),
 #if GTEST_HAS_PARAM_TEST
-                                                                                                                                parameterized_test_registry_(),
-      parameterized_tests_registered_(false),
+                  parameterized_test_registry_(),
+                  parameterized_tests_registered_(false),
 #endif  // GTEST_HAS_PARAM_TEST
-        last_death_test_case_(-1),
-        current_test_case_(NULL),
-        current_test_info_(NULL),
-        ad_hoc_test_result_(),
-        os_stack_trace_getter_(NULL),
-        post_flag_parse_init_performed_(false),
-        random_seed_(0),  // Will be overridden by the flag before first use.
-        random_(0),  // Will be reseeded before first use.
-        start_timestamp_(0),
-        elapsed_time_(0),
+                  last_death_test_case_(-1),
+                  current_test_case_(NULL),
+                  current_test_info_(NULL),
+                  ad_hoc_test_result_(),
+                  os_stack_trace_getter_(NULL),
+                  post_flag_parse_init_performed_(false),
+                  random_seed_(0),  // Will be overridden by the flag before first use.
+                  random_(0),  // Will be reseeded before first use.
+                  start_timestamp_(0),
+                  elapsed_time_(0),
 #if GTEST_HAS_DEATH_TEST
-        death_test_factory_(new DefaultDeathTestFactory),
+                  death_test_factory_(new DefaultDeathTestFactory),
 #endif
-        // Will be overridden by the flag before first use.
-        catch_exceptions_(false) {
+                // Will be overridden by the flag before first use.
+                  catch_exceptions_(false) {
             listeners()->SetDefaultResultPrinter(new PrettyUnitTestResultPrinter);
         }
 
@@ -4449,7 +4436,8 @@ internal::ParameterizedTestCaseRegistry&
         }
 
 #if GTEST_HAS_DEATH_TEST
-                                                                                                                                // Disables event forwarding if the control is currently in a death test
+
+// Disables event forwarding if the control is currently in a death test
 // subprocess. Must not be called before InitGoogleTest.
 void UnitTestImpl::SuppressTestEventsIfInSubprocess() {
   if (internal_run_death_test_flag_.get() != NULL)
@@ -4472,7 +4460,8 @@ void UnitTestImpl::SuppressTestEventsIfInSubprocess() {
         }
 
 #if GTEST_CAN_STREAM_RESULTS_
-                                                                                                                                // Initializes event listeners for streaming test results in string form.
+
+// Initializes event listeners for streaming test results in string form.
 // Must not be called before InitGoogleTest.
 void UnitTestImpl::ConfigureStreamingOutput() {
   const std::string& target = GTEST_FLAG(stream_result_to);
@@ -4506,7 +4495,7 @@ void UnitTestImpl::ConfigureStreamingOutput() {
 #endif  // defined(GTEST_CUSTOM_TEST_EVENT_LISTENER_)
 
 #if GTEST_HAS_DEATH_TEST
-                                                                                                                                        InitDeathTestSubprocessControlInfo();
+                InitDeathTestSubprocessControlInfo();
     SuppressTestEventsIfInSubprocess();
 #endif  // GTEST_HAS_DEATH_TEST
 
@@ -4520,7 +4509,7 @@ void UnitTestImpl::ConfigureStreamingOutput() {
                 ConfigureXmlOutput();
 
 #if GTEST_CAN_STREAM_RESULTS_
-                                                                                                                                        // Configures listeners for streaming test results to the specified server.
+                // Configures listeners for streaming test results to the specified server.
     ConfigureStreamingOutput();
 #endif  // GTEST_CAN_STREAM_RESULTS_
             }
@@ -4638,7 +4627,7 @@ void UnitTestImpl::ConfigureStreamingOutput() {
             bool in_subprocess_for_death_test = false;
 
 #if GTEST_HAS_DEATH_TEST
-                                                                                                                                    in_subprocess_for_death_test = (internal_run_death_test_flag_.get() != NULL);
+            in_subprocess_for_death_test = (internal_run_death_test_flag_.get() != NULL);
 # if defined(GTEST_EXTRA_DEATH_TEST_CHILD_SETUP_)
   if (in_subprocess_for_death_test) {
     GTEST_EXTRA_DEATH_TEST_CHILD_SETUP_();
@@ -5034,81 +5023,75 @@ void UnitTestImpl::ConfigureStreamingOutput() {
 // GetCurrentOsStackTraceExceptTop(..., 1), Foo() will be included in
 // the trace but Bar() and GetCurrentOsStackTraceExceptTop() won't.
         std::string GetCurrentOsStackTraceExceptTop(UnitTest * /*unit_test*/,
-                                                    int
-        skip_count) {
-        // We pass skip_count + 1 to skip this wrapper function in addition
-        // to what the user really wants to skip.
-        return
-
-        GetUnitTestImpl() ->
-
-        CurrentOsStackTraceExceptTop(skip_count
-        + 1);
-    }
+                                                    int skip_count) {
+            // We pass skip_count + 1 to skip this wrapper function in addition
+            // to what the user really wants to skip.
+            return GetUnitTestImpl()->CurrentOsStackTraceExceptTop(skip_count + 1);
+        }
 
 // Used by the GTEST_SUPPRESS_UNREACHABLE_CODE_WARNING_BELOW_ macro to
 // suppress unreachable code warnings.
-    namespace {
-        class ClassUniqueToAlwaysTrue {
-        };
-    }
+        namespace {
+            class ClassUniqueToAlwaysTrue {
+            };
+        }
 
-    bool IsTrue(bool condition) { return condition; }
+        bool IsTrue(bool condition) { return condition; }
 
-    bool AlwaysTrue() {
+        bool AlwaysTrue() {
 #if GTEST_HAS_EXCEPTIONS
-                                                                                                                                // This condition is always false so AlwaysTrue() never actually throws,
+            // This condition is always false so AlwaysTrue() never actually throws,
   // but it makes the compiler think that it may throw.
   if (IsTrue(false))
     throw ClassUniqueToAlwaysTrue();
 #endif  // GTEST_HAS_EXCEPTIONS
-        return true;
-    }
+            return true;
+        }
 
 // If *pstr starts with the given prefix, modifies *pstr to be right
 // past the prefix and returns true; otherwise leaves *pstr unchanged
 // and returns false.  None of pstr, *pstr, and prefix can be NULL.
-    bool SkipPrefix(const char *prefix, const char **pstr) {
-        const size_t prefix_len = strlen(prefix);
-        if (strncmp(*pstr, prefix, prefix_len) == 0) {
-            *pstr += prefix_len;
-            return true;
+        bool SkipPrefix(const char *prefix, const char **pstr) {
+            const size_t prefix_len = strlen(prefix);
+            if (strncmp(*pstr, prefix, prefix_len) == 0) {
+                *pstr += prefix_len;
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
 
 // Parses a string as a command line flag.  The string should have
 // the format "--flag=value".  When def_optional is true, the "=value"
 // part can be omitted.
 //
 // Returns the value of the flag, or NULL if the parsing failed.
-    const char *ParseFlagValue(const char *str,
-                               const char *flag,
-                               bool def_optional) {
-        // str and flag must not be NULL.
-        if (str == NULL || flag == NULL) return NULL;
+        const char *ParseFlagValue(const char *str,
+                                   const char *flag,
+                                   bool def_optional) {
+            // str and flag must not be NULL.
+            if (str == NULL || flag == NULL) return NULL;
 
-        // The flag must start with "--" followed by GTEST_FLAG_PREFIX_.
-        const std::string flag_str = std::string("--") + GTEST_FLAG_PREFIX_ + flag;
-        const size_t flag_len = flag_str.length();
-        if (strncmp(str, flag_str.c_str(), flag_len) != 0) return NULL;
+            // The flag must start with "--" followed by GTEST_FLAG_PREFIX_.
+            const std::string flag_str = std::string("--") + GTEST_FLAG_PREFIX_ + flag;
+            const size_t flag_len = flag_str.length();
+            if (strncmp(str, flag_str.c_str(), flag_len) != 0) return NULL;
 
-        // Skips the flag name.
-        const char *flag_end = str + flag_len;
+            // Skips the flag name.
+            const char *flag_end = str + flag_len;
 
-        // When def_optional is true, it's OK to not have a "=value" part.
-        if (def_optional && (flag_end[0] == '\0')) {
-            return flag_end;
+            // When def_optional is true, it's OK to not have a "=value" part.
+            if (def_optional && (flag_end[0] == '\0')) {
+                return flag_end;
+            }
+
+            // If def_optional is true and there are more characters after the
+            // flag name, or if def_optional is false, there must be a '=' after
+            // the flag name.
+            if (flag_end[0] != '=') return NULL;
+
+            // Returns the string after "=".
+            return flag_end + 1;
         }
-
-        // If def_optional is true and there are more characters after the
-        // flag name, or if def_optional is false, there must be a '=' after
-        // the flag name.
-        if (flag_end[0] != '=') return NULL;
-
-        // Returns the string after "=".
-        return flag_end + 1;
-    }
 
 // Parses a string for a bool flag, in the form of either
 // "--flag=value" or "--flag".
@@ -5120,51 +5103,51 @@ void UnitTestImpl::ConfigureStreamingOutput() {
 //
 // On success, stores the value of the flag in *value, and returns
 // true.  On failure, returns false without changing *value.
-    bool ParseBoolFlag(const char *str, const char *flag, bool *value) {
-        // Gets the value of the flag as a string.
-        const char *const value_str = ParseFlagValue(str, flag, true);
+        bool ParseBoolFlag(const char *str, const char *flag, bool *value) {
+            // Gets the value of the flag as a string.
+            const char *const value_str = ParseFlagValue(str, flag, true);
 
-        // Aborts if the parsing failed.
-        if (value_str == NULL) return false;
+            // Aborts if the parsing failed.
+            if (value_str == NULL) return false;
 
-        // Converts the string value to a bool.
-        *value = !(*value_str == '0' || *value_str == 'f' || *value_str == 'F');
-        return true;
-    }
+            // Converts the string value to a bool.
+            *value = !(*value_str == '0' || *value_str == 'f' || *value_str == 'F');
+            return true;
+        }
 
 // Parses a string for an Int32 flag, in the form of
 // "--flag=value".
 //
 // On success, stores the value of the flag in *value, and returns
 // true.  On failure, returns false without changing *value.
-    bool ParseInt32Flag(const char *str, const char *flag, Int32 *value) {
-        // Gets the value of the flag as a string.
-        const char *const value_str = ParseFlagValue(str, flag, false);
+        bool ParseInt32Flag(const char *str, const char *flag, Int32 *value) {
+            // Gets the value of the flag as a string.
+            const char *const value_str = ParseFlagValue(str, flag, false);
 
-        // Aborts if the parsing failed.
-        if (value_str == NULL) return false;
+            // Aborts if the parsing failed.
+            if (value_str == NULL) return false;
 
-        // Sets *value to the value of the flag.
-        return ParseInt32(Message() << "The value of flag --" << flag,
-                          value_str, value);
-    }
+            // Sets *value to the value of the flag.
+            return ParseInt32(Message() << "The value of flag --" << flag,
+                              value_str, value);
+        }
 
 // Parses a string for a string flag, in the form of
 // "--flag=value".
 //
 // On success, stores the value of the flag in *value, and returns
 // true.  On failure, returns false without changing *value.
-    bool ParseStringFlag(const char *str, const char *flag, std::string *value) {
-        // Gets the value of the flag as a string.
-        const char *const value_str = ParseFlagValue(str, flag, false);
+        bool ParseStringFlag(const char *str, const char *flag, std::string *value) {
+            // Gets the value of the flag as a string.
+            const char *const value_str = ParseFlagValue(str, flag, false);
 
-        // Aborts if the parsing failed.
-        if (value_str == NULL) return false;
+            // Aborts if the parsing failed.
+            if (value_str == NULL) return false;
 
-        // Sets *value to the value of the flag.
-        *value = value_str;
-        return true;
-    }
+            // Sets *value to the value of the flag.
+            *value = value_str;
+            return true;
+        }
 
 // Determines whether a string has a prefix that Google Test uses for its
 // flags, i.e., starts with GTEST_FLAG_PREFIX_ or GTEST_FLAG_PREFIX_DASH_.
@@ -5172,15 +5155,14 @@ void UnitTestImpl::ConfigureStreamingOutput() {
 // recognized, it will print its help message. Flags starting with
 // GTEST_INTERNAL_PREFIX_ followed by "internal_" are considered Google Test
 // internal flags and do not trigger the help message.
-    static bool HasGoogleTestFlagPrefix(const char *str) {
-        return (SkipPrefix("--", &str) ||
-                SkipPrefix("-", &str) ||
-                SkipPrefix("/", &str)) &&
-               !SkipPrefix(GTEST_FLAG_PREFIX_
-        "internal_", &str) &&
-        (SkipPrefix(GTEST_FLAG_PREFIX_, &str) ||
-         SkipPrefix(GTEST_FLAG_PREFIX_DASH_, &str));
-    }
+        static bool HasGoogleTestFlagPrefix(const char *str) {
+            return (SkipPrefix("--", &str) ||
+                    SkipPrefix("-", &str) ||
+                    SkipPrefix("/", &str)) &&
+                   !SkipPrefix(GTEST_FLAG_PREFIX_ "internal_", &str) &&
+                   (SkipPrefix(GTEST_FLAG_PREFIX_, &str) ||
+                    SkipPrefix(GTEST_FLAG_PREFIX_DASH_, &str));
+        }
 
 // Prints a string containing code-encoded text.  The following escape
 // sequences can be used in the string to control the text color:
@@ -5193,136 +5175,136 @@ void UnitTestImpl::ConfigureStreamingOutput() {
 //
 // TODO(wan@google.com): Write tests for this once we add stdout
 // capturing to Google Test.
-    static void PrintColorEncoded(const char *str) {
-        GTestColor color = COLOR_DEFAULT;  // The current color.
+        static void PrintColorEncoded(const char *str) {
+            GTestColor color = COLOR_DEFAULT;  // The current color.
 
-        // Conceptually, we split the string into segments divided by escape
-        // sequences.  Then we print one segment at a time.  At the end of
-        // each iteration, the str pointer advances to the beginning of the
-        // next segment.
-        for (;;) {
-            const char *p = strchr(str, '@');
-            if (p == NULL) {
-                ColoredPrintf(color, "%s", str);
-                return;
-            }
+            // Conceptually, we split the string into segments divided by escape
+            // sequences.  Then we print one segment at a time.  At the end of
+            // each iteration, the str pointer advances to the beginning of the
+            // next segment.
+            for (;;) {
+                const char *p = strchr(str, '@');
+                if (p == NULL) {
+                    ColoredPrintf(color, "%s", str);
+                    return;
+                }
 
-            ColoredPrintf(color, "%s", std::string(str, p).c_str());
+                ColoredPrintf(color, "%s", std::string(str, p).c_str());
 
-            const char ch = p[1];
-            str = p + 2;
-            if (ch == '@') {
-                ColoredPrintf(color, "@");
-            } else if (ch == 'D') {
-                color = COLOR_DEFAULT;
-            } else if (ch == 'R') {
-                color = COLOR_RED;
-            } else if (ch == 'G') {
-                color = COLOR_GREEN;
-            } else if (ch == 'Y') {
-                color = COLOR_YELLOW;
-            } else {
-                --str;
+                const char ch = p[1];
+                str = p + 2;
+                if (ch == '@') {
+                    ColoredPrintf(color, "@");
+                } else if (ch == 'D') {
+                    color = COLOR_DEFAULT;
+                } else if (ch == 'R') {
+                    color = COLOR_RED;
+                } else if (ch == 'G') {
+                    color = COLOR_GREEN;
+                } else if (ch == 'Y') {
+                    color = COLOR_YELLOW;
+                } else {
+                    --str;
+                }
             }
         }
-    }
 
-    static const char kColorEncodedHelpMessage[] =
-            "This program contains tests written using "
-    GTEST_NAME_ ". You can use the\n"
-    "following command line flags to control its behavior:\n"
-    "\n"
-    "Test Selection:\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "list_tests@D\n"
-    "      List the names of all tests instead of running them. The name of\n"
-    "      TEST(Foo, Bar) is \"Foo.Bar\".\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "filter=@YPOSTIVE_PATTERNS"
+        static const char kColorEncodedHelpMessage[] =
+                "This program contains tests written using " GTEST_NAME_ ". You can use the\n"
+                        "following command line flags to control its behavior:\n"
+                        "\n"
+                        "Test Selection:\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "list_tests@D\n"
+                        "      List the names of all tests instead of running them. The name of\n"
+                        "      TEST(Foo, Bar) is \"Foo.Bar\".\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "filter=@YPOSTIVE_PATTERNS"
     "[@G-@YNEGATIVE_PATTERNS]@D\n"
-    "      Run only the tests whose name matches one of the positive patterns but\n"
-    "      none of the negative patterns. '?' matches any single character; '*'\n"
-    "      matches any substring; ':' separates two patterns.\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "also_run_disabled_tests@D\n"
-    "      Run all disabled tests too.\n"
-    "\n"
-    "Test Execution:\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "repeat=@Y[COUNT]@D\n"
-    "      Run the tests repeatedly; use a negative count to repeat forever.\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "shuffle@D\n"
-    "      Randomize tests' orders on every iteration.\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "random_seed=@Y[NUMBER]@D\n"
-    "      Random number seed to use for shuffling test orders (between 1 and\n"
-    "      99999, or 0 to use a seed based on the current time).\n"
-    "\n"
-    "Test Output:\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "color=@Y(@Gyes@Y|@Gno@Y|@Gauto@Y)@D\n"
-    "      Enable/disable colored output. The default is @Gauto@D.\n"
-    "  -@G-" GTEST_FLAG_PREFIX_ "print_time=0@D\n"
-    "      Don't print the elapsed time of each test.\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "output=xml@Y[@G:@YDIRECTORY_PATH@G"
+                        "      Run only the tests whose name matches one of the positive patterns but\n"
+                        "      none of the negative patterns. '?' matches any single character; '*'\n"
+                        "      matches any substring; ':' separates two patterns.\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "also_run_disabled_tests@D\n"
+                        "      Run all disabled tests too.\n"
+                        "\n"
+                        "Test Execution:\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "repeat=@Y[COUNT]@D\n"
+                        "      Run the tests repeatedly; use a negative count to repeat forever.\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "shuffle@D\n"
+                        "      Randomize tests' orders on every iteration.\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "random_seed=@Y[NUMBER]@D\n"
+                        "      Random number seed to use for shuffling test orders (between 1 and\n"
+                        "      99999, or 0 to use a seed based on the current time).\n"
+                        "\n"
+                        "Test Output:\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "color=@Y(@Gyes@Y|@Gno@Y|@Gauto@Y)@D\n"
+                        "      Enable/disable colored output. The default is @Gauto@D.\n"
+                        "  -@G-" GTEST_FLAG_PREFIX_ "print_time=0@D\n"
+                        "      Don't print the elapsed time of each test.\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "output=xml@Y[@G:@YDIRECTORY_PATH@G"
     GTEST_PATH_SEP_ "@Y|@G:@YFILE_PATH]@D\n"
-    "      Generate an XML report in the given directory or with the given file\n"
-    "      name. @YFILE_PATH@D defaults to @Gtest_details.xml@D.\n"
+                        "      Generate an XML report in the given directory or with the given file\n"
+                        "      name. @YFILE_PATH@D defaults to @Gtest_details.xml@D.\n"
 #if GTEST_CAN_STREAM_RESULTS_
-                                                                                                                            "  @G--" GTEST_FLAG_PREFIX_ "stream_result_to=@YHOST@G:@YPORT@D\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "stream_result_to=@YHOST@G:@YPORT@D\n"
 "      Stream test results to the given server.\n"
 #endif  // GTEST_CAN_STREAM_RESULTS_
-    "\n"
-    "Assertion Behavior:\n"
+                        "\n"
+                        "Assertion Behavior:\n"
 #if GTEST_HAS_DEATH_TEST && !GTEST_OS_WINDOWS
-                                                                                                                            "  @G--" GTEST_FLAG_PREFIX_ "death_test_style=@Y(@Gfast@Y|@Gthreadsafe@Y)@D\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "death_test_style=@Y(@Gfast@Y|@Gthreadsafe@Y)@D\n"
 "      Set the default death test style.\n"
 #endif  // GTEST_HAS_DEATH_TEST && !GTEST_OS_WINDOWS
-    "  @G--" GTEST_FLAG_PREFIX_ "break_on_failure@D\n"
-    "      Turn assertion failures into debugger break-points.\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "throw_on_failure@D\n"
-    "      Turn assertion failures into C++ exceptions.\n"
-    "  @G--" GTEST_FLAG_PREFIX_ "catch_exceptions=0@D\n"
-    "      Do not report exceptions as test failures. Instead, allow them\n"
-    "      to crash the program or throw a pop-up (on Windows).\n"
-    "\n"
-    "Except for @G--" GTEST_FLAG_PREFIX_ "list_tests@D, you can alternatively set "
+                        "  @G--" GTEST_FLAG_PREFIX_ "break_on_failure@D\n"
+                        "      Turn assertion failures into debugger break-points.\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "throw_on_failure@D\n"
+                        "      Turn assertion failures into C++ exceptions.\n"
+                        "  @G--" GTEST_FLAG_PREFIX_ "catch_exceptions=0@D\n"
+                        "      Do not report exceptions as test failures. Instead, allow them\n"
+                        "      to crash the program or throw a pop-up (on Windows).\n"
+                        "\n"
+                        "Except for @G--" GTEST_FLAG_PREFIX_ "list_tests@D, you can alternatively set "
     "the corresponding\n"
-    "environment variable of a flag (all letters in upper-case). For example, to\n"
-    "disable colored text output, you can either specify @G--" GTEST_FLAG_PREFIX_
+"environment variable of a flag (all letters in upper-case). For example, to\n"
+"disable colored text output, you can either specify @G--" GTEST_FLAG_PREFIX_
     "color=no@D or set\n"
-    "the @G" GTEST_FLAG_PREFIX_UPPER_ "COLOR@D environment variable to @Gno@D.\n"
-    "\n"
-    "For more information, please read the " GTEST_NAME_ " documentation at\n"
-    "@G" GTEST_PROJECT_URL_ "@D. If you find a bug in " GTEST_NAME_ "\n"
-    "(not one in your own code or tests), please report it to\n"
-    "@G<" GTEST_DEV_EMAIL_ ">@D.\n";
+                        "the @G" GTEST_FLAG_PREFIX_UPPER_ "COLOR@D environment variable to @Gno@D.\n"
+                        "\n"
+                        "For more information, please read the " GTEST_NAME_ " documentation at\n"
+                        "@G" GTEST_PROJECT_URL_ "@D. If you find a bug in " GTEST_NAME_ "\n"
+                        "(not one in your own code or tests), please report it to\n"
+                        "@G<" GTEST_DEV_EMAIL_ ">@D.\n";
 
-    bool ParseGoogleTestFlag(const char *const arg) {
-        return ParseBoolFlag(arg, kAlsoRunDisabledTestsFlag,
-                             &GTEST_FLAG(also_run_disabled_tests)) ||
-               ParseBoolFlag(arg, kBreakOnFailureFlag,
-                             &GTEST_FLAG(break_on_failure)) ||
-               ParseBoolFlag(arg, kCatchExceptionsFlag,
-                             &GTEST_FLAG(catch_exceptions)) ||
-               ParseStringFlag(arg, kColorFlag, &GTEST_FLAG(color)) ||
-               ParseStringFlag(arg, kDeathTestStyleFlag,
-                               &GTEST_FLAG(death_test_style)) ||
-               ParseBoolFlag(arg, kDeathTestUseFork,
-                             &GTEST_FLAG(death_test_use_fork)) ||
-               ParseStringFlag(arg, kFilterFlag, &GTEST_FLAG(filter)) ||
-               ParseStringFlag(arg, kInternalRunDeathTestFlag,
-                               &GTEST_FLAG(internal_run_death_test)) ||
-               ParseBoolFlag(arg, kListTestsFlag, &GTEST_FLAG(list_tests)) ||
-               ParseStringFlag(arg, kOutputFlag, &GTEST_FLAG(output)) ||
-               ParseBoolFlag(arg, kPrintTimeFlag, &GTEST_FLAG(print_time)) ||
-               ParseInt32Flag(arg, kRandomSeedFlag, &GTEST_FLAG(random_seed)) ||
-               ParseInt32Flag(arg, kRepeatFlag, &GTEST_FLAG(repeat)) ||
-               ParseBoolFlag(arg, kShuffleFlag, &GTEST_FLAG(shuffle)) ||
-               ParseInt32Flag(arg, kStackTraceDepthFlag,
-                              &GTEST_FLAG(stack_trace_depth)) ||
-               ParseStringFlag(arg, kStreamResultToFlag,
-                               &GTEST_FLAG(stream_result_to)) ||
-               ParseBoolFlag(arg, kThrowOnFailureFlag,
-                             &GTEST_FLAG(throw_on_failure));
-    }
+        bool ParseGoogleTestFlag(const char *const arg) {
+            return ParseBoolFlag(arg, kAlsoRunDisabledTestsFlag,
+                                 &GTEST_FLAG(also_run_disabled_tests)) ||
+                   ParseBoolFlag(arg, kBreakOnFailureFlag,
+                                 &GTEST_FLAG(break_on_failure)) ||
+                   ParseBoolFlag(arg, kCatchExceptionsFlag,
+                                 &GTEST_FLAG(catch_exceptions)) ||
+                   ParseStringFlag(arg, kColorFlag, &GTEST_FLAG(color)) ||
+                   ParseStringFlag(arg, kDeathTestStyleFlag,
+                                   &GTEST_FLAG(death_test_style)) ||
+                   ParseBoolFlag(arg, kDeathTestUseFork,
+                                 &GTEST_FLAG(death_test_use_fork)) ||
+                   ParseStringFlag(arg, kFilterFlag, &GTEST_FLAG(filter)) ||
+                   ParseStringFlag(arg, kInternalRunDeathTestFlag,
+                                   &GTEST_FLAG(internal_run_death_test)) ||
+                   ParseBoolFlag(arg, kListTestsFlag, &GTEST_FLAG(list_tests)) ||
+                   ParseStringFlag(arg, kOutputFlag, &GTEST_FLAG(output)) ||
+                   ParseBoolFlag(arg, kPrintTimeFlag, &GTEST_FLAG(print_time)) ||
+                   ParseInt32Flag(arg, kRandomSeedFlag, &GTEST_FLAG(random_seed)) ||
+                   ParseInt32Flag(arg, kRepeatFlag, &GTEST_FLAG(repeat)) ||
+                   ParseBoolFlag(arg, kShuffleFlag, &GTEST_FLAG(shuffle)) ||
+                   ParseInt32Flag(arg, kStackTraceDepthFlag,
+                                  &GTEST_FLAG(stack_trace_depth)) ||
+                   ParseStringFlag(arg, kStreamResultToFlag,
+                                   &GTEST_FLAG(stream_result_to)) ||
+                   ParseBoolFlag(arg, kThrowOnFailureFlag,
+                                 &GTEST_FLAG(throw_on_failure));
+        }
 
 #if GTEST_USE_OWN_FLAGFILE_FLAG_
-                                                                                                                            void LoadFlagsFromFile(const std::string& path) {
+
+        void LoadFlagsFromFile(const std::string &path) {
   FILE* flagfile = posix::FOpen(path.c_str(), "r");
   if (!flagfile) {
     fprintf(stderr,
@@ -5347,87 +5329,87 @@ void UnitTestImpl::ConfigureStreamingOutput() {
 // Parses the command line for Google Test flags, without initializing
 // other parts of Google Test.  The type parameter CharType can be
 // instantiated to either char or wchar_t.
-    template<typename CharType>
-    void ParseGoogleTestFlagsOnlyImpl(int *argc, CharType **argv) {
-        for (int i = 1; i < *argc; i++) {
-            const std::string arg_string = StreamableToString(argv[i]);
-            const char *const arg = arg_string.c_str();
+        template<typename CharType>
+        void ParseGoogleTestFlagsOnlyImpl(int *argc, CharType **argv) {
+            for (int i = 1; i < *argc; i++) {
+                const std::string arg_string = StreamableToString(argv[i]);
+                const char *const arg = arg_string.c_str();
 
-            using internal::ParseBoolFlag;
-            using internal::ParseInt32Flag;
-            using internal::ParseStringFlag;
+                using internal::ParseBoolFlag;
+                using internal::ParseInt32Flag;
+                using internal::ParseStringFlag;
 
-            bool remove_flag = false;
-            if (ParseGoogleTestFlag(arg)) {
-                remove_flag = true;
+                bool remove_flag = false;
+                if (ParseGoogleTestFlag(arg)) {
+                    remove_flag = true;
 #if GTEST_USE_OWN_FLAGFILE_FLAG_
-                                                                                                                                        } else if (ParseStringFlag(arg, kFlagfileFlag, &GTEST_FLAG(flagfile))) {
+                } else if (ParseStringFlag(arg, kFlagfileFlag, &GTEST_FLAG(flagfile))) {
       LoadFlagsFromFile(GTEST_FLAG(flagfile));
       remove_flag = true;
 #endif  // GTEST_USE_OWN_FLAGFILE_FLAG_
-            } else if (arg_string == "--help" || arg_string == "-h" ||
-                       arg_string == "-?" || arg_string == "/?" ||
-                       HasGoogleTestFlagPrefix(arg)) {
-                // Both help flag and unrecognized Google Test flags (excluding
-                // internal ones) trigger help display.
-                g_help_flag = true;
-            }
-
-            if (remove_flag) {
-                // Shift the remainder of the argv list left by one.  Note
-                // that argv has (*argc + 1) elements, the last one always being
-                // NULL.  The following loop moves the trailing NULL element as
-                // well.
-                for (int j = i; j != *argc; j++) {
-                    argv[j] = argv[j + 1];
+                } else if (arg_string == "--help" || arg_string == "-h" ||
+                           arg_string == "-?" || arg_string == "/?" ||
+                           HasGoogleTestFlagPrefix(arg)) {
+                    // Both help flag and unrecognized Google Test flags (excluding
+                    // internal ones) trigger help display.
+                    g_help_flag = true;
                 }
 
-                // Decrements the argument count.
-                (*argc)--;
+                if (remove_flag) {
+                    // Shift the remainder of the argv list left by one.  Note
+                    // that argv has (*argc + 1) elements, the last one always being
+                    // NULL.  The following loop moves the trailing NULL element as
+                    // well.
+                    for (int j = i; j != *argc; j++) {
+                        argv[j] = argv[j + 1];
+                    }
 
-                // We also need to decrement the iterator as we just removed
-                // an element.
-                i--;
+                    // Decrements the argument count.
+                    (*argc)--;
+
+                    // We also need to decrement the iterator as we just removed
+                    // an element.
+                    i--;
+                }
+            }
+
+            if (g_help_flag) {
+                // We print the help here instead of in RUN_ALL_TESTS(), as the
+                // latter may not be called at all if the user is using Google
+                // Test with another testing framework.
+                PrintColorEncoded(kColorEncodedHelpMessage);
             }
         }
-
-        if (g_help_flag) {
-            // We print the help here instead of in RUN_ALL_TESTS(), as the
-            // latter may not be called at all if the user is using Google
-            // Test with another testing framework.
-            PrintColorEncoded(kColorEncodedHelpMessage);
-        }
-    }
 
 // Parses the command line for Google Test flags, without initializing
 // other parts of Google Test.
-    void ParseGoogleTestFlagsOnly(int *argc, char **argv) {
-        ParseGoogleTestFlagsOnlyImpl(argc, argv);
-    }
+        void ParseGoogleTestFlagsOnly(int *argc, char **argv) {
+            ParseGoogleTestFlagsOnlyImpl(argc, argv);
+        }
 
-    void ParseGoogleTestFlagsOnly(int *argc, wchar_t **argv) {
-        ParseGoogleTestFlagsOnlyImpl(argc, argv);
-    }
+        void ParseGoogleTestFlagsOnly(int *argc, wchar_t **argv) {
+            ParseGoogleTestFlagsOnlyImpl(argc, argv);
+        }
 
 // The internal implementation of InitGoogleTest().
 //
 // The type parameter CharType can be instantiated to either char or
 // wchar_t.
-    template<typename CharType>
-    void InitGoogleTestImpl(int *argc, CharType **argv) {
-        // We don't want to run the initialization code twice.
-        if (GTestIsInitialized()) return;
+        template<typename CharType>
+        void InitGoogleTestImpl(int *argc, CharType **argv) {
+            // We don't want to run the initialization code twice.
+            if (GTestIsInitialized()) return;
 
-        if (*argc <= 0) return;
+            if (*argc <= 0) return;
 
-        g_argvs.clear();
-        for (int i = 0; i != *argc; i++) {
-            g_argvs.push_back(StreamableToString(argv[i]));
+            g_argvs.clear();
+            for (int i = 0; i != *argc; i++) {
+                g_argvs.push_back(StreamableToString(argv[i]));
+            }
+
+            ParseGoogleTestFlagsOnly(argc, argv);
+            GetUnitTestImpl()->PostFlagParsingInit();
         }
-
-        ParseGoogleTestFlagsOnly(argc, argv);
-        GetUnitTestImpl()->PostFlagParsingInit();
-    }
 
 }  // namespace internal
 
@@ -5440,21 +5422,21 @@ void UnitTestImpl::ConfigureStreamingOutput() {
 // updated.
 //
 // Calling the function for the second time has no user-visible effect.
-void InitGoogleTest(int *argc, char **argv) {
+    void InitGoogleTest(int *argc, char **argv) {
 #if defined(GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_)
-    GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_(argc, argv);
+        GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_(argc, argv);
 #else  // defined(GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_)
-    internal::InitGoogleTestImpl(argc, argv);
+        internal::InitGoogleTestImpl(argc, argv);
 #endif  // defined(GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_)
 }
 
 // This overloaded version can be used in Windows programs compiled in
 // UNICODE mode.
-void InitGoogleTest(int *argc, wchar_t **argv) {
+    void InitGoogleTest(int *argc, wchar_t **argv) {
 #if defined(GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_)
-    GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_(argc, argv);
+        GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_(argc, argv);
 #else  // defined(GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_)
-    internal::InitGoogleTestImpl(argc, argv);
+        internal::InitGoogleTestImpl(argc, argv);
 #endif  // defined(GTEST_CUSTOM_INIT_GOOGLE_TEST_FUNCTION_)
 }
 

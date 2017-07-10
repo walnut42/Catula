@@ -58,8 +58,7 @@ namespace testing {
 
 // Prints a segment of bytes in the given object.
         GTEST_ATTRIBUTE_NO_SANITIZE_MEMORY_
-                GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
-
+        GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
         GTEST_ATTRIBUTE_NO_SANITIZE_THREAD_
         void PrintByteSegmentInObjectTo(const unsigned char *obj_bytes, size_t start,
                                         size_t count, ostream *os) {
@@ -259,8 +258,7 @@ namespace testing {
 // and may not be NUL-terminated.
         template<typename CharType>
         GTEST_ATTRIBUTE_NO_SANITIZE_MEMORY_
-                GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
-
+        GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
         GTEST_ATTRIBUTE_NO_SANITIZE_THREAD_
         static void PrintCharsAsStringTo(
                 const CharType *begin, size_t len, ostream *os) {
@@ -284,8 +282,7 @@ namespace testing {
 // 'begin'.  CharType must be either char or wchar_t.
         template<typename CharType>
         GTEST_ATTRIBUTE_NO_SANITIZE_MEMORY_
-                GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
-
+        GTEST_ATTRIBUTE_NO_SANITIZE_ADDRESS_
         GTEST_ATTRIBUTE_NO_SANITIZE_THREAD_
         static void UniversalPrintCharArray(
                 const CharType *begin, size_t len, ostream *os) {
@@ -337,7 +334,6 @@ namespace testing {
 // memory accesses. MSVC defines _NATIVE_WCHAR_T_DEFINED symbol when
 // wchar_t is implemented as a native type.
 #if !defined(_MSC_VER) || defined(_NATIVE_WCHAR_T_DEFINED)
-
 // Prints the given wide C string to the ostream.
         void PrintTo(const wchar_t *s, ostream *os) {
             if (s == NULL) {
@@ -347,7 +343,6 @@ namespace testing {
                 PrintCharsAsStringTo(s, std::wcslen(s), os);
             }
         }
-
 #endif  // wchar_t is native
 
 // Prints a ::string object.
@@ -369,8 +364,9 @@ namespace testing {
 #endif  // GTEST_HAS_GLOBAL_WSTRING
 
 #if GTEST_HAS_STD_WSTRING
-        void PrintWideStringTo(const ::std::wstring& s, ostream* os) {
-          PrintCharsAsStringTo(s.data(), s.size(), os);
+
+        void PrintWideStringTo(const ::std::wstring &s, ostream *os) {
+            PrintCharsAsStringTo(s.data(), s.size(), os);
         }
 #endif  // GTEST_HAS_STD_WSTRING
 
