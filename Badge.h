@@ -45,7 +45,6 @@ protected:
     }
 
     bool locked;
-    float goalPoints;
     float points;
     MainCharacter *mainCharacter;
 };
