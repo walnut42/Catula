@@ -27,7 +27,6 @@ private:
 
 
 TEST(MainCharacter, BadgeSubscription) {
-    Audio::loadSounds();
     ModelGame model;
     MainCharacter mC = MainCharacter(model, Image::Catula);
     TestBadge b = TestBadge(&mC);
