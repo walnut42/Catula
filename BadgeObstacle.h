@@ -6,8 +6,8 @@
 #define CATULA_BADGEOBSTACLE_H
 
 #include "Badge.h"
-#include "ModelGame.h"
 #include "MainCharacter.h"
+#include "ModelGame.h"
 
 
 class BadgeObstacle : public Badge {

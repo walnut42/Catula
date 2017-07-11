@@ -4,7 +4,7 @@
 
 #include "BadgeObstacle.h"
 
-// Get 10 positive objects in a row.
+// Get goalPoints positive objects in a row.
 
 BadgeObstacle::BadgeObstacle(MainCharacter *mC, float p) : Badge{mC, 10}, count{0} {
     previousScore = mainCharacter->getScore();

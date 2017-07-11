@@ -6,6 +6,7 @@
 #include <typeinfo>
 #include <functional>
 #include "BadgesManager.h"
+#include "BadgeDistance.h"
 #include "BadgeFly.h"
 #include "BadgeObstacle.h"
 #include "BadgeScore.h"
@@ -15,6 +16,7 @@
 BadgesManager *BadgesManager::instance = nullptr;
 
 BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/badges.dat"}, created{false} {
+    badges.emplace_back(new BadgeInfoT<BadgeDistance>("BadgeDistance"));
     badges.emplace_back(new BadgeInfoT<BadgeFly>("BadgeFly"));
     badges.emplace_back(new BadgeInfoT<BadgeObstacle>("BadgeObstacle"));
     badges.emplace_back(new BadgeInfoT<BadgeScore>("BadgeScore"));

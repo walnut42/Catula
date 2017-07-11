@@ -24,6 +24,7 @@ public:
 
 private:
     int previousScore;
+    int score;
 };
 
 

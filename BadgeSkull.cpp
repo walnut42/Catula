@@ -8,6 +8,7 @@
 
 BadgeSkull::BadgeSkull(MainCharacter *mC, float p) : Badge{mC, 5, p} {
     previousScore = mainCharacter->getScore();
+    score = previousScore;
     attach();
 }
 
@@ -28,7 +29,7 @@ void BadgeSkull::detach() {
 }
 
 void BadgeSkull::update() {
-    int score = mainCharacter->getScore();
+    score = mainCharacter->getScore();
     if (score == previousScore + static_cast<int>(Score::Skull))
         points++;
     previousScore = score;
