@@ -47,8 +47,8 @@ protected:
     virtual void detach()=0;
 
     void unlock() {
-        detach();
         locked = false;
+        detach();
     }
 
     bool locked;
