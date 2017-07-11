@@ -32,11 +32,15 @@ void BadgeInfo::saveBadge(std::fstream &stream) {
     writeBinary(stream, progress);
 }
 
-void BadgeInfo::updateBadge() {
+bool BadgeInfo::updateBadge() {
     if (ptr != nullptr) {
-        locked = ptr->isLocked();
         progress = ptr->getProgress();
+        if (locked && !ptr->isLocked()) {
+            locked = ptr->isLocked();
+            return true;
+        }
     }
+    return false;
 }
 
 void BadgeInfo::setTexture(sf::Texture &t) {
@@ -53,6 +57,7 @@ void BadgeInfo::drawBadge(Window *window, float x, float y) {
         sprite.setTexture(texture);
 
     int size = BadgesManager::getInstance()->getBadgeSize();
+    sprite.setScale(1, 1);
     sprite.setOrigin(sprite.getGlobalBounds().width / 2.0f, 0);
     window->drawSprite(sprite, sf::Vector2f(x, y));
 
@@ -60,15 +65,20 @@ void BadgeInfo::drawBadge(Window *window, float x, float y) {
     window->drawSprite(barEmpty, sf::Vector2f(x, y + size + 5));
 
     bar.setTextureRect(
-            sf::IntRect(0, 0, static_cast<int>(getProgress() / 100 * size), 9));
+            sf::IntRect(0, 0, static_cast<int>(progress / 100 * size), 9));
     window->drawSprite(bar,
                        sf::Vector2f(x - barEmpty.getGlobalBounds().width / 2.0f, y + size + 5));
+}
+
+
+void BadgeInfo::drawNotify(Window *window, float x, float y) {
+    sprite.setTexture(texture);
+    sprite.setScale(0.5f, 0.5f);
+    sprite.setOrigin(0, 0);
+    window->drawSprite(sprite, sf::Vector2f(x, y));
 }
 
 const std::string &BadgeInfo::getClassName() const {
     return className;
 }
 
-float BadgeInfo::getProgress() {
-    return (!locked || progress > 100) ? 100 : progress;
-}

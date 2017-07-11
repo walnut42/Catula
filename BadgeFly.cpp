@@ -4,7 +4,7 @@
 
 #include "BadgeFly.h"
 
-// Fly on the top of the screen for goalPoints milliseconds (progress).
+// Fly on the top of the screen for goalPoints distance (progress).
 
 BadgeFly::BadgeFly(MainCharacter *mC, float p) : Badge{mC, 100, p}, top{false}, initDistance{0} {
     attach();

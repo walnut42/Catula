@@ -6,7 +6,8 @@
 
 // Get 20 points (progress).
 
-BadgeScore::BadgeScore(MainCharacter *mC, float p) : Badge{mC, 20, p}, previousScore{mainCharacter->getScore()} {
+BadgeScore::BadgeScore(MainCharacter *mC, float p) : Badge{mC, 20, p}, previousScore{mainCharacter->getScore()},
+                                                     score{0} {
     attach();
 }
 

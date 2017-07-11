@@ -7,7 +7,7 @@
 
 // Get 100 distance points (progress).
 
-BadgeDistance::BadgeDistance(MainCharacter *mC, float p) : Badge{mC, 100, p} {
+BadgeDistance::BadgeDistance(MainCharacter *mC, float p) : Badge{mC, 100, p}, distance{0} {
     previousDistance = mainCharacter->getDistance();
     attach();
 }

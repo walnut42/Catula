@@ -42,14 +42,13 @@ public:
 
     void drawBadge(Window *window, float x, float y);
 
+    void drawNotify(Window *window, float x, float y);
+
     const std::string &getClassName() const;
 
+    bool updateBadge();
 
 protected:
-    void updateBadge();
-
-    float getProgress();
-
     bool locked;
     float progress;
     Badge *ptr;
