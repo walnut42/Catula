@@ -2,12 +2,15 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 08/07/17.
 //
 
+#include <sstream>
+#include <iomanip>
 #include "BadgeInfo.h"
 #include "BadgesManager.h"
 
 
-BadgeInfo::BadgeInfo(const std::string &className) : locked{true}, progress{0},
-                                                     ptr{nullptr}, className{className} {
+BadgeInfo::BadgeInfo(const std::string &className, const std::string &description) : locked{true}, progress{0},
+                                                                                     ptr{nullptr}, className{className},
+                                                                                     description{description} {
 }
 
 BadgeInfo::~BadgeInfo() {
@@ -50,7 +53,6 @@ void BadgeInfo::setTexture(sf::Texture &t) {
 }
 
 void BadgeInfo::drawBadge(Window *window, float x, float y) {
-    updateBadge();
     if (locked)
         Images::setSprite(sprite, Image::BadgeLocked);
     else
@@ -80,5 +82,14 @@ void BadgeInfo::drawNotify(Window *window, float x, float y) {
 
 const std::string &BadgeInfo::getClassName() const {
     return className;
+}
+
+const std::string BadgeInfo::getDescription() const {
+    if (locked) {
+        std::stringstream stream;
+        stream << std::fixed << std::setprecision(0) << progress;
+        return "Locked!! Progress: " + stream.str() + "%";
+    } else
+        return description;
 }
 

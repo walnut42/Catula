@@ -27,6 +27,8 @@ public:
 
     void foreachBadge(std::function<void(BadgeInfo &)> lambda);
 
+    BadgeInfo &getBadge(int i);
+
     const int numberOfBadges();
 
     const int getBadgeSize() const;

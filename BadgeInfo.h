@@ -26,7 +26,7 @@ void writeBinary(std::fstream &stream, T &value) {
 
 class BadgeInfo {
 public:
-    BadgeInfo(const std::string &className);
+    BadgeInfo(const std::string &className, const std::string &description);
 
     ~BadgeInfo();
 
@@ -46,6 +46,8 @@ public:
 
     const std::string &getClassName() const;
 
+    const std::string getDescription() const;
+
     bool updateBadge();
 
 protected:
@@ -58,13 +60,14 @@ protected:
     sf::Sprite bar;
     sf::Sprite barEmpty;
     const std::string className;
+    const std::string description;
 };
 
 
 template<typename T>
 class BadgeInfoT : public BadgeInfo {
 public:
-    BadgeInfoT(const std::string &className) : BadgeInfo{className} {
+    BadgeInfoT(const std::string &className, const std::string &description) : BadgeInfo{className, description} {
 
     }
 

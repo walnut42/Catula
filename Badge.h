@@ -12,8 +12,8 @@ class MainCharacter;
 
 class Badge {
 public:
-    explicit Badge(MainCharacter *mC, float goalPoints, float p = -1) : locked{true}, goalPoints{goalPoints},
-                                                                        mainCharacter{mC}, progress{true} {
+    Badge(MainCharacter *mC, float goalPoints, float p = -1) : locked{true}, goalPoints{goalPoints},
+                                                               mainCharacter{mC}, progress{true} {
         if (p == -1) {
             progress = false;
             p = 0;
@@ -49,7 +49,6 @@ protected:
     void unlock() {
         detach();
         locked = false;
-        points = goalPoints;
     }
 
     bool locked;

@@ -30,6 +30,11 @@ private:
     sf::Text content;
     sf::Clock clock;
     const int padding = 50;
+
+    sf::RectangleShape selection;
+    unsigned short int selected;
+    int numberOfBadges;
+    sf::Text badgeDescription;
 };
 
 
