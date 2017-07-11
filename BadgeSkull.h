@@ -6,8 +6,8 @@
 #define CATULA_BADGESKULL_H
 
 #include "Badge.h"
-#include "ModelGame.h"
 #include "MainCharacter.h"
+#include "ModelGame.h"
 
 
 class BadgeSkull : public Badge {
