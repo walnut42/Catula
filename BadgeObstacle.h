@@ -23,7 +23,6 @@ public:
     virtual void detach() override;
 
 private:
-    int count;
     int previousScore;
     int previousLives;
 };
