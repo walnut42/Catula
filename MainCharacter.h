@@ -44,6 +44,8 @@ public:
 
     float getDistance();
 
+    float getVelX();
+
     void increaseScore(int s);
 
     void playSound(Sound name) {

@@ -6,13 +6,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 ### Add subdirectory for Google Test
 add_subdirectory(test)
 
-set(SOURCE_FILES Audio.cpp Audio.h Background.cpp Background.h Collidable.cpp Collidable.h CollidableFactory.cpp
+set(SOURCE_FILES Audio.cpp Audio.h Background.cpp Background.h BadgeDeath.cpp BadgeDeath.h Collidable.cpp Collidable.h CollidableFactory.cpp
         CollidableFactory.h Controller.cpp Controller.h Entity.cpp Entity.h Fonts.cpp Fonts.h GameInfo.cpp GameInfo.h
         Images.cpp Images.h Laser.cpp Laser.h load_file_error.cpp load_file_error.h main.cpp MainCharacter.cpp
         MainCharacter.h MessageBox.cpp MessageBox.h ModelBase.h ModelGame.cpp ModelGame.h ModelGameOver.cpp
         ModelGameOver.h ModelMenu.cpp ModelMenu.h ModelPause.cpp ModelPause.h Rocket.cpp Rocket.h Skull.cpp Skull.h
         Star.cpp Star.h Window.cpp Window.h Badge.h BadgeObstacle.cpp BadgeObstacle.h BadgeSkull.cpp BadgeSkull.h BadgeFly.cpp BadgeFly.h
-        BadgesManager.cpp BadgesManager.h Badge.h BadgeInfo.cpp BadgeInfo.h ModelBadge.cpp ModelBadge.h BadgeScore.cpp BadgeScore.h BadgeStarSkull.cpp BadgeStarSkull.h BadgeDistance.cpp BadgeDistance.h BadgeDeath.cpp BadgeDeath.h)
+        BadgesManager.cpp BadgesManager.h Badge.h BadgeInfo.cpp BadgeInfo.h ModelBadge.cpp ModelBadge.h BadgeScore.cpp BadgeScore.h BadgeStarSkull.cpp BadgeStarSkull.h BadgeDistance.cpp BadgeDistance.h BadgeDeath.cpp BadgeDeath.h BadgeSpeed.cpp BadgeSpeed.h)
 
 add_executable(Catula main.cpp)
 

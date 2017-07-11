@@ -4,7 +4,7 @@
 
 #include "BadgeDeath.h"
 
-// Get goalPoints skulls (progress).
+// Die goalPoints time (progress).
 
 BadgeDeath::BadgeDeath(MainCharacter *mC, float p) : Badge{mC, 5, p}, previousLife{mC->getLives()}, life{0} {
     attach();

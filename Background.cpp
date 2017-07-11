@@ -2,6 +2,7 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 17/03/17.
 //
 
+#include <iostream>
 #include "Background.h"
 
 Background::Background(ModelGame &modelGame) : spriteSize{1251, 1000}, modelGame{modelGame}, countSprites{0},

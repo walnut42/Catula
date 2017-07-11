@@ -6,24 +6,26 @@
 #include <typeinfo>
 #include <functional>
 #include "BadgesManager.h"
+#include "BadgeDeath.h"
 #include "BadgeDistance.h"
 #include "BadgeFly.h"
 #include "BadgeObstacle.h"
 #include "BadgeScore.h"
 #include "BadgeSkull.h"
 #include "BadgeStarSkull.h"
-#include "BadgeDeath.h"
+#include "BadgeSpeed.h"
 
 BadgesManager *BadgesManager::instance = nullptr;
 
 BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/badges.dat"}, created{false} {
+    badges.emplace_back(new BadgeInfoT<BadgeDeath>("BadgeDeath", "5 lost lives"));
     badges.emplace_back(new BadgeInfoT<BadgeDistance>("BadgeDistance", "100 distance points"));
     badges.emplace_back(new BadgeInfoT<BadgeFly>("BadgeFly", "100 distance points on the top"));
     badges.emplace_back(new BadgeInfoT<BadgeObstacle>("BadgeObstacle", "10 positive objects in a row"));
     badges.emplace_back(new BadgeInfoT<BadgeScore>("BadgeScore", "20 total points"));
     badges.emplace_back(new BadgeInfoT<BadgeSkull>("BadgeSkull", "5 skulls"));
+    badges.emplace_back(new BadgeInfoT<BadgeSpeed>("BadgeSpeed", "1000 speed points"));
     badges.emplace_back(new BadgeInfoT<BadgeStarSkull>("BadgeStarSkull", "5 stars and skulls"));
-    badges.emplace_back(new BadgeInfoT<BadgeDeath>("BadgeDeath", "5 lost lives"));
 }
 
 void BadgesManager::loadBadges() {

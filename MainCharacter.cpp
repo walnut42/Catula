@@ -97,11 +97,15 @@ void MainCharacter::subscribe(Subscription s, Badge *b) {
 void MainCharacter::unsubscribe(Subscription s, Badge *b) {
     auto range = badges.equal_range(s);
     for (auto i = range.first; i != range.second; ++i) {
-        if (i->second == b);
-        badges.erase(i);
+        if (i->second == b)
+            badges.erase(i);
     }
 }
 
 float MainCharacter::getDistance() {
     return modelGame.getBackground()->getDistance();
+}
+
+float MainCharacter::getVelX() {
+    return modelGame.getBackground()->getVel();
 }
