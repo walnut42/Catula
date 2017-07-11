@@ -42,6 +42,7 @@ bool BadgeInfo::updateBadge() {
             locked = ptr->isLocked();
             return true;
         }
+        locked = ptr->isLocked();
     }
     return false;
 }

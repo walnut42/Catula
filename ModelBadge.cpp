@@ -41,6 +41,10 @@ ModelBadge::ModelBadge() : selected{0} {
     selection.setOutlineColor(sf::Color(150, 170, 230));
     selection.setOutlineThickness(5);
     selection.setOrigin(selection.getSize().x / 2.0f, 5);
+
+    BadgesManager::getInstance()->foreachBadge([](BadgeInfo &b) {
+        b.updateBadge();
+    });
 }
 
 ModelBadge::~ModelBadge() {

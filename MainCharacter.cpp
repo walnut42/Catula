@@ -97,8 +97,8 @@ void MainCharacter::subscribe(Subscription s, Badge *b) {
 void MainCharacter::unsubscribe(Subscription s, Badge *b) {
     auto range = badges.equal_range(s);
     for (auto i = range.first; i != range.second; ++i) {
-        if (i->second == b);
-        badges.erase(i);
+        if (i->second == b)
+            badges.erase(i);
     }
 }
 
