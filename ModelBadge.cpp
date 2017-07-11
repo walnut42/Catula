@@ -97,7 +97,7 @@ void ModelBadge::draw() {
     float newLine = -1;
     int i = 0;
     while (newLine < 0) {
-        newLine = Window::getWidth() / 2.0f - (numberOfBadges - i) * badgesManager->getBadgeSize() / 2.0f;
+        newLine = Window::getWidth() / 2.0f - (numberOfBadges - i) * (badgesManager->getBadgeSize() + padding) / 2.0f;
         i++;
     }
     float x = newLine;
@@ -107,13 +107,14 @@ void ModelBadge::draw() {
     badgesManager->foreachBadge([&](BadgeInfo &b) {
         b.drawBadge(window, x, y);
         if (n == selected) {
+            selection.setOrigin(0, 0);
             selection.setPosition(x, y);
             window->drawDrawable(selection);
         }
         n++;
 
         x += badgesManager->getBadgeSize() + padding;
-        if (x > maxWidth - badgesManager->getBadgeSize()) {
+        if (x > maxWidth - badgesManager->getBadgeSize() - padding) {
             y += badgesManager->getBadgeSize() + padding;
             x = newLine;
         }
