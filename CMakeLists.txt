@@ -12,7 +12,7 @@ set(SOURCE_FILES Audio.cpp Audio.h Background.cpp Background.h Collidable.cpp Co
         MainCharacter.h MessageBox.cpp MessageBox.h ModelBase.h ModelGame.cpp ModelGame.h ModelGameOver.cpp
         ModelGameOver.h ModelMenu.cpp ModelMenu.h ModelPause.cpp ModelPause.h Rocket.cpp Rocket.h Skull.cpp Skull.h
         Star.cpp Star.h Window.cpp Window.h Badge.h BadgeObstacle.cpp BadgeObstacle.h BadgeSkull.cpp BadgeSkull.h BadgeFly.cpp BadgeFly.h
-        BadgesManager.cpp BadgesManager.h Badge.h BadgeInfo.cpp BadgeInfo.h ModelBadge.cpp ModelBadge.h BadgeScore.cpp BadgeScore.h BadgeStarSkull.cpp BadgeStarSkull.h BadgeDistance.cpp BadgeDistance.h)
+        BadgesManager.cpp BadgesManager.h Badge.h BadgeInfo.cpp BadgeInfo.h ModelBadge.cpp ModelBadge.h BadgeScore.cpp BadgeScore.h BadgeStarSkull.cpp BadgeStarSkull.h BadgeDistance.cpp BadgeDistance.h BadgeDeath.cpp BadgeDeath.h)
 
 add_executable(Catula main.cpp)
 

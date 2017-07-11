@@ -12,6 +12,7 @@
 #include "BadgeScore.h"
 #include "BadgeSkull.h"
 #include "BadgeStarSkull.h"
+#include "BadgeDeath.h"
 
 BadgesManager *BadgesManager::instance = nullptr;
 
@@ -22,6 +23,7 @@ BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/ba
     badges.emplace_back(new BadgeInfoT<BadgeScore>("BadgeScore"));
     badges.emplace_back(new BadgeInfoT<BadgeSkull>("BadgeSkull"));
     badges.emplace_back(new BadgeInfoT<BadgeStarSkull>("BadgeStarSkull"));
+    badges.emplace_back(new BadgeInfoT<BadgeDeath>("BadgeDeath"));
 }
 
 void BadgesManager::loadBadges() {
