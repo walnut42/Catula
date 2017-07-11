@@ -1,5 +1,5 @@
 //
-// Created by Lorenzo Nuti and Paolo Valcepina on 07/07/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 11/07/17.
 //
 
 #ifndef CATULA_BADGESCORE_H
@@ -23,9 +23,8 @@ public:
     virtual void detach() override;
 
 private:
-    int count;
     int previousScore;
-    int previousLives;
+    int score;
 };
 
 

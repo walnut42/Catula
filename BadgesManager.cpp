@@ -6,15 +6,16 @@
 #include <typeinfo>
 #include <functional>
 #include "BadgesManager.h"
-#include "BadgeSkull.h"
 #include "BadgeFly.h"
+#include "BadgeObstacle.h"
 #include "BadgeScore.h"
+#include "BadgeSkull.h"
 
 BadgesManager *BadgesManager::instance = nullptr;
 
-
 BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/badges.dat"}, created{false} {
     badges.emplace_back(new BadgeInfoT<BadgeFly>("BadgeFly"));
+    badges.emplace_back(new BadgeInfoT<BadgeObstacle>("BadgeObstacle"));
     badges.emplace_back(new BadgeInfoT<BadgeScore>("BadgeScore"));
     badges.emplace_back(new BadgeInfoT<BadgeSkull>("BadgeSkull"));
 }
@@ -54,7 +55,6 @@ void BadgesManager::loadBadges() {
         badge->setTexture(t);
     }
 }
-
 
 void BadgesManager::saveBadges() {
     std::fstream stream;
@@ -111,6 +111,3 @@ BadgesManager *BadgesManager::getInstance() {
 const int BadgesManager::getBadgeSize() const {
     return badgeSize;
 }
-
-
-

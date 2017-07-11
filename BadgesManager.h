@@ -12,6 +12,7 @@
 #include "MainCharacter.h"
 #include "BadgeInfo.h"
 
+
 class BadgesManager {
 public:
     static BadgesManager *getInstance();

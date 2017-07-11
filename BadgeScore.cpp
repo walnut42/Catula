@@ -1,14 +1,12 @@
 //
-// Created by Lorenzo Nuti and Paolo Valcepina on 07/07/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 11/07/17.
 //
 
 #include "BadgeScore.h"
 
-// Get goalPoints positive objects in a row.
+// Get 20 points (progress).
 
-BadgeScore::BadgeScore(MainCharacter *mC, float p) : Badge{mC, 10}, count{0} {
-    previousScore = mainCharacter->getScore();
-    previousLives = mainCharacter->getLives();
+BadgeScore::BadgeScore(MainCharacter *mC, float p) : Badge{mC, 20, p}, previousScore{mainCharacter->getScore()} {
     attach();
 }
 
@@ -18,20 +16,18 @@ BadgeScore::~BadgeScore() {
 
 void BadgeScore::attach() {
     mainCharacter->subscribe(Subscription::Score, this);
-    mainCharacter->subscribe(Subscription::Life, this);
 }
 
 void BadgeScore::detach() {
     if (mainCharacter != nullptr) {
         mainCharacter->unsubscribe(Subscription::Score, this);
-        mainCharacter->unsubscribe(Subscription::Life, this);
         mainCharacter = nullptr;
     }
 }
 
 void BadgeScore::update() {
-    mainCharacter->getScore() > previousScore || mainCharacter->getLives() >= previousLives ? count++ : count = 0;
-    previousScore = mainCharacter->getScore();
-    previousLives = mainCharacter->getLives();
+    score = mainCharacter->getScore();
+    points += score - previousScore;
+    previousScore = score;
     Badge::update();
 }
