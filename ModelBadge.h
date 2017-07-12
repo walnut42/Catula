@@ -30,6 +30,7 @@ private:
 
     sf::RectangleShape selection;
     sf::Sprite background;
+    sf::Text badgeName;
     sf::Text badgeDescription;
     sf::Text title;
     sf::Text content;

@@ -40,6 +40,10 @@ ModelBadge::ModelBadge() : selected{0} {
     badgeDescription.setColor(sf::Color::White);
     badgeDescription.setCharacterSize(25);
 
+    Fonts::setText(badgeName, Font::Serif);
+    badgeName.setColor(sf::Color::White);
+    badgeName.setCharacterSize(25);
+
     float size = BadgesManager::getInstance()->getBadgeSize();
     selection.setSize(sf::Vector2f(size + 2 * padding, size + barHeight + 3 * padding));
     selection.setFillColor(sf::Color::Transparent);
@@ -85,11 +89,15 @@ ModelBase *ModelBadge::update() {
     content.setPosition(Window::getWidth() / 2.0f, 200);
 
     BadgeInfo &b = BadgesManager::getInstance()->getBadge(selected);
+    badgeName.setString(b.getName());
+    sf::FloatRect textRectName = badgeName.getGlobalBounds();
+    badgeName.setOrigin(textRectName.width / 2.0f, textRectName.height / 2.0f);
+    badgeName.setPosition(Window::getWidth() / 2, Window::getHeight() - 100);
+
     badgeDescription.setString(b.getDescription());
     sf::FloatRect textRect = badgeDescription.getGlobalBounds();
     badgeDescription.setOrigin(textRect.width / 2.0f, textRect.height / 2.0f);
-    badgeDescription.setPosition(Window::getWidth() / 2, Window::getHeight() - 100);
-
+    badgeDescription.setPosition(Window::getWidth() / 2, Window::getHeight() - 65);
     return nullptr;
 }
 
@@ -99,6 +107,7 @@ void ModelBadge::draw() {
     window->drawDrawable(title);
     window->drawDrawable(content);
     window->drawDrawable(badgeDescription);
+    window->drawDrawable(badgeName);
     BadgesManager *badgesManager = BadgesManager::getInstance();
 
     float newLine = -1;
