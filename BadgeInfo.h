@@ -11,10 +11,9 @@
 #include "Tools.h"
 
 
-
 class BadgeInfo {
 public:
-    BadgeInfo(const std::string &className, const std::string &description);
+    BadgeInfo(const std::string &className, const std::string &name, const std::string &description);
 
     ~BadgeInfo();
 
@@ -36,7 +35,7 @@ public:
 
     const std::string &getClassName() const;
 
-    virtual const std::string getDescription() const =0;
+    const std::string getDescription() const;
 
 protected:
     bool locked;
@@ -48,30 +47,25 @@ protected:
     sf::Sprite bar;
     sf::Sprite barEmpty;
     const std::string className;
+    const std::string name;
     const std::string description;
 };
 
 template<typename T>
 class BadgeInfoT : public BadgeInfo {
 public:
-    BadgeInfoT(const std::string &className, const std::string &description) : BadgeInfo{className, description} {
+    BadgeInfoT(const std::string &className, const std::string &name, const std::string &description, float goal)
+            : BadgeInfo{className, name, description}, goalPoints{goal} {
 
     }
 
     virtual void createBadge(MainCharacter *mC) {
         if (locked)
-            ptr = new T(mC, progress);
+            ptr = new T(mC, goalPoints, progress);
     }
 
-    virtual const std::string getDescription() const {
-        BadgeData data = T::getData();
-        if (locked) {
-            return data.name + "\nLocked!! Progress: " + toString(progress) + "%";
-        } else
-            return data.name + "\n" + data.description;
-    }
-
-
+private:
+    float goalPoints;
 };
 
 

@@ -13,7 +13,7 @@ BadgesManager *BadgesManager::instance = nullptr;
 BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/badges.dat"}, created{false} {
 //    badges.emplace_back(new BadgeInfoT<BadgeDeath>("BadgeDeath", "5 lost lives"));
 //    badges.emplace_back(new BadgeInfoT<BadgeDistance>("BadgeDistance", "100 distance points"));
-    badges.emplace_back(new BadgeInfoT<BadgeFly>("BadgeFly", ""));
+    badges.emplace_back(new BadgeInfoT<BadgeFly>("BadgeFly", "Fly", "Fly on the top of the screen for 100m", 100));
 //    badges.emplace_back(new BadgeInfoT<BadgeObstacle>("BadgeObstacle", "10 positive objects in a row"));
 //    badges.emplace_back(new BadgeInfoT<BadgeScore>("BadgeScore", "20 total points"));
 //    badges.emplace_back(new BadgeInfoT<BadgeSkull>("BadgeSkull", "5 skulls"));

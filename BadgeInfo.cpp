@@ -6,9 +6,8 @@
 
 #include "BadgesManager.h"
 
-BadgeInfo::BadgeInfo(const std::string &className, const std::string &description) : locked{true}, progress{0},
-                                                                                     ptr{nullptr}, className{className},
-                                                                                     description{description} {
+BadgeInfo::BadgeInfo(const std::string &className, const std::string &name, const std::string &description) : locked{
+        true}, progress{0}, ptr{nullptr}, className{className}, name{name}, description{description} {
 }
 
 BadgeInfo::~BadgeInfo() {
@@ -80,4 +79,12 @@ void BadgeInfo::setTexture(sf::Texture &t) {
 
 const std::string &BadgeInfo::getClassName() const {
     return className;
+}
+
+
+const std::string BadgeInfo::getDescription() const {
+    if (locked) {
+        return name + "\nLocked!! Progress: " + toString(progress) + "%";
+    } else
+        return name + "\n" + description;
 }

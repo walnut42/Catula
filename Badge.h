@@ -10,13 +10,6 @@
 
 class MainCharacter;
 
-struct BadgeData {
-public:
-    float goalPoints;
-    std::string name;
-    std::string description;
-};
-
 class Badge {
 public:
     Badge(MainCharacter *mC, float goalPoints, float p = -1) : locked{true}, goalPoints{goalPoints},
