@@ -52,7 +52,7 @@ void BadgeInfo::setTexture(sf::Texture &t) {
     Images::setSprite(barEmpty, Image::BarEmpty);
 }
 
-void BadgeInfo::drawBadge(Window *window, float x, float y) {
+void BadgeInfo::drawBadge(Window *window, float x, float y, int padding, int heightBar) {
     if (locked)
         Images::setSprite(sprite, Image::BadgeLocked);
     else
@@ -64,12 +64,12 @@ void BadgeInfo::drawBadge(Window *window, float x, float y) {
     window->drawSprite(sprite, sf::Vector2f(x, y));
 
     barEmpty.setOrigin(0, 0);
-    window->drawSprite(barEmpty, sf::Vector2f(x, y + size + 5));
+    window->drawSprite(barEmpty, sf::Vector2f(x, y + size + padding));
 
     bar.setTextureRect(
-            sf::IntRect(0, 0, static_cast<int>(progress / 100 * size), 9));
+            sf::IntRect(0, 0, static_cast<int>(progress / 100 * size), heightBar));
     window->drawSprite(bar,
-                       sf::Vector2f(x, y + size + 5));
+                       sf::Vector2f(x, y + size + padding));
 
 }
 

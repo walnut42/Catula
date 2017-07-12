@@ -40,7 +40,7 @@ public:
 
     void saveBadge(std::fstream &stream);
 
-    void drawBadge(Window *window, float x, float y);
+    void drawBadge(Window *window, float x, float y, int padding, int heightBar);
 
     void drawNotify(Window *window, float x, float y);
 

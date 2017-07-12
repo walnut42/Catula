@@ -29,7 +29,9 @@ private:
     sf::Text title;
     sf::Text content;
     sf::Clock clock;
-    const int padding = 50;
+    const int margin = 50;
+    const int padding = 5;
+    const int heightBar = 9;
 
     sf::RectangleShape selection;
     unsigned short int selected;

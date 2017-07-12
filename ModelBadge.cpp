@@ -36,7 +36,7 @@ ModelBadge::ModelBadge() : selected{0} {
     badgeDescription.setCharacterSize(25);
 
     float size = BadgesManager::getInstance()->getBadgeSize();
-    selection.setSize(sf::Vector2f(size + 10, size + 25));
+    selection.setSize(sf::Vector2f(size + 2 * padding, size + heightBar + 3 * padding));
     selection.setFillColor(sf::Color::Transparent);
     selection.setOutlineColor(sf::Color(150, 170, 230));
     selection.setOutlineThickness(5);
@@ -97,7 +97,7 @@ void ModelBadge::draw() {
     float newLine = -1;
     int i = 0;
     while (newLine < 0) {
-        newLine = Window::getWidth() / 2.0f - (numberOfBadges - i) * (badgesManager->getBadgeSize() + padding) / 2.0f;
+        newLine = Window::getWidth() / 2.0f - (numberOfBadges - i) * (badgesManager->getBadgeSize() + margin) / 2.0f;
         i++;
     }
     float x = newLine;
@@ -105,17 +105,17 @@ void ModelBadge::draw() {
     float maxWidth = Window::getWidth();
     int n = 0;
     badgesManager->foreachBadge([&](BadgeInfo &b) {
-        b.drawBadge(window, x, y);
+        b.drawBadge(window, x, y, padding, heightBar);
         if (n == selected) {
-            selection.setOrigin(0, 0);
+            selection.setOrigin(padding, padding);
             selection.setPosition(x, y);
             window->drawDrawable(selection);
         }
         n++;
 
-        x += badgesManager->getBadgeSize() + padding;
-        if (x > maxWidth - badgesManager->getBadgeSize() - padding) {
-            y += badgesManager->getBadgeSize() + padding;
+        x += badgesManager->getBadgeSize() + margin;
+        if (x > maxWidth - badgesManager->getBadgeSize() - margin) {
+            y += badgesManager->getBadgeSize() + margin;
             x = newLine;
         }
     });
