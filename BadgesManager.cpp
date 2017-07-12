@@ -52,6 +52,8 @@ void BadgesManager::loadBadges() {
             });
             if (element != badges.end())
                 (*element)->loadBadge(stream);
+            else
+                stream.seekg(sizeof(bool) + sizeof(float), std::ios_base::cur);
         }
     }
 
