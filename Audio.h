@@ -16,7 +16,7 @@ enum class Sound {
 };
 
 enum class Music {
-    Menu, Game
+    Menu, Badge, Game
 };
 
 class Audio {

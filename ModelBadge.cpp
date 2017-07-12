@@ -9,6 +9,11 @@
 #include "BadgesManager.h"
 
 ModelBadge::ModelBadge() : selected{0} {
+    Audio::setMusic(music, Music::Badge);
+    music.setLoop(true);
+
+    Audio::setSound(sound, Sound::Menu);
+
     numberOfBadges = BadgesManager::getInstance()->numberOfBadges();
 
     Images::setSprite(background, Image::BadgeBg);
@@ -36,7 +41,7 @@ ModelBadge::ModelBadge() : selected{0} {
     badgeDescription.setCharacterSize(25);
 
     float size = BadgesManager::getInstance()->getBadgeSize();
-    selection.setSize(sf::Vector2f(size + 2 * padding, size + heightBar + 3 * padding));
+    selection.setSize(sf::Vector2f(size + 2 * padding, size + barHeight + 3 * padding));
     selection.setFillColor(sf::Color::Transparent);
     selection.setOutlineColor(sf::Color(150, 170, 230));
     selection.setOutlineThickness(5);
@@ -105,7 +110,7 @@ void ModelBadge::draw() {
     float maxWidth = Window::getWidth();
     int n = 0;
     badgesManager->foreachBadge([&](BadgeInfo &b) {
-        b.drawBadge(window, x, y, padding, heightBar);
+        b.drawBadge(window, x, y, padding, barHeight);
         if (n == selected) {
             selection.setOrigin(padding, padding);
             selection.setPosition(x, y);
@@ -122,9 +127,10 @@ void ModelBadge::draw() {
 }
 
 void ModelBadge::enter() {
+    music.play();
     clock.restart();
 }
 
 void ModelBadge::exit() {
-
+    music.stop();
 }

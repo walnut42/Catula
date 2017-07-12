@@ -24,19 +24,20 @@ public:
     virtual void exit() override;
 
 private:
-    sf::Sprite background;
-
-    sf::Text title;
-    sf::Text content;
     sf::Clock clock;
-    const int margin = 50;
-    const int padding = 5;
-    const int heightBar = 9;
+    sf::Sound sound;
+    sf::Music music;
 
     sf::RectangleShape selection;
-    unsigned short int selected;
-    int numberOfBadges;
+    sf::Sprite background;
     sf::Text badgeDescription;
+    sf::Text title;
+    sf::Text content;
+    const int barHeight = 9;
+    const int margin = 50;
+    const int padding = 5;
+    int numberOfBadges;
+    unsigned short int selected;
 };
 
 

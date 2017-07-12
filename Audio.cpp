@@ -9,7 +9,8 @@ std::map<Music, std::string> Audio::musicFiles;
 
 void Audio::loadSounds() throw(load_file_error) {
     const std::string error = "Error in sound loading";
-    //Sounds
+
+    // Sounds.
     const std::string path = "../Resources/Audio/";
     std::map<Sound, std::string> soundList = {
             {Sound::Menu,      "footstep.ogg"},
@@ -27,6 +28,7 @@ void Audio::loadSounds() throw(load_file_error) {
 
     //Musics
     musicFiles[Music::Menu] = path + "darkshadow.wav";
+    musicFiles[Music::Badge] = path + "chineseTorture.wav";
     musicFiles[Music::Game] = path + "nightmare.wav";
 }
 
