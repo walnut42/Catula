@@ -8,6 +8,7 @@
 #include "Badge.h"
 #include "ModelGame.h"
 #include "MainCharacter.h"
+#include "Tools.h"
 
 
 class BadgeFly : public Badge {
@@ -21,6 +22,14 @@ public:
     virtual void attach() override;
 
     virtual void detach() override;
+
+    static BadgeData getData() {
+            BadgeData data;
+            data.goalPoints = 10;
+            data.name = "Fly master";
+            data.description = toString(data.goalPoints) + " distance points on the top";
+            return data;
+    }
 
 private:
     bool top;

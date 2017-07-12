@@ -14,23 +14,21 @@
 
 GameInfo::GameInfo(ModelGame &modelGame) : modelGame{modelGame}, badge{nullptr} {
     Fonts::setText(content, Font::Score);
-    content.setCharacterSize(30);
-    float s = Window::getInstance()->getScale();
-    content.setScale(s, s);
+    content.setCharacterSize(35);
     content.setColor(sf::Color::Red);
     content.setPosition(100, 0);
     Images::setSprite(life, Image::Heart);
     lifePos = sf::Vector2f(Window::getWidth() - 70, 10);
 
     Fonts::setText(badgeText, Font::Serif);
-    badgeText.setCharacterSize(20);
-    badgeText.setScale(s, s);
+    badgeText.setCharacterSize(25);
     badgeText.setColor(sf::Color::White);
     badgeText.setString("New badge unlocked!");
 
     badgeRect.setFillColor(sf::Color(0, 0, 0, 150));
     badgeRect.setSize(
             sf::Vector2f(badgeText.getLocalBounds().width + BadgesManager::getInstance()->getBadgeSize() + 60, 100));
+    Audio::setSound(sound, Sound::BadgeUnlocked);
 }
 
 void GameInfo::draw() {
@@ -67,6 +65,7 @@ void GameInfo::update() {
         if (b.updateBadge()) {
             badge = &b;
             clock.restart();
+            sound.play();
         }
     });
 

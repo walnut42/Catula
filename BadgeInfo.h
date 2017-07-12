@@ -5,23 +5,12 @@
 #ifndef CATULA_BADGEINFO_H
 #define CATULA_BADGEINFO_H
 
-#include <fstream>
-#include <SFML/Graphics.hpp>
-
 #include "Window.h"
 #include "MainCharacter.h"
 #include "Badge.h"
+#include "Tools.h"
 
 
-template<typename T>
-void readBinary(std::fstream &stream, T &value) {
-    stream.read(reinterpret_cast<char *>(&value), sizeof value);
-}
-
-template<typename T>
-void writeBinary(std::fstream &stream, T &value) {
-    stream.write(reinterpret_cast<char *>(&value), sizeof value);
-}
 
 class BadgeInfo {
 public:
@@ -47,7 +36,7 @@ public:
 
     const std::string &getClassName() const;
 
-    const std::string getDescription() const;
+    virtual const std::string getDescription() const =0;
 
 protected:
     bool locked;
@@ -73,6 +62,16 @@ public:
         if (locked)
             ptr = new T(mC, progress);
     }
+
+    virtual const std::string getDescription() const {
+        BadgeData data = T::getData();
+        if (locked) {
+            return data.name + "\nLocked!! Progress: " + toString(progress) + "%";
+        } else
+            return data.name + "\n" + data.description;
+    }
+
+
 };
 
 

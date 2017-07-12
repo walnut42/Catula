@@ -30,6 +30,7 @@ private:
     sf::Clock clock;
     sf::RectangleShape badgeRect;
     sf::Text badgeText;
+    sf::Sound sound;
 };
 
 

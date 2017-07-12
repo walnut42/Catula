@@ -44,7 +44,7 @@ private:
  */
 template<typename T, typename... Args>
 ModelBase *newModel(std::unique_ptr<T> &model, Args... args) {
-    if (model != nullptr)
+    if (model)
         model.reset();
     model.reset(new T(args...));
     return model.get();

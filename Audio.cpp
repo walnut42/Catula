@@ -13,13 +13,14 @@ void Audio::loadSounds() throw(load_file_error) {
     // Sounds.
     const std::string path = "../Resources/Audio/";
     std::map<Sound, std::string> soundList = {
-            {Sound::Menu,      "footstep.ogg"},
-            {Sound::Bonus,     "bonus.ogg"},
-            {Sound::Zombie,    "zombie.wav"},
-            {Sound::Explosion, "explosion.ogg"},
-            {Sound::Laser,     "laser.ogg"},
-            {Sound::Fail,      "fail.ogg"},
-            {Sound::Life,      "life.ogg"}
+            {Sound::Menu,          "footstep.ogg"},
+            {Sound::Bonus,         "bonus.ogg"},
+            {Sound::Zombie,        "zombie.wav"},
+            {Sound::Explosion,     "explosion.ogg"},
+            {Sound::Laser,         "laser.ogg"},
+            {Sound::Fail,          "fail.ogg"},
+            {Sound::Life,          "life.ogg"},
+            {Sound::BadgeUnlocked, "badgeUnlocked.ogg"}
     };
 
     for (const auto &i:soundList)

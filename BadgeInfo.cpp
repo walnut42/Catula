@@ -4,8 +4,6 @@
 
 #include "BadgeInfo.h"
 
-#include <iomanip>
-
 #include "BadgesManager.h"
 
 BadgeInfo::BadgeInfo(const std::string &className, const std::string &description) : locked{true}, progress{0},
@@ -82,13 +80,4 @@ void BadgeInfo::setTexture(sf::Texture &t) {
 
 const std::string &BadgeInfo::getClassName() const {
     return className;
-}
-
-const std::string BadgeInfo::getDescription() const {
-    if (locked) {
-        std::stringstream stream;
-        stream << std::fixed << std::setprecision(0) << progress;
-        return "Locked!! Progress: " + stream.str() + "%";
-    } else
-        return description;
 }

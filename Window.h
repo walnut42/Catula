@@ -28,10 +28,6 @@ public:
         return ms_per_update.asSeconds();
     }
 
-    float getScale() const {
-        return getHeight() / window.getSize().y;
-    }
-
     static float getWidth();
 
     static float getHeight() {
