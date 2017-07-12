@@ -5,24 +5,23 @@
 #ifndef CATULA_BADGEINFO_H
 #define CATULA_BADGEINFO_H
 
-#include <SFML/Graphics.hpp>
 #include <fstream>
+#include <SFML/Graphics.hpp>
 
-#include "Badge.h"
 #include "Window.h"
 #include "MainCharacter.h"
+#include "Badge.h"
+
 
 template<typename T>
 void readBinary(std::fstream &stream, T &value) {
     stream.read(reinterpret_cast<char *>(&value), sizeof value);
 }
 
-
 template<typename T>
 void writeBinary(std::fstream &stream, T &value) {
     stream.write(reinterpret_cast<char *>(&value), sizeof value);
 }
-
 
 class BadgeInfo {
 public:
@@ -34,21 +33,21 @@ public:
 
     void destroyBadge();
 
-    void setTexture(sf::Texture &t);
-
     void loadBadge(std::fstream &stream);
 
     void saveBadge(std::fstream &stream);
 
-    void drawBadge(Window *window, float x, float y, int padding, int heightBar);
+    bool updateBadge();
+
+    void drawBadge(Window *window, float x, float y, int padding, int barHeight);
 
     void drawNotify(Window *window, float x, float y);
+
+    void setTexture(sf::Texture &t);
 
     const std::string &getClassName() const;
 
     const std::string getDescription() const;
-
-    bool updateBadge();
 
 protected:
     bool locked;
@@ -63,7 +62,6 @@ protected:
     const std::string description;
 };
 
-
 template<typename T>
 class BadgeInfoT : public BadgeInfo {
 public:
@@ -76,5 +74,6 @@ public:
             ptr = new T(mC, progress);
     }
 };
+
 
 #endif //CATULA_BADGEINFO_H

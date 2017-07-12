@@ -11,13 +11,6 @@ MainCharacter::MainCharacter(ModelGame &modelGame, Image image) : Entity{modelGa
     Audio::setSound(lifeSound, Sound::Life);
 }
 
-void MainCharacter::handleInput() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        acc.y = upg;
-    else
-        acc.y = g;
-};
-
 void MainCharacter::update() {
     MainCharacter::handleInput();
 
@@ -39,6 +32,14 @@ bool MainCharacter::collide(Entity *obj) {
 
 bool MainCharacter::hasLost() const {
     return lost;
+}
+
+float MainCharacter::getDistance() {
+    return modelGame.getBackground()->getDistance();
+}
+
+float MainCharacter::getVelX() {
+    return -modelGame.getBackground()->getVel();
 }
 
 int MainCharacter::getLives() const {
@@ -70,24 +71,11 @@ void MainCharacter::increaseScore(int s) {
     notify(Subscription::Score);
 }
 
-void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {
-    points.clear();
-    points.push_back(sf::Vector2f(60, 0));
-    points.push_back(sf::Vector2f(140, 0));
-    points.push_back(sf::Vector2f(size.x, 60));
-    points.push_back(sf::Vector2f(size.x, 140));
-    points.push_back(sf::Vector2f(140, size.y));
-    points.push_back(sf::Vector2f(60, size.y));
-    points.push_back(sf::Vector2f(0, 140));
-    points.push_back(sf::Vector2f(0, 60));
-}
-
-void MainCharacter::notify(Subscription s) {
-    auto range = badges.equal_range(s);
-
-    for (auto i = range.first; i != range.second; ++i) {
-        i->second->update();
-    }
+void MainCharacter::playSound(Sound name) {
+    sound.stop();
+    Audio::setSound(sound, name);
+    if (lifeSound.getStatus() != sf::Sound::Status::Playing)
+        sound.play();
 }
 
 void MainCharacter::subscribe(Subscription s, Badge *b) {
@@ -102,10 +90,29 @@ void MainCharacter::unsubscribe(Subscription s, Badge *b) {
     }
 }
 
-float MainCharacter::getDistance() {
-    return modelGame.getBackground()->getDistance();
+void MainCharacter::notify(Subscription s) {
+    auto range = badges.equal_range(s);
+
+    for (auto i = range.first; i != range.second; ++i) {
+        i->second->update();
+    }
 }
 
-float MainCharacter::getVelX() {
-    return modelGame.getBackground()->getVel();
+void MainCharacter::getRelativePoints(std::vector<sf::Vector2f> &points) const {
+    points.clear();
+    points.push_back(sf::Vector2f(60, 0));
+    points.push_back(sf::Vector2f(140, 0));
+    points.push_back(sf::Vector2f(size.x, 60));
+    points.push_back(sf::Vector2f(size.x, 140));
+    points.push_back(sf::Vector2f(140, size.y));
+    points.push_back(sf::Vector2f(60, size.y));
+    points.push_back(sf::Vector2f(0, 140));
+    points.push_back(sf::Vector2f(0, 60));
 }
+
+void MainCharacter::handleInput() {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        acc.y = upg;
+    else
+        acc.y = g;
+};

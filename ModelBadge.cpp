@@ -62,9 +62,11 @@ ModelBase *ModelBadge::processInput(const sf::Event &event) {
     } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
         if (selected + 1 < numberOfBadges)
             selected++;
+        sound.play();
     } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
         if (selected - 1 >= 0)
             selected--;
+        sound.play();
     }
     return nullptr;
 }

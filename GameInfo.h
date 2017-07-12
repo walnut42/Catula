@@ -9,6 +9,7 @@
 
 #include "ModelGame.h"
 
+
 class BadgeInfo;
 
 class GameInfo {
@@ -20,15 +21,15 @@ public:
     void update();
 
 private:
-    sf::Text content;
     ModelGame &modelGame;
     sf::Sprite life;
+    sf::Text content;
     sf::Vector2f lifePos;
 
     BadgeInfo *badge;
     sf::Clock clock;
-    sf::Text badgeText;
     sf::RectangleShape badgeRect;
+    sf::Text badgeText;
 };
 
 

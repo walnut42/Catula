@@ -2,11 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 08/07/17.
 //
 
-#include <sstream>
-#include <iomanip>
 #include "BadgeInfo.h"
-#include "BadgesManager.h"
 
+#include <iomanip>
+
+#include "BadgesManager.h"
 
 BadgeInfo::BadgeInfo(const std::string &className, const std::string &description) : locked{true}, progress{0},
                                                                                      ptr{nullptr}, className{className},
@@ -46,13 +46,7 @@ bool BadgeInfo::updateBadge() {
     return false;
 }
 
-void BadgeInfo::setTexture(sf::Texture &t) {
-    texture = t;
-    Images::setSprite(bar, Image::Bar);
-    Images::setSprite(barEmpty, Image::BarEmpty);
-}
-
-void BadgeInfo::drawBadge(Window *window, float x, float y, int padding, int heightBar) {
+void BadgeInfo::drawBadge(Window *window, float x, float y, int padding, int barHeight) {
     if (locked)
         Images::setSprite(sprite, Image::BadgeLocked);
     else
@@ -67,18 +61,23 @@ void BadgeInfo::drawBadge(Window *window, float x, float y, int padding, int hei
     window->drawSprite(barEmpty, sf::Vector2f(x, y + size + padding));
 
     bar.setTextureRect(
-            sf::IntRect(0, 0, static_cast<int>(progress / 100 * size), heightBar));
+            sf::IntRect(0, 0, static_cast<int>(progress / 100 * size), barHeight));
     window->drawSprite(bar,
                        sf::Vector2f(x, y + size + padding));
 
 }
-
 
 void BadgeInfo::drawNotify(Window *window, float x, float y) {
     sprite.setTexture(texture);
     sprite.setScale(0.5f, 0.5f);
     sprite.setOrigin(0, 0);
     window->drawSprite(sprite, sf::Vector2f(x, y));
+}
+
+void BadgeInfo::setTexture(sf::Texture &t) {
+    texture = t;
+    Images::setSprite(bar, Image::Bar);
+    Images::setSprite(barEmpty, Image::BarEmpty);
 }
 
 const std::string &BadgeInfo::getClassName() const {

@@ -7,14 +7,15 @@
 
 #include <iostream>
 
+#include "Audio.h"
 #include "Entity.h"
 #include "GameInfo.h"
-#include "Audio.h"
 #include "Badge.h"
 
-class Badge;
 
 class ModelGame;
+
+class Badge;
 
 enum class Score {
     Star = 1,
@@ -36,24 +37,19 @@ public:
 
     bool hasLost() const;
 
+    float getDistance();
+
+    float getVelX();
+
     int getLives() const;
 
     int getScore() const;
 
     void increaseLives(int l);
 
-    float getDistance();
-
-    float getVelX();
-
     void increaseScore(int s);
 
-    void playSound(Sound name) {
-        sound.stop();
-        Audio::setSound(sound, name);
-        if (lifeSound.getStatus() != sf::Sound::Status::Playing)
-            sound.play();
-    }
+    void playSound(Sound name);
 
     void subscribe(Subscription s, Badge *b);
 

@@ -4,9 +4,9 @@
 
 #include "BadgeSpeed.h"
 
-// Get maxSpeed = 1000
+// Get maxSpeed = goalPoints
 
-BadgeSpeed::BadgeSpeed(MainCharacter *mC, float p) : Badge{mC, 600, p} {
+BadgeSpeed::BadgeSpeed(MainCharacter *mC, float p) : Badge{mC, 700, p} {
     attach();
 }
 
@@ -26,7 +26,7 @@ void BadgeSpeed::detach() {
 }
 
 void BadgeSpeed::update() {
-    speed = -mainCharacter->getVelX();
+    speed = mainCharacter->getVelX();
     if (points < speed)
         points = speed;
     Badge::update();
