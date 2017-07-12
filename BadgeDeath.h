@@ -9,7 +9,7 @@
 
 class BadgeDeath : public Badge {
 public:
-    BadgeDeath(MainCharacter *mC, float p);
+    BadgeDeath(MainCharacter *mC, float goal, float p);
 
     virtual ~BadgeDeath();
 

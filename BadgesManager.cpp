@@ -7,18 +7,26 @@
 #include <functional>
 #include "BadgesManager.h"
 #include "BadgeFly.h"
+#include "BadgeDeath.h"
+#include "BadgeDistance.h"
+#include "BadgeObstacle.h"
+#include "BadgeScore.h"
+#include "BadgeSkull.h"
+#include "BadgeSpeed.h"
+#include "BadgeStarSkull.h"
 
 BadgesManager *BadgesManager::instance = nullptr;
 
 BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/badges.dat"}, created{false} {
-//    badges.emplace_back(new BadgeInfoT<BadgeDeath>("BadgeDeath", "5 lost lives"));
-//    badges.emplace_back(new BadgeInfoT<BadgeDistance>("BadgeDistance", "100 distance points"));
-    badges.emplace_back(new BadgeInfoT<BadgeFly>("BadgeFly", "Fly", "Fly on the top of the screen for 100m", 100));
-//    badges.emplace_back(new BadgeInfoT<BadgeObstacle>("BadgeObstacle", "10 positive objects in a row"));
-//    badges.emplace_back(new BadgeInfoT<BadgeScore>("BadgeScore", "20 total points"));
-//    badges.emplace_back(new BadgeInfoT<BadgeSkull>("BadgeSkull", "5 skulls"));
-//    badges.emplace_back(new BadgeInfoT<BadgeSpeed>("BadgeSpeed", "1000 speed points"));
-//    badges.emplace_back(new BadgeInfoT<BadgeStarSkull>("BadgeStarSkull", "5 stars and skulls"));
+    badges.emplace_back(new BadgeInfoT<BadgeDeath>("BadgeDeath", "Mr. Death", "5 lost lives", 5));
+    badges.emplace_back(new BadgeInfoT<BadgeDistance>("BadgeDistance", "Marathoner", "100 distance points", 100));
+    badges.emplace_back(new BadgeInfoT<BadgeFly>("BadgeFly", "Flyer", "Fly on the top of the screen for 100m", 100));
+    badges.emplace_back(
+            new BadgeInfoT<BadgeObstacle>("BadgeObstacle", "Collector", "10 positive objects in a row", 10));
+    badges.emplace_back(new BadgeInfoT<BadgeScore>("BadgeScore", "Champion", "20 total points", 20));
+    badges.emplace_back(new BadgeInfoT<BadgeSkull>("BadgeSkull", "Skull", "5 skulls", 5));
+    badges.emplace_back(new BadgeInfoT<BadgeSpeed>("BadgeSpeed", "Sprinter", "700 speed points", 700));
+    badges.emplace_back(new BadgeInfoT<BadgeStarSkull>("BadgeStarSkull", "Star", "5 stars and skulls", 5));
 }
 
 void BadgesManager::loadBadges() {

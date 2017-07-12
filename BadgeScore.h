@@ -12,7 +12,7 @@
 
 class BadgeScore : public Badge {
 public:
-    BadgeScore(MainCharacter *mC, float p);
+    BadgeScore(MainCharacter *mC, float goal, float p);
 
     virtual ~BadgeScore();
 

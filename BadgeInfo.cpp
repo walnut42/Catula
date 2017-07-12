@@ -84,7 +84,12 @@ const std::string &BadgeInfo::getClassName() const {
 
 const std::string BadgeInfo::getDescription() const {
     if (locked) {
-        return name + "\nLocked!! Progress: " + toString(progress) + "%";
+        return "Locked!! Progress: " + toString(progress) + "%";
     } else
-        return name + "\n" + description;
+        return description;
+}
+
+
+const std::string &BadgeInfo::getName() const {
+    return name;
 }

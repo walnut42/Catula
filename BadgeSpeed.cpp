@@ -6,7 +6,7 @@
 
 // Get maxSpeed = goalPoints
 
-BadgeSpeed::BadgeSpeed(MainCharacter *mC, float p) : Badge{mC, 700, p} {
+BadgeSpeed::BadgeSpeed(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p}, speed{0} {
     attach();
 }
 

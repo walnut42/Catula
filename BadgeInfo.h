@@ -37,6 +37,8 @@ public:
 
     const std::string getDescription() const;
 
+    const std::string &getName() const;
+
 protected:
     bool locked;
     float progress;

@@ -12,7 +12,7 @@
 
 class BadgeObstacle : public Badge {
 public:
-    BadgeObstacle(MainCharacter *mC, float p);
+    BadgeObstacle(MainCharacter *mC, float goal, float p);
 
     virtual ~BadgeObstacle();
 

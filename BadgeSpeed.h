@@ -12,7 +12,7 @@
 
 class BadgeSpeed : public Badge {
 public:
-    BadgeSpeed(MainCharacter *mC, float p);
+    BadgeSpeed(MainCharacter *mC, float goal, float p);
 
     virtual ~BadgeSpeed();
 

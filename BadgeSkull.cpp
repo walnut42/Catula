@@ -6,7 +6,7 @@
 
 // Get goalPoints skulls (progress).
 
-BadgeSkull::BadgeSkull(MainCharacter *mC, float p) : Badge{mC, 5, p} {
+BadgeSkull::BadgeSkull(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p} {
     previousScore = mainCharacter->getScore();
     score = previousScore;
     attach();
