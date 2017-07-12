@@ -95,7 +95,8 @@ void MainCharacter::unsubscribe(Subscription s, Badge *b) {
 void MainCharacter::notify(Subscription s) {
     auto range = badges.equal_range(s);
 
-    for (auto i = range.first; i != range.second;) {
+    auto i = range.first;
+    while (i != range.second) {
         auto prev_i = i;
         i++;
         prev_i->second->update();
