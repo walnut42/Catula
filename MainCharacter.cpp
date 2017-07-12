@@ -85,16 +85,20 @@ void MainCharacter::subscribe(Subscription s, Badge *b) {
 void MainCharacter::unsubscribe(Subscription s, Badge *b) {
     auto range = badges.equal_range(s);
     for (auto i = range.first; i != range.second; ++i) {
-        if (i->second == b)
+        if (i->second == b) {
             badges.erase(i);
+            break;
+        }
     }
 }
 
 void MainCharacter::notify(Subscription s) {
     auto range = badges.equal_range(s);
 
-    for (auto i = range.first; i != range.second; ++i) {
-        i->second->update();
+    for (auto i = range.first; i != range.second;) {
+        auto prev_i = i;
+        i++;
+        prev_i->second->update();
     }
 }
 
