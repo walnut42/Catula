@@ -10,7 +10,7 @@
 
 class Rocket : public Collidable {
 public:
-    Rocket(ModelGame &modelGame, float x, float y);
+    explicit Rocket(ModelGame &modelGame, float x = Window::getWidth(), float y = 0);
 
     virtual void update() override;
 

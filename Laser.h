@@ -10,7 +10,7 @@
 
 class Laser : public Collidable {
 public:
-    Laser(ModelGame &modelGame, float x, float y);
+    explicit Laser(ModelGame &modelGame, float x = Window::getWidth(), float y = 0);
 
     void update() override;
 

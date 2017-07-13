@@ -6,11 +6,12 @@
 #define CATULA_OBSTACLE_H
 
 #include "Collidable.h"
+#include "Window.h"
 
 
 class Star : public Collidable {
 public:
-    Star(ModelGame &modelGame, float x, float y);
+    explicit Star(ModelGame &modelGame, float x = Window::getWidth(), float y = 0);
 
     virtual void update() override;
 

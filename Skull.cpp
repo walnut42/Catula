@@ -5,10 +5,11 @@
 #include "Skull.h"
 
 #include "MainCharacter.h"
-#include "Window.h"
 
 Skull::Skull(ModelGame &modelGame, float x, float y) : Collidable{modelGame, Image::Skull, x, y}, time{0} {
     relVel.y = 500;
+    originPos.y = std::rand() % (static_cast<int>(Window::getHeight() - 3 * size.y)) + size.y;
+    pos.y = originPos.y;
 }
 
 void Skull::update() {

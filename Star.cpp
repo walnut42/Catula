@@ -8,6 +8,8 @@
 
 Star::Star(ModelGame &modelGame, float x, float y) : Collidable{modelGame, Image::Star, x, y} {
     relVel.y = 10;
+    originPos.y = std::rand() % (static_cast<int>(Window::getHeight() - size.y));
+    pos.y = originPos.y;
 }
 
 void Star::update() {
