@@ -11,7 +11,7 @@
 
 class TestBadge : public Badge {
 public:
-    explicit TestBadge(MainCharacter *mC) : Badge{mC, 10}, n{0} {}
+    explicit TestBadge(MainCharacter *mC) : Badge{mC, 10, true, 0}, n{0} {}
 
     virtual void update() {
         n++;

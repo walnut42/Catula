@@ -12,7 +12,7 @@
 
 class BadgeSkull : public Badge {
 public:
-    BadgeSkull(MainCharacter *mC, float goal, float p);
+    BadgeSkull(MainCharacter *mC, float goal, bool m, float p);
 
     virtual ~BadgeSkull();
 

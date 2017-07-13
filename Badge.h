@@ -12,7 +12,7 @@ class MainCharacter;
 
 class Badge {
 public:
-    Badge(MainCharacter *mC, float goalPoints, float p = -1);
+    Badge(MainCharacter *mC, float goalPoints, bool memorize, float p);
 
     virtual ~Badge();
 
@@ -34,7 +34,7 @@ protected:
     float goalPoints;
     MainCharacter *mainCharacter;
 private:
-    bool progress;
+    bool memorize;
 };
 
 

@@ -13,7 +13,7 @@
 
 class BadgeFly : public Badge {
 public:
-    BadgeFly(MainCharacter *mC, float goal, float p);
+    BadgeFly(MainCharacter *mC, float goal, bool m, float p);
 
     virtual ~BadgeFly();
 

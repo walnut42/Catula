@@ -6,8 +6,9 @@
 
 #include "BadgesManager.h"
 
-BadgeInfo::BadgeInfo(const std::string &className, const std::string &name, const std::string &description) : locked{
-        true}, progress{0}, ptr{nullptr}, className{className}, name{name}, description{description} {
+BadgeInfo::BadgeInfo(const std::string &className, const std::string &name, const std::string &description,
+                     bool memorize) : locked{true}, progress{0}, memorize{memorize}, ptr{nullptr},
+                                      className{className}, name{name}, description{description} {
 }
 
 BadgeInfo::~BadgeInfo() {
@@ -85,7 +86,10 @@ const std::string &BadgeInfo::getClassName() const {
 
 const std::string BadgeInfo::getDescription() const {
     if (locked) {
-        return "Locked!! Progress: " + toString(progress) + "%";
+        if (memorize)
+            return "Locked!! Progress: " + toString(progress) + "%";
+        else
+            return "Locked!!";
     } else
         return description;
 }

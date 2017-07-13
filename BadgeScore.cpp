@@ -6,8 +6,9 @@
 
 // Get goal points (progress).
 
-BadgeScore::BadgeScore(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p},
-                                                                 previousScore{mainCharacter->getScore()}, score{0} {
+BadgeScore::BadgeScore(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p},
+                                                                         previousScore{mainCharacter->getScore()},
+                                                                         score{0} {
     attach();
 }
 
