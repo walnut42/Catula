@@ -29,6 +29,7 @@ TEST(Badge, Constructor) {
     BadgeTest b(mC, g, p / q);
     ASSERT_TRUE(b.isLocked());
     ASSERT_FLOAT_EQ(b.getProgress(), p / q);
+    delete mC;
 }
 
 TEST(Badge, Update) {
@@ -45,4 +46,5 @@ TEST(Badge, Update) {
     BadgeTest b2(mC, p / q, 100);
     b2.update();
     ASSERT_FALSE(b2.isLocked());
+    delete mC;
 }
