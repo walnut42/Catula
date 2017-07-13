@@ -20,12 +20,9 @@ TEST(Background, Update) {
     Background b(m);
     for (int i = 0; i < 3; i++) {
         float distance = b.getDistance();
-        float minTime = Window::getInstance()->getElapsed();
+        float time = Window::getInstance()->getElapsed();
         b.update();
-        float maxTime = Window::getInstance()->getElapsed();
-
-        ASSERT_GE(b.getShift(), b.getVel() * minTime);
-        ASSERT_LE(b.getShift(), b.getVel() * maxTime);
+        ASSERT_FLOAT_EQ(b.getShift(), b.getVel() * time);
         ASSERT_FLOAT_EQ(b.getDistance(), distance - b.getShift() / 100);
     }
 }
