@@ -71,8 +71,9 @@ void BadgeInfo::drawNotify(Window *window, float x, float y) {
     window->drawSprite(sprite, sf::Vector2f(x, y));
 }
 
-void BadgeInfo::setTexture(sf::Texture &t) {
-    texture = t;
+void BadgeInfo::setTexture(const std::string &path) {
+    texture.loadFromFile(path);
+    texture.setSmooth(true);
     Images::setSprite(bar, Image::Bar);
     Images::setSprite(barEmpty, Image::BarEmpty);
 }

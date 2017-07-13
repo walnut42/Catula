@@ -15,7 +15,6 @@
 #include "BadgeSpeed.h"
 #include "BadgeStarSkull.h"
 
-BadgesManager *BadgesManager::instance = nullptr;
 
 BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/badges.dat"}, created{false} {
     badges.emplace_back(new BadgeInfoT<BadgeDeath>("BadgeDeath", "Mr. Death", "5 lost lives", 5));
@@ -59,12 +58,8 @@ void BadgesManager::loadBadges() {
 
     //Load images
     const std::string path = "../Resources/Images/Badges/";
-    for (auto &badge:badges) {
-        sf::Texture t;
-        t.loadFromFile(path + 'b' + badge->getClassName().substr(1) + ".png");
-        t.setSmooth(true);
-        badge->setTexture(t);
-    }
+    for (auto &badge:badges)
+        badge->setTexture(path + 'b' + badge->getClassName().substr(1) + ".png");
 }
 
 void BadgesManager::saveBadges() {
@@ -113,10 +108,8 @@ const int BadgesManager::numberOfBadges() {
 
 
 BadgesManager *BadgesManager::getInstance() {
-    if (instance == nullptr) {
-        instance = new BadgesManager;
-    }
-    return instance;
+    static BadgesManager instance;
+    return &instance;
 }
 
 const int BadgesManager::getBadgeSize() const {

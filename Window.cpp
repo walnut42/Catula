@@ -4,8 +4,6 @@
 
 #include "Window.h"
 
-Window *Window::instance = nullptr;
-
 Window::Window() : windowTitle{"Catula"}, isFullscreen{false}, isDone{false} {
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);
@@ -83,10 +81,8 @@ void Window::drawDrawable(sf::Drawable &drawable) {
 }
 
 Window *Window::getInstance() {
-    if (instance == nullptr) {
-        instance = new Window;
-    }
-    return instance;
+    static Window instance;
+    return &instance;
 }
 
 void Window::setDrawPrevision(bool drawPrevision) {
@@ -94,8 +90,8 @@ void Window::setDrawPrevision(bool drawPrevision) {
 }
 
 float Window::getWidth() {
-    if (instance != nullptr) {
-        sf::Vector2u size = instance->window.getSize();
+    if (getInstance() != nullptr) {
+        sf::Vector2u size = getInstance()->window.getSize();
         return getHeight() * size.x / size.y;
     }
     return 0;

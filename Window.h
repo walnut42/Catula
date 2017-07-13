@@ -39,8 +39,6 @@ public:
 private:
     Window();
 
-    static Window *instance;
-
     float getProportions() {
         sf::Vector2u size = window.getSize();
         return getHeight() * size.x / size.y;

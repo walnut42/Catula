@@ -31,7 +31,7 @@ public:
 
     void drawNotify(Window *window, float x, float y);
 
-    void setTexture(sf::Texture &t);
+    void setTexture(const std::string &path);
 
     const std::string &getClassName() const;
 

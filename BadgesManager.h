@@ -36,8 +36,6 @@ public:
 private:
     BadgesManager();
 
-    static BadgesManager *instance;
-
     const int badgeSize;
 
     const std::string filename;
