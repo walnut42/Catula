@@ -38,7 +38,7 @@ void GameInfo::draw() {
     Window *window = Window::getInstance();
     window->drawDrawable(content);
     for (int i = 0; i < modelGame.getMainCharacter()->getLives(); ++i) {
-        window->drawSprite(life, lifePos + sf::Vector2f(-hWidth - paddingY * i, 0));
+        window->drawSprite(life, lifePos + sf::Vector2f((-hWidth - paddingY) * i, 0));
     }
 
     if (badge != nullptr) {
