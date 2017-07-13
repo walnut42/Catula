@@ -43,10 +43,16 @@ void GameInfo::draw() {
     if (badge != nullptr) {
         float time = clock.getElapsedTime().asSeconds();
         float y = 0;
+        const float initY = -100;
+        const float initV0 = 200;
+        const float initA = 100;
+        const float endY = 0;
+        const float endV0 = 300 / 4;
+        const float endA = 100 / 4;
         if (time <= 1)
-            y = -100 + 200 * time - 100 * time * time;
+            y = initY + initV0 * time - initA * time * time;
         else if (time >= 3)
-            y = 0 + 300 / 4 * time - 100 / 4 * time * time;
+            y = endY + endV0 * time - endA * time * time;
 
         badgeText.setPosition(window->getWidth() / 2 + 30, y + 25);
         badgeRect.setPosition(window->getWidth() / 2, y);
