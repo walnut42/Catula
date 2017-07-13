@@ -5,7 +5,6 @@
 #include "Skull.h"
 
 #include "MainCharacter.h"
-#include "Window.h"
 
 Skull::Skull(ModelGame &modelGame, float x, float y) : Collidable{modelGame, Image::Skull, x, y}, time{0} {
     relVel.y = 500;

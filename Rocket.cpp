@@ -14,7 +14,6 @@ Rocket::Rocket(ModelGame &modelGame, float x, float y) : Collidable{modelGame, I
     float maxHeight = relVel.y * relVel.y / (2 * acc.y);
     int randPos = std::rand() % (static_cast<int>(Window::getHeight() - maxHeight - size.y));
     originPos.y = randPos + maxHeight;
-    std::cout << originPos.y << std::endl;
     pos.y = originPos.y;
 }
 
