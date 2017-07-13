@@ -7,7 +7,6 @@
 #include "../ModelGame.h"
 #include "../Rocket.h"
 #include "../MainCharacter.h"
-#include "../Window.h"
 
 
 class TestRocket : public Rocket {
@@ -36,7 +35,8 @@ TEST(Rocket, Constructor) {
     ModelGame model;
     TestRocket rocket(model, 30, 50);
     ASSERT_FLOAT_EQ(rocket.getOriginPos().x, 30);
-    ASSERT_FLOAT_EQ(rocket.getOriginPos().y, 50);
+    ASSERT_GE(rocket.getOriginPos().y, 0);
+    ASSERT_LE(rocket.getOriginPos().y, Window::getHeight());
     ASSERT_FLOAT_EQ(rocket.getRelVel().x, -600);
     ASSERT_FLOAT_EQ(rocket.getRelVel().y, -200);
     ASSERT_FLOAT_EQ(rocket.getAcc().y, 200);

@@ -7,7 +7,6 @@
 #include "../ModelGame.h"
 #include "../Laser.h"
 #include "../MainCharacter.h"
-#include "../Window.h"
 
 
 class TestLaser : public Laser {
@@ -36,7 +35,8 @@ TEST(Laser, Constructor) {
     ModelGame model;
     TestLaser laser(model, 30, 50);
     ASSERT_FLOAT_EQ(laser.getOriginPos().x, 30);
-    ASSERT_FLOAT_EQ(laser.getOriginPos().y, 50);
+    ASSERT_GE(laser.getOriginPos().y, 0);
+    ASSERT_LE(laser.getOriginPos().y, Window::getHeight());
     ASSERT_FLOAT_EQ(laser.getAngleVel(), 50);
     ASSERT_FLOAT_EQ(laser.getAcc().x, 0);
     ASSERT_FLOAT_EQ(laser.getAcc().y, 0);

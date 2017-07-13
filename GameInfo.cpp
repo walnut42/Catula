@@ -12,7 +12,7 @@
 #include "Fonts.h"
 #include "BadgesManager.h"
 
-GameInfo::GameInfo(ModelGame &modelGame) : modelGame{modelGame}, badge{nullptr} {
+GameInfo::GameInfo(ModelGame &modelGame) : modelGame{modelGame}, badge{nullptr}, brHeight{100}, brPadding{60} {
     Fonts::setText(content, Font::Score);
     content.setCharacterSize(35);
     content.setColor(sf::Color::Red);
@@ -29,6 +29,8 @@ GameInfo::GameInfo(ModelGame &modelGame) : modelGame{modelGame}, badge{nullptr} 
     badgeRect.setSize(
             sf::Vector2f(badgeText.getLocalBounds().width + BadgesManager::getInstance()->getBadgeSize() + 60, 100));
     Audio::setSound(sound, Sound::BadgeUnlocked);
+    std::cout << badgeRect.getSize().x << std::endl;
+    std::cout << badgeRect.getSize().y << std::endl;
 }
 
 void GameInfo::draw() {
@@ -50,7 +52,7 @@ void GameInfo::draw() {
         badgeRect.setPosition(window->getWidth() / 2, y);
         window->drawDrawable(badgeRect);
         window->drawDrawable(badgeText);
-        badge->drawNotify(window, window->getWidth() / 2 + badgeText.getGlobalBounds().width + 60, y + 10);
+        badge->drawNotify(window, window->getWidth() / 2 + badgeText.getGlobalBounds().width + brPadding, y + 10);
     }
 }
 

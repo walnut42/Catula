@@ -7,7 +7,6 @@
 #include "../ModelGame.h"
 #include "../Star.h"
 #include "../MainCharacter.h"
-#include "../Window.h"
 
 
 class TestStar : public Star {
@@ -36,7 +35,8 @@ TEST(Star, Constructor) {
     ModelGame model;
     TestStar star(model, 30, 50);
     ASSERT_FLOAT_EQ(star.getOriginPos().x, 30);
-    ASSERT_FLOAT_EQ(star.getOriginPos().y, 50);
+    ASSERT_GE(star.getOriginPos().y, 0);
+    ASSERT_LE(star.getOriginPos().y, Window::getHeight());
     ASSERT_FLOAT_EQ(star.getRelVel().x, 0);
     ASSERT_FLOAT_EQ(star.getRelVel().y, 10);
 }

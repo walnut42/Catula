@@ -7,7 +7,6 @@
 #include "../ModelGame.h"
 #include "../Skull.h"
 #include "../MainCharacter.h"
-#include "../Window.h"
 
 
 class TestSkull : public Skull {
@@ -36,7 +35,8 @@ TEST(Skull, Constructor) {
     ModelGame model;
     TestSkull skull(model, 30, 50);
     ASSERT_FLOAT_EQ(skull.getOriginPos().x, 30);
-    ASSERT_FLOAT_EQ(skull.getOriginPos().y, 50);
+    ASSERT_GE(skull.getOriginPos().y, 0);
+    ASSERT_LE(skull.getOriginPos().y, Window::getHeight());
     ASSERT_FLOAT_EQ(skull.getAcc().x, 0);
     ASSERT_FLOAT_EQ(skull.getAcc().y, 0);
 }
