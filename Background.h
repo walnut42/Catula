@@ -27,9 +27,7 @@ public:
 
     void setVel(float v = -500);
 
-    float getDistance() const {
-        return distance / 100;
-    }
+    float getDistance() const;
 
 private:
     sf::Vector2f getSpritePos(std::list<sf::Sprite>::iterator &it);
@@ -48,9 +46,9 @@ private:
     int countSprites;
     ModelGame &modelGame;
 
-    const float levelDuration = 10;
-    const float levelUpAcc = -20;
-    const float levelUpTime = 5;
+    const float levelDuration;
+    const float levelUpAcc;
+    const float levelUpTime;
 
     int nBg;
     const int maxRep;

@@ -6,7 +6,8 @@
 #include "Background.h"
 
 Background::Background(ModelGame &modelGame) : spriteSize{1251, 1000}, modelGame{modelGame}, countSprites{0},
-                                               distance{0}, pos{0}, shift{0}, countRep{0}, maxRep{20}, minRep{10} {
+                                               distance{0}, pos{0}, shift{0}, levelDuration{10}, levelUpAcc{-20},
+                                               levelUpTime{5}, countRep{0}, maxRep{20}, minRep{10} {
     setRandRep();
 
     // Get Image index.
@@ -36,7 +37,7 @@ void Background::update() {
     distance -= shift;
 
     // If first sprite is out on the left side, the loop removes it.
-    while (!sprites.empty() && getSpritePos(0).x + spriteSize.x < 0) {
+    while (!sprites.empty() && getSpritePos(1).x < 0) {
         sprites.erase(sprites.begin());
         pos += spriteSize.x;
     }
@@ -91,6 +92,10 @@ float Background::getVel() const {
 
 void Background::setVel(float v) {
     Background::vel = v;
+}
+
+float Background::getDistance() const {
+    return distance / 100;
 }
 
 sf::Vector2f Background::getSpritePos(std::list<sf::Sprite>::iterator &it) {
