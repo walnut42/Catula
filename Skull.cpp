@@ -8,7 +8,6 @@
 #include "Window.h"
 
 Skull::Skull(ModelGame &modelGame, float x, float y) : Collidable{modelGame, Image::Skull, x, y}, time{0} {
-    relVel.y = 500;
 }
 
 void Skull::update() {

@@ -22,20 +22,8 @@ public:
         return relPos;
     }
 
-    void setRelPos(const sf::Vector2f &relPos) {
-        TestLaser::relPos = relPos;
-    }
-
-    void setOriginPos(const sf::Vector2f &originPos) {
-        TestLaser::originPos = originPos;
-    }
-
     const sf::Vector2f &getRelVel() const {
         return relVel;
-    }
-
-    void setRelVel(const sf::Vector2f &relVel) {
-        TestLaser::relVel = relVel;
     }
 
     const sf::Vector2f &getAcc() const {
