@@ -6,7 +6,8 @@
 
 // Fly on the top of the screen for goal distance (progress).
 
-BadgeFly::BadgeFly(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p}, top{false}, initDistance{0} {
+BadgeFly::BadgeFly(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p}, top{false},
+                                                                     initDistance{0} {
     attach();
 }
 

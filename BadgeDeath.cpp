@@ -6,8 +6,8 @@
 
 // Die goal times (progress).
 
-BadgeDeath::BadgeDeath(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p}, previousLife{mC->getLives()},
-                                                                 life{0} {
+BadgeDeath::BadgeDeath(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p},
+                                                                         previousLife{mC->getLives()}, life{0} {
     attach();
 }
 

@@ -6,11 +6,12 @@
 #include <gtest/gtest.h>
 
 #include "../MainCharacter.h"
+#include "../Window.h"
 
 
 class TestBadge : public Badge {
 public:
-    explicit TestBadge(MainCharacter *mC) : Badge{mC, 10}, n{0} {}
+    explicit TestBadge(MainCharacter *mC) : Badge{mC, 10, true, 0}, n{0} {}
 
     virtual void update() {
         n++;
@@ -119,4 +120,21 @@ TEST(MainCharacter, Life) {
     mC.increaseLives(-3);
     ASSERT_EQ(mC.getLives(), 0);
     ASSERT_TRUE(mC.hasLost());
+}
+
+
+TEST(MainCharacter, Update) {
+    ModelGame model;
+    MainCharacter mC = MainCharacter(model, Image::Catula);
+    const float g = 980;
+    for (int i = 0; i != 3; i++) {
+        sf::Vector2f vel = mC.getVel();
+        sf::Vector2f pos = mC.getPos();
+        mC.update();
+        float time = Window::getInstance()->getElapsed();
+        ASSERT_FLOAT_EQ(mC.getVel().x, vel.x);
+        ASSERT_FLOAT_EQ(mC.getVel().y, vel.y + g * time);
+        ASSERT_FLOAT_EQ(mC.getPos().x, pos.x);
+        ASSERT_FLOAT_EQ(mC.getPos().y, pos.y + mC.getVel().y * time);
+    }
 }

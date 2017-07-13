@@ -7,7 +7,8 @@
 
 // Get goal distance points (progress).
 
-BadgeDistance::BadgeDistance(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p}, distance{0} {
+BadgeDistance::BadgeDistance(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p},
+                                                                               distance{0} {
     previousDistance = mainCharacter->getDistance();
     attach();
 }

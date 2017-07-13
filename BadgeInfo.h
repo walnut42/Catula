@@ -13,7 +13,7 @@
 
 class BadgeInfo {
 public:
-    BadgeInfo(const std::string &className, const std::string &name, const std::string &description);
+    BadgeInfo(const std::string &className, const std::string &name, const std::string &description, bool memorize);
 
     ~BadgeInfo();
 
@@ -42,6 +42,7 @@ public:
 protected:
     bool locked;
     float progress;
+    bool memorize;
     Badge *ptr;
 
     sf::Texture texture;
@@ -56,14 +57,14 @@ protected:
 template<typename T>
 class BadgeInfoT : public BadgeInfo {
 public:
-    BadgeInfoT(const std::string &className, const std::string &name, const std::string &description, float goal)
-            : BadgeInfo{className, name, description}, goalPoints{goal} {
+    BadgeInfoT(const std::string &className, const std::string &name, const std::string &description, float goal,
+               bool memorize) : BadgeInfo{className, name, description, memorize}, goalPoints{goal} {
 
     }
 
     virtual void createBadge(MainCharacter *mC) {
         if (locked)
-            ptr = new T(mC, goalPoints, progress);
+            ptr = new T(mC, goalPoints, memorize, progress);
     }
 
 private:

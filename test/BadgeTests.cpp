@@ -9,7 +9,7 @@
 
 class BadgeTest : public Badge {
 public:
-    BadgeTest(MainCharacter *mC, float goalPoints, float p) : Badge{mC, goalPoints, p} {}
+    BadgeTest(MainCharacter *mC, float goalPoints, float p) : Badge{mC, goalPoints, true, p} {}
 
     virtual ~BadgeTest() {};
 

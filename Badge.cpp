@@ -4,13 +4,12 @@
 
 #include "Badge.h"
 
-Badge::Badge(MainCharacter *mC, float goalPoints, float p) : locked{true}, goalPoints{goalPoints},
-                                                             mainCharacter{mC}, progress{true} {
-    if (p == -1) {
-        progress = false;
-        p = 0;
-    }
-    points = p * goalPoints / 100;
+Badge::Badge(MainCharacter *mC, float goalPoints, bool memorize, float p) : locked{true}, goalPoints{goalPoints},
+                                                                            mainCharacter{mC}, memorize{memorize} {
+    if (memorize)
+        points = p * goalPoints / 100;
+    else
+        points = 0;
 }
 
 Badge::~Badge() {
@@ -29,7 +28,7 @@ bool Badge::isLocked() const {
 float Badge::getProgress() const {
     if (!locked)
         return 100;
-    else if (progress)
+    else if (memorize)
         return points * 100 / goalPoints;
     else
         return 0;

@@ -12,7 +12,7 @@
 
 class BadgeDistance : public Badge {
 public:
-    BadgeDistance(MainCharacter *mC, float goal, float p);
+    BadgeDistance(MainCharacter *mC, float goal, bool m, float p);
 
     virtual ~BadgeDistance();
 
