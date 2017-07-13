@@ -4,7 +4,7 @@
 
 #include "BadgeScore.h"
 
-// Get 20 points (progress).
+// Get goal points (progress).
 
 BadgeScore::BadgeScore(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p},
                                                                  previousScore{mainCharacter->getScore()}, score{0} {

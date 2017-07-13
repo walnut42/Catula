@@ -5,7 +5,7 @@
 #include "BadgeDistance.h"
 
 
-// Get 100 distance points (progress).
+// Get goal distance points (progress).
 
 BadgeDistance::BadgeDistance(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p}, distance{0} {
     previousDistance = mainCharacter->getDistance();

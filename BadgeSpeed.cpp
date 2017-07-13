@@ -4,7 +4,7 @@
 
 #include "BadgeSpeed.h"
 
-// Get maxSpeed = goalPoints
+// Get maxSpeed = goal
 
 BadgeSpeed::BadgeSpeed(MainCharacter *mC, float goal, float p) : Badge{mC, goal}, speed{0} {
     attach();

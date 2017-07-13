@@ -4,7 +4,7 @@
 
 #include "BadgeDeath.h"
 
-// Die goalPoints time (progress).
+// Die goal times (progress).
 
 BadgeDeath::BadgeDeath(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p}, previousLife{mC->getLives()},
                                                                  life{0} {

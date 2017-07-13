@@ -4,7 +4,7 @@
 
 #include "BadgeStarSkull.h"
 
-// Get 5 stars and skulls (progress).
+// Get goal stars and skulls (progress).
 
 BadgeStarSkull::BadgeStarSkull(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p} {
     previousScore = mainCharacter->getScore();

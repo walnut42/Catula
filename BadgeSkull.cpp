@@ -4,7 +4,7 @@
 
 #include "BadgeSkull.h"
 
-// Get goalPoints skulls (progress).
+// Get goal skulls (progress).
 
 BadgeSkull::BadgeSkull(MainCharacter *mC, float goal, float p) : Badge{mC, goal, p} {
     previousScore = mainCharacter->getScore();
