@@ -31,6 +31,11 @@ private:
     sf::RectangleShape badgeRect;
     sf::Text badgeText;
     sf::Sound sound;
+
+    const int notifyHeight;
+    float hWidth;
+    const int paddingX;
+    const int paddingY;
 };
 
 
