@@ -3,6 +3,7 @@
 //
 
 #include "Badge.h"
+
 #include "Tools.h"
 #include "Window.h"
 #include "BadgesManager.h"
@@ -115,7 +116,7 @@ const std::string &Badge::getName() const {
     return name;
 }
 
-void Badge::subscribe(MainCharacter *mC, Subscription s) {
+void Badge::subscribe(MainCharacter *mC, const Subscription& s) {
     if (locked && mainCharacter == nullptr) {
         mainCharacter = mC;
         mainCharacter->subscribe(s, this);

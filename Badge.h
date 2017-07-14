@@ -8,10 +8,11 @@
 #include <string>
 
 #include <SFML/Graphics.hpp>
-#include "MainCharacter.h"
 
 class MainCharacter;
+
 enum class Subscription;
+
 class Window;
 
 class Badge {
@@ -50,15 +51,15 @@ public:
     virtual void detach()=0;
 
 protected:
-    void subscribe(MainCharacter *mC, Subscription s);
+    void subscribe(MainCharacter *mC, const Subscription &s);
 
     void unlock();
 
-    bool locked;
     float points;
-    float goalPoints;
     MainCharacter *mainCharacter;
 private:
+    bool locked;
+    float goalPoints;
     bool memorize;
     sf::Texture texture;
     sf::Sprite sprite;
