@@ -27,7 +27,7 @@ void Audio::loadSounds() throw(load_file_error) {
         if (!soundBuffers[i.first].loadFromFile(path + i.second))
             throw load_file_error(error, path, i.second);
 
-    //Musics
+    // Musics.
     musicFiles[Music::Menu] = path + "darkshadow.wav";
     musicFiles[Music::BadgeMusic] = path + "chineseTorture.wav";
     musicFiles[Music::Game] = path + "nightmare.wav";
