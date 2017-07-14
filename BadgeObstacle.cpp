@@ -11,11 +11,11 @@ BadgeObstacle::BadgeObstacle(const std::string &className, const std::string &na
                                                           previousScore{0}, previousLives{0} {
 }
 
-void BadgeObstacle::attach(MainCharacter *mC) {
-    previousScore = mC->getScore();
-    previousLives = mC->getLives();
-    subscribe(mC, Subscription::Score);
-    subscribe(mC, Subscription::Life);
+void BadgeObstacle::attach() {
+    previousScore = mainCharacter->getScore();
+    previousLives = mainCharacter->getLives();
+    mainCharacter->subscribe(Subscription::Score, this);
+    mainCharacter->subscribe(Subscription::Life, this);
 }
 
 void BadgeObstacle::detach() {
@@ -27,8 +27,13 @@ void BadgeObstacle::detach() {
 }
 
 void BadgeObstacle::update() {
-    mainCharacter->getScore() > previousScore || mainCharacter->getLives() >= previousLives ? points++ : points = 0;
-    previousScore = mainCharacter->getScore();
-    previousLives = mainCharacter->getLives();
+    int score = mainCharacter->getScore();
+    int lives = mainCharacter->getLives();
+    if (score >= previousScore && lives >= previousLives && (score > previousScore || lives > previousLives))
+        points++;
+    else
+        points = 0;
+    previousScore = score;
+    previousLives = lives;
     Badge::update();
 }

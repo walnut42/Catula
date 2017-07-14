@@ -118,10 +118,11 @@ const std::string &Badge::getName() const {
     return name;
 }
 
-void Badge::subscribe(MainCharacter *mC, const Subscription &s) {
+
+void Badge::attach(MainCharacter *mC) {
     if (locked && mainCharacter == nullptr) {
         mainCharacter = mC;
-        mainCharacter->subscribe(s, this);
+        attach();
     }
 }
 

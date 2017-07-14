@@ -11,9 +11,9 @@ BadgeStarSkull::BadgeStarSkull(const std::string &className, const std::string &
                                                             previousScore{0} {
 }
 
-void BadgeStarSkull::attach(MainCharacter *mC) {
-    previousScore = mC->getScore();
-    subscribe(mC, Subscription::Score);
+void BadgeStarSkull::attach() {
+    previousScore = mainCharacter->getScore();
+    mainCharacter->subscribe(Subscription::Score, this);
 }
 
 void BadgeStarSkull::detach() {

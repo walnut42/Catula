@@ -9,13 +9,12 @@
 BadgeSkull::BadgeSkull(const std::string &className, const std::string &name, const std::string &description,
                        float goal, bool memorize) : Badge{className, name, description, goal, memorize},
                                                     previousScore{0}, score{0} {
-
 }
 
 
-void BadgeSkull::attach(MainCharacter *mC) {
-    previousScore = mC->getScore();
-    subscribe(mC, Subscription::Score);
+void BadgeSkull::attach() {
+    previousScore = mainCharacter->getScore();
+    mainCharacter->subscribe(Subscription::Score, this);
 }
 
 void BadgeSkull::detach() {

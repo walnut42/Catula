@@ -11,18 +11,18 @@
 
 class TestBadge : public Badge {
 public:
-    explicit TestBadge() : Badge{"", "", "", 10, true}, n{0} {
+    TestBadge() : Badge{"", "", "", 10, true}, n{0} {
     }
 
     virtual void update() {
         n++;
-    };
+    }
 
     int getN() { return n; }
 
-    virtual void attach(MainCharacter *mC) override {};
+    virtual void attach() override {}
 
-    virtual void detach() override {};
+    virtual void detach() override {}
 private:
     int n;
 };

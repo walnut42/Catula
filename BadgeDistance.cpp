@@ -12,9 +12,9 @@ BadgeDistance::BadgeDistance(const std::string &className, const std::string &na
                                                                                distance{0} {
 }
 
-void BadgeDistance::attach(MainCharacter *mC) {
-    previousDistance = mC->getDistance();
-    subscribe(mC, Subscription::Position);
+void BadgeDistance::attach() {
+    previousDistance = mainCharacter->getDistance();
+    mainCharacter->subscribe(Subscription::Position, this);
 }
 
 void BadgeDistance::detach() {

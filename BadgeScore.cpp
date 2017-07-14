@@ -12,9 +12,9 @@ BadgeScore::BadgeScore(const std::string &className, const std::string &name, co
 }
 
 
-void BadgeScore::attach(MainCharacter *mC) {
-    previousScore = mC->getScore();
-    subscribe(mC, Subscription::Score);
+void BadgeScore::attach() {
+    previousScore = mainCharacter->getScore();
+    mainCharacter->subscribe(Subscription::Score, this);
 }
 
 void BadgeScore::detach() {

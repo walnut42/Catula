@@ -10,8 +10,8 @@ BadgeFly::BadgeFly(const std::string &className, const std::string &name, const 
                    bool memorize) : Badge{className, name, description, goal, memorize}, top{false}, initDistance{0} {
 }
 
-void BadgeFly::attach(MainCharacter *mC) {
-    subscribe(mC, Subscription::Position);
+void BadgeFly::attach() {
+    mainCharacter->subscribe(Subscription::Position, this);
 }
 
 void BadgeFly::detach() {

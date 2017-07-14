@@ -10,8 +10,8 @@ BadgeSpeed::BadgeSpeed(const std::string &className, const std::string &name, co
                        bool memorize) : Badge{className, name, description, goal, memorize}, speed{0} {
 }
 
-void BadgeSpeed::attach(MainCharacter *mC) {
-    subscribe(mC, Subscription::Position);
+void BadgeSpeed::attach() {
+    mainCharacter->subscribe(Subscription::Position, this);
 }
 
 void BadgeSpeed::detach() {

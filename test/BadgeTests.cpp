@@ -17,7 +17,7 @@ public:
         points = p;
     }
 
-    virtual void attach(MainCharacter *mC) override {};
+    virtual void attach() override {};
 
     virtual void detach() override {};
 };

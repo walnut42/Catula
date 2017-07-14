@@ -11,9 +11,9 @@ BadgeDeath::BadgeDeath(const std::string &className, const std::string &name, co
                        bool memorize) : Badge{className, name, description, goal, memorize}, previousLife{0}, life{0} {
 }
 
-void BadgeDeath::attach(MainCharacter *mC) {
-    previousLife=mC->getLives();
-    subscribe(mC, Subscription::Life);
+void BadgeDeath::attach() {
+    previousLife=mainCharacter->getLives();
+    mainCharacter->subscribe(Subscription::Life, this);
 }
 
 void BadgeDeath::detach() {

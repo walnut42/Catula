@@ -46,12 +46,12 @@ public:
 
     float getProgress() const;
 
-    virtual void attach(MainCharacter *mC)=0;
+    void attach(MainCharacter *mC);
 
     virtual void detach()=0;
 
 protected:
-    void subscribe(MainCharacter *mC, const Subscription &s);
+    virtual void attach()=0;
 
     void unlock();
 

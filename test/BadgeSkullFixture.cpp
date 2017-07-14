@@ -1,19 +1,23 @@
 //
-// Created by Lorenzo Nuti and Paolo Valcepina on 14/07/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 10/07/17.
 //
 
-#include <gtest/gtest.h>
-#include "../MainCharacter.h"
-#include "../BadgeStarSkull.h"
+#include "gtest/gtest.h"
 
-class TestBadgeStarSkull : public BadgeStarSkull {
+#include "../BadgeSkull.h"
+#include "../MainCharacter.h"
+#include "../Background.h"
+
+
+
+class TestBadgeSkull : public BadgeSkull {
 public:
-    TestBadgeStarSkull(float goal, bool m) : BadgeStarSkull{"", "", "", goal, m}, n{0} {
+    TestBadgeSkull(float goal, bool m) : BadgeSkull{"", "", "", goal, m}, n{0} {
     }
 
     virtual void update() override {
         n++;
-        BadgeStarSkull::update();
+        BadgeSkull::update();
     }
 
     int getN() { return n; }
@@ -22,24 +26,28 @@ private:
     int n;
 };
 
-class BadgeStarSkullSuite : public ::testing::Test {
+
+class BadgeSkullSuite : public ::testing::Test {
 protected:
     ModelGame m;
     MainCharacter mC = MainCharacter(m, Image::Catula);
-    TestBadgeStarSkull b = TestBadgeStarSkull(7, true);
+    TestBadgeSkull b = TestBadgeSkull(7, true);
 };
 
-TEST_F(BadgeStarSkullSuite, Attach) {
+
+TEST_F(BadgeSkullSuite, Attach) {
     mC.notify(Subscription::Score);
     ASSERT_EQ(b.getN(), 0);
     b.attach(&mC);
+    mC.notify(Subscription::Position);
+    ASSERT_EQ(b.getN(), 0);
     mC.notify(Subscription::Score);
     ASSERT_EQ(b.getN(), 1);
     mC.notify(Subscription::Life);
     ASSERT_EQ(b.getN(), 1);
 }
 
-TEST_F(BadgeStarSkullSuite, Detach) {
+TEST_F(BadgeSkullSuite, Detach) {
     b.attach(&mC);
     b.detach();
     mC.notify(Subscription::Life);
@@ -48,15 +56,15 @@ TEST_F(BadgeStarSkullSuite, Detach) {
     ASSERT_EQ(b.getN(), 0);
 }
 
-TEST_F(BadgeStarSkullSuite, Update) {
+TEST_F(BadgeSkullSuite, Update) {
     mC.increaseScore(1);
     b.attach(&mC);
     ASSERT_FLOAT_EQ(b.getProgress(), 0);
     mC.increaseScore(static_cast<int>(Score::Skull));
     ASSERT_FLOAT_EQ(b.getProgress(), 100. / 7);
     mC.increaseScore(static_cast<int>(Score::Star));
-    ASSERT_FLOAT_EQ(b.getProgress(), 200. / 7);
+    ASSERT_FLOAT_EQ(b.getProgress(), 100. / 7);
     b.detach();
     mC.increaseScore(1);
-    ASSERT_FLOAT_EQ(b.getProgress(), 200. / 7.);
+    ASSERT_FLOAT_EQ(b.getProgress(), 100. / 7.);
 }

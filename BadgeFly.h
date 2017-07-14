@@ -18,9 +18,12 @@ public:
 
     virtual void update() override;
 
-    virtual void attach(MainCharacter *mC) override;
-
     virtual void detach() override;
+
+    using Badge::attach;
+
+protected:
+    virtual void attach() override;
 
 private:
     bool top;

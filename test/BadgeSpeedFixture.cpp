@@ -6,13 +6,11 @@
 #include "../BadgeSpeed.h"
 #include "../Background.h"
 
-
 class TestBadgeSpeed : public BadgeSpeed {
 public:
     TestBadgeSpeed(float goal, bool m) : BadgeSpeed{"", "", "", goal, m}, n{0} {
 
     }
-
     virtual void update() override {
         n++;
         BadgeSpeed::update();
@@ -20,10 +18,6 @@ public:
 
     int getN() {
         return n;
-    }
-
-    float getPoints() {
-        return points;
     }
 
 private:
@@ -34,7 +28,7 @@ class BadgeSpeedSuite : public ::testing::Test {
 protected:
     ModelGame m;
     MainCharacter mC = MainCharacter(m, Image::Catula);
-    TestBadgeSpeed b = TestBadgeSpeed(700, false);
+    TestBadgeSpeed b = TestBadgeSpeed(700, true);
 };
 
 TEST_F(BadgeSpeedSuite, Attach) {
@@ -61,15 +55,15 @@ TEST_F(BadgeSpeedSuite, Update) {
     mC.update();
     mC.getVelX();
     b.attach(&mC);
-    ASSERT_FLOAT_EQ(b.getPoints(), 0);
+    ASSERT_FLOAT_EQ(b.getProgress(), 0);
     m.getBackground()->setVel(-550);
     mC.update();
-    ASSERT_FLOAT_EQ(b.getPoints(), 550);
+    ASSERT_FLOAT_EQ(b.getProgress(), 550*100/700.);
     m.getBackground()->setVel(-600);
     mC.update();
-    ASSERT_FLOAT_EQ(b.getPoints(), 600);
+    ASSERT_FLOAT_EQ(b.getProgress(), 600*100/700.);
     b.detach();
     m.getBackground()->setVel(-700);
     mC.update();
-    ASSERT_FLOAT_EQ(b.getPoints(), 600);
+    ASSERT_FLOAT_EQ(b.getProgress(), 600*100/700.);
 }

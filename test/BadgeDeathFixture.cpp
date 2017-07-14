@@ -10,13 +10,13 @@
 
 class TestBadgeDeath : public BadgeDeath {
 public:
-    explicit TestBadgeDeath(float goal, bool m) : BadgeDeath{"", "", "", goal, m}, n{0} {
+    TestBadgeDeath(float goal, bool m) : BadgeDeath{"", "", "", goal, m}, n{0} {
     }
 
     virtual void update() override {
         n++;
         BadgeDeath::update();
-    };
+    }
 
     int getN() { return n; }
 
@@ -25,10 +25,15 @@ private:
 };
 
 
-TEST(BadgeDeath, Attach) {
+class BadgeDeathSuite : public ::testing::Test {
+protected:
     ModelGame m;
     MainCharacter mC = MainCharacter(m, Image::Catula);
-    TestBadgeDeath b(3, true);
+    TestBadgeDeath b = TestBadgeDeath(3, true);
+};
+
+
+TEST_F(BadgeDeathSuite, Attach) {
     mC.notify(Subscription::Life);
     ASSERT_EQ(b.getN(), 0);
     b.attach(&mC);
@@ -38,10 +43,7 @@ TEST(BadgeDeath, Attach) {
     ASSERT_EQ(b.getN(), 1);
 }
 
-TEST(BadgeDeath, Detach) {
-    ModelGame m;
-    MainCharacter mC = MainCharacter(m, Image::Catula);
-    TestBadgeDeath b(3, true);
+TEST_F(BadgeDeathSuite, Detach) {
     b.attach(&mC);
     b.detach();
     mC.notify(Subscription::Life);
@@ -50,10 +52,7 @@ TEST(BadgeDeath, Detach) {
     ASSERT_EQ(b.getN(), 0);
 }
 
-TEST(BadgeDeath, Update) {
-    ModelGame m;
-    MainCharacter mC = MainCharacter(m, Image::Catula);
-    BadgeDeath b("", "", "", 3, true);
+TEST_F(BadgeDeathSuite, Update) {
     mC.increaseLives(1);
     b.attach(&mC);
     ASSERT_FLOAT_EQ(b.getProgress(), 0);
