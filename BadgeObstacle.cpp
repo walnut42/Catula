@@ -6,19 +6,16 @@
 
 // Get goal positive objects in a row.
 
-BadgeObstacle::BadgeObstacle(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p} {
-    previousScore = mainCharacter->getScore();
-    previousLives = mainCharacter->getLives();
-    attach();
+BadgeObstacle::BadgeObstacle(const std::string &className, const std::string &name, const std::string &description,
+                             float goal, bool memorize) : Badge{className, name, description, goal, memorize},
+                                                          previousScore{0}, previousLives{0} {
 }
 
-BadgeObstacle::~BadgeObstacle() {
-    detach();
-}
-
-void BadgeObstacle::attach() {
-    mainCharacter->subscribe(Subscription::Score, this);
-    mainCharacter->subscribe(Subscription::Life, this);
+void BadgeObstacle::attach(MainCharacter *mC) {
+    previousScore = mC->getScore();
+    previousLives = mC->getLives();
+    subscribe(mC, Subscription::Score);
+    subscribe(mC, Subscription::Life);
 }
 
 void BadgeObstacle::detach() {

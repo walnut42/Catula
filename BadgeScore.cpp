@@ -6,18 +6,15 @@
 
 // Get goal points (progress).
 
-BadgeScore::BadgeScore(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p},
-                                                                         previousScore{mainCharacter->getScore()},
-                                                                         score{0} {
-    attach();
+BadgeScore::BadgeScore(const std::string &className, const std::string &name, const std::string &description,
+                       float goal, bool memorize) : Badge{className, name, description, goal, memorize},
+                                                    previousScore{0}, score{0} {
 }
 
-BadgeScore::~BadgeScore() {
-    detach();
-}
 
-void BadgeScore::attach() {
-    mainCharacter->subscribe(Subscription::Score, this);
+void BadgeScore::attach(MainCharacter *mC) {
+    previousScore = mC->getScore();
+    subscribe(mC, Subscription::Score);
 }
 
 void BadgeScore::detach() {

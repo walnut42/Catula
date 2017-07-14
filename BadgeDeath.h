@@ -9,13 +9,12 @@
 
 class BadgeDeath : public Badge {
 public:
-    BadgeDeath(MainCharacter *mC, float goal, bool m, float p);
-
-    virtual ~BadgeDeath();
+    BadgeDeath(const std::string &className, const std::string &name, const std::string &description, float goal,
+               bool memorize);
 
     virtual void update() override;
 
-    virtual void attach() override;
+    virtual void attach(MainCharacter *mC) override;
 
     virtual void detach() override;
 

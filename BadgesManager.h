@@ -5,12 +5,11 @@
 #ifndef CATULA_BADGESMANAGER_H
 #define CATULA_BADGESMANAGER_H
 
-#include <SFML/Graphics.hpp>
-#include <fstream>
+#include <iostream>
+#include <typeinfo>
 #include <functional>
 #include "Badge.h"
 #include "MainCharacter.h"
-#include "BadgeInfo.h"
 
 
 class BadgesManager {
@@ -25,9 +24,9 @@ public:
 
     void destroyBadgesObservers();
 
-    void foreachBadge(std::function<void(BadgeInfo &)> lambda);
+    void foreachBadge(std::function<void(Badge&)> lambda);
 
-    BadgeInfo &getBadge(int i);
+    Badge &getBadge(int i);
 
     const int numberOfBadges();
 
@@ -41,7 +40,7 @@ private:
     const std::string filename;
 
     bool created;
-    std::vector<std::unique_ptr<BadgeInfo>> badges;
+    std::vector<std::unique_ptr<Badge>> badges;
 };
 
 

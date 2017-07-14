@@ -4,6 +4,8 @@
 
 #include "ModelBadge.h"
 
+#include "Badge.h"
+
 #include "Window.h"
 #include "Fonts.h"
 #include "BadgesManager.h"
@@ -50,10 +52,6 @@ ModelBadge::ModelBadge() : selected{0} {
     selection.setOutlineColor(sf::Color(150, 170, 230));
     selection.setOutlineThickness(5);
     selection.setOrigin(selection.getSize().x / 2.0f, 5);
-
-    BadgesManager::getInstance()->foreachBadge([](BadgeInfo &b) {
-        b.updateBadge();
-    });
 }
 
 ModelBadge::~ModelBadge() {
@@ -88,7 +86,7 @@ ModelBase *ModelBadge::update() {
 
     content.setPosition(Window::getWidth() / 2.0f, 200);
 
-    BadgeInfo &b = BadgesManager::getInstance()->getBadge(selected);
+    Badge &b = BadgesManager::getInstance()->getBadge(selected);
     badgeName.setString(b.getName());
     sf::FloatRect textRectName = badgeName.getGlobalBounds();
     badgeName.setOrigin(textRectName.width / 2.0f, textRectName.height / 2.0f);
@@ -120,7 +118,7 @@ void ModelBadge::draw() {
     float y = 300;
     float maxWidth = Window::getWidth();
     int n = 0;
-    badgesManager->foreachBadge([&](BadgeInfo &b) {
+    badgesManager->foreachBadge([&](Badge &b) {
         b.drawBadge(window, x, y, padding, barHeight);
         if (n == selected) {
             selection.setOrigin(padding, padding);

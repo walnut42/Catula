@@ -6,16 +6,12 @@
 
 // Get maxSpeed = goal
 
-BadgeSpeed::BadgeSpeed(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p}, speed{0} {
-    attach();
+BadgeSpeed::BadgeSpeed(const std::string &className, const std::string &name, const std::string &description, float goal,
+                       bool memorize) : Badge{className, name, description, goal, memorize}, speed{0} {
 }
 
-BadgeSpeed::~BadgeSpeed() {
-    detach();
-}
-
-void BadgeSpeed::attach() {
-    mainCharacter->subscribe(Subscription::Position, this);
+void BadgeSpeed::attach(MainCharacter *mC) {
+    subscribe(mC, Subscription::Position);
 }
 
 void BadgeSpeed::detach() {
