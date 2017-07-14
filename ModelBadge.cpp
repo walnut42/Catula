@@ -16,7 +16,7 @@ ModelBadge::ModelBadge() : selected{0} {
 
     Audio::setSound(sound, Sound::Menu);
 
-    numberOfBadges = BadgesManager::getInstance()->numberOfBadges();
+    nBadges = BadgesManager::getInstance()->nBadges();
 
     Images::setSprite(background, Image::BadgeBg);
     background.setPosition(0, 0);
@@ -62,7 +62,7 @@ ModelBase *ModelBadge::processInput(const sf::Event &event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
         return getModel(Controller::modelMenu);
     } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) {
-        if (selected + 1 < numberOfBadges)
+        if (selected + 1 < nBadges)
             selected++;
         sound.play();
     } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
@@ -111,7 +111,7 @@ void ModelBadge::draw() {
     float newLine = -1;
     int i = 0;
     while (newLine < 0) {
-        newLine = Window::getWidth() / 2.0f - (numberOfBadges - i) * (badgesManager->getBadgeSize() + margin) / 2.0f;
+        newLine = Window::getWidth() / 2.0f - (nBadges - i) * (badgesManager->getBadgeSize() + margin) / 2.0f;
         i++;
     }
     float x = newLine;

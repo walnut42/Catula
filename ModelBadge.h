@@ -37,7 +37,7 @@ private:
     const int barHeight = 9;
     const int margin = 50;
     const int padding = 5;
-    int numberOfBadges;
+    int nBadges;
     unsigned short int selected;
 };
 
