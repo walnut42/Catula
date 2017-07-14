@@ -28,7 +28,7 @@ public:
 
     Badge &getBadge(int i);
 
-    const int numberOfBadges();
+    const int nBadges();
 
     const int getBadgeSize() const;
 

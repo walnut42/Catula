@@ -4,10 +4,6 @@
 
 #include "BadgesManager.h"
 
-#include <iostream>
-#include <typeinfo>
-#include <functional>
-
 #include "BadgeFly.h"
 #include "BadgeDeath.h"
 #include "BadgeDistance.h"
@@ -33,18 +29,21 @@ void BadgesManager::loadBadges() {
     std::fstream stream;
     stream.open(filename, std::ios::binary | std::ios::in);
     if (stream.is_open()) {
-        //n: number of badges
+
+        // n: number of badges.
         int n;
         readBinary(stream, n);
-        for (; n != 0; --n) {
-            //s: length of name
+        while (n > 0) {
+
+            // s: length of name.
             int s;
             readBinary(stream, s);
             std::string name;
-            for (; s != 0; --s) {
+            while (s > 0) {
                 char c;
                 readBinary(stream, c);
                 name += c;
+                s--;
             }
 
             auto element = std::find_if(badges.begin(), badges.end(), [&name](std::unique_ptr<Badge> &ptr) {
@@ -54,6 +53,7 @@ void BadgesManager::loadBadges() {
                 (*element)->load(stream);
             else
                 stream.seekg(sizeof(bool) + sizeof(float), std::ios_base::cur);
+            n--;
         }
     }
 
@@ -103,7 +103,7 @@ void BadgesManager::foreachBadge(std::function<void(Badge&)> lambda) {
         lambda(*badge);
 }
 
-const int BadgesManager::numberOfBadges() {
+const int BadgesManager::nBadges() {
     return static_cast<int>(badges.size());
 }
 
