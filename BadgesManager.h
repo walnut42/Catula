@@ -11,7 +11,7 @@
 #include "Badge.h"
 #include "MainCharacter.h"
 
-
+class Badge;
 class BadgesManager {
 public:
     static BadgesManager *getInstance();
