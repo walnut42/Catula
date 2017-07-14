@@ -11,7 +11,8 @@
 
 class TestBadge : public Badge {
 public:
-    explicit TestBadge(MainCharacter *mC) : Badge{mC, 10, true, 0}, n{0} {}
+    explicit TestBadge() : Badge{"", "", "", 10, true}, n{0} {
+    }
 
     virtual void update() {
         n++;
@@ -19,9 +20,9 @@ public:
 
     int getN() { return n; }
 
-    virtual void attach() {};
+    virtual void attach(MainCharacter *mC) override {};
 
-    virtual void detach() {};
+    virtual void detach() override {};
 private:
     int n;
 };
@@ -30,7 +31,7 @@ private:
 TEST(MainCharacter, BadgeSubscription) {
     ModelGame model;
     MainCharacter mC = MainCharacter(model, Image::Catula);
-    TestBadge b = TestBadge(&mC);
+    TestBadge b = TestBadge();
 
     mC.subscribe(Subscription::Life, &b);
     ASSERT_EQ(b.getN(), 0);
@@ -48,7 +49,7 @@ TEST(MainCharacter, BadgeSubscription) {
 TEST(MainCharacter, BadgeDoubleSubscription) {
     ModelGame model;
     MainCharacter mC = MainCharacter(model, Image::Catula);
-    TestBadge b = TestBadge(&mC);
+    TestBadge b = TestBadge();
 
     mC.subscribe(Subscription::Life, &b);
     mC.subscribe(Subscription::Score, &b);
@@ -68,7 +69,7 @@ TEST(MainCharacter, BadgeDoubleSubscription) {
 TEST(MainCharacter, BadgeUnsubscription) {
     ModelGame model;
     MainCharacter mC = MainCharacter(model, Image::Catula);
-    TestBadge b = TestBadge(&mC);
+    TestBadge b = TestBadge();
 
     mC.subscribe(Subscription::Life, &b);
     mC.subscribe(Subscription::Score, &b);

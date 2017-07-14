@@ -23,6 +23,8 @@ Badge::~Badge() {
 void Badge::load(std::fstream &stream) {
     readBinary(stream, locked);
     readBinary(stream, points);
+    if (!memorize)
+        points = 0;
 }
 
 void Badge::save(std::fstream &stream) {
@@ -116,7 +118,7 @@ const std::string &Badge::getName() const {
     return name;
 }
 
-void Badge::subscribe(MainCharacter *mC, const Subscription& s) {
+void Badge::subscribe(MainCharacter *mC, const Subscription &s) {
     if (locked && mainCharacter == nullptr) {
         mainCharacter = mC;
         mainCharacter->subscribe(s, this);
