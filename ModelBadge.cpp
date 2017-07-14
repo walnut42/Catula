@@ -11,7 +11,7 @@
 #include "BadgesManager.h"
 
 ModelBadge::ModelBadge() : selected{0} {
-    Audio::setMusic(music, Music::Badge);
+    Audio::setMusic(music, Music::BadgeMusic);
     music.setLoop(true);
 
     Audio::setSound(sound, Sound::Menu);

@@ -29,7 +29,7 @@ void Audio::loadSounds() throw(load_file_error) {
 
     //Musics
     musicFiles[Music::Menu] = path + "darkshadow.wav";
-    musicFiles[Music::Badge] = path + "chineseTorture.wav";
+    musicFiles[Music::BadgeMusic] = path + "chineseTorture.wav";
     musicFiles[Music::Game] = path + "nightmare.wav";
 }
 
