@@ -3,20 +3,17 @@
 //
 
 #include "BadgeDeath.h"
+#include "MainCharacter.h"
 
 // Die goal times (progress).
 
-BadgeDeath::BadgeDeath(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p},
-                                                                         previousLife{mC->getLives()}, life{0} {
-    attach();
+BadgeDeath::BadgeDeath(const std::string &className, const std::string &name, const std::string &description, float goal,
+                       bool memorize) : Badge{className, name, description, goal, memorize}, previousLife{0}, life{0} {
 }
 
-BadgeDeath::~BadgeDeath() {
-    detach();
-}
-
-void BadgeDeath::attach() {
-    mainCharacter->subscribe(Subscription::Life, this);
+void BadgeDeath::attach(MainCharacter *mC) {
+    previousLife=mC->getLives();
+    subscribe(mC, Subscription::Life);
 }
 
 void BadgeDeath::detach() {

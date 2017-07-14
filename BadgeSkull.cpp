@@ -6,18 +6,16 @@
 
 // Get goal skulls (progress).
 
-BadgeSkull::BadgeSkull(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p} {
-    previousScore = mainCharacter->getScore();
-    score = previousScore;
-    attach();
+BadgeSkull::BadgeSkull(const std::string &className, const std::string &name, const std::string &description,
+                       float goal, bool memorize) : Badge{className, name, description, goal, memorize},
+                                                    previousScore{0}, score{0} {
+
 }
 
-BadgeSkull::~BadgeSkull() {
-    detach();
-}
 
-void BadgeSkull::attach() {
-    mainCharacter->subscribe(Subscription::Score, this);
+void BadgeSkull::attach(MainCharacter *mC) {
+    previousScore = mC->getScore();
+    subscribe(mC, Subscription::Score);
 }
 
 void BadgeSkull::detach() {

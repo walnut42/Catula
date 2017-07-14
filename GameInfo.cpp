@@ -67,8 +67,8 @@ void GameInfo::update() {
                       "\t\tDistance: " + stream.str());
     lifePos = sf::Vector2f(Window::getWidth() - hWidth - paddingY, paddingX);
 
-    BadgesManager::getInstance()->foreachBadge([this](BadgeInfo &b) {
-        if (b.updateBadge()) {
+    BadgesManager::getInstance()->foreachBadge([this](Badge &b) {
+        if (b.updateLockedStatus()) {
             badge = &b;
             clock.restart();
             sound.play();

@@ -13,21 +13,18 @@
 
 class BadgeFly : public Badge {
 public:
-    BadgeFly(MainCharacter *mC, float goal, bool m, float p);
-
-    virtual ~BadgeFly();
+    BadgeFly(const std::string &className, const std::string &name, const std::string &description, float goal,
+             bool memorize);
 
     virtual void update() override;
 
-    virtual void attach() override;
+    virtual void attach(MainCharacter *mC) override;
 
     virtual void detach() override;
 
 private:
     bool top;
     float initDistance;
-    sf::Clock clock;
-    sf::Time time;
 };
 
 

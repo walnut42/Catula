@@ -7,18 +7,14 @@
 
 // Get goal distance points (progress).
 
-BadgeDistance::BadgeDistance(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p},
+BadgeDistance::BadgeDistance(const std::string &className, const std::string &name, const std::string &description, float goal,
+                             bool memorize) : Badge{className, name, description, goal, memorize},previousDistance{0},
                                                                                distance{0} {
-    previousDistance = mainCharacter->getDistance();
-    attach();
 }
 
-BadgeDistance::~BadgeDistance() {
-    detach();
-}
-
-void BadgeDistance::attach() {
-    mainCharacter->subscribe(Subscription::Position, this);
+void BadgeDistance::attach(MainCharacter *mC) {
+    previousDistance = mC->getDistance();
+    subscribe(mC, Subscription::Position);
 }
 
 void BadgeDistance::detach() {

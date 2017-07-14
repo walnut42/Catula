@@ -2,10 +2,12 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 08/07/17.
 //
 
+#include "BadgesManager.h"
+
 #include <iostream>
 #include <typeinfo>
 #include <functional>
-#include "BadgesManager.h"
+
 #include "BadgeFly.h"
 #include "BadgeDeath.h"
 #include "BadgeDistance.h"
@@ -17,16 +19,14 @@
 
 
 BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/badges.dat"}, created{false} {
-    badges.emplace_back(new BadgeInfoT<BadgeDeath>("BadgeDeath", "Mr. Death", "5 lost lives", 5, true));
-    badges.emplace_back(new BadgeInfoT<BadgeDistance>("BadgeDistance", "Marathoner", "100 distance points", 100, true));
-    badges.emplace_back(
-            new BadgeInfoT<BadgeFly>("BadgeFly", "Flyer", "Fly on the top of the screen for 100m", 100, true));
-    badges.emplace_back(
-            new BadgeInfoT<BadgeObstacle>("BadgeObstacle", "Collector", "10 positive objects in a row", 10, false));
-    badges.emplace_back(new BadgeInfoT<BadgeScore>("BadgeScore", "Champion", "20 total points", 20, true));
-    badges.emplace_back(new BadgeInfoT<BadgeSkull>("BadgeSkull", "Skull", "5 skulls", 5, true));
-    badges.emplace_back(new BadgeInfoT<BadgeSpeed>("BadgeSpeed", "Sprinter", "700 speed points", 700, false));
-    badges.emplace_back(new BadgeInfoT<BadgeStarSkull>("BadgeStarSkull", "Star", "7 stars and skulls", 7, true));
+    badges.emplace_back(new BadgeDeath("BadgeDeath", "Mr. Death", "5 lost lives", 5, true));
+    badges.emplace_back(new BadgeDistance("BadgeDistance", "Marathoner", "100 distance points", 100, true));
+    badges.emplace_back(new BadgeFly("BadgeFly", "Flyer", "Fly on the top of the screen for 100m", 100, true));
+    badges.emplace_back(new BadgeObstacle("BadgeObstacle", "Collector", "10 positive objects in a row", 10, false));
+    badges.emplace_back(new BadgeScore("BadgeScore", "Champion", "20 total points", 20, true));
+    badges.emplace_back(new BadgeSkull("BadgeSkull", "Skull", "5 skulls", 5, true));
+    badges.emplace_back(new BadgeSpeed("BadgeSpeed", "Sprinter", "700 speed points", 700, false));
+    badges.emplace_back(new BadgeStarSkull("BadgeStarSkull", "Star", "7 stars and skulls", 7, true));
 }
 
 void BadgesManager::loadBadges() {
@@ -47,11 +47,11 @@ void BadgesManager::loadBadges() {
                 name += c;
             }
 
-            auto element = std::find_if(badges.begin(), badges.end(), [&name](std::unique_ptr<BadgeInfo> &ptr) {
+            auto element = std::find_if(badges.begin(), badges.end(), [&name](std::unique_ptr<Badge> &ptr) {
                 return ptr->getClassName() == name;
             });
             if (element != badges.end())
-                (*element)->loadBadge(stream);
+                (*element)->load(stream);
             else
                 stream.seekg(sizeof(bool) + sizeof(float), std::ios_base::cur);
         }
@@ -79,7 +79,7 @@ void BadgesManager::saveBadges() {
             for (int i = 0; i != s; i++) {
                 writeBinary(stream, name[i]);
             }
-            badge->saveBadge(stream);
+            badge->save(stream);
         }
     }
 }
@@ -87,18 +87,18 @@ void BadgesManager::saveBadges() {
 void BadgesManager::createBadgesObservers(MainCharacter *mC) {
     created = true;
     for (auto &badge:badges)
-        badge->createBadge(mC);
+        badge->attach(mC);
 }
 
 void BadgesManager::destroyBadgesObservers() {
     if (created) {
         for (auto &badge:badges)
-            badge->destroyBadge();
+            badge->detach();
         created = false;
     }
 }
 
-void BadgesManager::foreachBadge(std::function<void(BadgeInfo &)> lambda) {
+void BadgesManager::foreachBadge(std::function<void(Badge&)> lambda) {
     for (auto &badge:badges)
         lambda(*badge);
 }
@@ -117,6 +117,6 @@ const int BadgesManager::getBadgeSize() const {
     return badgeSize;
 }
 
-BadgeInfo &BadgesManager::getBadge(int i) {
+Badge &BadgesManager::getBadge(int i) {
     return *(badges[i]);
 }

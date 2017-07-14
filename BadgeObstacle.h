@@ -12,13 +12,12 @@
 
 class BadgeObstacle : public Badge {
 public:
-    BadgeObstacle(MainCharacter *mC, float goal, bool m, float p);
-
-    virtual ~BadgeObstacle();
+    BadgeObstacle(const std::string &className, const std::string &name, const std::string &description, float goal,
+                  bool memorize);
 
     virtual void update() override;
 
-    virtual void attach() override;
+    virtual void attach(MainCharacter *mC) override;
 
     virtual void detach() override;
 

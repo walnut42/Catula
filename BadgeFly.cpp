@@ -6,17 +6,12 @@
 
 // Fly on the top of the screen for goal distance (progress).
 
-BadgeFly::BadgeFly(MainCharacter *mC, float goal, bool m, float p) : Badge{mC, goal, m, p}, top{false},
-                                                                     initDistance{0} {
-    attach();
+BadgeFly::BadgeFly(const std::string &className, const std::string &name, const std::string &description, float goal,
+                   bool memorize) : Badge{className, name, description, goal, memorize}, top{false}, initDistance{0} {
 }
 
-BadgeFly::~BadgeFly() {
-    detach();
-}
-
-void BadgeFly::attach() {
-    mainCharacter->subscribe(Subscription::Position, this);
+void BadgeFly::attach(MainCharacter *mC) {
+    subscribe(mC, Subscription::Position);
 }
 
 void BadgeFly::detach() {

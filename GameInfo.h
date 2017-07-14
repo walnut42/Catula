@@ -7,10 +7,10 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Badge.h"
 #include "ModelGame.h"
 
 
-class BadgeInfo;
 
 class GameInfo {
 public:
@@ -26,7 +26,7 @@ private:
     sf::Text content;
     sf::Vector2f lifePos;
 
-    BadgeInfo *badge;
+    Badge *badge;
     sf::Clock clock;
     sf::RectangleShape badgeRect;
     sf::Text badgeText;

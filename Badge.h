@@ -5,16 +5,39 @@
 #ifndef CATULA_BADGE_H
 #define CATULA_BADGE_H
 
-#include "Images.h"
+#include <string>
+
+#include <SFML/Graphics.hpp>
 #include "MainCharacter.h"
 
 class MainCharacter;
+enum class Subscription;
+class Window;
 
 class Badge {
 public:
-    Badge(MainCharacter *mC, float goalPoints, bool memorize, float p);
+    Badge(const std::string &className, const std::string &name, const std::string &description, float goal,
+          bool memorize);
 
     virtual ~Badge();
+
+    void load(std::fstream &stream);
+
+    void save(std::fstream &stream);
+
+    bool updateLockedStatus();
+
+    void drawBadge(Window *window, float x, float y, int padding, int barHeight);
+
+    void drawNotify(Window *window, float x, float y);
+
+    void setTexture(const std::string &path);
+
+    const std::string &getClassName() const;
+
+    const std::string getDescription() const;
+
+    const std::string &getName() const;
 
     virtual void update();
 
@@ -22,10 +45,12 @@ public:
 
     float getProgress() const;
 
-protected:
-    virtual void attach()=0;
+    virtual void attach(MainCharacter *mC)=0;
 
     virtual void detach()=0;
+
+protected:
+    void subscribe(MainCharacter *mC, Subscription s);
 
     void unlock();
 
@@ -35,6 +60,13 @@ protected:
     MainCharacter *mainCharacter;
 private:
     bool memorize;
+    sf::Texture texture;
+    sf::Sprite sprite;
+    sf::Sprite bar;
+    sf::Sprite barEmpty;
+    const std::string className;
+    const std::string name;
+    const std::string description;
 };
 
 
