@@ -2,12 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 12/07/17.
 //
 
+#include "../Rocket.h"
 
 #include <gtest/gtest.h>
-#include "../ModelGame.h"
-#include "../Rocket.h"
-#include "../MainCharacter.h"
 
+#include "../MainCharacter.h"
 
 class TestRocket : public Rocket {
 public:

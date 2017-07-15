@@ -2,8 +2,10 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 14/07/17.
 //
 
-#include <gtest/gtest.h>
 #include "../BadgeSpeed.h"
+
+#include <gtest/gtest.h>
+
 #include "../Background.h"
 
 class TestBadgeSpeed : public BadgeSpeed {

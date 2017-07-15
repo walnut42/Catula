@@ -2,10 +2,9 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 10/07/17.
 //
 
-#include "gtest/gtest.h"
-
 #include "../Background.h"
 
+#include <gtest/gtest.h>
 
 TEST(Background, Constructor) {
     ModelGame m;

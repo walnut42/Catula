@@ -14,8 +14,8 @@
 enum class Image {
 
     // The order is important for the background random generator.
-            CavBg = 1, Cav2CemBg, Cav2HalBg,
-    Cem2CavBg, CemBg, Cem2HalBg,
+    CavBg = 1, Cav2CemBg, Cav2HalBg,
+    Cem2CavBg, CemBg,     Cem2HalBg,
     Hal2CavBg, Hal2CemBg, HalBg,
 
     Catula, CatPumpkin, Heart,

@@ -3,6 +3,7 @@
 //
 
 #include "BadgeDeath.h"
+
 #include "MainCharacter.h"
 
 // Die goal times (progress).

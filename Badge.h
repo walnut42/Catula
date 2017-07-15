@@ -5,9 +5,9 @@
 #ifndef CATULA_BADGE_H
 #define CATULA_BADGE_H
 
+#include <SFML/Graphics.hpp>
 #include <string>
 
-#include <SFML/Graphics.hpp>
 
 class MainCharacter;
 

@@ -2,13 +2,9 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 10/07/17.
 //
 
-
-
-
-#include <gtest/gtest.h>
-#include "../ModelGame.h"
 #include "../Entity.h"
 
+#include <gtest/gtest.h>
 
 class TestEntity : public Entity {
 public:

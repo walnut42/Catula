@@ -2,11 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 10/07/17.
 //
 
-#include "gtest/gtest.h"
-
 #include "../Badge.h"
-#include "../MainCharacter.h"
 
+#include <gtest/gtest.h>
+
+#include "../MainCharacter.h"
 
 class BadgeTest : public Badge {
 public:

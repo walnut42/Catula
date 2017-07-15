@@ -2,9 +2,9 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 14/07/17.
 //
 
-#include <gtest/gtest.h>
-#include "../MainCharacter.h"
 #include "../BadgeStarSkull.h"
+
+#include <gtest/gtest.h>
 
 class TestBadgeStarSkull : public BadgeStarSkull {
 public:

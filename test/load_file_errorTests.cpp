@@ -2,9 +2,9 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 10/07/17.
 //
 
-#include <gtest/gtest.h>
 #include "../load_file_error.h"
 
+#include <gtest/gtest.h>
 
 TEST(load_file_error, Constructor) {
     load_file_error error("msg", "path", "filename");

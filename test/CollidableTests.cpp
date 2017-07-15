@@ -2,12 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 12/07/17.
 //
 
+#include "../Collidable.h"
 
 #include <gtest/gtest.h>
-#include "../ModelGame.h"
-#include "../Collidable.h"
-#include "../Background.h"
 
+#include "../Background.h"
 
 class TestCollidable : public Collidable {
 public:

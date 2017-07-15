@@ -2,12 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 12/07/17.
 //
 
+#include "../Skull.h"
 
 #include <gtest/gtest.h>
-#include "../ModelGame.h"
-#include "../Skull.h"
-#include "../MainCharacter.h"
 
+#include "../MainCharacter.h"
 
 class TestSkull : public Skull {
 public:

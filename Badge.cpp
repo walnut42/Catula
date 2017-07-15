@@ -4,10 +4,9 @@
 
 #include "Badge.h"
 
-#include "Tools.h"
 #include "Window.h"
 #include "BadgesManager.h"
-
+#include "Tools.h"
 
 Badge::Badge(const std::string &className, const std::string &name, const std::string &description,
              float goal, bool memorize) : locked{true}, points{0}, goalPoints{goal}, memorize{memorize},

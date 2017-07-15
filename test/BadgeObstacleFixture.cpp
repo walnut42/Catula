@@ -2,12 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 10/07/17.
 //
 
-#include "gtest/gtest.h"
-
 #include "../BadgeObstacle.h"
+
+#include <gtest/gtest.h>
+
 #include "../Background.h"
-
-
 
 class TestBadgeObstacle : public BadgeObstacle {
 public:

@@ -5,9 +5,9 @@
 #ifndef CATULA_BADGEDISTANCE_H
 #define CATULA_BADGEDISTANCE_H
 
-#include "Badge.h"
-#include "MainCharacter.h"
 #include "ModelGame.h"
+#include "MainCharacter.h"
+#include "Badge.h"
 
 
 class BadgeDistance : public Badge {

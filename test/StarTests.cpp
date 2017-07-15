@@ -2,12 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 12/07/17.
 //
 
+#include "../Star.h"
 
 #include <gtest/gtest.h>
-#include "../ModelGame.h"
-#include "../Star.h"
-#include "../MainCharacter.h"
 
+#include "../MainCharacter.h"
 
 class TestStar : public Star {
 public:

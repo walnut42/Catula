@@ -2,11 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 01/04/17.
 //
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
+
+#include "../BadgesManager.h"
 #include "../MessageBox.h"
 #include "../Fonts.h"
-#include "../Audio.h"
-#include "../BadgesManager.h"
 
 int main(int argc, char **argv) {
     try {

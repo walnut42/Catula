@@ -2,12 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 12/07/17.
 //
 
+#include "../Laser.h"
 
 #include <gtest/gtest.h>
-#include "../ModelGame.h"
-#include "../Laser.h"
-#include "../MainCharacter.h"
 
+#include "../MainCharacter.h"
 
 class TestLaser : public Laser {
 public:

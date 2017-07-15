@@ -2,8 +2,9 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 17/03/17.
 //
 
-#include <iostream>
 #include "Background.h"
+
+#include <iostream>
 
 Background::Background(ModelGame &modelGame) : spriteSize{1251, 1000}, modelGame{modelGame}, countSprites{0},
                                                distance{0}, pos{0}, shift{0}, levelDuration{10}, levelUpAcc{-20},

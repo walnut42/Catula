@@ -2,12 +2,11 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 10/07/17.
 //
 
-#include "gtest/gtest.h"
-
 #include "../BadgeScore.h"
+
+#include <gtest/gtest.h>
+
 #include "../Background.h"
-
-
 
 class TestBadgeScore : public BadgeScore {
 public:
