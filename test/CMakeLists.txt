@@ -4,7 +4,13 @@ add_subdirectory(./lib/googletest)
 set(gtest_SOURCE_DIR, ./lib/googletest/)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-set(TEST_SOURCE_FILES runAllTests.cpp BackgroundTests.cpp BadgeTests.cpp EntityTests.cpp MainCharacterTests.cpp CollidableTests.cpp RocketTests.cpp LaserTests.cpp SkullTests.cpp StarTests.cpp load_file_errorTests.cpp BadgeDeathFixture.cpp BadgeDistanceFixture.cpp BadgeFlyFixture.cpp BadgeStarSkullFixture.cpp BadgeObstacleFixture.cpp BadgeScoreFixture.cpp BadgeSpeedFixture.cpp BadgeSkullFixture.cpp)
+set(TEST_SOURCE_FILES BackgroundTests.cpp BadgeDeathFixture.cpp
+        BadgeDistanceFixture.cpp BadgeFlyFixture.cpp BadgeObstacleFixture.cpp
+        BadgeScoreFixture.cpp BadgeSkullFixture.cpp BadgeSpeedFixture.cpp
+        BadgeStarSkullFixture.cpp BadgeTests.cpp CollidableTests.cpp
+        EntityTests.cpp LaserTests.cpp load_file_errorTests.cpp
+        MainCharacterTests.cpp RocketTests.cpp runAllTests.cpp SkullTests.cpp
+        StarTests.cpp)
 add_executable(runTests ${TEST_SOURCE_FILES})
 target_link_libraries(runTests gtest gtest_main core)
 
