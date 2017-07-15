@@ -18,6 +18,8 @@ Window *Window::getInstance() {
 void Window::gameLoop(Controller &controller) {
     while (!isDone) {
         processInput(controller);
+        if(isDone)
+            break;
         elapsed += clock.restart();
 
         for (int loops = 0; elapsed >= ms_per_update && loops < max_loops; loops++) {
