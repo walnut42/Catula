@@ -5,9 +5,9 @@
 #ifndef CATULA_BADGEOBSTACLE_H
 #define CATULA_BADGEOBSTACLE_H
 
-#include "Badge.h"
-#include "MainCharacter.h"
 #include "ModelGame.h"
+#include "MainCharacter.h"
+#include "Badge.h"
 
 
 class BadgeObstacle : public Badge {

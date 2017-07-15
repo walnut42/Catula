@@ -7,6 +7,7 @@
 
 #include <stdexcept>
 
+
 class load_file_error : public std::runtime_error {
 public:
     load_file_error(const std::string &msg, const std::string &path, const std::string &filename);

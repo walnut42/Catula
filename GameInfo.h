@@ -7,9 +7,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Badge.h"
 #include "ModelGame.h"
-
+#include "Badge.h"
 
 
 class GameInfo {

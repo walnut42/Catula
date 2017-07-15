@@ -5,8 +5,8 @@
 #ifndef CATULA_COLLIDABLE_H
 #define CATULA_COLLIDABLE_H
 
-#include "Entity.h"
 #include "Window.h"
+#include "Entity.h"
 
 
 class ModelGame;

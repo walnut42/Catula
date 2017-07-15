@@ -5,9 +5,9 @@
 #ifndef CATULA_BADGESPEED_H
 #define CATULA_BADGESPEED_H
 
-#include "Badge.h"
-#include "MainCharacter.h"
 #include "ModelGame.h"
+#include "MainCharacter.h"
+#include "Badge.h"
 
 
 class BadgeSpeed : public Badge {

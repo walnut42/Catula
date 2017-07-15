@@ -5,10 +5,9 @@
 #ifndef CATULA_BADGEFLY_H
 #define CATULA_BADGEFLY_H
 
-#include "Badge.h"
 #include "ModelGame.h"
 #include "MainCharacter.h"
-#include "Tools.h"
+#include "Badge.h"
 
 
 class BadgeFly : public Badge {

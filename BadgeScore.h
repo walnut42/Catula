@@ -5,9 +5,9 @@
 #ifndef CATULA_BADGESCORE_H
 #define CATULA_BADGESCORE_H
 
-#include "Badge.h"
 #include "ModelGame.h"
 #include "MainCharacter.h"
+#include "Badge.h"
 
 
 class BadgeScore : public Badge {

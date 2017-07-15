@@ -6,11 +6,11 @@
 
 #include <iomanip>
 
-#include "MainCharacter.h"
 #include "Window.h"
 #include "Background.h"
-#include "Fonts.h"
+#include "MainCharacter.h"
 #include "BadgesManager.h"
+#include "Fonts.h"
 
 GameInfo::GameInfo(ModelGame &modelGame) : modelGame{modelGame}, badge{nullptr},
                                            notifyHeight{100}, paddingX{10}, paddingY{20} {

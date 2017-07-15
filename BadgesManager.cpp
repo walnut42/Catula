@@ -4,14 +4,15 @@
 
 #include "BadgesManager.h"
 
-#include "BadgeFly.h"
 #include "BadgeDeath.h"
 #include "BadgeDistance.h"
+#include "BadgeFly.h"
 #include "BadgeObstacle.h"
 #include "BadgeScore.h"
 #include "BadgeSkull.h"
 #include "BadgeSpeed.h"
 #include "BadgeStarSkull.h"
+#include "Tools.h"
 
 
 BadgesManager::BadgesManager() : badgeSize{150}, filename{"../Resources/Saves/badges.dat"}, created{false} {

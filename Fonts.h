@@ -7,6 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <map>
+
 #include "load_file_error.h"
 
 

@@ -8,8 +8,10 @@
 #include <iostream>
 #include <typeinfo>
 #include <functional>
-#include "Badge.h"
+
 #include "MainCharacter.h"
+#include "Badge.h"
+
 
 class BadgesManager {
 public:
