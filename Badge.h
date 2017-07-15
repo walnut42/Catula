@@ -46,7 +46,7 @@ public:
 
     float getProgress() const;
 
-    void attach(MainCharacter *mC);
+    void addObserver(MainCharacter *mC);
 
     virtual void detach()=0;
 

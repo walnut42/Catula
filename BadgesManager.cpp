@@ -87,7 +87,7 @@ void BadgesManager::saveBadges() {
 void BadgesManager::createBadgesObservers(MainCharacter *mC) {
     created = true;
     for (auto &badge:badges)
-        badge->attach(mC);
+        badge->addObserver(mC);
 }
 
 void BadgesManager::destroyBadgesObservers() {

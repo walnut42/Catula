@@ -20,12 +20,9 @@ public:
 
     virtual void detach() override;
 
-    using Badge::attach;
-
-protected:
+private:
     virtual void attach() override;
 
-private:
     bool top;
     float initDistance;
 };

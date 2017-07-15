@@ -119,7 +119,7 @@ const std::string &Badge::getName() const {
 }
 
 
-void Badge::attach(MainCharacter *mC) {
+void Badge::addObserver(MainCharacter *mC) {
     if (locked && mainCharacter == nullptr) {
         mainCharacter = mC;
         attach();

@@ -15,7 +15,8 @@ void MainCharacter::update() {
     MainCharacter::handleInput();
 
     updatePos();
-    //Borders collision
+
+    // Borders collision.
     if (pos.y + size.y >= Window::getHeight() - bottom) {
         vel.y = 0;
         pos.y = Window::getHeight() - bottom - size.y;
