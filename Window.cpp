@@ -13,7 +13,7 @@ Window::Window() : windowTitle{"Catula"}, isFullscreen{false}, isDone{false} {
 void Window::create() {
     auto style = (isFullscreen ? sf::Style::Fullscreen : sf::Style::Default);
     window.create(sf::VideoMode::getDesktopMode(), windowTitle, style);
-
+    window.setMouseCursorVisible(false);
     // Can't call getWidth here, use getProportions instead.
     window.setView(sf::View(sf::FloatRect(0, 0, getProportions(), getHeight())));
 }
@@ -48,8 +48,7 @@ void Window::processInput(Controller &controller) {
     sf::Event event;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
-            isDone = true;
-            window.close();
+            Close();
         } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::F11) {
             toggleFullscreen();
         } else if (event.type == sf::Event::Resized) {
@@ -57,6 +56,11 @@ void Window::processInput(Controller &controller) {
         } else
             controller.processInput(event);
     }
+}
+
+void Window::Close() {
+    isDone = true;
+    window.close();
 }
 
 void

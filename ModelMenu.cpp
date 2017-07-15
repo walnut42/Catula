@@ -69,6 +69,8 @@ ModelBase *ModelMenu::processInput(const sf::Event &event) {
         sound.play();
     } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::B) {
         return getModel(Controller::modelBadge);
+    } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+        Window::getInstance()->Close();
     }
     return nullptr;
 }

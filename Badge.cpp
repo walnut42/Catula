@@ -122,6 +122,8 @@ const std::string &Badge::getName() const {
 void Badge::addObserver(MainCharacter *mC) {
     if (locked && mainCharacter == nullptr) {
         mainCharacter = mC;
+        if (!memorize)
+            points = 0;
         attach();
     }
 }

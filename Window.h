@@ -36,6 +36,8 @@ public:
 
     void setDrawPrevision(bool drawPrevision);
 
+    void Close();
+
 private:
     Window();
 
