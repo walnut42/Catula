@@ -1,13 +1,13 @@
 //
-// Created by lorenzo on 12/07/17.
+// Created by Lorenzo Nuti and Paolo Valcepina on 12/07/17.
 //
 
 #ifndef CATULA_TOOLS_H
 #define CATULA_TOOLS_H
 
-#include <fstream>
-#include <sstream>
 #include <iomanip>
+#include <fstream>
+
 
 template<typename T>
 void readBinary(std::fstream &stream, T &value) {

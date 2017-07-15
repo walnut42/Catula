@@ -7,10 +7,10 @@
 
 #include <iostream>
 
-#include "Audio.h"
-#include "Entity.h"
 #include "GameInfo.h"
+#include "Entity.h"
 #include "Badge.h"
+#include "Audio.h"
 
 
 class ModelGame;

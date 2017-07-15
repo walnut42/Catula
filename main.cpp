@@ -5,10 +5,9 @@
 #include <SFML/Graphics.hpp>
 
 #include "Window.h"
-#include "Audio.h"
-#include "Fonts.h"
-#include "MessageBox.h"
 #include "BadgesManager.h"
+#include "MessageBox.h"
+#include "Fonts.h"
 
 int main() {
     std::srand(static_cast<unsigned int>(std::time(0)));

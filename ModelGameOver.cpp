@@ -2,15 +2,15 @@
 // Created by Lorenzo Nuti and Paolo Valcepina on 02/07/17.
 //
 
-#include <sstream>
-#include <iomanip>
 #include "ModelGameOver.h"
 
+#include <sstream>
+#include <iomanip>
+
 #include "Window.h"
-#include "Audio.h"
-#include "Fonts.h"
-#include "MainCharacter.h"
 #include "Background.h"
+#include "MainCharacter.h"
+#include "Fonts.h"
 
 ModelGameOver::ModelGameOver() : opacity{0} {
     Audio::setSound(sound, Sound::Fail);

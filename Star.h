@@ -5,8 +5,8 @@
 #ifndef CATULA_OBSTACLE_H
 #define CATULA_OBSTACLE_H
 
-#include "Collidable.h"
 #include "Window.h"
+#include "Collidable.h"
 
 
 class Star : public Collidable {

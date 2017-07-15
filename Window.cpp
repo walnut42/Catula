@@ -10,24 +10,9 @@ Window::Window() : windowTitle{"Catula"}, isFullscreen{false}, isDone{false} {
     create();
 }
 
-void Window::create() {
-    auto style = (isFullscreen ? sf::Style::Fullscreen : sf::Style::Default);
-    window.create(sf::VideoMode::getDesktopMode(), windowTitle, style);
-    window.setMouseCursorVisible(false);
-    // Can't call getWidth here, use getProportions instead.
-    window.setView(sf::View(sf::FloatRect(0, 0, getProportions(), getHeight())));
-}
-
-void Window::toggleFullscreen() {
-    isFullscreen = !isFullscreen;
-    window.close();
-    create();
-}
-
-void Window::draw(Controller &controller) {
-    window.clear(sf::Color::Black);
-    controller.draw();
-    window.display();
+Window *Window::getInstance() {
+    static Window instance;
+    return &instance;
 }
 
 void Window::gameLoop(Controller &controller) {
@@ -44,6 +29,68 @@ void Window::gameLoop(Controller &controller) {
     }
 }
 
+void Window::drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos,
+                        const sf::Vector2f &vel, float angle, float angleVel) {
+    if (drawPrevision) {
+        sprite.setPosition(pos + vel * elapsed.asSeconds());
+        sprite.setRotation(angle + angleVel * elapsed.asSeconds());
+    } else {
+        sprite.setPosition(pos);
+        sprite.setRotation(angle);
+    }
+    window.draw(sprite);
+}
+
+void Window::drawEntity(Entity &entity) {
+    drawSprite(entity.getSprite(), entity.getPos(), entity.getVel(), entity.getAngle(), entity.getAngleVel());
+}
+
+void Window::drawDrawable(sf::Drawable &drawable) {
+    window.draw(drawable);
+}
+
+float Window::getElapsed() const {
+    return ms_per_update.asSeconds();
+}
+
+float Window::getWidth() {
+    if (getInstance() != nullptr) {
+        sf::Vector2u size = getInstance()->window.getSize();
+        return getHeight() * size.x / size.y;
+    }
+    return 0;
+}
+
+float Window::getHeight() {
+    return 1000;
+}
+
+void Window::setDrawPrevision(bool drawPrevision) {
+    Window::drawPrevision = drawPrevision;
+}
+
+void Window::Close() {
+    isDone = true;
+    window.close();
+}
+
+float Window::getProportions() {
+    sf::Vector2u size = window.getSize();
+    return getHeight() * size.x / size.y;
+}
+
+void Window::toggleFullscreen() {
+    isFullscreen = !isFullscreen;
+    window.close();
+    create();
+}
+
+void Window::draw(Controller &controller) {
+    window.clear(sf::Color::Black);
+    controller.draw();
+    window.display();
+}
+
 void Window::processInput(Controller &controller) {
     sf::Event event;
     while (window.pollEvent(event)) {
@@ -58,45 +105,10 @@ void Window::processInput(Controller &controller) {
     }
 }
 
-void Window::Close() {
-    isDone = true;
-    window.close();
-}
-
-void
-Window::drawSprite(sf::Sprite &sprite, const sf::Vector2f &pos, const sf::Vector2f &vel, float angle, float angleVel) {
-    if (drawPrevision) {
-        sprite.setPosition(pos + vel * elapsed.asSeconds());
-        sprite.setRotation(angle + angleVel * elapsed.asSeconds());
-    } else {
-        sprite.setPosition(pos);
-        sprite.setRotation(angle);
-    }
-
-    window.draw(sprite);
-}
-
-void Window::drawEntity(Entity &entity) {
-    drawSprite(entity.getSprite(), entity.getPos(), entity.getVel(), entity.getAngle(), entity.getAngleVel());
-}
-
-void Window::drawDrawable(sf::Drawable &drawable) {
-    window.draw(drawable);
-}
-
-Window *Window::getInstance() {
-    static Window instance;
-    return &instance;
-}
-
-void Window::setDrawPrevision(bool drawPrevision) {
-    Window::drawPrevision = drawPrevision;
-}
-
-float Window::getWidth() {
-    if (getInstance() != nullptr) {
-        sf::Vector2u size = getInstance()->window.getSize();
-        return getHeight() * size.x / size.y;
-    }
-    return 0;
+void Window::create() {
+    auto style = (isFullscreen ? sf::Style::Fullscreen : sf::Style::Default);
+    window.create(sf::VideoMode::getDesktopMode(), windowTitle, style);
+    window.setMouseCursorVisible(false);
+    // Can't call getWidth here, use getProportions instead.
+    window.setView(sf::View(sf::FloatRect(0, 0, getProportions(), getHeight())));
 }

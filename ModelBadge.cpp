@@ -4,11 +4,10 @@
 
 #include "ModelBadge.h"
 
-#include "Badge.h"
-
 #include "Window.h"
-#include "Fonts.h"
+#include "Badge.h"
 #include "BadgesManager.h"
+#include "Fonts.h"
 
 ModelBadge::ModelBadge() : selected{0} {
     Audio::setMusic(music, Music::BadgeMusic);

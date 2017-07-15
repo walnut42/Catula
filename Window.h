@@ -7,8 +7,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Entity.h"
 #include "Controller.h"
+#include "Entity.h"
 
 
 class Window {
@@ -24,15 +24,11 @@ public:
 
     void drawDrawable(sf::Drawable &drawable);
 
-    float getElapsed() const {
-        return ms_per_update.asSeconds();
-    }
+    float getElapsed() const;
 
     static float getWidth();
 
-    static float getHeight() {
-        return 1000;
-    }
+    static float getHeight();
 
     void setDrawPrevision(bool drawPrevision);
 
@@ -41,10 +37,7 @@ public:
 private:
     Window();
 
-    float getProportions() {
-        sf::Vector2u size = window.getSize();
-        return getHeight() * size.x / size.y;
-    }
+    float getProportions();
 
     void toggleFullscreen();
 

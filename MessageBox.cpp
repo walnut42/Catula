@@ -4,7 +4,6 @@
 
 #include "MessageBox.h"
 
-
 MessageBox::MessageBox(const std::string &title) {
     window.setFramerateLimit(60);
     window.setVerticalSyncEnabled(true);

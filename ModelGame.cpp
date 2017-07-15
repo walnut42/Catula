@@ -5,10 +5,10 @@
 #include "ModelGame.h"
 
 #include "Window.h"
-#include "CollidableFactory.h"
 #include "Background.h"
 #include "MainCharacter.h"
 #include "BadgesManager.h"
+#include "CollidableFactory.h"
 
 ModelGame::ModelGame() : ModelGame{Image::Catula} {}
 

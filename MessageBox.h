@@ -7,8 +7,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Entity.h"
 #include "Controller.h"
+#include "Entity.h"
 
 
 class MessageBox {
