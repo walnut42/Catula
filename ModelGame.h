@@ -9,13 +9,9 @@
 
 #include "ModelBase.h"
 #include "Images.h"
-
-
-class Badge;
+#include "Badge.h"
 
 class Background;
-
-class MainCharacter;
 
 class Collidable;
 

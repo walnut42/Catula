@@ -18,7 +18,7 @@ Window *Window::getInstance() {
 void Window::gameLoop(Controller &controller) {
     while (!isDone) {
         processInput(controller);
-        if(isDone)
+        if (isDone)
             break;
         elapsed += clock.restart();
 

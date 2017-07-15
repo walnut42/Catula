@@ -4,13 +4,11 @@
 
 #include "ModelGameOver.h"
 
-#include <sstream>
-#include <iomanip>
-
 #include "Window.h"
 #include "Background.h"
 #include "MainCharacter.h"
 #include "Fonts.h"
+#include "Tools.h"
 
 ModelGameOver::ModelGameOver() : opacity{0} {
     Audio::setSound(sound, Sound::Fail);
@@ -24,10 +22,8 @@ ModelGameOver::ModelGameOver() : opacity{0} {
     Fonts::setText(score, Font::BlackWidow);
     score.setColor(sf::Color(150, 170, 230));
     score.setCharacterSize(75);
-    std::stringstream stream;
-    stream << std::fixed << std::setprecision(0) << Controller::modelGame->getBackground()->getDistance();
     score.setString("Your score is " + std::to_string(Controller::modelGame->getMainCharacter()->getScore()) + "    "
-            "Your distance is " + stream.str());
+            "Your distance is " + toString(Controller::modelGame->getBackground()->getDistance()));
 
     sf::FloatRect textRect2 = score.getGlobalBounds();
     score.setOrigin(textRect2.left + textRect2.width / 2.0f, textRect2.top + textRect2.height / 2.0f);

@@ -4,13 +4,12 @@
 
 #include "GameInfo.h"
 
-#include <iomanip>
-
 #include "Window.h"
 #include "Background.h"
 #include "MainCharacter.h"
 #include "BadgesManager.h"
 #include "Fonts.h"
+#include "Tools.h"
 
 GameInfo::GameInfo(ModelGame &modelGame) : modelGame{modelGame}, badge{nullptr},
                                            notifyHeight{100}, paddingX{10}, paddingY{20} {
@@ -61,10 +60,8 @@ void GameInfo::draw() {
 }
 
 void GameInfo::update() {
-    std::stringstream stream;
-    stream << std::fixed << std::setprecision(0) << modelGame.getBackground()->getDistance();
     content.setString("Score: " + std::to_string(modelGame.getMainCharacter()->getScore()) +
-                      "\t\tDistance: " + stream.str());
+                      "\t\tDistance: " + toString(modelGame.getBackground()->getDistance()));
     lifePos = sf::Vector2f(Window::getWidth() - hWidth - paddingY, paddingX);
 
     BadgesManager::getInstance()->foreachBadge([this](Badge &b) {
