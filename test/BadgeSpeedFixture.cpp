@@ -34,7 +34,7 @@ protected:
 TEST_F(BadgeSpeedSuite, Attach) {
     mC.notify(Subscription::Position);
     ASSERT_EQ(b.getN(), 0);
-    b.attach(&mC);
+    b.addObserver(&mC);
     mC.notify(Subscription::Position);
     ASSERT_EQ(b.getN(), 1);
     mC.notify(Subscription::Score);
@@ -42,7 +42,7 @@ TEST_F(BadgeSpeedSuite, Attach) {
 }
 
 TEST_F(BadgeSpeedSuite, Detach) {
-    b.attach(&mC);
+    b.addObserver(&mC);
     b.detach();
     mC.notify(Subscription::Life);
     mC.notify(Subscription::Position);
@@ -54,7 +54,7 @@ TEST_F(BadgeSpeedSuite, Update) {
     m.getBackground()->setVel(-550);
     mC.update();
     mC.getVelX();
-    b.attach(&mC);
+    b.addObserver(&mC);
     ASSERT_FLOAT_EQ(b.getProgress(), 0);
     m.getBackground()->setVel(-550);
     mC.update();

@@ -5,7 +5,6 @@
 #include "gtest/gtest.h"
 
 #include "../BadgeDistance.h"
-#include "../MainCharacter.h"
 #include "../Background.h"
 
 
@@ -38,7 +37,7 @@ protected:
 TEST_F(BadgeDistanceSuite, Attach) {
     mC.notify(Subscription::Position);
     ASSERT_EQ(b.getN(), 0);
-    b.attach(&mC);
+    b.addObserver(&mC);
     mC.notify(Subscription::Position);
     ASSERT_EQ(b.getN(), 1);
     mC.notify(Subscription::Score);
@@ -46,7 +45,7 @@ TEST_F(BadgeDistanceSuite, Attach) {
 }
 
 TEST_F(BadgeDistanceSuite, Detach) {
-    b.attach(&mC);
+    b.addObserver(&mC);
     b.detach();
     mC.notify(Subscription::Life);
     mC.notify(Subscription::Score);
@@ -57,7 +56,7 @@ TEST_F(BadgeDistanceSuite, Detach) {
 TEST_F(BadgeDistanceSuite, Update) {
     m.getBackground()->update();
     mC.update();
-    b.attach(&mC);
+    b.addObserver(&mC);
     ASSERT_FLOAT_EQ(b.getProgress(), 0);
     float d=mC.getDistance();
     m.getBackground()->update();

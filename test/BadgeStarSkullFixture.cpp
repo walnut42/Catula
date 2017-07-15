@@ -32,7 +32,7 @@ protected:
 TEST_F(BadgeStarSkullSuite, Attach) {
     mC.notify(Subscription::Score);
     ASSERT_EQ(b.getN(), 0);
-    b.attach(&mC);
+    b.addObserver(&mC);
     mC.notify(Subscription::Score);
     ASSERT_EQ(b.getN(), 1);
     mC.notify(Subscription::Life);
@@ -40,7 +40,7 @@ TEST_F(BadgeStarSkullSuite, Attach) {
 }
 
 TEST_F(BadgeStarSkullSuite, Detach) {
-    b.attach(&mC);
+    b.addObserver(&mC);
     b.detach();
     mC.notify(Subscription::Life);
     mC.notify(Subscription::Score);
@@ -50,7 +50,7 @@ TEST_F(BadgeStarSkullSuite, Detach) {
 
 TEST_F(BadgeStarSkullSuite, Update) {
     mC.increaseScore(1);
-    b.attach(&mC);
+    b.addObserver(&mC);
     ASSERT_FLOAT_EQ(b.getProgress(), 0);
     mC.increaseScore(static_cast<int>(Score::Skull));
     ASSERT_FLOAT_EQ(b.getProgress(), 100. / 7);

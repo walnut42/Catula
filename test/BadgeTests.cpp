@@ -23,8 +23,6 @@ public:
 };
 
 TEST(Badge, Constructor) {
-    //    ModelGame m;
-//    MainCharacter mC = MainCharacter(m, Image::Catula);
     BadgeTest b("className", "name", "description", 3, true);
     ASSERT_TRUE(b.isLocked());
     ASSERT_FLOAT_EQ(b.getProgress(), 0);

@@ -36,7 +36,7 @@ protected:
 TEST_F(BadgeDeathSuite, Attach) {
     mC.notify(Subscription::Life);
     ASSERT_EQ(b.getN(), 0);
-    b.attach(&mC);
+    b.addObserver(&mC);
     mC.notify(Subscription::Life);
     ASSERT_EQ(b.getN(), 1);
     mC.notify(Subscription::Score);
@@ -44,7 +44,7 @@ TEST_F(BadgeDeathSuite, Attach) {
 }
 
 TEST_F(BadgeDeathSuite, Detach) {
-    b.attach(&mC);
+    b.addObserver(&mC);
     b.detach();
     mC.notify(Subscription::Life);
     mC.notify(Subscription::Score);
@@ -54,7 +54,7 @@ TEST_F(BadgeDeathSuite, Detach) {
 
 TEST_F(BadgeDeathSuite, Update) {
     mC.increaseLives(1);
-    b.attach(&mC);
+    b.addObserver(&mC);
     ASSERT_FLOAT_EQ(b.getProgress(), 0);
     mC.increaseLives(-1);
     ASSERT_FLOAT_EQ(b.getProgress(), 100 / 3.);
