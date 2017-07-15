@@ -36,6 +36,28 @@ void Entity::draw() {
     Window::getInstance()->drawEntity(*this);
 }
 
+
+const sf::Vector2f Entity::getPos() const {
+    return pos + sprite.getOrigin();
+}
+
+const sf::Vector2f &Entity::getVel() const {
+    return vel;
+}
+
+float Entity::getAngle() const {
+    return angle;
+}
+
+float Entity::getAngleVel() const {
+    return angleVel;
+}
+
+sf::Sprite &Entity::getSprite() {
+    return sprite;
+}
+
+
 void Entity::getRelativePoints(std::vector<sf::Vector2f> &points) const {
     // Points of a rectangle with a 0° angle
     points.clear();

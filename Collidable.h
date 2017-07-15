@@ -21,9 +21,7 @@ public:
 
     virtual void collided()=0;
 
-    bool getRemoveFlag() {
-        return removeFlag;
-    }
+    bool getRemoveFlag();
 
 protected:
     virtual void updateRelPos();

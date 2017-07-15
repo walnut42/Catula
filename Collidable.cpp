@@ -32,3 +32,7 @@ void Collidable::updateRelPos() {
     angleVel += angleAcc * seconds;
     angle += angleVel * seconds;
 }
+
+bool Collidable::getRemoveFlag() {
+    return removeFlag;
+}

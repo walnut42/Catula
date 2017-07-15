@@ -24,25 +24,15 @@ public:
 
     virtual void update()=0;
 
-    const sf::Vector2f getPos() const {
-        return pos + sprite.getOrigin();
-    }
+    const sf::Vector2f getPos() const;
 
-    const sf::Vector2f &getVel() const {
-        return vel;
-    }
+    const sf::Vector2f &getVel() const;
 
-    float getAngle() const {
-        return angle;
-    }
+    float getAngle() const;
 
-    float getAngleVel() const {
-        return angleVel;
-    }
+    float getAngleVel() const;
 
-    sf::Sprite &getSprite() {
-        return sprite;
-    }
+    sf::Sprite &getSprite();
 
 protected:
     virtual void getRelativePoints(std::vector<sf::Vector2f> &points) const;
